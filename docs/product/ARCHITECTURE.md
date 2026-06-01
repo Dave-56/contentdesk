@@ -23,18 +23,19 @@ This keeps ContentDesk from assuming the answer is always a blog post. Sometimes
 
 ```mermaid
 flowchart TD
-  A["Brand Profile"] --> B["Buyer Prompt Set"]
-  B --> C["Prompt Runner"]
-  C --> D["Citation Source Analysis"]
-  D --> E["Trust Signal Layer"]
-  E --> F["Prompt Gap Model"]
-  F --> G["Recommendation Card"]
-  G --> H["Founder Approval"]
-  H --> I["Content Kit or Fix Kit"]
-  I --> J["QA Gate"]
-  J --> K["Publish Handoff"]
-  K --> L["Dated Recheck"]
-  L --> C
+  A["Website or Brand Profile"] --> B["Strategy Inference"]
+  B --> C["Buyer Prompt Set"]
+  C --> D["Prompt Runner"]
+  D --> E["Citation Source Analysis"]
+  E --> F["Trust Signal Layer"]
+  F --> G["Prompt Gap Model"]
+  G --> H["Recommendation Card"]
+  H --> I["Founder Approval"]
+  I --> J["Content Kit or Fix Kit"]
+  J --> K["QA Gate"]
+  K --> L["Publish Handoff"]
+  L --> M["Dated Recheck"]
+  M --> D
 ```
 
 ## First Visibility MVP
@@ -49,6 +50,7 @@ Experiment window: 30-60 days
 Recheck cadence: 1 day for now
 Command: npm run visibility:scan
 Strategy input: data/tiny-lemon/visibility/strategy.json
+Website-first draft: npm run prompt:infer -- --url https://tinylemon.xyz
 Selected prompt input: data/tiny-lemon/visibility/prompts.selected.json
 Output: data/tiny-lemon/visibility/runs/YYYY-MM-DD.json
 ```
@@ -59,17 +61,19 @@ The first product loop is:
 
 ```mermaid
 flowchart TD
-  A["Generate and score buyer prompts"] --> B["Select prompt portfolio"]
-  B --> C["Run Perplexity buyer prompts"]
-  C --> D["Capture answers and citations"]
-  D --> E["Score Tiny Lemon visibility"]
-  E --> F["Classify source format and citation quality"]
-  F --> G["Compare against Tiny Lemon asset inventory"]
-  G --> H["Recommend next asset or fix"]
-  H --> I["Build / publish intervention"]
-  I --> J["Re-run prompts daily"]
-  J --> K["Measure change over 30-60 days"]
-  K --> A
+  A["Infer strategy.json from website/search"] --> B["Review strategy.json"]
+  B --> C["Generate and score buyer prompts"]
+  C --> D["Select prompt portfolio"]
+  D --> E["Run Perplexity buyer prompts"]
+  E --> F["Capture answers and citations"]
+  F --> G["Score Tiny Lemon visibility"]
+  G --> H["Classify source format and citation quality"]
+  H --> I["Compare against Tiny Lemon asset inventory"]
+  I --> J["Recommend next asset or fix"]
+  J --> K["Build / publish intervention"]
+  K --> L["Re-run prompts daily"]
+  L --> M["Measure change over 30-60 days"]
+  M --> A
 ```
 
 Success means:
@@ -158,6 +162,23 @@ competitor confidence
 ### Buyer Prompt Set
 
 The set of buyer questions ContentDesk will test.
+
+For product use, strategy inference can start from a website URL when a full Brand Profile
+does not exist yet:
+
+```text
+website URL
+-> site profile
+-> optional Parallel search for market/competitor context
+-> strategy.json draft
+-> human review
+-> buyer prompt candidates
+-> selected prompt portfolio
+```
+
+The inferred strategy includes audience, category, positioning, primary use cases, buyer jobs,
+competitors, and asset inventory. `strategy.json` is draft until reviewed. Selection should run
+after review so weak competitor inference cannot poison the visibility baseline.
 
 Examples:
 

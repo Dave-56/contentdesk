@@ -352,6 +352,17 @@ Implementation notes:
 - [ ] Add tests for artifact schema validation.
 - [ ] Add tests for Markdown formatting QA cases, including malformed lists, missing numbered steps, overly long paragraphs, and unstructured drafts.
 
+## Visibility Layer MVP
+
+- [x] Add website-first strategy inference command for buyer prompt strategy drafts.
+- [x] Keep one editable strategy file at `data/<brand>/visibility/strategy.json`.
+- [x] Keep `prompt:select` limited to reviewed strategy files and reject URL input.
+- [x] Load `.env.local` in prompt scan commands before reading `PERPLEXITY_API_KEY`.
+- [x] Add exact env example/docs entry for `PERPLEXITY_API_KEY`.
+- [ ] Run selected Tiny Lemon Perplexity scan after `PERPLEXITY_API_KEY` is visible.
+- [ ] Review inferred Tiny Lemon competitors and buyer jobs before treating prompt selection as baseline-ready.
+- [ ] Reduce `unknown` source-format and citation-quality classifications.
+
 ## Later
 
 - [ ] Market Monitor Agent or scheduled market research pass.

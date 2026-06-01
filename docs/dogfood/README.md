@@ -31,6 +31,8 @@ Everything for this experiment lives under `data/tiny-lemon/visibility/`.
 
 ```text
 strategy.json          # source-of-truth inputs for selecting buyer prompts
+site-profile.json      # website crawl/profile used for strategy inference
+research-sources.inferred.json # search/extract sources used for inferred competitors
 prompts.all.json       # older/wider manual prompt set for broad scans
 portfolio.json         # generated prompt candidates + scores + rationales
 prompts.selected.json  # generated scan-ready selected prompt set
@@ -49,9 +51,29 @@ npm run visibility:scan      # normal path: select prompts, then scan selected p
 
 Debug commands:
 ```
-npm run prompt:select        # selection only
+npm run prompt:select        # selection only from existing Tiny Lemon strategy.json
+npm run prompt:infer -- --url https://tinylemon.xyz
+                             # writes strategy.json draft; review before selecting prompts
 npm run prompt:scan:selected # scan existing selected prompt file only
 ```
+
+For another app, infer draft inputs first:
+
+```text
+npm run prompt:infer -- --url https://example.com
+```
+
+It writes to `data/<brand-slug>/visibility/`:
+
+```text
+strategy.json
+site-profile.json
+research-sources.inferred.json
+```
+
+Treat `strategy.json` as a draft until reviewed. It is evidence-based from the website crawl
+and, when `PARALLEL_API_KEY` is available, Parallel search. Review competitor names before
+running `npm run prompt:select`.
 
 ## Artifacts in this folder
 - [`AI_SEARCH_SCAN.md`](AI_SEARCH_SCAN.md) — citation scan notes.

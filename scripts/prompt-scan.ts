@@ -1,3 +1,4 @@
+import "@/lib/load-env";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { buildPromptScanRun } from "@/lib/prompt-scan/analyzer";

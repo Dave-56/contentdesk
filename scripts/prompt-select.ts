@@ -4,22 +4,23 @@ import { buildBuyerPromptPortfolio } from "@/lib/buyer-prompt-strategist";
 import { buyerPromptStrategyInputSchema } from "@/lib/buyer-prompt-strategist/schemas";
 import { promptScanConfigSchema } from "@/lib/prompt-scan/schemas";
 
-const inputPath = process.argv[2] ?? "data/tiny-lemon/visibility/strategy.json";
-const portfolioPath = "data/tiny-lemon/visibility/portfolio.json";
-const selectedScanConfigPath = "data/tiny-lemon/visibility/prompts.selected.json";
+const defaultInputPath = "data/tiny-lemon/visibility/strategy.json";
+const defaultOutputDir = "data/tiny-lemon/visibility";
 
 export async function selectPrompts(input: {
   inputPath?: string;
+  outputDir?: string;
   portfolioPath?: string;
   selectedScanConfigPath?: string;
 } = {}) {
-  const resolvedInputPath = input.inputPath ?? inputPath;
-  const resolvedPortfolioPath = input.portfolioPath ?? portfolioPath;
-  const resolvedSelectedScanConfigPath =
-    input.selectedScanConfigPath ?? selectedScanConfigPath;
   const strategy = buyerPromptStrategyInputSchema.parse(
-    JSON.parse(await readFile(resolvedInputPath, "utf8")),
+    JSON.parse(await readFile(input.inputPath ?? defaultInputPath, "utf8")),
   );
+  const outputDir = input.outputDir ?? defaultOutputDir;
+  const resolvedPortfolioPath =
+    input.portfolioPath ?? path.join(outputDir, "portfolio.json");
+  const resolvedSelectedScanConfigPath =
+    input.selectedScanConfigPath ?? path.join(outputDir, "prompts.selected.json");
   const portfolio = buildBuyerPromptPortfolio({ strategy });
   const selectedScanConfig = promptScanConfigSchema.parse({
     brand: strategy.brand,
@@ -50,13 +51,15 @@ export async function selectPrompts(input: {
   return {
     portfolio,
     selectedScanConfig,
+    strategy,
     portfolioPath: resolvedPortfolioPath,
     selectedScanConfigPath: resolvedSelectedScanConfigPath,
   };
 }
 
 async function main() {
-  await selectPrompts();
+  const args = parseArgs(process.argv.slice(2));
+  await selectPrompts(args);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -64,4 +67,28 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.error(error instanceof Error ? error.message : String(error));
     process.exit(1);
   });
+}
+
+function parseArgs(args: string[]) {
+  const parsed: {
+    inputPath?: string;
+    outputDir?: string;
+  } = {};
+
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === "--url" || arg?.startsWith("http://") || arg?.startsWith("https://")) {
+      throw new Error(
+        "prompt:select only uses reviewed strategy files. Use npm run prompt:infer -- --url <url> first.",
+      );
+    }
+    if (arg === "--out") {
+      parsed.outputDir = args[index + 1];
+      index += 1;
+      continue;
+    }
+    if (arg && !parsed.inputPath) parsed.inputPath = arg;
+  }
+
+  return parsed;
 }

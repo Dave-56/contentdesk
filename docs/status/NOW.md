@@ -35,9 +35,18 @@ Provider scope: **Perplexity only** for now. See [`../dogfood/README.md`](../dog
 - Visibility loop: `npm run visibility:scan` selects prompts from
   `data/tiny-lemon/visibility/strategy.json`, scans selected prompts, and writes
   `data/tiny-lemon/visibility/runs/`.
+- Website-first strategy inference: `npm run prompt:infer -- --url <url>` writes one editable
+  `strategy.json` plus `site-profile.json` and `research-sources.inferred.json`; it does not
+  select prompts or scan. `npm run prompt:select` rejects URL input and only uses reviewed
+  strategy files.
 - Buyer Prompt Strategist: `npm run prompt:select` writes
   `data/tiny-lemon/visibility/portfolio.json` and
   `data/tiny-lemon/visibility/prompts.selected.json`.
+- Prompt scan env loading: `scripts/prompt-scan.ts` now imports `@/lib/load-env`, so
+  `PERPLEXITY_API_KEY` can be read from `.env.local`.
+- Verification on 2026-06-01: `npm test -- src/lib/buyer-prompt-strategist/infer.test.ts`
+  passed, `npm run typecheck` passed, `npm run prompt:select` passed, and URL input to
+  `prompt:select` correctly failed with the prompt-infer instruction.
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
   "update repo memory" stop routine; latest memory commit is `a058f71`.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
@@ -46,12 +55,12 @@ Provider scope: **Perplexity only** for now. See [`../dogfood/README.md`](../dog
   Competitor-only answers: 11/20 — the winnable hit list (rival named, Tiny Lemon absent).
 
 ## Blockers
-- _(none recorded — add as they appear)_
+- `PERPLEXITY_API_KEY` was not visible in `.env.local` during verification, so
+  `npm run prompt:scan:selected` cannot run until the key is added with that exact name.
 
 ## Next 3 actions
-1. Review the selected Tiny Lemon prompt portfolio and tune buyer jobs / competitor priority
-   if the selected prompts do not match founder intuition.
-2. Run `npm run prompt:scan:selected` after prompt review to establish the selected-prompt
-   baseline.
+1. Add/verify `PERPLEXITY_API_KEY` in `.env.local` with the exact variable name.
+2. Review `data/tiny-lemon/visibility/strategy.json` after any `prompt:infer` run, especially
+   competitors and buyer jobs, then run `npm run prompt:select`.
 3. Improve citation/source intelligence for prompt scans, especially reducing `unknown`
    source-format and citation-quality classifications.
