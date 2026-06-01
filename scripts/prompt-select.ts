@@ -4,9 +4,9 @@ import { buildBuyerPromptPortfolio } from "@/lib/buyer-prompt-strategist";
 import { buyerPromptStrategyInputSchema } from "@/lib/buyer-prompt-strategist/schemas";
 import { promptScanConfigSchema } from "@/lib/prompt-scan/schemas";
 
-const inputPath = process.argv[2] ?? "data/tiny-lemon-prompt-strategy.json";
-const portfolioPath = "data/tiny-lemon-prompt-portfolio.json";
-const selectedScanConfigPath = "data/tiny-lemon-prompts.selected.json";
+const inputPath = process.argv[2] ?? "data/tiny-lemon/visibility/strategy.json";
+const portfolioPath = "data/tiny-lemon/visibility/portfolio.json";
+const selectedScanConfigPath = "data/tiny-lemon/visibility/prompts.selected.json";
 
 export async function selectPrompts(input: {
   inputPath?: string;

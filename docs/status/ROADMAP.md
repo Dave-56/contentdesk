@@ -65,9 +65,9 @@ Build the first automated measurement loop for Tiny Lemon using Perplexity only.
 ### Current Shape
 
 ```text
-Input:  data/tiny-lemon-prompts.json
-Runner: npm run prompt:scan
-Output: data/prompt-runs/YYYY-MM-DD-tiny-lemon.json
+Input:  data/tiny-lemon/visibility/strategy.json
+Runner: npm run visibility:scan
+Output: data/tiny-lemon/visibility/runs/YYYY-MM-DD.json
 Provider: Perplexity
 ```
 

@@ -25,16 +25,33 @@ ContentDesk's visibility layer before selling the loop to anyone. Rationale:
 - Owned/earned Tiny Lemon assets enter citations.
 - Recommendations get more specific over time.
 
+## Data layout
+
+Everything for this experiment lives under `data/tiny-lemon/visibility/`.
+
+```text
+strategy.json          # source-of-truth inputs for selecting buyer prompts
+prompts.all.json       # older/wider manual prompt set for broad scans
+portfolio.json         # generated prompt candidates + scores + rationales
+prompts.selected.json  # generated scan-ready selected prompt set
+runs/                  # dated Perplexity scan outputs
+```
+
 ## Run it
 ```
-npm run prompt:select        # scores/selects the buyer prompts worth tracking
-npm run prompt:scan:selected # runs the Perplexity scan against selected prompts
+npm run visibility:scan      # normal path: select prompts, then scan selected prompts
 ```
-- Strategy input: `data/tiny-lemon-prompt-strategy.json`
-- Selected portfolio: `data/tiny-lemon-prompt-portfolio.json`
-- Scan input: `data/tiny-lemon-prompts.selected.json`
-- Scan output: `data/prompt-runs/YYYY-MM-DD-tiny-lemon.json`
+- Strategy input: `data/tiny-lemon/visibility/strategy.json`
+- Selected portfolio: `data/tiny-lemon/visibility/portfolio.json`
+- Scan input: `data/tiny-lemon/visibility/prompts.selected.json`
+- Scan output: `data/tiny-lemon/visibility/runs/YYYY-MM-DD.json`
 - Code: `src/lib/prompt-scan/`
+
+Debug commands:
+```
+npm run prompt:select        # selection only
+npm run prompt:scan:selected # scan existing selected prompt file only
+```
 
 ## Artifacts in this folder
 - [`AI_SEARCH_SCAN.md`](AI_SEARCH_SCAN.md) — citation scan notes.

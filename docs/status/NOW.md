@@ -32,13 +32,14 @@ Provider scope: **Perplexity only** for now. See [`../dogfood/README.md`](../dog
 
 ## Last verified
 - Content pipeline: implemented (see `src/lib/workflow.ts`).
-- Visibility loop: `npm run prompt:scan` runs against `data/tiny-lemon-prompts.json`,
-  writes `data/prompt-runs/`.
+- Visibility loop: `npm run visibility:scan` selects prompts from
+  `data/tiny-lemon/visibility/strategy.json`, scans selected prompts, and writes
+  `data/tiny-lemon/visibility/runs/`.
 - Buyer Prompt Strategist: `npm run prompt:select` writes
-  `data/tiny-lemon-prompt-portfolio.json` and
-  `data/tiny-lemon-prompts.selected.json`.
+  `data/tiny-lemon/visibility/portfolio.json` and
+  `data/tiny-lemon/visibility/prompts.selected.json`.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
-  `data/prompt-runs/2026-06-01-tiny-lemon.json`.
+  `data/tiny-lemon/visibility/runs/2026-06-01.json`.
   Baseline: Tiny Lemon mentioned 0/20, cited 0/20, average visibility score 0.
   Competitor-only answers: 11/20 — the winnable hit list (rival named, Tiny Lemon absent).
 

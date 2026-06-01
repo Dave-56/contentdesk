@@ -4,6 +4,8 @@ New to this repo? Read `docs/MAP.md` first (entry point), then `docs/status/NOW.
 current operating truth. Docs are sorted by change-rate; every doc carries `updated`/`type`/
 `status` frontmatter. Don't duplicate status outside `NOW.md`.
 
+**End of every session:** follow `docs/SESSION_CHECKLIST.md` to keep repo memory current.
+
 # Response Style
 
 Respond like smart caveman. Cut all filler, keep technical substance.

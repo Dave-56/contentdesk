@@ -45,6 +45,7 @@ Full detail: [`status/NOW.md`](status/NOW.md) · [`dogfood/README.md`](dogfood/R
 | Tiny Lemon dogfood | [`dogfood/README.md`](dogfood/README.md) |
 | Narrative history / thesis | [`status/STATUS.md`](status/STATUS.md) |
 | Superseded / dead docs | [`archive/`](archive/) |
+| End-of-session ritual | [`SESSION_CHECKLIST.md`](SESSION_CHECKLIST.md) |
 
 ## Code map (implemented truth — don't read docs forever and miss this)
 
@@ -65,7 +66,7 @@ Full detail: [`status/NOW.md`](status/NOW.md) · [`dogfood/README.md`](dogfood/R
 | Publish kit + Codex handoff | `src/lib/publish-kit.ts`, `src/app/handoff/` |
 | DB schema | `migrations/001_init.sql` |
 
-Live experiment data: `data/tiny-lemon-prompts.json`, `data/prompt-runs/`.
+Live experiment data: `data/tiny-lemon/visibility/`.
 
 ---
 

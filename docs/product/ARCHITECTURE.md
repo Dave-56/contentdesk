@@ -47,10 +47,10 @@ Provider: Perplexity
 Goal: make Tiny Lemon more mentioned/cited in AI buyer answers
 Experiment window: 30-60 days
 Recheck cadence: 1 day for now
-Commands: npm run prompt:select -> npm run prompt:scan:selected
-Strategy input: data/tiny-lemon-prompt-strategy.json
-Selected prompt input: data/tiny-lemon-prompts.selected.json
-Output: data/prompt-runs/YYYY-MM-DD-tiny-lemon.json
+Command: npm run visibility:scan
+Strategy input: data/tiny-lemon/visibility/strategy.json
+Selected prompt input: data/tiny-lemon/visibility/prompts.selected.json
+Output: data/tiny-lemon/visibility/runs/YYYY-MM-DD.json
 ```
 
 This proves the visibility loop before adding ChatGPT, Gemini, Google AI Overviews, Slack scheduling, or database persistence.
