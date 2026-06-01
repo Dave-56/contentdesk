@@ -3,7 +3,9 @@ title: Tiny Lemon AEO Recommendation Backlog
 updated: 2026-05-27
 type: living
 status: current
----# Tiny Lemon AEO Recommendation Backlog
+---
+
+# Tiny Lemon AEO Recommendation Backlog
 
 Captured from HubSpot AEO beta on 2026-05-28.
 

@@ -1,0 +1,165 @@
+{
+  "brand": {
+    "name": "Tiny Lemon",
+    "aliases": ["TinyLemon", "tinylemon"],
+    "domains": ["tinylemon.xyz"]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "audience": "Shopify fashion brands",
+  "category": "AI model photo app",
+  "positioning": "Tiny Lemon helps Shopify fashion brands create consistent AI on-model product photos without coordinating a photoshoot.",
+  "conversionGoal": "a Shopify product page launch",
+  "primaryUseCases": [
+    "AI on-model product photos",
+    "turning flat lay photos into model photos",
+    "consistent fashion catalog product photos"
+  ],
+  "portfolioSize": 10,
+  "buyerJobs": [
+    {
+      "id": "avoid-photoshoot",
+      "group": "problem_aware",
+      "job": "Find a cheaper way to create model photos without a traditional photoshoot.",
+      "pain": "create model photos without hiring models or booking a photoshoot",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "find-category-tools",
+      "group": "category_search",
+      "job": "Discover which AI product photography tools exist for Shopify apparel workflows.",
+      "pain": "find AI product photography tools that work for Shopify apparel stores",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "understand-workflow",
+      "group": "solution_aware",
+      "job": "Understand whether AI model photo apps can produce usable ecommerce photos.",
+      "pain": "understand how AI model photo apps work for Shopify apparel products",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "compare-alternatives",
+      "group": "competitor_comparison",
+      "job": "Compare known AI photo tools and decide which one fits a Shopify fashion store.",
+      "pain": "compare AI photo app alternatives for Shopify fashion product photos",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    },
+    {
+      "id": "prepare-pdp",
+      "group": "integration_use_case",
+      "job": "Prepare launch-ready product page images for a Shopify fashion catalog.",
+      "pain": "prepare AI model photos for Shopify product pages",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 3
+    },
+    {
+      "id": "choose-app",
+      "group": "high_intent_purchase",
+      "job": "Choose the app to install or try for AI fashion product photos.",
+      "pain": "choose the right AI model photo app for a Shopify fashion store",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Botika",
+      "aliases": ["Botika.io"],
+      "domains": ["botika.io"]
+    },
+    {
+      "name": "Photoroom",
+      "aliases": ["PhotoRoom"],
+      "domains": ["photoroom.com"]
+    },
+    {
+      "name": "Pebblely",
+      "aliases": [],
+      "domains": ["pebblely.com"]
+    },
+    {
+      "name": "Flair",
+      "aliases": ["Flair AI"],
+      "domains": ["flair.ai"]
+    },
+    {
+      "name": "Modelia",
+      "aliases": [],
+      "domains": ["modelia.ai"]
+    },
+    {
+      "name": "Claid",
+      "aliases": ["Claid.ai"],
+      "domains": ["claid.ai"]
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "unknown",
+      "notes": "Confirm whether Tiny Lemon has a live Shopify App Store listing."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://tinylemon.xyz/",
+      "notes": "Primary owned landing page."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page inventory yet."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No known Botika/Modelia/Photoroom alternatives pages yet."
+    },
+    {
+      "type": "blog_guide",
+      "status": "unknown",
+      "url": "https://tinylemon.xyz/blog",
+      "notes": "Blog exists, but specific prompt coverage needs scanning."
+    },
+    {
+      "type": "docs_help",
+      "status": "unknown",
+      "notes": "Confirm whether help docs exist."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "No structured community mention inventory yet."
+    },
+    {
+      "type": "youtube_video",
+      "status": "missing",
+      "notes": "No known YouTube proof asset yet."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Confirm review-site presence."
+    },
+    {
+      "type": "case_study",
+      "status": "missing",
+      "notes": "No case study inventory yet."
+    }
+  ]
+}

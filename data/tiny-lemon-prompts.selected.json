@@ -1,0 +1,176 @@
+{
+  "brand": {
+    "name": "Tiny Lemon",
+    "aliases": [
+      "TinyLemon",
+      "tinylemon"
+    ],
+    "domains": [
+      "tinylemon.xyz"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "competitors": [
+    {
+      "name": "Botika",
+      "aliases": [
+        "Botika.io"
+      ],
+      "domains": [
+        "botika.io"
+      ]
+    },
+    {
+      "name": "Photoroom",
+      "aliases": [
+        "PhotoRoom"
+      ],
+      "domains": [
+        "photoroom.com"
+      ]
+    },
+    {
+      "name": "Pebblely",
+      "aliases": [],
+      "domains": [
+        "pebblely.com"
+      ]
+    },
+    {
+      "name": "Flair",
+      "aliases": [
+        "Flair AI"
+      ],
+      "domains": [
+        "flair.ai"
+      ]
+    },
+    {
+      "name": "Modelia",
+      "aliases": [],
+      "domains": [
+        "modelia.ai"
+      ]
+    },
+    {
+      "name": "Claid",
+      "aliases": [
+        "Claid.ai"
+      ],
+      "domains": [
+        "claid.ai"
+      ]
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "unknown",
+      "notes": "Confirm whether Tiny Lemon has a live Shopify App Store listing."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://tinylemon.xyz/",
+      "notes": "Primary owned landing page."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page inventory yet."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No known Botika/Modelia/Photoroom alternatives pages yet."
+    },
+    {
+      "type": "blog_guide",
+      "status": "unknown",
+      "url": "https://tinylemon.xyz/blog",
+      "notes": "Blog exists, but specific prompt coverage needs scanning."
+    },
+    {
+      "type": "docs_help",
+      "status": "unknown",
+      "notes": "Confirm whether help docs exist."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "No structured community mention inventory yet."
+    },
+    {
+      "type": "youtube_video",
+      "status": "missing",
+      "notes": "No known YouTube proof asset yet."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Confirm review-site presence."
+    },
+    {
+      "type": "case_study",
+      "status": "missing",
+      "notes": "No case study inventory yet."
+    }
+  ],
+  "prompts": [
+    {
+      "id": "competitor-botika-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Botika alternatives for Shopify fashion brands?"
+    },
+    {
+      "id": "competitor-flair-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Flair alternatives for Shopify fashion brands?"
+    },
+    {
+      "id": "competitor-modelia-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Modelia alternatives for Shopify fashion brands?"
+    },
+    {
+      "id": "purchase-choose-choose-app",
+      "group": "high_intent_purchase",
+      "prompt": "Which AI model photo app should I choose for Shopify fashion brands?"
+    },
+    {
+      "id": "purchase-app-choose-app",
+      "group": "high_intent_purchase",
+      "prompt": "Is there a Shopify app that helps Shopify fashion brands with AI on-model product photos?"
+    },
+    {
+      "id": "category-best-find-category-tools",
+      "group": "category_search",
+      "prompt": "What are the best AI model photo apps for Shopify fashion brands?"
+    },
+    {
+      "id": "category-apps-find-category-tools",
+      "group": "category_search",
+      "prompt": "Which apps help Shopify fashion brands with AI on-model product photos?"
+    },
+    {
+      "id": "solution-understand-workflow",
+      "group": "solution_aware",
+      "prompt": "How do AI model photo apps work for Shopify fashion brands?"
+    },
+    {
+      "id": "problem-avoid-photoshoot",
+      "group": "problem_aware",
+      "prompt": "How can Shopify fashion brands create model photos without hiring models or booking a photoshoot?"
+    },
+    {
+      "id": "integration-prepare-pdp",
+      "group": "integration_use_case",
+      "prompt": "How should Shopify fashion brands prepare AI on-model product photos for a Shopify product page launch?"
+    }
+  ]
+}

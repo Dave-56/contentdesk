@@ -3,7 +3,9 @@ title: Learnings From Reddit: AEO, Prompt Gaps, and ContentDesk
 updated: 2026-05-31
 type: research
 status: current
----# Learnings From Reddit: AEO, Prompt Gaps, and ContentDesk
+---
+
+# Learnings From Reddit: AEO, Prompt Gaps, and ContentDesk
 
 ## Context
 

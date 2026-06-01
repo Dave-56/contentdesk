@@ -3,7 +3,9 @@ title: ContentDesk Copywriting Bank
 updated: 2026-05-31
 type: stable
 status: current
----# ContentDesk Copywriting Bank
+---
+
+# ContentDesk Copywriting Bank
 
 Last updated: 2026-05-30
 

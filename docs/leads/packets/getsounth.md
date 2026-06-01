@@ -3,7 +3,9 @@ title: Sounth Reddit Teardown Packet
 updated: 2026-05-29
 type: data
 status: current
----# Sounth Reddit Teardown Packet
+---
+
+# Sounth Reddit Teardown Packet
 
 Website: https://getsounth.com/
 

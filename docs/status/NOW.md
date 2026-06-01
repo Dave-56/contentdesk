@@ -33,13 +33,22 @@ Provider scope: **Perplexity only** for now. See [`../dogfood/README.md`](../dog
 ## Last verified
 - Content pipeline: implemented (see `src/lib/workflow.ts`).
 - Visibility loop: `npm run prompt:scan` runs against `data/tiny-lemon-prompts.json`,
-  writes `data/prompt-runs/`. _Confirm last successful run date here when you run it._
+  writes `data/prompt-runs/`.
+- Buyer Prompt Strategist: `npm run prompt:select` writes
+  `data/tiny-lemon-prompt-portfolio.json` and
+  `data/tiny-lemon-prompts.selected.json`.
+- Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
+  `data/prompt-runs/2026-06-01-tiny-lemon.json`.
+  Baseline: Tiny Lemon mentioned 0/20, cited 0/20, average visibility score 0.
+  Competitor-only answers: 11/20 — the winnable hit list (rival named, Tiny Lemon absent).
 
 ## Blockers
 - _(none recorded — add as they appear)_
 
 ## Next 3 actions
-1. _Fill in_ — e.g. wire Recommendation Card layer into the workflow before writing begins
-   (see "Target Flow" in `../product/ARCHITECTURE.md`).
-2. _Fill in_ — establish a Tiny Lemon baseline scan + recheck cadence.
-3. _Fill in._
+1. Review the selected Tiny Lemon prompt portfolio and tune buyer jobs / competitor priority
+   if the selected prompts do not match founder intuition.
+2. Run `npm run prompt:scan:selected` after prompt review to establish the selected-prompt
+   baseline.
+3. Improve citation/source intelligence for prompt scans, especially reducing `unknown`
+   source-format and citation-quality classifications.

@@ -3,7 +3,9 @@ title: ContentDesk Pricing Spec
 updated: 2026-05-30
 type: stable
 status: current
----# ContentDesk Pricing Spec
+---
+
+# ContentDesk Pricing Spec
 
 ## Market Positioning
 

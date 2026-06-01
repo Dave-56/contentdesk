@@ -3,7 +3,18 @@ title: ContentDesk MVP Tasklist
 updated: 2026-05-31
 type: living
 status: current
----# ContentDesk MVP Tasklist
+---
+
+# ContentDesk MVP Tasklist
+
+This file is **only** the build log: checkboxes grouped by phase. `[x]` = done, `[ ]` = left.
+It answers one question — *what is built and what's left?* Nothing else lives here:
+- Current focus / stage / blockers → [`NOW.md`](NOW.md)
+- Why we chose things → [`../decisions/`](../decisions/)
+- How it works → [`../product/ARCHITECTURE.md`](../product/ARCHITECTURE.md)
+
+Don't add background, strategy, or rationale below. If a line isn't a checkbox, it belongs in
+one of the files above.
 
 ## Phase 0: Product Shape
 
@@ -85,8 +96,6 @@ Acceptance:
 - [x] Each topic includes merchant pain, Shopify angle, content gap, source links, and score.
 - [x] Topic options expose their strategic lane without adding a new founder-facing research mode.
 - [x] User can approve 1 topic.
-
-Implementation note: live Parallel/AI execution requires `PARALLEL_API_KEY` and `AI_GATEWAY_API_KEY` or Vercel OIDC. If research or AI generation fails, the Manager posts the failure reason and does not create fallback topics.
 
 ## Future Phase: Research Strategy Specialists
 

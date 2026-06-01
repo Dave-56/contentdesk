@@ -3,7 +3,9 @@ title: SaasNiche Reddit Teardown Packet
 updated: 2026-05-29
 type: data
 status: current
----# SaasNiche Reddit Teardown Packet
+---
+
+# SaasNiche Reddit Teardown Packet
 
 Website: https://saasniche.com/
 

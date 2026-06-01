@@ -11,6 +11,8 @@ export const promptGroupSchema = z.enum([
   "high_intent_purchase",
 ]);
 
+export type PromptGroup = z.infer<typeof promptGroupSchema>;
+
 export const providerSchema = z.literal("perplexity");
 
 export const sourceFormatSchema = z.enum([

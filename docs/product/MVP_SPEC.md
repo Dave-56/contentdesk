@@ -3,7 +3,9 @@ title: ContentDesk MVP Spec
 updated: 2026-05-27
 type: stable
 status: current
----# ContentDesk MVP Spec
+---
+
+# ContentDesk MVP Spec
 
 ## Product
 

@@ -3,7 +3,9 @@ title: Questions
 updated: 2026-05-29
 type: research
 status: current
----# Questions
+---
+
+# Questions
 
 - What category I think your site is competing in
 - The buyer questions people are likely asking before choosing a product like yours

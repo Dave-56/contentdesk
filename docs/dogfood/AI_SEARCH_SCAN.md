@@ -3,7 +3,9 @@ title: Tiny Lemon — AI Search Citation Scan
 updated: 2026-05-31
 type: data
 status: current
----# Tiny Lemon — AI Search Citation Scan
+---
+
+# Tiny Lemon — AI Search Citation Scan
 
 Captured: 2026-05-31. Companion to `SHOPIFY_BUYER_PROMPTS.md` (playbook) and `AEO_RECOMMENDATIONS.md` (HubSpot AEO baseline from 2026-05-28).
 

@@ -3,7 +3,9 @@ title: ContentDesk Status
 updated: 2026-05-31
 type: living
 status: current
----# ContentDesk Status
+---
+
+# ContentDesk Status
 
 Last updated: 2026-05-30
 

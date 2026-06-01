@@ -3,7 +3,9 @@ title: Reddit Teardown Leads
 updated: 2026-05-30
 type: reference
 status: current
----# Reddit Teardown Leads
+---
+
+# Reddit Teardown Leads
 
 Lightweight tracker for websites submitted from the Reddit teardown post.
 

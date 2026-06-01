@@ -27,10 +27,13 @@ ContentDesk's visibility layer before selling the loop to anyone. Rationale:
 
 ## Run it
 ```
-npm run prompt:scan          # runs the Perplexity buyer-prompt scan
+npm run prompt:select        # scores/selects the buyer prompts worth tracking
+npm run prompt:scan:selected # runs the Perplexity scan against selected prompts
 ```
-- Input: `data/tiny-lemon-prompts.json`
-- Output: `data/prompt-runs/YYYY-MM-DD-tiny-lemon.json`
+- Strategy input: `data/tiny-lemon-prompt-strategy.json`
+- Selected portfolio: `data/tiny-lemon-prompt-portfolio.json`
+- Scan input: `data/tiny-lemon-prompts.selected.json`
+- Scan output: `data/prompt-runs/YYYY-MM-DD-tiny-lemon.json`
 - Code: `src/lib/prompt-scan/`
 
 ## Artifacts in this folder

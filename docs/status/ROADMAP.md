@@ -3,7 +3,9 @@ title: ContentDesk Visibility Roadmap
 updated: 2026-06-01
 type: living
 status: current
----# ContentDesk Visibility Roadmap
+---
+
+# ContentDesk Visibility Roadmap
 
 ## Why This Exists
 

@@ -3,7 +3,9 @@ title: ContentDesk Architecture
 updated: 2026-06-01
 type: stable
 status: current
----# ContentDesk Architecture
+---
+
+# ContentDesk Architecture
 
 ContentDesk is a Slack-first SEO/AEO operator for lean founders. Its job is not to generate content by default. Its job is to identify which source formats AI/search systems already trust for a buyer prompt, recommend the next most realistic asset or fix, produce the kit, and schedule a recheck.
 
@@ -45,8 +47,9 @@ Provider: Perplexity
 Goal: make Tiny Lemon more mentioned/cited in AI buyer answers
 Experiment window: 30-60 days
 Recheck cadence: 1 day for now
-Command: npm run prompt:scan
-Input: data/tiny-lemon-prompts.json
+Commands: npm run prompt:select -> npm run prompt:scan:selected
+Strategy input: data/tiny-lemon-prompt-strategy.json
+Selected prompt input: data/tiny-lemon-prompts.selected.json
 Output: data/prompt-runs/YYYY-MM-DD-tiny-lemon.json
 ```
 
@@ -56,15 +59,17 @@ The first product loop is:
 
 ```mermaid
 flowchart TD
-  A["Run Perplexity buyer prompts"] --> B["Capture answers and citations"]
-  B --> C["Score Tiny Lemon visibility"]
-  C --> D["Classify source format and citation quality"]
-  D --> E["Compare against Tiny Lemon asset inventory"]
-  E --> F["Recommend next asset or fix"]
-  F --> G["Build / publish intervention"]
-  G --> H["Re-run prompts daily"]
-  H --> I["Measure change over 30-60 days"]
-  I --> A
+  A["Generate and score buyer prompts"] --> B["Select prompt portfolio"]
+  B --> C["Run Perplexity buyer prompts"]
+  C --> D["Capture answers and citations"]
+  D --> E["Score Tiny Lemon visibility"]
+  E --> F["Classify source format and citation quality"]
+  F --> G["Compare against Tiny Lemon asset inventory"]
+  G --> H["Recommend next asset or fix"]
+  H --> I["Build / publish intervention"]
+  I --> J["Re-run prompts daily"]
+  J --> K["Measure change over 30-60 days"]
+  K --> A
 ```
 
 Success means:
