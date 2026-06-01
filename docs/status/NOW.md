@@ -38,6 +38,8 @@ Provider scope: **Perplexity only** for now. See [`../dogfood/README.md`](../dog
 - Buyer Prompt Strategist: `npm run prompt:select` writes
   `data/tiny-lemon/visibility/portfolio.json` and
   `data/tiny-lemon/visibility/prompts.selected.json`.
+- Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
+  "update repo memory" stop routine; latest memory commit is `a058f71`.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
   `data/tiny-lemon/visibility/runs/2026-06-01.json`.
   Baseline: Tiny Lemon mentioned 0/20, cited 0/20, average visibility score 0.

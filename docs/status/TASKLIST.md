@@ -1,6 +1,6 @@
 ---
 title: ContentDesk MVP Tasklist
-updated: 2026-05-31
+updated: 2026-06-01
 type: living
 status: current
 ---
@@ -24,6 +24,7 @@ one of the files above.
 - [x] Confirm first manual publishing target: Codex handoff.
 - [x] Confirm product principle: sell the concrete outcome of search/AI visibility for lean founders, not generic "AI content automation."
 - [x] Confirm buyer-journey principle: prompts are buyer questions and content opportunities should map to Awareness, Consideration, Evaluation, and Decision.
+- [x] Add shared end-of-session checklist and agent invocation through `AGENTS.md`.
 
 ## Phase 1: Workflow Skeleton
 
