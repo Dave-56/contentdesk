@@ -1,0 +1,9 @@
+node_modules
+.next
+.env
+.env*.local
+.slack/config.json
+.postgres-data
+dist
+coverage
+*.tsbuildinfo

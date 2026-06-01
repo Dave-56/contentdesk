@@ -1,0 +1,69 @@
+# Questions
+
+- What category I think your site is competing in
+- The buyer questions people are likely asking before choosing a product like yours
+  - What job is the buyer trying to get done?
+  - What rough question themes does that job create?
+  - What seed questions would we test from those themes?
+  - Do AI answers recognize those questions or close variants as answerable buyer prompts?
+  - Do the surfaced results show buyer intent, or are they just casual curiosity?
+  - Which questions happen before a signup, purchase, trial, or product evaluation decision?
+  - Which questions can this product credibly answer better than generic results?
+  - Which 5-8 questions should we test first?
+- Who/what seems to show up for those questions
+  - Which AI tools did we test the buyer prompts in?
+  - Which brands, tools, people, sites, or communities are named in the answers?
+  - Which names show up repeatedly across more than one prompt or answer engine?
+  - Which named entities are direct competitors?
+  - Which are adjacent tools, source platforms, communities, directories, or data sources?
+  - What category language does the AI answer use to group them?
+  - Does the submitted site show up in the answer?
+  - If the submitted site does not show up, what entities seem to occupy that answer space instead?
+  - What does this suggest about the visibility or positioning gap?
+- What kind of pages are getting surfaced: comparisons, FAQs, guides, directories, Reddit threads, etc.
+- Do they already have a current content system?
+  - Do they have a blog, resources section, glossary, guides, docs, FAQ, comparison pages, tools, calculators, or a sitemap-linked content library?
+  - Do they already have a page that answers the strongest validated buyer prompt?
+  - Do they have separate component pages that answer parts of the prompt, but no single hub that answers the full workflow?
+  - If they do not have a content system, is the opportunity a net-new content asset?
+  - If they do have a content system, what kind of gap are we actually seeing?
+    - Content gap: they do not have a page on the topic at all.
+    - Query-match gap: they have related content, but no page/title/structure that directly matches the buyer question.
+    - Hub/cluster gap: they have multiple related articles, but no central page connecting them into one clear workflow or decision.
+    - Comparison visibility gap: buyers are comparing tools or alternatives, but the site lacks strong comparison/alternative content or is losing to competitor-owned comparison pages.
+    - Off-site citation gap: third-party sources, Reddit threads, directories, or review sites are surfaced, but the company is absent from those sources.
+    - Structure/extractability gap: useful content exists, but the answer is buried, vague, hard to scan, or difficult for search/AI systems to extract.
+    - Authority/distribution gap: useful content exists, but stronger competitors or third-party sources are being cited instead.
+- The one page, FAQ, guide, or comparison asset I'd publish next
+- Why that page is likely worth publishing
+- How I'd structure it so it is useful, crawlable, and easy to cite
+  - What direct answer should appear at the top?
+  - What buyer question should each section answer?
+  - What definitions, criteria, steps, examples, or comparisons would make the page genuinely useful?
+  - What tables, bullets, FAQs, or summaries would make the answer easy for AI systems to extract?
+  - Where should the product appear naturally without turning the page into a sales pitch?
+  - What source evidence, examples, or community language should the page reference?
+  - What follow-up questions should the FAQ answer?
+- Which surfaced Reddit/forum threads are worth commenting on or joining
+  - Which threads appeared in AI answers or high-visibility search results?
+  - Is the AI answer citing the thread itself, the original post, or a specific comment?
+  - If self-promotional Reddit posts are being cited, why do they seem citation-worthy?
+    - Do they clearly name the product category?
+    - Do they state who the tool is for?
+    - Do they explain what existing workflow, tool, or competitor they replace?
+    - Do they name competitors or alternatives buyers already know?
+    - Do they explain why the new tool is different or better for a specific use case?
+    - Do they include practical workflow details, examples, screenshots, or concrete use cases?
+    - Do they ask for feedback in a way that invites useful discussion instead of only asking for clicks?
+  - Why might this thread have been surfaced?
+    - Exact prompt/question match
+    - Clear title that states the buyer question
+    - Specific tool names or alternatives mentioned
+    - Useful structured answer in the post or comments
+    - Recency, activity, upvotes, or discussion quality
+    - Scarcity of better sources on the same question
+  - Which threads are recent enough or active enough to justify a reply?
+  - Which threads match the product's core use case without forcing promotion?
+  - Is there evidence that new comments are likely to be seen or cited, or is the opportunity mainly relationship/distribution?
+  - What helpful, non-spammy comment could the founder leave?
+  - Should the comment link to the recommended asset, or only mention the framework/tool if relevant?

@@ -1,0 +1,2142 @@
+{
+  "brand": "Tiny Lemon",
+  "provider": "perplexity",
+  "runDate": "2026-06-01T20:03:52.899Z",
+  "recheckCadenceDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "records": [
+    {
+      "id": "category-best-ai-model-photo-apps-shopify",
+      "prompt": "What are the best AI model photo apps for Shopify fashion brands?",
+      "promptGroup": "category_search",
+      "provider": "perplexity",
+      "answerText": "For **Shopify fashion brands**, the best AI model photo apps are usually **Botika**, **SellerPic**, **Ayna**, and **AI Models & Product Photos: ST**, with **Claid** as the strongest broader product-photography suite and **BetterStudio** for premium studio-style imagery.[2][6][7]\n\n- **Botika** — Best fit for **Shopify-centric fashion brands** that want quick on-model photos from flatlays or product images. It is repeatedly described as a Shopify-first AI fashion model generator, with native Shopify integration and simple model/pose selection.[1][2][3]\n- **SellerPic** — Best for **social selling and conversion-focused stores** that want both virtual try-on and product-to-model visuals. The Shopify app listing emphasizes instant AI virtual try-on and image-to-video features.[2][7]\n- **Ayna** — Best for **small fashion brands** that want an easy Shopify workflow for turning garment photos into on-model and lifestyle images.[2]\n- **AI Models & Product Photos: ST** — A solid option if you want a **native Shopify app** that turns product feeds into AI-generated model photos directly in-store.[6]\n- **Claid** — Best **overall product-photography suite** if you want more than model photos, including backgrounds, retouching, and API workflows for ecommerce.[2]\n- **BetterStudio** — Best when you want **premium, hyper-realistic studio-grade fashion imagery** with a strong conversion focus.[2]\n\nIf you want the shortest recommendation:\n- Choose **Botika** for the most Shopify-specific model-photo workflow.[1][2][3]\n- Choose **SellerPic** if you care about **try-on + social content** as much as product shots.[2][7]\n- Choose **Claid** if you need a broader **ecommerce image production suite** rather than just model generation.[2]\n\nA few caveats from the sources: some tools are positioned more as general fashion-photography suites than pure Shopify apps, and feature depth varies a lot by plan and workflow.[1][2][3]",
+      "citedUrls": [
+        "https://uwear.ai/blog/best-ai-fashion-generators",
+        "https://claid.ai/blog/article/ai-fashion-photography-tools",
+        "https://nightjar.so/blog/ai-fashion-models-best-tools",
+        "https://www.rewarx.com/blogs/ai-fashion-photography-apps-shopify-2026",
+        "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+        "https://apps.shopify.com/ai-models-and-product-photos",
+        "https://apps.shopify.com/sellerpic"
+      ],
+      "citedDomains": [
+        "uwear.ai",
+        "claid.ai",
+        "nightjar.so",
+        "rewarx.com",
+        "youtube.com",
+        "apps.shopify.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://uwear.ai/blog/best-ai-fashion-generators",
+          "domain": "uwear.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://claid.ai/blog/article/ai-fashion-photography-tools",
+          "domain": "claid.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://nightjar.so/blog/ai-fashion-models-best-tools",
+          "domain": "nightjar.so",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.rewarx.com/blogs/ai-fashion-photography-apps-shopify-2026",
+          "domain": "rewarx.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.shopify.com/ai-models-and-product-photos",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://apps.shopify.com/sellerpic",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Botika",
+            "mentioned": true,
+            "mentionCount": 3,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 3,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "competitorsCited": [
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 3,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 7,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "category-best-ai-product-photography-shopify",
+      "prompt": "What are the best AI product photography tools for Shopify apparel stores?",
+      "promptGroup": "category_search",
+      "provider": "perplexity",
+      "answerText": "For **Shopify apparel stores**, the best AI product photography tools are the ones that can do **on-model fashion images**, preserve **logos/patterns**, and support a Shopify workflow for pushing images back to listings.[1][5]\n\nThe strongest options in the current results are **Prodofoto**, **Lensia**, **Flair AI**, **Photoroom**, and **Claid**; for budget-friendly background generation, **Pebblely** is also mentioned.[1][3][5]\n\n- **Prodofoto** — best for *true AI lifestyle photos* with native Shopify integration; it pulls products from your catalog, generates 4 photos in about 60 seconds, and can publish back to the listing.[1]\n- **Claid** — best all-around ecommerce suite for apparel teams that need batch editing, scene generation, and fashion support; it also offers AI Fashion Models and automation for scale.[3][5]\n- **Photoroom** — best for fast batch editing and background work at scale; it also has a **Virtual Model** feature for on-model images.[1][3][5]\n- **Lensia** — strong Shopify-native option for **on-model photos** and AI video, which is useful if you want both apparel imagery and short-form creatives.[1]\n- **Flair AI** — good for creative scene composition in a canvas editor and can generate on-model shots.[1]\n- **Pebblely** — good budget option for background generation, but it is more limited than full on-model/lifestyle tools.[1][5]\n\nIf you want the short recommendation for apparel specifically:\n\n- **Best overall for Shopify apparel:** **Prodofoto** or **Claid**.[1][3][5]\n- **Best for on-model fashion images:** **Prodofoto**, **Lensia**, or **Flair AI**.[1]\n- **Best for batch catalog cleanup and speed:** **Photoroom**.[1][3][5]\n- **Best low-cost background generation:** **Pebblely**.[1][5]\n\nFor apparel, prioritize tools that explicitly support **on-model generation** and mention **pattern/logo preservation**, because those are the features most likely to keep clothing imagery accurate.[1]",
+      "citedUrls": [
+        "https://www.prodofoto.com/blog/best-ai-product-photography-tools-shopify",
+        "https://community.shopify.com/t/whats-the-best-ai-tool-for-product-photography-editing/202241",
+        "https://claid.ai/blog/article/ai-product-photo-tools",
+        "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+        "https://www.digitalapplied.com/blog/ai-product-photography-tools-ecommerce-2026-guide",
+        "https://nightjar.so/blog/best-10-tools-ai-product-photography",
+        "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+        "https://snappyit.ai/blog/ai-product-photography-guide"
+      ],
+      "citedDomains": [
+        "prodofoto.com",
+        "community.shopify.com",
+        "claid.ai",
+        "digitalapplied.com",
+        "nightjar.so",
+        "youtube.com",
+        "snappyit.ai"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.prodofoto.com/blog/best-ai-product-photography-tools-shopify",
+          "domain": "prodofoto.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://community.shopify.com/t/whats-the-best-ai-tool-for-product-photography-editing/202241",
+          "domain": "community.shopify.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://claid.ai/blog/article/ai-product-photo-tools",
+          "domain": "claid.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+          "domain": "community.shopify.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.digitalapplied.com/blog/ai-product-photography-tools-ecommerce-2026-guide",
+          "domain": "digitalapplied.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://nightjar.so/blog/best-10-tools-ai-product-photography",
+          "domain": "nightjar.so",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://snappyit.ai/blog/ai-product-photography-guide",
+          "domain": "snappyit.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Photoroom",
+            "mentioned": true,
+            "mentionCount": 6,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Pebblely",
+            "mentioned": true,
+            "mentionCount": 3,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Flair",
+            "mentioned": true,
+            "mentionCount": 6,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 3,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "competitorsCited": [
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 3,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 8,
+        "sourceStrength": "medium",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "high",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "category-ai-on-model-photo-apps",
+      "prompt": "Which apps create AI on-model photos for ecommerce clothing brands?",
+      "promptGroup": "category_search",
+      "provider": "perplexity",
+      "answerText": "Apps that explicitly create **AI on-model photos** for ecommerce clothing brands include **WeShop AI**, **WearView**, **OnModel.ai**, **Botika**, **Claid.ai**, **Photoroom**, **Vue.ai**, **FASHN.ai**, **Nightjar**, **Uwear**, and **VModel**.[1][2][3][4][6]\n\nA few notes on fit:\n\n- **WeShop AI** and **WearView** focus on generating realistic fashion model shots from flatlays or garment photos for ecommerce use.[1][2]\n- **OnModel.ai** is built for Shopify clothing stores and supports batch generation of on-model images.[3]\n- **Botika** and **Claid.ai** are described as fashion imaging platforms that convert product photos into on-model visuals.[4][6]\n- **Photoroom** includes a virtual model tool for placing garments on AI-generated models.[4][6]\n- **Vue.ai** offers AI-powered imagery and can create AI fashion models for products.[4]\n- **FASHN.ai** is more virtual try-on/API oriented, but is still used in apparel visualization workflows.[4][6]\n- **Nightjar**, **Uwear**, and **VModel** are listed among 2026 AI fashion model generators for ecommerce.[6]\n\nIf you want, I can narrow this to:\n- **Shopify apps only**\n- **best for photorealism**\n- **best for bulk catalog generation**\n- **cheapest options**",
+      "citedUrls": [
+        "https://www.weshop.ai/tools/aimodel",
+        "https://www.wearview.co",
+        "https://www.onmodel.ai",
+        "https://stylitics.com/resources/blog/best-ai-imagery-tools-fashion-retail/",
+        "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+        "https://nightjar.so/blog/ai-fashion-models-best-tools",
+        "https://www.youtube.com/watch?v=VIWVQppvi4o"
+      ],
+      "citedDomains": [
+        "weshop.ai",
+        "wearview.co",
+        "onmodel.ai",
+        "stylitics.com",
+        "community.shopify.com",
+        "nightjar.so",
+        "youtube.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.weshop.ai/tools/aimodel",
+          "domain": "weshop.ai",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.wearview.co",
+          "domain": "wearview.co",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.onmodel.ai",
+          "domain": "onmodel.ai",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://stylitics.com/resources/blog/best-ai-imagery-tools-fashion-retail/",
+          "domain": "stylitics.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+          "domain": "community.shopify.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://nightjar.so/blog/ai-fashion-models-best-tools",
+          "domain": "nightjar.so",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VIWVQppvi4o",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Botika",
+            "mentioned": true,
+            "mentionCount": 2,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Photoroom",
+            "mentioned": true,
+            "mentionCount": 4,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 4,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 7,
+        "sourceStrength": "medium",
+        "score": 0
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "competitor-botika-alternatives-shopify",
+      "prompt": "What are the best Botika alternatives for Shopify fashion product photos?",
+      "promptGroup": "competitor_comparison",
+      "provider": "perplexity",
+      "answerText": "The **best Botika alternatives for Shopify fashion product photos** are **WearView, Picjam, Claid.ai, Nightjar, SellerPic, FASHN.ai, and Ayna**, depending on whether you want the best all-around quality, the tightest Shopify workflow, or the strongest virtual try-on features.[1][6][7]\n\n- **WearView** — best overall for fashion AI photography, with an all-in-one platform that includes virtual try-on, product-to-model, AI model creation, pose control, ghost mannequin, model swap, and video.[1]\n- **Picjam** — best for Shopify sellers who want standardized e-commerce fashion photography; it has a native Shopify app and generates on-model photos from flat-lay, ghost mannequin, or hanger images in about 60 seconds.[1]\n- **Claid.ai** — best for broader product-photography workflows, with on-model shots, AI backgrounds, retouching, and video; it is positioned as a strong ecommerce-focused suite.[6]\n- **Nightjar** — best for Shopify brands that care most about product preservation and catalog consistency; it is described as a strong fit for catalog imagery that should look like one cohesive photoshoot.[7]\n- **SellerPic** — best for social-selling and UGC-style content; it combines model generation, try-on, and short-form content features.[6][7]\n- **FASHN AI** — best for advanced virtual try-on and product-to-model imagery, with emphasis on garment fit, drape, 4K output, and video options.[6][7]\n- **Ayna** — best for small fashion brands looking for a simple Shopify-native workflow to replace small-scale studio shoots.[6]\n\nIf you want the closest **Botika-like replacement specifically for Shopify fashion product photos**, the strongest short list is **Picjam**, **Nightjar**, and **WearView** because they combine fashion-focused output with Shopify-oriented workflows.[1][7]\n\nA useful way to choose:\n- **Need the most complete fashion AI studio:** WearView.[1]\n- **Need Shopify-native and fast catalog image generation:** Picjam.[1]\n- **Need the highest consistency for product pages:** Nightjar.[7]\n- **Need try-on and interactive shopping:** FASHN AI or WearView.[1][6][7]\n- **Need social content plus product photos:** SellerPic.[6][7]\n\nIf you want, I can also rank these by **price**, **photo realism**, or **Shopify integration quality**.",
+      "citedUrls": [
+        "https://www.wearview.co/alternatives/botika-alternatives",
+        "https://relatable.pictures/blog/5-alternatives-to-botika-for-ai-generated-fashion-model-photos",
+        "https://rawshot.ai/alternatives/botika-ai",
+        "https://www.fashiondiffusion.ai/blog/botika-alternatives",
+        "https://www.rewarx.com/blogs/best-botika-alternatives-for-shopify-fashion-stores-in-2026",
+        "https://claid.ai/blog/article/ai-fashion-photography-tools",
+        "https://nightjar.so/blog/best-tools-ai-virtual-try-on",
+        "https://botika.com",
+        "https://www.youtube.com/watch?v=dtCygTT1D9U"
+      ],
+      "citedDomains": [
+        "wearview.co",
+        "relatable.pictures",
+        "rawshot.ai",
+        "fashiondiffusion.ai",
+        "rewarx.com",
+        "claid.ai",
+        "nightjar.so",
+        "botika.com",
+        "youtube.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.wearview.co/alternatives/botika-alternatives",
+          "domain": "wearview.co",
+          "sourceFormat": "comparison_page",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://relatable.pictures/blog/5-alternatives-to-botika-for-ai-generated-fashion-model-photos",
+          "domain": "relatable.pictures",
+          "sourceFormat": "comparison_page",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://rawshot.ai/alternatives/botika-ai",
+          "domain": "rawshot.ai",
+          "sourceFormat": "comparison_page",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.fashiondiffusion.ai/blog/botika-alternatives",
+          "domain": "fashiondiffusion.ai",
+          "sourceFormat": "comparison_page",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.rewarx.com/blogs/best-botika-alternatives-for-shopify-fashion-stores-in-2026",
+          "domain": "rewarx.com",
+          "sourceFormat": "comparison_page",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://claid.ai/blog/article/ai-fashion-photography-tools",
+          "domain": "claid.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://nightjar.so/blog/best-tools-ai-virtual-try-on",
+          "domain": "nightjar.so",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://botika.com",
+          "domain": "botika.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=dtCygTT1D9U",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Botika",
+            "mentioned": true,
+            "mentionCount": 2,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 4,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "competitorsCited": [
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 4,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 9,
+        "sourceStrength": "medium",
+        "score": 0
+      },
+      "recommendedNextAction": "Create or improve a comparison page because comparison assets are the trusted citation surface for this prompt.",
+      "recommendationConfidence": "high",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "competitor-modelia-alternatives-shopify",
+      "prompt": "What are the best Modelia alternatives for Shopify fashion brands?",
+      "promptGroup": "competitor_comparison",
+      "provider": "perplexity",
+      "answerText": "The **best Modelia alternatives for Shopify fashion brands** are usually **SellerPic, Botika, Claid.ai, HuHu, X-Design, Fotor, WearView, VModel.ai, and Camclo**—with the right choice depending on whether you want a Shopify-native app, stronger video features, batch generation, or a broader content pipeline.[2][3][5]\n\n- **SellerPic** — strong if you want a **native Shopify app** for fashion model photos plus **lip-sync video** for social commerce.[3]\n- **Botika** — a good **Shopify-oriented** option for fast on-model visuals and video, with **credit-based output**.[2]\n- **Claid.ai** — best if you want **fashion model generation plus the rest of your product-photo stack** in one place.[2]\n- **HuHu** — a **Shopify-native virtual try-on/model** option worth testing, though the public review signal is limited in the source shown.[2]\n- **X-Design** — useful if you want an **ecommerce creative suite** with fashion model creation under one login.[2]\n- **Fotor** — a general photo/design tool that includes fashion model generation; better if fashion is only one of several use cases.[2]\n- **WearView** — suitable if you want a **full AI content pipeline** for models, try-on, video, and poses.[3]\n- **VModel.ai** — a budget-friendly choice if you want **free credits** and no subscription commitment.[3]\n- **Camclo** — positioned as a **fashion-first** generator and highlighted as a strong alternative for Shopify stores focused on premium apparel imagery.[5]\n\nIf you want the shortlist by use case:\n\n| Best for | Pick |\n|---|---|\n| **Closest Shopify app replacement** | SellerPic, HuHu, Botika[2][3] |\n| **Best all-in-one creative workflow** | Claid.ai, WearView, X-Design[2][3] |\n| **Best budget option** | VModel.ai[3] |\n| **Best fashion-specialized image quality** | Camclo[5] |\n\nFor **Shopify fashion brands**, the most practical starting points are usually **SellerPic** if you want the smoothest store integration, **Claid.ai** if you want a broader product-photo stack, and **Camclo** if your priority is fashion-first model imagery.[2][3][5]",
+      "citedUrls": [
+        "https://brandsgateway.com/blog/shopify-alternatives/",
+        "https://claid.ai/blog/article/ai-fashion-model-generators",
+        "https://www.wearview.co/blog/best-ai-tools-for-clothing-brands",
+        "https://www.jointellos.com/blog/best-ai-tools-shopify-fashion-brands-2026",
+        "https://camclo3d.com/blog/best-ai-fashion-model-generators-ecommerce",
+        "https://www.crescendo.ai/blog/best-ai-tools-for-fashion-and-clothing-industries",
+        "https://www.youtube.com/watch?v=oULYbrUJOgw",
+        "https://modelia.ai",
+        "https://apps.shopify.com/modelia/reviews"
+      ],
+      "citedDomains": [
+        "brandsgateway.com",
+        "claid.ai",
+        "wearview.co",
+        "jointellos.com",
+        "camclo3d.com",
+        "crescendo.ai",
+        "youtube.com",
+        "modelia.ai",
+        "apps.shopify.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://brandsgateway.com/blog/shopify-alternatives/",
+          "domain": "brandsgateway.com",
+          "sourceFormat": "comparison_page",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://claid.ai/blog/article/ai-fashion-model-generators",
+          "domain": "claid.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.wearview.co/blog/best-ai-tools-for-clothing-brands",
+          "domain": "wearview.co",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.jointellos.com/blog/best-ai-tools-shopify-fashion-brands-2026",
+          "domain": "jointellos.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://camclo3d.com/blog/best-ai-fashion-model-generators-ecommerce",
+          "domain": "camclo3d.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.crescendo.ai/blog/best-ai-tools-for-fashion-and-clothing-industries",
+          "domain": "crescendo.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=oULYbrUJOgw",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://modelia.ai",
+          "domain": "modelia.ai",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.shopify.com/modelia/reviews",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Botika",
+            "mentioned": true,
+            "mentionCount": 3,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Modelia",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": true,
+            "citationCount": 1
+          },
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 8,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "competitorsCited": [
+          {
+            "name": "Modelia",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": true,
+            "citationCount": 1
+          },
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 8,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 9,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "high",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "competitor-photoroom-vs-shopify-fashion",
+      "prompt": "Is Photoroom or a Shopify-specific AI photo app better for fashion product photos?",
+      "promptGroup": "competitor_comparison",
+      "provider": "perplexity",
+      "answerText": "If your main need is **fashion on-model imagery**, a **Shopify-specific AI fashion app** is usually the better fit. If you mainly need **fast background removal, cleanup, and simple product images across a broader catalog**, **Photoroom** is often the more practical choice.[2][5][7]\n\nFor fashion product photos, the difference is mostly about *workflow*:\n\n- **Photoroom** is a broader ecommerce visual editor with strong background removal, batch workflows, and a polished mobile experience.[2][5][6]\n- **Shopify-specific fashion apps** are built around turning flat-lay or mannequin shots into **on-model fashion photos**, with Shopify-native publishing and fashion-focused features like consistent models and garment placement.[2][6][8]\n\nA few practical takeaways from the comparisons:\n\n- For **small Shopify sellers** who want quick, affordable product-photo cleanup, Photoroom is frequently recommended.[3][5]\n- For **fashion brands** that need **on-model images without a studio**, Shopify-specific tools such as Modelia, Rewarx, Botika, Sellerpic, or similar fashion-focused apps are described as more specialized.[1][2][6][8]\n- For **flat-lay, packshot, and listing-ready edits**, Photoroom is strong and convenient.[2][5][7]\n- For **virtual model generation, garment drape accuracy, and fashion-specific workflows**, the Shopify-specific apps have the edge.[1][2][6]\n\nSo the short answer is:\n\n- Choose **Photoroom** if you want a **general-purpose, fast, easy** tool for product photos.\n- Choose a **Shopify-specific AI fashion app** if your priority is **fashion model shots** and a workflow tailored to Shopify apparel stores.[2][6][8]\n\nIf you want, I can also recommend the better option based on your exact use case: **flat lay, mannequin, on-model, or full catalog**.",
+      "citedUrls": [
+        "https://www.rewarx.com/blogs/photoroom-vs-rewarx-ai-fashion-model-generator-shopify",
+        "https://www.wearview.co/blog/photoroom-vs-modelia",
+        "https://www.aiorastudio.com/compare/aiora-vs-photoroom",
+        "https://www.photoroom.com/tools/virtual-model",
+        "https://claid.ai/blog/article/ai-product-photo-tools",
+        "https://nightjar.so/blog/ai-fashion-models-best-tools",
+        "https://www.digitalapplied.com/blog/ai-product-photography-tools-ecommerce-2026-guide",
+        "https://apps.shopify.com/shoppulse"
+      ],
+      "citedDomains": [
+        "rewarx.com",
+        "wearview.co",
+        "aiorastudio.com",
+        "photoroom.com",
+        "claid.ai",
+        "nightjar.so",
+        "digitalapplied.com",
+        "apps.shopify.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.rewarx.com/blogs/photoroom-vs-rewarx-ai-fashion-model-generator-shopify",
+          "domain": "rewarx.com",
+          "sourceFormat": "comparison_page",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.wearview.co/blog/photoroom-vs-modelia",
+          "domain": "wearview.co",
+          "sourceFormat": "comparison_page",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.aiorastudio.com/compare/aiora-vs-photoroom",
+          "domain": "aiorastudio.com",
+          "sourceFormat": "comparison_page",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.photoroom.com/tools/virtual-model",
+          "domain": "photoroom.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://claid.ai/blog/article/ai-product-photo-tools",
+          "domain": "claid.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://nightjar.so/blog/ai-fashion-models-best-tools",
+          "domain": "nightjar.so",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.digitalapplied.com/blog/ai-product-photography-tools-ecommerce-2026-guide",
+          "domain": "digitalapplied.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.shopify.com/shoppulse",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Botika",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Photoroom",
+            "mentioned": true,
+            "mentionCount": 10,
+            "cited": true,
+            "citationCount": 1
+          },
+          {
+            "name": "Modelia",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [
+          {
+            "name": "Photoroom",
+            "mentioned": true,
+            "mentionCount": 10,
+            "cited": true,
+            "citationCount": 1
+          },
+          {
+            "name": "Claid",
+            "mentioned": false,
+            "mentionCount": 0,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 8,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Create or improve a comparison page because comparison assets are the trusted citation surface for this prompt.",
+      "recommendationConfidence": "high",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "problem-flat-lays-to-model-photos",
+      "prompt": "How can a small Shopify fashion brand turn flat lay photos into model photos without a photoshoot?",
+      "promptGroup": "problem_aware",
+      "provider": "perplexity",
+      "answerText": "A small Shopify fashion brand can do this by using an **AI flatlay-to-model tool**: upload a flat lay, choose a model style, and generate on-model images in minutes or seconds instead of booking a shoot.[1][2][6]\n\nA practical workflow looks like this:\n\n- **Start with a clean flat lay**: use a well-lit overhead photo on a plain surface; some tools accept a phone shot.[1][4]\n- **Upload the garment image** into a flatlay-to-model or virtual try-on app.[1][2][6]\n- **Pick a model** that matches your audience by body type, skin tone, pose, or size.[1][6]\n- **Generate on-model photos** and, if needed, create multiple versions for different campaigns or product pages.[1][2][3]\n- **Check accuracy** on details like fabric texture, fit, sleeve shape, seams, and logos before publishing.[4]\n\nFor Shopify brands specifically, several apps are built for this exact use case, including **WearView**, **Picjam**, **Whatmore Studio**, and other fashion AI tools that turn flat lays or mannequin shots into realistic model imagery without a photoshoot.[1][2][6]\n\nIf you want, I can also recommend the **best Shopify app** for this based on your budget, catalog size, and whether you need only photos or photos + video.",
+      "citedUrls": [
+        "https://www.wearview.co/flatlay-to-model-ai",
+        "https://www.whatmore.ai/studio/features/flatlay-to-on-model/",
+        "https://apps.shopify.com/imaginecreate-ai",
+        "https://www.fashiondiffusion.ai/blog/how-to-create-shopify-clothing-photos-with-ai",
+        "https://claid.ai/blog/article/flatlay-to-model-ai-tools",
+        "https://apps.shopify.com/picjam",
+        "https://fashn.ai/blog/how-to-create-the-perfect-photos-for-your-etsy-and-shopify-pod-listings-with",
+        "https://snappyit.ai/use-case/flat-lay-to-model"
+      ],
+      "citedDomains": [
+        "wearview.co",
+        "whatmore.ai",
+        "apps.shopify.com",
+        "fashiondiffusion.ai",
+        "claid.ai",
+        "fashn.ai",
+        "snappyit.ai"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.wearview.co/flatlay-to-model-ai",
+          "domain": "wearview.co",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.whatmore.ai/studio/features/flatlay-to-on-model/",
+          "domain": "whatmore.ai",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.shopify.com/imaginecreate-ai",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://www.fashiondiffusion.ai/blog/how-to-create-shopify-clothing-photos-with-ai",
+          "domain": "fashiondiffusion.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://claid.ai/blog/article/flatlay-to-model-ai-tools",
+          "domain": "claid.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.shopify.com/picjam",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://fashn.ai/blog/how-to-create-the-perfect-photos-for-your-etsy-and-shopify-pod-listings-with",
+          "domain": "fashn.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://snappyit.ai/use-case/flat-lay-to-model",
+          "domain": "snappyit.ai",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [
+          {
+            "name": "Claid",
+            "mentioned": false,
+            "mentionCount": 0,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 8,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "problem-consistent-product-photos",
+      "prompt": "How can Shopify clothing stores keep product photos consistent across a catalog?",
+      "promptGroup": "problem_aware",
+      "provider": "perplexity",
+      "answerText": "Shopify clothing stores keep product photos consistent by standardizing **backgrounds, lighting, framing, and image size** across the catalog.[2][5][6] The most reliable approach is to create a simple photo style guide, then apply the same settings to every product shoot and edit.[3][5]\n\nPractical ways to do that:\n\n- Use a **single background style** for standard product shots, often white or light neutral, so the catalog looks cohesive and the clothing stays the focus.[3][6][7]\n- Keep **lighting consistent** from shoot to shoot, ideally soft and diffused, to avoid harsh shadows and color shifts.[5][6]\n- Shoot at the **same angle and distance** for each product category, and use repeatable framing rules so items line up consistently in collection pages.[2][3]\n- Upload images at the **same aspect ratio or size**; Shopify theme guidance notes that matching dimensions is the easiest way to fix alignment issues on collection pages.[2]\n- Use Shopify’s **Image Resizer** or similar editing tools to apply the same crop preset, such as square, to every image.[2]\n- Save **editing presets** for things like brightness, contrast, shadow direction, and background treatment so each image gets the same finish.[1]\n- Build a **reference library** of approved photos and use those as examples when photographing or generating new images.[1]\n- Run a **quality check** before publishing: confirm product accuracy, brand fit, technical quality, and compliance, and reject images that break the standard.[1]\n- For larger catalogs, consider a workflow or AI tool that automates background removal, resizing, and standardization so new images match the existing set.[1][4]\n\nFor clothing specifically, consistency is strongest when you also standardize garment prep and presentation—such as steaming items, using the same model or mannequin approach, and keeping styling rules consistent across categories.[5][6]",
+      "citedUrls": [
+        "https://www.mindstudio.ai/blog/ai-image-generation-shopify-automate-product-photos/",
+        "https://outofthesandbox.com/blogs/shopify-theme-blog/75213317-tips-for-solving-photo-alignment-and-photo-sizing-challenges-in-shopify-themes",
+        "https://bigredjelly.com/blog/picture-perfect-stunning-product-photography-tips-for-your-shopify-store/",
+        "https://www.wearview.co/use-cases/shopify-stores",
+        "https://strategicconnection.net/the-ultimate-guide-to-product-photography-for-your-shopify-clothing-store",
+        "https://proshotmediagroup.com/blog/top-rated-shopify-product-photographers-for-clothing-ecommerce/",
+        "https://community.shopify.com/t/what-are-some-effective-ways-to-make-product-images-stand-out-and-look-professional-on-shopify/220660"
+      ],
+      "citedDomains": [
+        "mindstudio.ai",
+        "outofthesandbox.com",
+        "bigredjelly.com",
+        "wearview.co",
+        "strategicconnection.net",
+        "proshotmediagroup.com",
+        "community.shopify.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.mindstudio.ai/blog/ai-image-generation-shopify-automate-product-photos/",
+          "domain": "mindstudio.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://outofthesandbox.com/blogs/shopify-theme-blog/75213317-tips-for-solving-photo-alignment-and-photo-sizing-challenges-in-shopify-themes",
+          "domain": "outofthesandbox.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://bigredjelly.com/blog/picture-perfect-stunning-product-photography-tips-for-your-shopify-store/",
+          "domain": "bigredjelly.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.wearview.co/use-cases/shopify-stores",
+          "domain": "wearview.co",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://strategicconnection.net/the-ultimate-guide-to-product-photography-for-your-shopify-clothing-store",
+          "domain": "strategicconnection.net",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://proshotmediagroup.com/blog/top-rated-shopify-product-photographers-for-clothing-ecommerce/",
+          "domain": "proshotmediagroup.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://community.shopify.com/t/what-are-some-effective-ways-to-make-product-images-stand-out-and-look-professional-on-shopify/220660",
+          "domain": "community.shopify.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "earned_source"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 7,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "problem-expensive-photoshoot-alternative",
+      "prompt": "What can fashion ecommerce brands use instead of expensive product photoshoots?",
+      "promptGroup": "problem_aware",
+      "provider": "perplexity",
+      "answerText": "Fashion ecommerce brands can use **AI product photography tools** and **AI-powered on-model imagery** instead of expensive traditional photoshoots.[1][2]\n\nCommon alternatives include:\n\n- **AI-generated product backgrounds and scenes** for clean, studio-style or lifestyle imagery without booking a location or photographer.[1]\n- **AI model replacement / on-model imagery**, where basic product shots are transformed into images featuring fashion models, reducing the need for repeated shoots and post-production.[2]\n- **Virtual styling and fashion-specific AI tools** such as model swap and video creation tools for social and ecommerce content.[1]\n- **DIY ecommerce setups** using natural light, simple backdrops, flat lays, and 360-degree turntable shots to cut production costs while still showing products clearly.[3][5][6]\n\nIf you want the most direct replacement for costly fashion shoots, the strongest option in the results is **automated on-model fashion imagery**: AI turns mannequin or ghost-mannequin photos into model-led product images.[2]\n\nFor brands looking for practical tools, the results mention options like **Pebblely, Flair.ai, CreatorKit, Rawshot, SellerPic, and Pixelcut**, with some offering Shopify integrations and free tiers.[1]",
+      "citedUrls": [
+        "https://www.wearview.co/blog/ai-product-photography-tools",
+        "https://www.vue.ai/blog/ai-in-retail/product-photoshoot-alternative/",
+        "https://centra.com/news/fashion-product-photography-for-ecommerce",
+        "https://www.youtube.com/watch?v=VdY_xnI7200",
+        "https://www.prodoto.com/behind-prodoto/how-to-guides/product-photography-ecommerce",
+        "https://www.hypop.com.au/blogs/blogs/the-ultimate-guide-to-fashion-photography-for-your-e-commerce-lookbook-part-2"
+      ],
+      "citedDomains": [
+        "wearview.co",
+        "vue.ai",
+        "centra.com",
+        "youtube.com",
+        "prodoto.com",
+        "hypop.com.au"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.wearview.co/blog/ai-product-photography-tools",
+          "domain": "wearview.co",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.vue.ai/blog/ai-in-retail/product-photoshoot-alternative/",
+          "domain": "vue.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://centra.com/news/fashion-product-photography-for-ecommerce",
+          "domain": "centra.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VdY_xnI7200",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.prodoto.com/behind-prodoto/how-to-guides/product-photography-ecommerce",
+          "domain": "prodoto.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.hypop.com.au/blogs/blogs/the-ultimate-guide-to-fashion-photography-for-your-e-commerce-lookbook-part-2",
+          "domain": "hypop.com.au",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Pebblely",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Flair",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 6,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "solution-ai-model-photos-workflow",
+      "prompt": "How do AI model photo tools work for Shopify apparel stores?",
+      "promptGroup": "solution_aware",
+      "provider": "perplexity",
+      "answerText": "AI model photo tools for Shopify apparel stores typically let merchants **turn flat product photos into realistic on-model images** without a traditional photoshoot.[1][2][5] In practice, you upload a garment image or connect your Shopify product feed, choose a model style or prompt, and the tool generates ecommerce-ready visuals in seconds.[1][2][4]\n\nHow they usually work:\n\n- **Input your apparel image**: Many tools start with a flat lay, hanger shot, ghost mannequin image, or an existing model photo.[1][4][5]\n- **Select a model and scene**: You can often pick body type, skin tone, gender, pose, background, and styling direction.[2][5]\n- **AI generates the image**: The system renders the garment on a virtual model and attempts to preserve details like fit, drape, lighting, and realism.[1][4][5]\n- **Export for Shopify**: The finished images can be downloaded or generated directly from the Shopify product feed/admin for use on product pages, ads, and social media.[2][6]\n\nFor Shopify apparel stores, the main value is that these tools **reduce photoshoot costs** and help stores produce more product visuals faster, while keeping images on-brand and varied enough for different audiences.[2][4][6] Some apps also include **virtual try-on**, **background removal**, **model swapping**, and even **video generation** to expand the same product image into multiple assets.[1][2][6][8]\n\nA simple way to think about it is:\n\n- You provide the clothing image.\n- The tool applies AI fashion modeling or virtual try-on.\n- You get a realistic fashion photo that shows how the item may look when worn.[1][2][5]\n\nIf you want, I can also break this down into **how the AI works technically** versus **how a Shopify merchant uses it step by step**.",
+      "citedUrls": [
+        "https://apps.shopify.com/modelia",
+        "https://apps.shopify.com/ai-models-and-product-photos",
+        "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+        "https://claid.ai/blog/article/ai-fashion-model-generators",
+        "https://www.piccopilot.com/tools/ai-model",
+        "https://www.wearview.co/blog/ai-product-photography-tools",
+        "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+        "https://nightjar.so/blog/ai-fashion-models-best-tools"
+      ],
+      "citedDomains": [
+        "apps.shopify.com",
+        "community.shopify.com",
+        "claid.ai",
+        "piccopilot.com",
+        "wearview.co",
+        "youtube.com",
+        "nightjar.so"
+      ],
+      "citedSources": [
+        {
+          "url": "https://apps.shopify.com/modelia",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://apps.shopify.com/ai-models-and-product-photos",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+          "domain": "community.shopify.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://claid.ai/blog/article/ai-fashion-model-generators",
+          "domain": "claid.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.piccopilot.com/tools/ai-model",
+          "domain": "piccopilot.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.wearview.co/blog/ai-product-photography-tools",
+          "domain": "wearview.co",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://nightjar.so/blog/ai-fashion-models-best-tools",
+          "domain": "nightjar.so",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [
+          {
+            "name": "Claid",
+            "mentioned": false,
+            "mentionCount": 0,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 8,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "solution-ai-product-images-shopify",
+      "prompt": "Can AI product image tools create realistic model photos for Shopify clothing products?",
+      "promptGroup": "solution_aware",
+      "provider": "perplexity",
+      "answerText": "Yes — **AI product image tools can create realistic on-model photos for Shopify clothing products**, and several Shopify apps now explicitly offer this feature.[2][3][8]\n\nThat said, the realism is **good but not perfect**. Some tools can generate studio-style, photorealistic apparel images and place clothing on AI-generated models, but limitations still show up in **face details**, **fabric draping**, and other fine realism cues.[1][3]\n\nFor Shopify clothing sellers, the practical use cases are:\n- **On-model product photos** for listings and ads.[2][3][8]\n- **Lifestyle images** without hiring models or booking a shoot.[1][3][7]\n- **Virtual try-on / fashion model variations** to show different body types, poses, or settings.[6][8]\n\nShopify itself also supports AI media generation for product images, and says merchants can use those images for business purposes inside and outside Shopify.[9]\n\nIf you want, I can also compare the best Shopify apps for **realistic fashion model photos** versus **simple product-background generation**.",
+      "citedUrls": [
+        "https://www.mindstudio.ai/blog/ai-image-generation-shopify-automate-product-photos/",
+        "https://apps.shopify.com/lensia-ai-models-and-product-photos",
+        "https://www.prodofoto.com/blog/best-ai-product-photography-tools-shopify",
+        "https://lumezai.com/blog/shopify-store-ai-product-photography-guide",
+        "https://apps.shopify.com/lightboxai",
+        "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+        "https://www.shopify.com/blog/ai-image-generator",
+        "https://claid.ai/blog/article/ai-product-photo-tools",
+        "https://help.shopify.com/en/manual/shopify-admin/productivity-tools/shopify-magic/media-generation"
+      ],
+      "citedDomains": [
+        "mindstudio.ai",
+        "apps.shopify.com",
+        "prodofoto.com",
+        "lumezai.com",
+        "youtube.com",
+        "shopify.com",
+        "claid.ai",
+        "help.shopify.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.mindstudio.ai/blog/ai-image-generation-shopify-automate-product-photos/",
+          "domain": "mindstudio.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.shopify.com/lensia-ai-models-and-product-photos",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://www.prodofoto.com/blog/best-ai-product-photography-tools-shopify",
+          "domain": "prodofoto.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://lumezai.com/blog/shopify-store-ai-product-photography-guide",
+          "domain": "lumezai.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.shopify.com/lightboxai",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.shopify.com/blog/ai-image-generator",
+          "domain": "shopify.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "earned_source"
+        },
+        {
+          "url": "https://claid.ai/blog/article/ai-product-photo-tools",
+          "domain": "claid.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://help.shopify.com/en/manual/shopify-admin/productivity-tools/shopify-magic/media-generation",
+          "domain": "help.shopify.com",
+          "sourceFormat": "vendor_docs",
+          "citationQuality": "earned_source"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [
+          {
+            "name": "Claid",
+            "mentioned": false,
+            "mentionCount": 0,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 9,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "solution-ai-fashion-product-photography",
+      "prompt": "What is the best workflow for AI fashion product photography for ecommerce?",
+      "promptGroup": "solution_aware",
+      "provider": "perplexity",
+      "answerText": "The **best workflow** for AI fashion product photography in ecommerce is a **two-track pipeline**: generate **on-model images** for hero/product-detail pages and **flat-lay or studio images** for clean catalog listings, then batch-process and QA everything before publishing.[3][5] The strongest results come from combining good input photos, the right AI model/tool for the garment type, and catalog-scale automation rather than relying on a single one-off prompt.[5]\n\nA practical workflow looks like this:\n\n- **Start with clean input assets**: shoot or prep high-quality flat-lays, ghost mannequins, or garment cutouts with consistent lighting and minimal wrinkles, because output quality depends heavily on input quality.[5]\n- **Choose the right AI path for the use case**: use on-model generation for apparel hero images and flat-lay/studio workflows for marketplace-ready catalog images; fashion brands typically need both.[1][3][5]\n- **Match the tool to the job**: WearView is positioned for full on-model fashion workflows, while Claid is described as strong for all-around ecommerce product photography and automation; Photoroom is emphasized for clean listing-style edits and templates.[1][2][3]\n- **Use persistent model identities and approved prompts/styles**: keep the same AI model look across the catalog so the brand feels consistent, and test a few models/settings on the same SKU before scaling.[1][5]\n- **Batch the catalog**: once the style is approved, upload via CSV or use API/automation so the team can process many SKUs overnight instead of one by one.[3][5]\n- **QA before publishing**: check garment fit, hands/limbs, logos, seams, shadows, and background realism; for brand-critical or pixel-perfect work, a human retouching step with Photoshop/Firefly can be the final layer.[2]\n\nIf you want the most efficient setup for most ecommerce fashion brands, the safest default is:\n\n- **Claid or a similar automation-friendly platform** for catalog production and cleanup[2][3]\n- **WearView or another on-model-focused tool** for fashion hero shots and model-based imagery[1][3]\n- **Photoshop + Firefly** for final polish on premium or sensitive assets[2]\n\nIf you want, I can turn this into a **recommended workflow by store size**:\n- solo seller\n- growing DTC brand\n- enterprise catalog team",
+      "citedUrls": [
+        "https://www.wearview.co/blog/best-ai-fashion-model-generators",
+        "https://claid.ai/blog/article/ai-product-photo-tools",
+        "https://www.digitalapplied.com/blog/ai-product-photography-tools-ecommerce-2026-guide",
+        "https://fibbl.com/best-ai-tools-for-product-photography/",
+        "https://uwear.ai/blog/ai-product-photography-guide",
+        "https://www.photta.app/blog/best-ai-product-photography-tools-styles-2026",
+        "https://nightjar.so/blog/best-10-tools-ai-product-photography",
+        "https://www.youtube.com/watch?v=UPZppv0gX70",
+        "https://www.cometly.com/post/ai-product-photo-editor"
+      ],
+      "citedDomains": [
+        "wearview.co",
+        "claid.ai",
+        "digitalapplied.com",
+        "fibbl.com",
+        "uwear.ai",
+        "photta.app",
+        "nightjar.so",
+        "youtube.com",
+        "cometly.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.wearview.co/blog/best-ai-fashion-model-generators",
+          "domain": "wearview.co",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://claid.ai/blog/article/ai-product-photo-tools",
+          "domain": "claid.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.digitalapplied.com/blog/ai-product-photography-tools-ecommerce-2026-guide",
+          "domain": "digitalapplied.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://fibbl.com/best-ai-tools-for-product-photography/",
+          "domain": "fibbl.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://uwear.ai/blog/ai-product-photography-guide",
+          "domain": "uwear.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.photta.app/blog/best-ai-product-photography-tools-styles-2026",
+          "domain": "photta.app",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://nightjar.so/blog/best-10-tools-ai-product-photography",
+          "domain": "nightjar.so",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=UPZppv0gX70",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.cometly.com/post/ai-product-photo-editor",
+          "domain": "cometly.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Photoroom",
+            "mentioned": true,
+            "mentionCount": 2,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 2,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "competitorsCited": [
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 2,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 9,
+        "sourceStrength": "medium",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "integration-shopify-product-page-images",
+      "prompt": "How should Shopify fashion brands prepare AI model photos for product pages?",
+      "promptGroup": "integration_use_case",
+      "provider": "perplexity",
+      "answerText": "Shopify fashion brands should prepare AI model photos by starting with **clean, accurate garment images** and then generating on-model shots with **consistent posing, lighting, and brand style** so the results look believable and convert well.[4][5] For Shopify specifically, the practical workflow is to upload a strong packshot or flat-lay, choose model/body settings that match the brand, and then export web-ready images optimized for fast loading.[2][4][5]\n\nKey preparation steps:\n\n- **Photograph the garment clearly first**: Use flat-lay, hanger, mannequin, or packshot images with neutral lighting and minimal shadows so the AI can accurately preserve fabric texture, seams, and prints.[5]\n- **Keep the product faithful**: Choose tools and prompts that preserve logos, patterns, buttons, pockets, and fabric behavior, since hallucinated details are a common quality issue in lower-end AI outputs.[4]\n- **Match the brand audience**: Select model age, body type, and styling that fit your target customer and maintain consistency across the catalog.[1][3][5]\n- **Use natural poses and realistic proportions**: Favor standing or dynamic-but-believable poses, and avoid exaggerated body shapes that make the clothing look untrustworthy.[1][3]\n- **Maintain brand consistency**: Reuse the same lighting style, background treatment, and model look across product pages and collections so the store feels cohesive.[1][5]\n- **Optimize for Shopify performance**: Export images in web-friendly formats and keep file sizes light so product pages load quickly on mobile.[1][5]\n- **Review before publishing**: Check hands, feet, faces, seams, and shadows for artifacts, and compare outputs against existing photography before rolling out to the whole catalog.[3][4]\n- **Test what sells**: Use A/B testing on hero images or model variants to see which AI photos improve conversion for your products.[1][3]\n\nIf you want the shortest practical rule: **start with high-quality garment photos, generate realistic on-model images, keep the model and styling consistent, and verify the product details before uploading to Shopify**.[4][5][8]",
+      "citedUrls": [
+        "https://www.designkit.com/blog/ai-clothing-model-photos-guidelines",
+        "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+        "https://www.rewarx.com/blogs/best-ai-fashion-model-app-shopify-store",
+        "https://claid.ai/blog/article/ai-fashion-model-generators",
+        "https://nightjar.so/blog/best-tools-ai-virtual-try-on",
+        "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+        "https://community.shopify.com/t/built-a-tool-so-you-dont-have-to-hire-models-for-product-shots/585140",
+        "https://apps.shopify.com/ai-models-and-product-photos",
+        "https://www.pixupai.com/blog"
+      ],
+      "citedDomains": [
+        "designkit.com",
+        "community.shopify.com",
+        "rewarx.com",
+        "claid.ai",
+        "nightjar.so",
+        "youtube.com",
+        "apps.shopify.com",
+        "pixupai.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.designkit.com/blog/ai-clothing-model-photos-guidelines",
+          "domain": "designkit.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+          "domain": "community.shopify.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.rewarx.com/blogs/best-ai-fashion-model-app-shopify-store",
+          "domain": "rewarx.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://claid.ai/blog/article/ai-fashion-model-generators",
+          "domain": "claid.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://nightjar.so/blog/best-tools-ai-virtual-try-on",
+          "domain": "nightjar.so",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://community.shopify.com/t/built-a-tool-so-you-dont-have-to-hire-models-for-product-shots/585140",
+          "domain": "community.shopify.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "earned_source"
+        },
+        {
+          "url": "https://apps.shopify.com/ai-models-and-product-photos",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://www.pixupai.com/blog",
+          "domain": "pixupai.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [
+          {
+            "name": "Claid",
+            "mentioned": false,
+            "mentionCount": 0,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 9,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "integration-shopify-pdp-image-requirements",
+      "prompt": "What image types should a Shopify apparel product page include before launch?",
+      "promptGroup": "integration_use_case",
+      "provider": "perplexity",
+      "answerText": "A Shopify apparel product page should include **clear product shots, model shots, detail/close-up shots, lifestyle shots, and size/comparison images** before launch.[2][6][7][8]\n\nFor apparel specifically, the most useful image types are:\n\n- **Hero/product-only images** on a clean background for the main gallery and search/listing appearance.[2][3]\n- **Model shots** to show fit, drape, and how the garment looks on a person.[7][8]\n- **Close-up/detail shots** of fabric, stitching, texture, prints, zippers, or other construction details.[6][7]\n- **Lifestyle or in-use shots** showing the apparel in a real setting so shoppers can picture themselves wearing it.[2][7][8]\n- **Size comparison images** or other scale references to reduce uncertainty about fit and proportions.[2][8]\n- **Variant/group shots** if you want to show colorways, bundles, or multiple options together.[2][6]\n\nShopify also supports common product image formats like **JPEG, PNG, GIF, HEIC, and WebP**, and recommends **JPEG for product images** and **PNG** when you need transparency or graphics with text.[3]\n\nFor a pre-launch apparel page, the practical minimum is: **one clean hero image, multiple model angles, a few detail close-ups, at least one lifestyle image, and one size/fit reference image**.[2][7][8]",
+      "citedUrls": [
+        "https://www.youtube.com/watch?v=hmju6WOiPfY",
+        "https://snappa.com/blog/shopify-image-sizes/",
+        "https://help.shopify.com/en/manual/online-store/images/theme-images",
+        "https://www.photoroom.com/blog/guide-to-shopify-image-sizes",
+        "https://www.shopify.com/blog/image-sizes",
+        "https://gempages.net/blogs/shopify/shopify-product-images",
+        "https://www.tinabar.com/blog/understanding-ecommerce-product-photography-a-complete-guide-to-image-types-that-sell",
+        "https://www.youtube.com/watch?v=kUvkMAbBqXg",
+        "https://amasty.com/blog/shopify-product-image-size/"
+      ],
+      "citedDomains": [
+        "youtube.com",
+        "snappa.com",
+        "help.shopify.com",
+        "photoroom.com",
+        "shopify.com",
+        "gempages.net",
+        "tinabar.com",
+        "amasty.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.youtube.com/watch?v=hmju6WOiPfY",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://snappa.com/blog/shopify-image-sizes/",
+          "domain": "snappa.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://help.shopify.com/en/manual/online-store/images/theme-images",
+          "domain": "help.shopify.com",
+          "sourceFormat": "vendor_docs",
+          "citationQuality": "earned_source"
+        },
+        {
+          "url": "https://www.photoroom.com/blog/guide-to-shopify-image-sizes",
+          "domain": "photoroom.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.shopify.com/blog/image-sizes",
+          "domain": "shopify.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "earned_source"
+        },
+        {
+          "url": "https://gempages.net/blogs/shopify/shopify-product-images",
+          "domain": "gempages.net",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.tinabar.com/blog/understanding-ecommerce-product-photography-a-complete-guide-to-image-types-that-sell",
+          "domain": "tinabar.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=kUvkMAbBqXg",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://amasty.com/blog/shopify-product-image-size/",
+          "domain": "amasty.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [
+          {
+            "name": "Photoroom",
+            "mentioned": false,
+            "mentionCount": 0,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 9,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "integration-small-catalog-launch",
+      "prompt": "How can a small Shopify clothing store launch a catalog with professional product photos quickly?",
+      "promptGroup": "integration_use_case",
+      "provider": "perplexity",
+      "answerText": "A small Shopify clothing store can launch fast by using a **simple white or light background**, shooting garments with **soft, diffused light**, and preparing **4–6 photos per product** that cover front, back, side, and close-up detail shots.[1][2] If speed matters most, Shopify also recommends using the **best camera available**, a **tripod**, and a **white background** at home, then retouching and resizing the images for the web before upload.[7]\n\nA practical quick-launch workflow is:\n\n- **Prep the clothing first:** steam or iron each item, remove stains, and make sure sizing and styling are ready before shooting.[3]\n- **Use a clean setup:** shoot near a window with a white or light neutral backdrop so the product stays the focus.[1][2][7]\n- **Keep lighting soft:** place the light source slightly to the side and in front, or use window light, to avoid harsh shadows.[1][7]\n- **Capture the essentials:** take front, back, side, close-up texture shots, and at least one lifestyle or on-body image for apparel.[1][3]\n- **Edit quickly but consistently:** crop, correct exposure, and fix color so every image matches across the catalog.[2][5]\n- **Optimize for Shopify:** aim for square images around **2048 × 2048 pixels**, compress files for faster loading, and use descriptive filenames and alt text.[1][2][5]\n\nIf the store needs even faster turnaround, an **AI product-photo tool** can turn a basic phone photo into cleaner Shopify-ready visuals in minutes, which is useful when a full studio shoot is not practical.[4][8] For a clothing brand, though, real garment shape is usually better conveyed with **mannequins or live models** than with flat-only shots.[2][3]\n\nFor a small catalog, the fastest realistic approach is usually:\n- shoot on a phone or mirrorless camera,\n- use window light and a white backdrop,\n- batch-edit in Lightroom/Photoshop or a simpler editor,\n- upload in a consistent square format,\n- and start with the top-selling items first.[5][7]\n\nIf you want, I can turn this into a **1-day photo shoot checklist** or a **low-budget setup list** for a Shopify clothing store.",
+      "citedUrls": [
+        "https://bigredjelly.com/blog/picture-perfect-stunning-product-photography-tips-for-your-shopify-store/",
+        "https://strategicconnection.net/the-ultimate-guide-to-product-photography-for-your-shopify-clothing-store",
+        "https://proshotmediagroup.com/blog/top-rated-shopify-product-photographers-for-clothing-ecommerce/",
+        "https://prodshot.net/professional-shopify-product-photography",
+        "https://soona.co/product-photography/shopify-photography",
+        "https://www.youtube.com/watch?v=Ouq5qG4ikDc",
+        "https://help.shopify.com/en/manual/products/product-media/product-photography",
+        "https://community.shopify.com/t/where-can-we-go-to-obtain-lifestyle-product-photography-for-a-brand/128866",
+        "https://community.shopify.com/t/question-about-product-photography-costs-for-small-clothing-stores/421280"
+      ],
+      "citedDomains": [
+        "bigredjelly.com",
+        "strategicconnection.net",
+        "proshotmediagroup.com",
+        "prodshot.net",
+        "soona.co",
+        "youtube.com",
+        "help.shopify.com",
+        "community.shopify.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://bigredjelly.com/blog/picture-perfect-stunning-product-photography-tips-for-your-shopify-store/",
+          "domain": "bigredjelly.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://strategicconnection.net/the-ultimate-guide-to-product-photography-for-your-shopify-clothing-store",
+          "domain": "strategicconnection.net",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://proshotmediagroup.com/blog/top-rated-shopify-product-photographers-for-clothing-ecommerce/",
+          "domain": "proshotmediagroup.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://prodshot.net/professional-shopify-product-photography",
+          "domain": "prodshot.net",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://soona.co/product-photography/shopify-photography",
+          "domain": "soona.co",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Ouq5qG4ikDc",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://help.shopify.com/en/manual/products/product-media/product-photography",
+          "domain": "help.shopify.com",
+          "sourceFormat": "vendor_docs",
+          "citationQuality": "earned_source"
+        },
+        {
+          "url": "https://community.shopify.com/t/where-can-we-go-to-obtain-lifestyle-product-photography-for-a-brand/128866",
+          "domain": "community.shopify.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "earned_source"
+        },
+        {
+          "url": "https://community.shopify.com/t/question-about-product-photography-costs-for-small-clothing-stores/421280",
+          "domain": "community.shopify.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "earned_source"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 9,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "purchase-ai-photo-app-shopify-fashion",
+      "prompt": "Which AI photo app should I choose for a Shopify fashion store?",
+      "promptGroup": "high_intent_purchase",
+      "provider": "perplexity",
+      "answerText": "For a **Shopify fashion store**, the best choice is usually **Botika** if your main goal is realistic *on-model apparel photos* without hiring models, and **SellerPic** if you want a broader Shopify-style visual studio with product photos, AI ads, virtual try-on, and video generation. [2][5]\n\nIf you want the shortest decision rule:\n\n- **Botika** — best for fashion brands that need realistic AI models wearing clothing, and even short videos for social content. [2]\n- **SellerPic** — best for Shopify merchants who want an all-in-one app for product visuals, AI ads, virtual try-on, and images that can be used across Instagram, Facebook, TikTok, and product pages. [5]\n- **Photoroom** — best if you mostly need fast background removal and simple product-photo cleanup rather than fashion-specific model generation. [1][3]\n- **CreatorKit** — best if you want the deepest Shopify-native workflow, with product photo and video generation directly inside Shopify admin. [3]\n- **Rewarx Studio** — a good all-in-one ecommerce option if you want background removal, ghost mannequin effects, mockups, and model studio features in one place. [4]\n\nFor a **fashion store specifically**, Botika stands out in the search results as a “game changer” for apparel because it creates realistic on-model photos without a model, which is exactly what clothing brands usually need most. [2] SellerPic is also strongly positioned for fashion because it offers AI models, virtual try-on, and AI image-to-video conversion, which can help both conversion and social content. [5][8]\n\nIf you want the most practical recommendation:\n- Choose **Botika** if your priority is *high-quality apparel model shots*.\n- Choose **SellerPic** if your priority is *Shopify workflow + ads + try-on + video*.\n- Choose **CreatorKit** if you want the *most Shopify-native* experience. [2][3][5]\n\nIf you want, I can also rank these by **best for budget**, **best realism**, or **best Shopify integration**.",
+      "citedUrls": [
+        "https://www.nextinfashion.live/blog/ai-product-photos-shopify-fashion-store",
+        "https://tekglide.com/best-4-ai-powered-photo-apps-for-shopify-stores-in-2025/",
+        "https://www.wearview.co/blog/ai-product-photography-tools",
+        "https://www.rewarx.com/blogs/best-ai-product-image-app-shopify-store",
+        "https://apps.shopify.com/sellerpic",
+        "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384/16",
+        "https://kiwisizing.com/blog/shopify-ai-tools/",
+        "https://www.youtube.com/watch?v=VoWHOBsVrMA"
+      ],
+      "citedDomains": [
+        "nextinfashion.live",
+        "tekglide.com",
+        "wearview.co",
+        "rewarx.com",
+        "apps.shopify.com",
+        "community.shopify.com",
+        "kiwisizing.com",
+        "youtube.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.nextinfashion.live/blog/ai-product-photos-shopify-fashion-store",
+          "domain": "nextinfashion.live",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tekglide.com/best-4-ai-powered-photo-apps-for-shopify-stores-in-2025/",
+          "domain": "tekglide.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.wearview.co/blog/ai-product-photography-tools",
+          "domain": "wearview.co",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.rewarx.com/blogs/best-ai-product-image-app-shopify-store",
+          "domain": "rewarx.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://apps.shopify.com/sellerpic",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384/16",
+          "domain": "community.shopify.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://kiwisizing.com/blog/shopify-ai-tools/",
+          "domain": "kiwisizing.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Botika",
+            "mentioned": true,
+            "mentionCount": 4,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Photoroom",
+            "mentioned": true,
+            "mentionCount": 2,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 8,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "purchase-affordable-ai-model-photos",
+      "prompt": "What is an affordable AI model photo app for small Shopify clothing brands?",
+      "promptGroup": "high_intent_purchase",
+      "provider": "perplexity",
+      "answerText": "An affordable option for small Shopify clothing brands is **AI Models & Product Photos: ST**, because it has a **free plan available** and is built specifically to generate AI models wearing your clothes directly from your Shopify product feed.[1]\n\nIf you want other budget-friendly choices, **WearView** is another lower-cost option, with plans **from $29/month** and a focus on AI-generated fashion model photos for ecommerce.[3] For brands that want a broader comparison, review lists also mention **Botika**, **SellerPic**, and **Genlook** as Shopify-oriented AI fashion tools, with Genlook offering a **free tier** and paid plans up to **$99/month**.[4][6]\n\nFor a small clothing brand, the best fit depends on your need:\n- **Lowest upfront cost:** AI Models & Product Photos: ST, because it offers a free plan.[1]\n- **Cheapest paid fashion-specific tool:** WearView at **$29/month**.[3]\n- **If you want try-on or customer-facing features:** Genlook, which includes a free tier but is more of a try-on tool than a pure photo generator.[6]\n\nIf you want, I can also narrow this down to the **best free**, **best for realistic model shots**, or **best for bulk product uploads**.",
+      "citedUrls": [
+        "https://apps.shopify.com/ai-models-and-product-photos",
+        "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+        "https://www.wearview.co",
+        "https://tekglide.com/best-4-ai-powered-photo-apps-for-shopify-stores-in-2025/",
+        "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+        "https://nightjar.so/blog/best-tools-ai-virtual-try-on"
+      ],
+      "citedDomains": [
+        "apps.shopify.com",
+        "community.shopify.com",
+        "wearview.co",
+        "tekglide.com",
+        "youtube.com",
+        "nightjar.so"
+      ],
+      "citedSources": [
+        {
+          "url": "https://apps.shopify.com/ai-models-and-product-photos",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+          "domain": "community.shopify.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.wearview.co",
+          "domain": "wearview.co",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tekglide.com/best-4-ai-powered-photo-apps-for-shopify-stores-in-2025/",
+          "domain": "tekglide.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://nightjar.so/blog/best-tools-ai-virtual-try-on",
+          "domain": "nightjar.so",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Botika",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 6,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "purchase-realistic-ai-model-photos",
+      "prompt": "Which AI tool makes the most realistic model photos for ecommerce apparel?",
+      "promptGroup": "high_intent_purchase",
+      "provider": "perplexity",
+      "answerText": "For **realistic ecommerce apparel model photos**, the strongest candidates in the results are **FASHN AI**, **Claid**, and **BetterStudio**; among these, **FASHN AI** is the best-supported pick if your priority is *realism*, because Claid says it is “best overall,” while FASHN AI is specifically described as being known for high-quality garment fit and drape, 4K outputs, and strong realistic fashion product photography/try-on results.[3][8]\n\nA practical ranking from the evidence would be:\n\n- **Best for realism:** **FASHN AI** — highlighted for high-quality garment fit, drape, and realistic fashion photos.[3][8]\n- **Best all-around ecommerce suite:** **Claid** — described as “best overall for fashion photography” with strong quality and control across on-model shots, backgrounds, retouching, and video.[3]\n- **Best Shopify-native model generator:** **BetterStudio** or **Botika** — both are positioned for Shopify/fashion ecommerce and generate studio-grade or professional on-model images from flatlays.[3][5]\n- **Good for fast virtual model output:** **Pic Copilot** and **WeShop AI** — both emphasize realistic virtual fashion models and ecommerce-ready photos, but the results don’t distinguish them as clearly as the top picks.[1][4]\n\nIf you want a single answer, **FASHN AI** appears to be the best match for “most realistic model photos,” while **Claid** looks strongest if you want the most complete ecommerce workflow.[3][8]\n\n",
+      "citedUrls": [
+        "https://www.weshop.ai/tools/aimodel",
+        "https://www.youtube.com/watch?v=zvFVd9MPO2A",
+        "https://claid.ai/blog/article/ai-fashion-photography-tools",
+        "https://www.piccopilot.com/tools/ai-model",
+        "https://botika.com",
+        "https://www.youtube.com/watch?v=VIWVQppvi4o",
+        "https://uwear.ai",
+        "https://fashn.ai"
+      ],
+      "citedDomains": [
+        "weshop.ai",
+        "youtube.com",
+        "claid.ai",
+        "piccopilot.com",
+        "botika.com",
+        "uwear.ai",
+        "fashn.ai"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.weshop.ai/tools/aimodel",
+          "domain": "weshop.ai",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=zvFVd9MPO2A",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://claid.ai/blog/article/ai-fashion-photography-tools",
+          "domain": "claid.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.piccopilot.com/tools/ai-model",
+          "domain": "piccopilot.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://botika.com",
+          "domain": "botika.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VIWVQppvi4o",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://uwear.ai",
+          "domain": "uwear.ai",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://fashn.ai",
+          "domain": "fashn.ai",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Botika",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 4,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "competitorsCited": [
+          {
+            "name": "Claid",
+            "mentioned": true,
+            "mentionCount": 4,
+            "cited": true,
+            "citationCount": 1
+          }
+        ],
+        "citationCount": 8,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "purchase-shopify-app-ai-product-photos",
+      "prompt": "Is there a Shopify app that creates AI product photos for fashion brands?",
+      "promptGroup": "high_intent_purchase",
+      "provider": "perplexity",
+      "answerText": "Yes — there are several **Shopify apps** that create **AI product photos for fashion brands**. The clearest examples in the search results are **PhotoAI: AI Product Images**, **AI Models & Product Photos: ST**, **LumezAI – Product Photography**, **AI Fashion Model Photos+Videos**, and **SellerPic**.[1][2][3][6][7]\n\nA few of these are specifically built for apparel and model-based fashion visuals:\n\n- **PhotoAI: AI Product Images** says it creates professional product photos with AI-generated fashion models and works for clothing, apparel, fashion accessories, jewelry, and bags.[1]\n- **AI Models & Product Photos: ST** says it helps you showcase clothes on AI-generated models and is aimed at apparel visuals.[2]\n- **LumezAI** says it generates AI model images for apparel products and offers product photos, virtual try-on, and UGC-style content.[3]\n- **AI Fashion Model Photos+Videos** says it turns flat lays into on-model AI photoshoots and videos and is built for fashion ecommerce brands.[6]\n- **SellerPic** says it generates AI fashion models, product photos, and videos, including virtual try-on.[7]\n\nIf you want, I can also narrow these down by **best for Shopify-native workflow**, **best for realistic on-model fashion shots**, or **free vs paid options**.",
+      "citedUrls": [
+        "https://apps.shopify.com/shoppulse",
+        "https://apps.shopify.com/ai-models-and-product-photos",
+        "https://apps.shopify.com/lumezai",
+        "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+        "https://www.prodofoto.com/blog/best-ai-product-photography-tools-shopify",
+        "https://apps.shopify.com/imaginecreate-ai",
+        "https://apps.shopify.com/sellerpic",
+        "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+        "https://www.wearview.co/blog/ai-product-photography-tools"
+      ],
+      "citedDomains": [
+        "apps.shopify.com",
+        "community.shopify.com",
+        "prodofoto.com",
+        "youtube.com",
+        "wearview.co"
+      ],
+      "citedSources": [
+        {
+          "url": "https://apps.shopify.com/shoppulse",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://apps.shopify.com/ai-models-and-product-photos",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://apps.shopify.com/lumezai",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+          "domain": "community.shopify.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.prodofoto.com/blog/best-ai-product-photography-tools-shopify",
+          "domain": "prodofoto.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://apps.shopify.com/imaginecreate-ai",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://apps.shopify.com/sellerpic",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.wearview.co/blog/ai-product-photography-tools",
+          "domain": "wearview.co",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 9,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Improve the Shopify App Store listing because marketplace listings are the trusted citation surface for this prompt. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    },
+    {
+      "id": "purchase-best-app-product-photo-consistency",
+      "prompt": "What app helps Shopify fashion brands create consistent product photos without hiring models?",
+      "promptGroup": "high_intent_purchase",
+      "provider": "perplexity",
+      "answerText": "For Shopify fashion brands, **Picjam: AI Fashion Models** is a strong fit for creating consistent product photos **without hiring models**.[2] It turns flat-lay or mannequin images into realistic model shots, and it explicitly says brands can create fashion photos and videos *without a photoshoot*.[2]\n\nAnother close match is **AI Models & Product Photos: ST**, which says it brings apparel to life with AI-powered models wearing your products and that *no costly photoshoots are needed*.[1]  \n\nIf you want the most direct “no models” positioning, **SellerPic** also advertises AI model shots, virtual try-on, and product visuals with *no photographers needed*.[7]",
+      "citedUrls": [
+        "https://apps.shopify.com/ai-models-and-product-photos",
+        "https://apps.shopify.com/picjam",
+        "https://botika.com/resources/thethread/botika-shopify-app-on-model-photos",
+        "https://www.wearview.co/blog/ai-product-photography-tools",
+        "https://community.shopify.com/t/built-a-tool-so-you-dont-have-to-hire-models-for-product-shots/585140",
+        "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+        "https://apps.shopify.com/sellerpic",
+        "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+        "https://www.rewarx.com/blogs/best-shopify-apps-for-clothing-stores"
+      ],
+      "citedDomains": [
+        "apps.shopify.com",
+        "botika.com",
+        "wearview.co",
+        "community.shopify.com",
+        "youtube.com",
+        "rewarx.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://apps.shopify.com/ai-models-and-product-photos",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://apps.shopify.com/picjam",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://botika.com/resources/thethread/botika-shopify-app-on-model-photos",
+          "domain": "botika.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.wearview.co/blog/ai-product-photography-tools",
+          "domain": "wearview.co",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://community.shopify.com/t/built-a-tool-so-you-dont-have-to-hire-models-for-product-shots/585140",
+          "domain": "community.shopify.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "earned_source"
+        },
+        {
+          "url": "https://community.shopify.com/t/the-best-ai-app-for-photos-and-video-for-clothes/582384",
+          "domain": "community.shopify.com",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://apps.shopify.com/sellerpic",
+          "domain": "apps.shopify.com",
+          "sourceFormat": "marketplace_listing",
+          "citationQuality": "platform_marketplace"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VoWHOBsVrMA",
+          "domain": "youtube.com",
+          "sourceFormat": "youtube_video",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.rewarx.com/blogs/best-shopify-apps-for-clothing-stores",
+          "domain": "rewarx.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        }
+      ],
+      "runDate": "2026-06-01T20:03:52.899Z",
+      "visibilityScore": {
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 9,
+        "sourceStrength": "strong",
+        "score": 0
+      },
+      "recommendedNextAction": "Improve the Shopify App Store listing because marketplace listings are the trusted citation surface for this prompt. Current asset status is unknown.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-02"
+    }
+  ],
+  "summary": {
+    "promptCount": 20,
+    "tinyLemonMentionedCount": 0,
+    "tinyLemonCitedCount": 0,
+    "competitorOnlyCount": 11,
+    "averageVisibilityScore": 0
+  }
+}
