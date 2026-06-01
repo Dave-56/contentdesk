@@ -1,3 +1,9 @@
+# Orientation
+
+New to this repo? Read `docs/MAP.md` first (entry point), then `docs/status/NOW.md` for
+current operating truth. Docs are sorted by change-rate; every doc carries `updated`/`type`/
+`status` frontmatter. Don't duplicate status outside `NOW.md`.
+
 # Response Style
 
 Respond like smart caveman. Cut all filler, keep technical substance.

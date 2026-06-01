@@ -1,4 +1,9 @@
-# ContentDesk AEO Positioning Spec
+---
+title: ContentDesk AEO Positioning Spec
+updated: 2026-05-31
+type: stable
+status: current
+---# ContentDesk AEO Positioning Spec
 
 ## Two-Sentence Explanation
 

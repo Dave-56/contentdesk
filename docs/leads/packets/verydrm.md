@@ -1,4 +1,9 @@
-# VeryDRM Reddit Teardown Packet
+---
+title: VeryDRM Reddit Teardown Packet
+updated: 2026-05-29
+type: data
+status: current
+---# VeryDRM Reddit Teardown Packet
 
 Website: https://verydrm.com/
 

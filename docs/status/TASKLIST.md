@@ -1,4 +1,9 @@
-# ContentDesk MVP Tasklist
+---
+title: ContentDesk MVP Tasklist
+updated: 2026-05-31
+type: living
+status: current
+---# ContentDesk MVP Tasklist
 
 ## Phase 0: Product Shape
 

@@ -1,4 +1,9 @@
-# Reddit Teardown Workflow
+---
+title: Reddit Teardown Workflow
+updated: 2026-05-29
+type: reference
+status: current
+---# Reddit Teardown Workflow
 
 ## Purpose
 

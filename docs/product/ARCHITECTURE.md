@@ -1,4 +1,9 @@
-# ContentDesk Architecture
+---
+title: ContentDesk Architecture
+updated: 2026-06-01
+type: stable
+status: current
+---# ContentDesk Architecture
 
 ContentDesk is a Slack-first SEO/AEO operator for lean founders. Its job is not to generate content by default. Its job is to identify which source formats AI/search systems already trust for a buyer prompt, recommend the next most realistic asset or fix, produce the kit, and schedule a recheck.
 

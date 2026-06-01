@@ -1,5 +1,9 @@
 # ContentDesk
 
+> **New here (human or agent)? Start at [`docs/MAP.md`](docs/MAP.md).** It routes to current
+> status, decisions, strategy, architecture, and the code. For current operating truth go
+> straight to [`docs/status/NOW.md`](docs/status/NOW.md).
+
 ContentDesk is a Slack-first ContentOps Agent Manager for Shopify apps.
 
 The MVP promise:
@@ -12,11 +16,11 @@ Product principle:
 
 Positioning spec:
 
-> See `CONTENTDESK_AEO_POSITIONING_SPEC.md` for the AEO market thesis, prompt coverage model, MVP focus, and long-term operator vision.
+> See [`docs/strategy/POSITIONING.md`](docs/strategy/POSITIONING.md) for the AEO market thesis, prompt coverage model, MVP focus, and long-term operator vision.
 
 Architecture spec:
 
-> See `ARCHITECTURE.md` for the system flow, component responsibilities, Recommendation Card layer, Citation Source Analysis layer, and trust-signal truth layer.
+> See [`docs/product/ARCHITECTURE.md`](docs/product/ARCHITECTURE.md) for the system flow, component responsibilities, Recommendation Card layer, Citation Source Analysis layer, and trust-signal truth layer.
 
 This is not a loose multi-agent chat room. It is a deterministic workflow with agent steps. The founder talks to one front-facing Manager Agent in Slack. Specialist agents run behind the scenes and produce structured artifacts.
 

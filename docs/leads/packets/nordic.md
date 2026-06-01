@@ -1,4 +1,9 @@
-# Nordic Real Estate Services / Solsten Reddit Teardown Packet
+---
+title: Nordic Real Estate Services / Solsten Reddit Teardown Packet
+updated: 2026-05-29
+type: data
+status: current
+---# Nordic Real Estate Services / Solsten Reddit Teardown Packet
 
 Website: https://nordicrealestateservices.com/
 

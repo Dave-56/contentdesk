@@ -1,4 +1,9 @@
-# ContentDesk Sales Thinking
+---
+title: ContentDesk Sales Thinking
+updated: 2026-05-31
+type: stable
+status: current
+---# ContentDesk Sales Thinking
 
 Last updated: 2026-05-30
 

@@ -1,4 +1,9 @@
-# EveryLastMile Reddit Teardown Packet
+---
+title: EveryLastMile Reddit Teardown Packet
+updated: 2026-05-29
+type: data
+status: current
+---# EveryLastMile Reddit Teardown Packet
 
 Website: https://everylastmile.app/
 

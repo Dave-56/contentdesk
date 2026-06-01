@@ -1,4 +1,9 @@
-# ContentDesk MVP Spec
+---
+title: ContentDesk MVP Spec
+updated: 2026-05-27
+type: stable
+status: current
+---# ContentDesk MVP Spec
 
 ## Product
 

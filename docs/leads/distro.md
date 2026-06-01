@@ -1,4 +1,9 @@
-# Reddit Distribution — Finding Shopify App Makers
+---
+title: Reddit Distribution — Finding Shopify App Makers
+updated: 2026-05-31
+type: reference
+status: current
+---# Reddit Distribution — Finding Shopify App Makers
 
 Captured: 2026-05-31. Context: ContentDesk's beachhead is Shopify app makers (see `STATUS.md`). This doc covers where to find them and how to approach.
 

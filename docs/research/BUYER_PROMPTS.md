@@ -1,4 +1,9 @@
-# Shopify App Buyer Prompts — Citation Pattern Study
+---
+title: Shopify App Buyer Prompts — Citation Pattern Study
+updated: 2026-05-31
+type: research
+status: current
+---# Shopify App Buyer Prompts — Citation Pattern Study
 
 Captured: 2026-05-31
 
