@@ -359,7 +359,7 @@ Implementation notes:
 - [x] Keep `prompt:select` limited to reviewed strategy files and reject URL input.
 - [x] Load `.env.local` in prompt scan commands before reading `PERPLEXITY_API_KEY`.
 - [x] Add exact env example/docs entry for `PERPLEXITY_API_KEY`.
-- [ ] Run selected Tiny Lemon Perplexity scan after `PERPLEXITY_API_KEY` is visible.
+- [x] Run selected Tiny Lemon Perplexity scan after `PERPLEXITY_API_KEY` is visible.
 - [ ] Review inferred Tiny Lemon competitors and buyer jobs before treating prompt selection as baseline-ready.
 - [ ] Reduce `unknown` source-format and citation-quality classifications.
 

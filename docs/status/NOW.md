@@ -48,19 +48,18 @@ Provider scope: **Perplexity only** for now. See [`../dogfood/README.md`](../dog
   passed, `npm run typecheck` passed, `npm run prompt:select` passed, and URL input to
   `prompt:select` correctly failed with the prompt-infer instruction.
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
-  "update repo memory" stop routine; latest memory commit is `a058f71`.
+  "update repo memory" stop routine.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
   `data/tiny-lemon/visibility/runs/2026-06-01.json`.
-  Baseline: Tiny Lemon mentioned 0/20, cited 0/20, average visibility score 0.
-  Competitor-only answers: 11/20 — the winnable hit list (rival named, Tiny Lemon absent).
+  Baseline: Tiny Lemon mentioned 0/10, cited 0/10, average visibility score 0.
+  Competitor-only answers: 7/10 — the winnable hit list (rival named, Tiny Lemon absent).
 
 ## Blockers
-- `PERPLEXITY_API_KEY` was not visible in `.env.local` during verification, so
-  `npm run prompt:scan:selected` cannot run until the key is added with that exact name.
+- _(none recorded — add as they appear)_
 
 ## Next 3 actions
-1. Add/verify `PERPLEXITY_API_KEY` in `.env.local` with the exact variable name.
-2. Review `data/tiny-lemon/visibility/strategy.json` after any `prompt:infer` run, especially
-   competitors and buyer jobs, then run `npm run prompt:select`.
+1. Turn the 7/10 competitor-only selected-prompt gaps into a ranked recommendation card.
+2. Pick the first intervention asset, likely a comparison/alternatives page for the strongest
+   competitor/category gap.
 3. Improve citation/source intelligence for prompt scans, especially reducing `unknown`
    source-format and citation-quality classifications.
