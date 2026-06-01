@@ -32,6 +32,7 @@ Full detail: [`status/NOW.md`](status/NOW.md) · [`dogfood/README.md`](dogfood/R
 
 | You want… | Read |
 |---|---|
+| Agent operating rules | [`../AGENTS.md`](../AGENTS.md) |
 | Current operating state | [`status/NOW.md`](status/NOW.md) |
 | What's next / roadmap | [`status/ROADMAP.md`](status/ROADMAP.md) |
 | Open checkboxes | [`status/TASKLIST.md`](status/TASKLIST.md) |
