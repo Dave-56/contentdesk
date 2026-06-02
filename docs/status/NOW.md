@@ -65,7 +65,9 @@ multi-provider runs spend API credits and should be intentional. See
   cross-provider synthesis, recommender integration, and `visibility:run`.
 - Owned-site raw inventory: `npm run visibility:profile -- --url https://tinylemon.xyz --out data/tiny-lemon/visibility`
   writes `owned-content-inventory.json`. Latest Tiny Lemon profile found 8 owned assets:
-  3 profile pages and 5 blog articles. No classification/story layer yet.
+  3 profile pages and 5 blog articles. `owned-content-inventory.json` is the exact owned
+  asset source of truth; `site-profile.json` stays broad brand/page context. No
+  classification/story layer yet.
 - Verification on 2026-06-02: `npm test -- src/lib/prompt-scan/provider.test.ts src/lib/visibility/synthesis.test.ts src/lib/visibility/recommender.test.ts`
   passed, `npm run typecheck` passed, and temp-file full/partial synthesis plus
   recommendation smokes passed.

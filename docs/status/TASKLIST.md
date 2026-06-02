@@ -129,7 +129,7 @@ Acceptance:
 - [ ] Add request timeout per provider prompt call.
 - [ ] Add bounded prompt concurrency for `visibility:run`.
 - [ ] Add skip-existing provider files by default plus `--force` rerun control.
-- [ ] Store exact blog/article URLs from sitemap or blog index in site profile.
+- [x] Store exact blog/article URLs from sitemap or blog index in `owned-content-inventory.json`.
 - [x] Use owned-site content inventory before recommending new owned assets.
 - [ ] V2: Add Shopify app entity profile before strategy generation.
 - [ ] V2: Add Shopify asset audit for homepage, App Store listing, docs, blog, alternatives pages, demos, reviews, and community mentions.
