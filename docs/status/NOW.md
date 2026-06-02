@@ -1,6 +1,6 @@
 ---
 title: NOW — Current Operating Truth
-updated: 2026-06-01
+updated: 2026-06-02
 type: living
 status: current
 read_before: [docs/MAP.md]
@@ -44,9 +44,14 @@ Provider scope: **Perplexity only** for now. See [`../dogfood/README.md`](../dog
   `data/tiny-lemon/visibility/prompts.selected.json`.
 - Prompt scan env loading: `scripts/prompt-scan.ts` now imports `@/lib/load-env`, so
   `PERPLEXITY_API_KEY` can be read from `.env.local`.
-- Verification on 2026-06-01: `npm test -- src/lib/buyer-prompt-strategist/infer.test.ts`
-  passed, `npm run typecheck` passed, `npm run prompt:select` passed, and URL input to
-  `prompt:select` correctly failed with the prompt-infer instruction.
+- Visibility recommendations: `npm run visibility:recommend` writes
+  `data/tiny-lemon/visibility/recommendations.json` from `strategy.json`, latest run data,
+  and `site-profile.json`. Current top action is **Build Botika alternatives page** because
+  the Botika prompt cites comparison pages, Tiny Lemon is absent, no Botika-specific owned
+  page was found in site-profile evidence, and the existing Modelia alternatives asset can
+  be reused as the pattern.
+- Verification on 2026-06-02: `npm test -- src/lib/visibility/recommender.test.ts`
+  passed, `npm run typecheck` passed, and `npm run visibility:recommend` passed.
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
   "update repo memory" stop routine.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
@@ -58,8 +63,9 @@ Provider scope: **Perplexity only** for now. See [`../dogfood/README.md`](../dog
 - _(none recorded — add as they appear)_
 
 ## Next 3 actions
-1. Turn the 7/10 competitor-only selected-prompt gaps into a ranked recommendation card.
-2. Pick the first intervention asset, likely a comparison/alternatives page for the strongest
-   competitor/category gap.
-3. Improve citation/source intelligence for prompt scans, especially reducing `unknown`
-   source-format and citation-quality classifications.
+1. Make site profiling store exact article URLs from sitemap/blog index so recommendations can
+   cite the exact existing asset, not only `/blog`.
+2. Build/publish the Botika alternatives page using the existing Modelia alternatives page
+   pattern, then re-run `competitor-botika-alternatives`.
+3. Add owned-site content inventory before full Shopify external asset audit; keep App Store,
+   YouTube, reviews, community, and earned mentions as later V2 scope.

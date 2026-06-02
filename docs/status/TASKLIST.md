@@ -1,6 +1,6 @@
 ---
 title: ContentDesk MVP Tasklist
-updated: 2026-06-01
+updated: 2026-06-02
 type: living
 status: current
 ---
@@ -110,6 +110,18 @@ Acceptance:
 - [ ] Add buyer-journey prompt mapping so AI visibility research separates Awareness, Consideration, Evaluation, and Decision opportunities.
 - [ ] Use the Tiny Lemon HubSpot AEO backlog in `AEO_RECOMMENDATIONS.md` as the reference example for turning recommendations into video scripts, owned content briefs, outreach packets, and community replies.
 - [ ] Decide when each capability should remain a module/prompt mode versus becoming a separate specialist agent.
+
+## Phase: Shopify App Visibility Recommendations
+
+- [x] Add `visibility:recommend` to turn latest scan + strategy inventory into one execution task.
+- [x] Write `data/tiny-lemon/visibility/recommendations.json` from `strategy.json` and latest run file.
+- [x] Recheck recommended asset against the exact prompt ids after publish.
+- [x] Use `site-profile.json` to distinguish target-specific missing assets from existing related assets.
+- [ ] Store exact blog/article URLs from sitemap or blog index in site profile.
+- [ ] Use owned-site content inventory before recommending new owned assets.
+- [ ] V2: Add Shopify app entity profile before strategy generation.
+- [ ] V2: Add Shopify asset audit for homepage, App Store listing, docs, blog, alternatives pages, demos, reviews, and community mentions.
+- [ ] V2: Feed asset audit into `strategy.json` instead of using guessed `assetInventory`.
 
 ### P0: Ahrefs Topic Evidence
 

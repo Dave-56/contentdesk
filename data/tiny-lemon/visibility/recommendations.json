@@ -1,0 +1,70 @@
+{
+  "brand": "Tiny Lemon",
+  "provider": "perplexity",
+  "generatedAt": "2026-06-01T22:28:58.133Z",
+  "basedOnRunDate": "2026-06-01T22:00:05.548Z",
+  "summary": {
+    "promptCount": 10,
+    "tinyLemonMentionedCount": 0,
+    "tinyLemonCitedCount": 0,
+    "competitorOnlyCount": 7,
+    "averageVisibilityScore": 0
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "title": "Build Botika alternatives page",
+      "taskType": "alternative_page",
+      "priority": "high",
+      "confidence": "medium",
+      "targetPromptId": "competitor-botika-alternatives",
+      "targetPrompt": "What are the best Botika alternatives for Shopify fashion brands?",
+      "why": [
+        "competitor-botika-alternatives cites comparison page sources.",
+        "Tiny Lemon is absent from answer and citations.",
+        "Botika is active in this buyer answer.",
+        "No Botika-specific alternatives page found in site-profile evidence.",
+        "Related competitor asset exists: Best Modelia Alternatives for Shopify Fashion Product Photos. Reuse that pattern."
+      ],
+      "evidence": {
+        "promptGroup": "competitor_comparison",
+        "tinyLemonMentioned": false,
+        "tinyLemonCited": false,
+        "competitorsMentioned": [
+          "Botika"
+        ],
+        "citedDomains": [
+          "rewarx.com",
+          "pixupai.com",
+          "wearview.co",
+          "krev.ai",
+          "photta.app",
+          "fashiondiffusion.ai",
+          "rawshot.ai",
+          "veeton.com",
+          "youtube.com"
+        ],
+        "dominantSourceFormat": "comparison_page",
+        "missingOrWeakAssetType": "alternative_page",
+        "targetCompetitor": "Botika",
+        "targetCompetitorAssetStatus": "missing",
+        "relatedAssets": [
+          {
+            "title": "Best Modelia Alternatives for Shopify Fashion Product Photos",
+            "url": "https://tinylemon.xyz/blog",
+            "matchedCompetitors": [
+              "Modelia"
+            ]
+          }
+        ]
+      },
+      "recheck": {
+        "promptIds": [
+          "competitor-botika-alternatives"
+        ],
+        "afterPublish": true,
+        "cadenceDays": 1
+      }
+    }
+  ]
+}
