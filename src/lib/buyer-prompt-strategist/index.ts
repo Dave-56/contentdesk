@@ -5,7 +5,7 @@ import {
   type BuyerPromptStrategyInput,
   type PromptQualityScore,
 } from "@/lib/buyer-prompt-strategist/schemas";
-import type { PromptGroup, TinyLemonPromptInput } from "@/lib/prompt-scan/schemas";
+import type { PromptGroup, PromptInput } from "@/lib/prompt-scan/schemas";
 
 const DEFAULT_SELECTION_RULE =
   "Cover the journey, but overweight prompts closest to purchase, competitor comparison, and realistic asset opportunities.";
@@ -31,7 +31,7 @@ export function buildBuyerPromptPortfolio(input: {
     candidates,
     portfolioSize: input.strategy.portfolioSize,
   });
-  const selectedPrompts = selectedCandidates.map<TinyLemonPromptInput>((candidate) => ({
+  const selectedPrompts = selectedCandidates.map<PromptInput>((candidate) => ({
     id: candidate.id,
     group: candidate.group,
     prompt: candidate.prompt,

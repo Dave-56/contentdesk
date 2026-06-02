@@ -94,8 +94,6 @@
       ],
       "runDate": "2026-06-01T22:00:05.548Z",
       "visibilityScore": {
-        "tinyLemonMentioned": false,
-        "tinyLemonCited": false,
         "mentionPosition": "absent",
         "competitorsMentioned": [
           {
@@ -109,7 +107,9 @@
         "competitorsCited": [],
         "citationCount": 9,
         "sourceStrength": "medium",
-        "score": 0
+        "score": 0,
+        "brandMentioned": false,
+        "brandCited": false
       },
       "recommendedNextAction": "Create or improve a comparison page because comparison assets are the trusted citation surface for this prompt.",
       "recommendationConfidence": "medium",
@@ -193,8 +193,6 @@
       ],
       "runDate": "2026-06-01T22:00:05.548Z",
       "visibilityScore": {
-        "tinyLemonMentioned": false,
-        "tinyLemonCited": false,
         "mentionPosition": "absent",
         "competitorsMentioned": [
           {
@@ -208,7 +206,9 @@
         "competitorsCited": [],
         "citationCount": 8,
         "sourceStrength": "medium",
-        "score": 0
+        "score": 0,
+        "brandMentioned": false,
+        "brandCited": false
       },
       "recommendedNextAction": "Create or improve a comparison page because comparison assets are the trusted citation surface for this prompt.",
       "recommendationConfidence": "medium",
@@ -292,8 +292,6 @@
       ],
       "runDate": "2026-06-01T22:00:05.548Z",
       "visibilityScore": {
-        "tinyLemonMentioned": false,
-        "tinyLemonCited": false,
         "mentionPosition": "absent",
         "competitorsMentioned": [
           {
@@ -336,7 +334,9 @@
         ],
         "citationCount": 8,
         "sourceStrength": "strong",
-        "score": 0
+        "score": 0,
+        "brandMentioned": false,
+        "brandCited": false
       },
       "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
       "recommendationConfidence": "high",
@@ -411,8 +411,6 @@
       ],
       "runDate": "2026-06-01T22:00:05.548Z",
       "visibilityScore": {
-        "tinyLemonMentioned": false,
-        "tinyLemonCited": false,
         "mentionPosition": "absent",
         "competitorsMentioned": [
           {
@@ -441,7 +439,9 @@
         ],
         "citationCount": 7,
         "sourceStrength": "strong",
-        "score": 0
+        "score": 0,
+        "brandMentioned": false,
+        "brandCited": false
       },
       "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
       "recommendationConfidence": "high",
@@ -530,8 +530,6 @@
       ],
       "runDate": "2026-06-01T22:00:05.548Z",
       "visibilityScore": {
-        "tinyLemonMentioned": false,
-        "tinyLemonCited": false,
         "mentionPosition": "absent",
         "competitorsMentioned": [
           {
@@ -553,7 +551,9 @@
         ],
         "citationCount": 9,
         "sourceStrength": "strong",
-        "score": 0
+        "score": 0,
+        "brandMentioned": false,
+        "brandCited": false
       },
       "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
       "recommendationConfidence": "medium",
@@ -636,8 +636,6 @@
       ],
       "runDate": "2026-06-01T22:00:05.548Z",
       "visibilityScore": {
-        "tinyLemonMentioned": false,
-        "tinyLemonCited": false,
         "mentionPosition": "absent",
         "competitorsMentioned": [
           {
@@ -673,7 +671,9 @@
         ],
         "citationCount": 8,
         "sourceStrength": "strong",
-        "score": 0
+        "score": 0,
+        "brandMentioned": false,
+        "brandCited": false
       },
       "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
       "recommendationConfidence": "high",
@@ -747,8 +747,6 @@
       ],
       "runDate": "2026-06-01T22:00:05.548Z",
       "visibilityScore": {
-        "tinyLemonMentioned": false,
-        "tinyLemonCited": false,
         "mentionPosition": "absent",
         "competitorsMentioned": [
           {
@@ -777,7 +775,9 @@
         ],
         "citationCount": 7,
         "sourceStrength": "strong",
-        "score": 0
+        "score": 0,
+        "brandMentioned": false,
+        "brandCited": false
       },
       "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
       "recommendationConfidence": "medium",
@@ -858,14 +858,14 @@
       ],
       "runDate": "2026-06-01T22:00:05.548Z",
       "visibilityScore": {
-        "tinyLemonMentioned": false,
-        "tinyLemonCited": false,
         "mentionPosition": "absent",
         "competitorsMentioned": [],
         "competitorsCited": [],
         "citationCount": 8,
         "sourceStrength": "strong",
-        "score": 0
+        "score": 0,
+        "brandMentioned": false,
+        "brandCited": false
       },
       "recommendedNextAction": "Improve the Shopify App Store listing because marketplace listings are the trusted citation surface for this prompt. Current asset status is unknown.",
       "recommendationConfidence": "medium",
@@ -940,14 +940,14 @@
       ],
       "runDate": "2026-06-01T22:00:05.548Z",
       "visibilityScore": {
-        "tinyLemonMentioned": false,
-        "tinyLemonCited": false,
         "mentionPosition": "absent",
         "competitorsMentioned": [],
         "competitorsCited": [],
         "citationCount": 7,
         "sourceStrength": "strong",
-        "score": 0
+        "score": 0,
+        "brandMentioned": false,
+        "brandCited": false
       },
       "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
       "recommendationConfidence": "medium",
@@ -1037,8 +1037,6 @@
       ],
       "runDate": "2026-06-01T22:00:05.548Z",
       "visibilityScore": {
-        "tinyLemonMentioned": false,
-        "tinyLemonCited": false,
         "mentionPosition": "absent",
         "competitorsMentioned": [],
         "competitorsCited": [
@@ -1052,7 +1050,9 @@
         ],
         "citationCount": 9,
         "sourceStrength": "strong",
-        "score": 0
+        "score": 0,
+        "brandMentioned": false,
+        "brandCited": false
       },
       "recommendedNextAction": "Create a focused guide that directly answers the prompt and includes clear criteria, proof, and FAQs. Current asset status is unknown.",
       "recommendationConfidence": "medium",
@@ -1061,9 +1061,9 @@
   ],
   "summary": {
     "promptCount": 10,
-    "tinyLemonMentionedCount": 0,
-    "tinyLemonCitedCount": 0,
     "competitorOnlyCount": 7,
-    "averageVisibilityScore": 0
+    "averageVisibilityScore": 0,
+    "brandMentionedCount": 0,
+    "brandCitedCount": 0
   }
 }

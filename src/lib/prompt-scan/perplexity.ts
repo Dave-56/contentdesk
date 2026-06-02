@@ -1,5 +1,6 @@
 import { z } from "zod";
 import type { ProviderPromptResult } from "@/lib/prompt-scan/analyzer";
+import type { PromptProvider } from "@/lib/prompt-scan/provider";
 
 const perplexityResponseSchema = z.object({
   choices: z.array(
@@ -65,6 +66,23 @@ export async function runPerplexityPrompt(input: {
   return {
     answerText,
     citedUrls: [...new Set(citedUrls)],
+  };
+}
+
+export function createPerplexityProvider(input: {
+  apiKey: string;
+  runPrompt?: typeof runPerplexityPrompt;
+}): PromptProvider {
+  const runPrompt = input.runPrompt ?? runPerplexityPrompt;
+
+  return {
+    id: "perplexity",
+    scanPrompt({ prompt }) {
+      return runPrompt({
+        apiKey: input.apiKey,
+        prompt,
+      });
+    },
   };
 }
 

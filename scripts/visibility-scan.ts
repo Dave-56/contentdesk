@@ -14,7 +14,7 @@ async function main() {
 
   console.log(`[visibility:scan] wrote ${outputPath}`);
   console.log(
-    `[visibility:scan] summary: ${run.summary.tinyLemonMentionedCount}/${run.summary.promptCount} mentioned, ${run.summary.tinyLemonCitedCount}/${run.summary.promptCount} cited, average visibility ${run.summary.averageVisibilityScore}`,
+    `[visibility:scan] summary: ${run.summary.brandMentionedCount}/${run.summary.promptCount} mentioned, ${run.summary.brandCitedCount}/${run.summary.promptCount} cited, average visibility ${run.summary.averageVisibilityScore}`,
   );
 }
 

@@ -117,8 +117,20 @@ Acceptance:
 - [x] Write `data/tiny-lemon/visibility/recommendations.json` from `strategy.json` and latest run file.
 - [x] Recheck recommended asset against the exact prompt ids after publish.
 - [x] Use `site-profile.json` to distinguish target-specific missing assets from existing related assets.
+- [x] Refactor visibility scan schemas from Tiny Lemon-specific fields to brand-neutral fields.
+- [x] Add `visibility:profile` to retrieve raw owned-site inventory without classification.
+- [x] Add provider interface while keeping Perplexity behavior unchanged.
+- [x] Add OpenAI prompt runner.
+- [x] Add Claude prompt runner.
+- [x] Add cross-provider synthesis grouped by prompt id.
+- [x] Update recommender to read synthesis plus owned inventory.
+- [x] Add `visibility:run` to orchestrate Perplexity, OpenAI, Anthropic, synthesis, and optional recommendation.
+- [x] Make `visibility:run` fail-soft per provider and record partial synthesis provider errors.
+- [ ] Add request timeout per provider prompt call.
+- [ ] Add bounded prompt concurrency for `visibility:run`.
+- [ ] Add skip-existing provider files by default plus `--force` rerun control.
 - [ ] Store exact blog/article URLs from sitemap or blog index in site profile.
-- [ ] Use owned-site content inventory before recommending new owned assets.
+- [x] Use owned-site content inventory before recommending new owned assets.
 - [ ] V2: Add Shopify app entity profile before strategy generation.
 - [ ] V2: Add Shopify asset audit for homepage, App Store listing, docs, blog, alternatives pages, demos, reviews, and community mentions.
 - [ ] V2: Feed asset audit into `strategy.json` instead of using guessed `assetInventory`.

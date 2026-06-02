@@ -2,9 +2,9 @@ import { z } from "zod";
 import {
   assetInventoryItemSchema,
   competitorSchema,
+  promptInputSchema,
   promptGroupSchema,
   providerSchema,
-  tinyLemonPromptInputSchema,
 } from "@/lib/prompt-scan/schemas";
 
 const text = z.string().trim().min(1);
@@ -76,7 +76,7 @@ export const buyerPromptPortfolioSchema = z.object({
   generatedAt: z.string().datetime(),
   portfolioSize: z.number().int().min(5).max(20),
   selectionRule: text,
-  selectedPrompts: z.array(tinyLemonPromptInputSchema),
+  selectedPrompts: z.array(promptInputSchema),
   selectedCandidates: z.array(buyerPromptCandidateSchema),
   candidates: z.array(buyerPromptCandidateSchema),
 });

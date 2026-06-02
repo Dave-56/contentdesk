@@ -10,7 +10,7 @@ import {
   type PromptScanRecord,
   type PromptScanRun,
   type SourceFormat,
-  type TinyLemonPromptInput,
+  type PromptInput,
 } from "@/lib/prompt-scan/schemas";
 
 export type ProviderPromptResult = {
@@ -21,7 +21,7 @@ export type ProviderPromptResult = {
 export function buildPromptScanRun(input: {
   config: PromptScanConfig;
   results: Array<{
-    prompt: TinyLemonPromptInput;
+    prompt: PromptInput;
     result: ProviderPromptResult;
   }>;
   runDate?: Date;
@@ -48,7 +48,7 @@ export function buildPromptScanRun(input: {
 }
 
 export function analyzePromptResult(input: {
-  prompt: TinyLemonPromptInput;
+  prompt: PromptInput;
   result: ProviderPromptResult;
   config: PromptScanConfig;
   runDate?: Date;
@@ -57,11 +57,11 @@ export function analyzePromptResult(input: {
   const citedUrls = uniqueUrls(input.result.citedUrls);
   const citedSources = citedUrls.map((url) => classifyCitedSource(url, input.config));
   const citedDomains = [...new Set(citedSources.map((source) => source.domain))];
-  const tinyLemonMentioned = hasAnyAlias(
+  const brandMentioned = hasAnyAlias(
     input.result.answerText,
     [input.config.brand.name, ...input.config.brand.aliases],
   );
-  const tinyLemonCited = citedSources.some((source) =>
+  const brandCited = citedSources.some((source) =>
     input.config.brand.domains.some((domain) => source.domain.endsWith(domain)),
   );
   const competitorVisibility = input.config.competitors.map((competitor) =>
@@ -74,8 +74,8 @@ export function analyzePromptResult(input: {
   const competitorsMentioned = competitorVisibility.filter((item) => item.mentioned);
   const competitorsCited = competitorVisibility.filter((item) => item.cited);
   const visibilityScore = {
-    tinyLemonMentioned,
-    tinyLemonCited,
+    brandMentioned,
+    brandCited,
     mentionPosition: mentionPosition(input.result.answerText, [
       input.config.brand.name,
       ...input.config.brand.aliases,
@@ -85,8 +85,8 @@ export function analyzePromptResult(input: {
     citationCount: citedUrls.length,
     sourceStrength: sourceStrength(citedSources),
     score: numericVisibilityScore({
-      tinyLemonMentioned,
-      tinyLemonCited,
+      brandMentioned,
+      brandCited,
       competitorsMentionedCount: competitorsMentioned.length,
       competitorsCitedCount: competitorsCited.length,
       citedSources,
@@ -105,6 +105,7 @@ export function analyzePromptResult(input: {
     runDate: runDate.toISOString(),
     visibilityScore,
     recommendedNextAction: recommendedNextAction({
+      brandName: input.config.brand.name,
       citedSources,
       visibilityScore,
       assetInventory: input.config.assetInventory,
@@ -113,8 +114,8 @@ export function analyzePromptResult(input: {
       citedSources,
       competitorsMentionedCount: competitorsMentioned.length,
       competitorsCitedCount: competitorsCited.length,
-      tinyLemonMentioned,
-      tinyLemonCited,
+      brandMentioned,
+      brandCited,
     }),
     recheckDate: dateAfter(runDate, input.config.defaultRecheckDays),
   });
@@ -209,17 +210,18 @@ function analyzeCompetitorVisibility(input: {
 }
 
 function recommendedNextAction(input: {
+  brandName: string;
   citedSources: CitedSource[];
   visibilityScore: {
-    tinyLemonMentioned: boolean;
-    tinyLemonCited: boolean;
+    brandMentioned: boolean;
+    brandCited: boolean;
     competitorsMentioned: CompetitorVisibility[];
     competitorsCited: CompetitorVisibility[];
   };
   assetInventory: AssetInventoryItem[];
 }) {
-  if (input.visibilityScore.tinyLemonCited) {
-    return "Tiny Lemon is already cited. Recheck tomorrow and compare whether citation position, source mix, or competitor mix changes.";
+  if (input.visibilityScore.brandCited) {
+    return `${input.brandName} is already cited. Recheck tomorrow and compare whether citation position, source mix, or competitor mix changes.`;
   }
 
   const dominantQuality = dominant(
@@ -277,19 +279,19 @@ function recommendationConfidence(input: {
   citedSources: CitedSource[];
   competitorsMentionedCount: number;
   competitorsCitedCount: number;
-  tinyLemonMentioned: boolean;
-  tinyLemonCited: boolean;
+  brandMentioned: boolean;
+  brandCited: boolean;
 }) {
   const repeatedPattern = dominant(input.citedSources.map((source) => source.citationQuality));
   const sourceCount = input.citedSources.length;
   const competitorSignal =
     input.competitorsMentionedCount + input.competitorsCitedCount;
 
-  if (input.tinyLemonCited) return "medium";
+  if (input.brandCited) return "medium";
   if (sourceCount >= 3 && repeatedPattern !== "unknown" && competitorSignal >= 2) {
     return "high";
   }
-  if (sourceCount >= 2 || competitorSignal >= 1 || input.tinyLemonMentioned) {
+  if (sourceCount >= 2 || competitorSignal >= 1 || input.brandMentioned) {
     return "medium";
   }
 
@@ -297,15 +299,15 @@ function recommendationConfidence(input: {
 }
 
 function numericVisibilityScore(input: {
-  tinyLemonMentioned: boolean;
-  tinyLemonCited: boolean;
+  brandMentioned: boolean;
+  brandCited: boolean;
   competitorsMentionedCount: number;
   competitorsCitedCount: number;
   citedSources: CitedSource[];
 }) {
   let score = 0;
-  if (input.tinyLemonMentioned) score += 35;
-  if (input.tinyLemonCited) score += 45;
+  if (input.brandMentioned) score += 35;
+  if (input.brandCited) score += 45;
   score -= Math.min(25, input.competitorsMentionedCount * 5);
   score -= Math.min(20, input.competitorsCitedCount * 8);
   if (input.citedSources.some((source) => source.citationQuality === "owned_source")) {
@@ -334,15 +336,15 @@ function sourceStrength(citedSources: CitedSource[]) {
 
 function summarizeRecords(records: PromptScanRecord[]) {
   const promptCount = records.length;
-  const tinyLemonMentionedCount = records.filter(
-    (record) => record.visibilityScore.tinyLemonMentioned,
+  const brandMentionedCount = records.filter(
+    (record) => record.visibilityScore.brandMentioned,
   ).length;
-  const tinyLemonCitedCount = records.filter(
-    (record) => record.visibilityScore.tinyLemonCited,
+  const brandCitedCount = records.filter(
+    (record) => record.visibilityScore.brandCited,
   ).length;
   const competitorOnlyCount = records.filter(
     (record) =>
-      !record.visibilityScore.tinyLemonMentioned &&
+      !record.visibilityScore.brandMentioned &&
       record.visibilityScore.competitorsMentioned.length > 0,
   ).length;
   const averageVisibilityScore = promptCount
@@ -354,8 +356,8 @@ function summarizeRecords(records: PromptScanRecord[]) {
 
   return {
     promptCount,
-    tinyLemonMentionedCount,
-    tinyLemonCitedCount,
+    brandMentionedCount,
+    brandCitedCount,
     competitorOnlyCount,
     averageVisibilityScore,
   };

@@ -13,7 +13,7 @@ export const promptGroupSchema = z.enum([
 
 export type PromptGroup = z.infer<typeof promptGroupSchema>;
 
-export const providerSchema = z.literal("perplexity");
+export const providerSchema = z.enum(["perplexity", "openai", "anthropic"]);
 
 export const sourceFormatSchema = z.enum([
   "marketplace_listing",
@@ -82,13 +82,13 @@ export const assetInventoryItemSchema = z.object({
 
 export type AssetInventoryItem = z.infer<typeof assetInventoryItemSchema>;
 
-export const tinyLemonPromptInputSchema = z.object({
+export const promptInputSchema = z.object({
   id: text,
   group: promptGroupSchema,
   prompt: text,
 });
 
-export type TinyLemonPromptInput = z.infer<typeof tinyLemonPromptInputSchema>;
+export type PromptInput = z.infer<typeof promptInputSchema>;
 
 export const promptScanConfigSchema = z.object({
   brand: z.object({
@@ -104,7 +104,7 @@ export const promptScanConfigSchema = z.object({
   }),
   competitors: z.array(competitorSchema),
   assetInventory: z.array(assetInventoryItemSchema),
-  prompts: z.array(tinyLemonPromptInputSchema).min(1),
+  prompts: z.array(promptInputSchema).min(1),
 });
 
 export type PromptScanConfig = z.infer<typeof promptScanConfigSchema>;
@@ -129,8 +129,8 @@ export const competitorVisibilitySchema = z.object({
 export type CompetitorVisibility = z.infer<typeof competitorVisibilitySchema>;
 
 export const visibilityScoreSchema = z.object({
-  tinyLemonMentioned: z.boolean(),
-  tinyLemonCited: z.boolean(),
+  brandMentioned: z.boolean(),
+  brandCited: z.boolean(),
   mentionPosition: mentionPositionSchema,
   competitorsMentioned: z.array(competitorVisibilitySchema),
   competitorsCited: z.array(competitorVisibilitySchema),
@@ -171,8 +171,8 @@ export const promptScanRunSchema = z.object({
   records: z.array(promptScanRecordSchema),
   summary: z.object({
     promptCount: z.number().int().min(0),
-    tinyLemonMentionedCount: z.number().int().min(0),
-    tinyLemonCitedCount: z.number().int().min(0),
+    brandMentionedCount: z.number().int().min(0),
+    brandCitedCount: z.number().int().min(0),
     competitorOnlyCount: z.number().int().min(0),
     averageVisibilityScore: z.number().min(0).max(100),
   }),

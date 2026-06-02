@@ -1,8 +1,12 @@
 {
   "brand": {
     "name": "Tiny Lemon",
-    "aliases": ["TinyLemon", "tinylemon"],
-    "domains": ["tinylemon.xyz"]
+    "aliases": [
+      "TinyLemon"
+    ],
+    "domains": [
+      "tinylemon.xyz"
+    ]
   },
   "provider": "perplexity",
   "defaultRecheckDays": 1,
@@ -12,20 +16,17 @@
   },
   "audience": "Shopify fashion brands",
   "category": "AI model photo app",
-  "positioning": "Tiny Lemon helps Shopify fashion brands create consistent AI on-model product photos without coordinating a photoshoot.",
+  "positioning": "Tiny Lemon Shopify App for AI Model Photos TinyLemon Features Pricing Guides About Contact Log in Install app View demo For indie fashion brands on Shopify Studio shots in 60 seconds. No shoot. Upload a flat-lay from your factory or your own shoot. Get professional on-model photos, ready to publish on Shopify. No photographer, no shoot budget. Tiny Lemon is available on the Shopify App Store. Install from Shopify App Store View demo Drag to compare Studio shot Flat lay Studio shot Flat lay How it works 1 Upload your flat-lay — from your factory, supplier, or your own shoot 2 Get a full set of on-model photos in minutes 3 Add to your Shopify products and publish All features in 1 tool Discove",
   "conversionGoal": "a Shopify product page launch",
   "primaryUseCases": [
-    "AI on-model product photos",
-    "turning flat lay photos into model photos",
-    "consistent fashion catalog product photos"
+    "AI on-model product photos"
   ],
-  "portfolioSize": 10,
   "buyerJobs": [
     {
-      "id": "avoid-photoshoot",
+      "id": "solve-core-problem",
       "group": "problem_aware",
-      "job": "Find a cheaper way to create model photos without a traditional photoshoot.",
-      "pain": "create model photos without hiring models or booking a photoshoot",
+      "job": "Find a better way to create AI on-model product photos without a traditional photoshoot.",
+      "pain": "create AI on-model product photos without a traditional photoshoot",
       "commercialCloseness": 3,
       "productFit": 5,
       "assetOpportunity": 4
@@ -33,8 +34,8 @@
     {
       "id": "find-category-tools",
       "group": "category_search",
-      "job": "Discover which AI product photography tools exist for Shopify apparel workflows.",
-      "pain": "find AI product photography tools that work for Shopify apparel stores",
+      "job": "Discover which AI model photo app options exist for Shopify fashion brands.",
+      "pain": "find AI model photo app options for Shopify fashion brands",
       "commercialCloseness": 4,
       "productFit": 5,
       "assetOpportunity": 4
@@ -42,8 +43,8 @@
     {
       "id": "understand-workflow",
       "group": "solution_aware",
-      "job": "Understand whether AI model photo apps can produce usable ecommerce photos.",
-      "pain": "understand how AI model photo apps work for Shopify apparel products",
+      "job": "Understand whether AI model photo app can handle AI on-model product photos.",
+      "pain": "understand how AI model photo app works for AI on-model product photos",
       "commercialCloseness": 3,
       "productFit": 5,
       "assetOpportunity": 4
@@ -51,26 +52,26 @@
     {
       "id": "compare-alternatives",
       "group": "competitor_comparison",
-      "job": "Compare known AI photo tools and decide which one fits a Shopify fashion store.",
-      "pain": "compare AI photo app alternatives for Shopify fashion product photos",
+      "job": "Compare known AI model photo app options and decide which one fits Shopify fashion brands.",
+      "pain": "compare AI model photo app alternatives for AI on-model product photos",
       "commercialCloseness": 5,
       "productFit": 5,
       "assetOpportunity": 5
     },
     {
-      "id": "prepare-pdp",
+      "id": "prepare-workflow",
       "group": "integration_use_case",
-      "job": "Prepare launch-ready product page images for a Shopify fashion catalog.",
-      "pain": "prepare AI model photos for Shopify product pages",
+      "job": "Prepare AI on-model product photos for a Shopify product page launch.",
+      "pain": "prepare AI on-model product photos for a Shopify product page launch",
       "commercialCloseness": 4,
       "productFit": 5,
       "assetOpportunity": 3
     },
     {
-      "id": "choose-app",
+      "id": "choose-product",
       "group": "high_intent_purchase",
-      "job": "Choose the app to install or try for AI fashion product photos.",
-      "pain": "choose the right AI model photo app for a Shopify fashion store",
+      "job": "Choose the AI model photo app to try or buy.",
+      "pain": "choose the right AI model photo app for Shopify fashion brands",
       "commercialCloseness": 5,
       "productFit": 5,
       "assetOpportunity": 5
@@ -78,88 +79,101 @@
   ],
   "competitors": [
     {
-      "name": "Botika",
-      "aliases": ["Botika.io"],
-      "domains": ["botika.io"]
-    },
-    {
-      "name": "Photoroom",
-      "aliases": ["PhotoRoom"],
-      "domains": ["photoroom.com"]
-    },
-    {
-      "name": "Pebblely",
-      "aliases": [],
-      "domains": ["pebblely.com"]
-    },
-    {
-      "name": "Flair",
-      "aliases": ["Flair AI"],
-      "domains": ["flair.ai"]
-    },
-    {
-      "name": "Modelia",
-      "aliases": [],
-      "domains": ["modelia.ai"]
-    },
-    {
       "name": "Claid",
-      "aliases": ["Claid.ai"],
-      "domains": ["claid.ai"]
+      "aliases": [],
+      "domains": [
+        "claid.ai"
+      ]
+    },
+    {
+      "name": "OnModel ‑ AI Models Photos",
+      "aliases": [],
+      "domains": [
+        "apps.shopify.com"
+      ]
+    },
+    {
+      "name": "Antla – AI Virtual Try",
+      "aliases": [],
+      "domains": [
+        "devit.group"
+      ]
+    },
+    {
+      "name": "Virtual try",
+      "aliases": [],
+      "domains": [
+        "claid.ai"
+      ]
+    },
+    {
+      "name": "MODA",
+      "aliases": [],
+      "domains": [
+        "apps.shopify.com"
+      ]
+    },
+    {
+      "name": "Bloom",
+      "aliases": [],
+      "domains": [
+        "owlmix.webflow.io"
+      ]
     }
   ],
   "assetInventory": [
     {
       "type": "shopify_app_store_listing",
       "status": "unknown",
-      "notes": "Confirm whether Tiny Lemon has a live Shopify App Store listing."
+      "notes": "Infer from website/search later; not confirmed from standard site crawl."
     },
     {
       "type": "homepage",
       "status": "present",
       "url": "https://tinylemon.xyz/",
-      "notes": "Primary owned landing page."
+      "notes": "Homepage found during website profiling."
     },
     {
       "type": "comparison_page",
       "status": "missing",
-      "notes": "No canonical comparison page inventory yet."
+      "notes": "No canonical comparison page found during standard site crawl."
     },
     {
       "type": "alternative_page",
       "status": "missing",
-      "notes": "No known Botika/Modelia/Photoroom alternatives pages yet."
+      "notes": "No alternatives page found during standard site crawl."
     },
     {
       "type": "blog_guide",
-      "status": "unknown",
+      "status": "present",
       "url": "https://tinylemon.xyz/blog",
-      "notes": "Blog exists, but specific prompt coverage needs scanning."
+      "notes": "Blog/resources page found."
     },
     {
       "type": "docs_help",
       "status": "unknown",
-      "notes": "Confirm whether help docs exist."
+      "notes": "Docs/help coverage not confirmed."
     },
     {
       "type": "reddit_community_mention",
       "status": "unknown",
-      "notes": "No structured community mention inventory yet."
+      "notes": "Community mentions require separate search."
     },
     {
       "type": "youtube_video",
-      "status": "missing",
-      "notes": "No known YouTube proof asset yet."
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
     },
     {
       "type": "review_profile",
       "status": "unknown",
-      "notes": "Confirm review-site presence."
+      "notes": "Review profiles require separate search."
     },
     {
       "type": "case_study",
-      "status": "missing",
-      "notes": "No case study inventory yet."
+      "status": "unknown",
+      "notes": "Case studies require separate search."
     }
-  ]
+  ],
+  "portfolioSize": 10
 }

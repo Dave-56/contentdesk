@@ -6,12 +6,22 @@ import type {
   PromptScanRun,
   SourceFormat,
 } from "@/lib/prompt-scan/schemas";
-import { promptScanRunSchema } from "@/lib/prompt-scan/schemas";
+import { promptScanRunSchema, providerSchema } from "@/lib/prompt-scan/schemas";
 import { siteProfileSchema, type SiteProfile } from "@/lib/reddit-teardown/schemas";
 import {
   buyerPromptStrategyInputSchema,
   type BuyerPromptStrategyInput,
 } from "@/lib/buyer-prompt-strategist/schemas";
+import {
+  ownedContentInventorySchema,
+  type OwnedContentInventory,
+  type OwnedSiteAsset,
+} from "@/lib/visibility/site-inventory";
+import {
+  crossProviderSynthesisSchema,
+  type CrossProviderSynthesis,
+  type PromptSynthesis,
+} from "@/lib/visibility/synthesis";
 
 const recommendationPrioritySchema = z.enum(["high", "medium", "low"]);
 
@@ -33,8 +43,8 @@ export const visibilityRecommendationSchema = z.object({
   why: z.array(z.string().trim().min(1)).min(1),
   evidence: z.object({
     promptGroup: z.string().trim().min(1),
-    tinyLemonMentioned: z.boolean(),
-    tinyLemonCited: z.boolean(),
+    brandMentioned: z.boolean(),
+    brandCited: z.boolean(),
     competitorsMentioned: z.array(z.string().trim().min(1)),
     citedDomains: z.array(z.string().trim().min(1)),
     dominantSourceFormat: z.string().trim().min(1),
@@ -62,13 +72,14 @@ export type VisibilityRecommendation = z.infer<
 
 export const visibilityRecommendationsFileSchema = z.object({
   brand: z.string().trim().min(1),
-  provider: z.literal("perplexity"),
+  provider: z.union([providerSchema, z.literal("synthesis")]),
+  providers: z.array(providerSchema).optional(),
   generatedAt: z.string().datetime(),
   basedOnRunDate: z.string().datetime(),
   summary: z.object({
     promptCount: z.number().int().min(0),
-    tinyLemonMentionedCount: z.number().int().min(0),
-    tinyLemonCitedCount: z.number().int().min(0),
+    brandMentionedCount: z.number().int().min(0),
+    brandCitedCount: z.number().int().min(0),
     competitorOnlyCount: z.number().int().min(0),
     averageVisibilityScore: z.number().min(0).max(100),
   }),
@@ -81,23 +92,49 @@ export type VisibilityRecommendationsFile = z.infer<
 
 export function buildVisibilityRecommendations(input: {
   strategy: BuyerPromptStrategyInput;
-  run: PromptScanRun;
+  run?: PromptScanRun;
+  synthesis?: CrossProviderSynthesis;
+  ownedInventory: OwnedContentInventory;
   siteProfile?: SiteProfile;
   generatedAt?: Date;
 }): VisibilityRecommendationsFile {
   const strategy = buyerPromptStrategyInputSchema.parse(input.strategy);
-  const run = promptScanRunSchema.parse(input.run);
+  const ownedInventory = ownedContentInventorySchema.parse(input.ownedInventory);
   const siteProfile = input.siteProfile
     ? siteProfileSchema.parse(input.siteProfile)
     : undefined;
+
+  if (input.synthesis) {
+    return buildSynthesisRecommendations({
+      strategy,
+      synthesis: crossProviderSynthesisSchema.parse(input.synthesis),
+      ownedInventory,
+      siteProfile,
+      generatedAt: input.generatedAt,
+    });
+  }
+
+  if (!input.run) {
+    throw new Error("Either a prompt scan run or cross-provider synthesis is required.");
+  }
+
+  const run = promptScanRunSchema.parse(input.run);
   const candidates = run.records
-    .filter((record) => !record.visibilityScore.tinyLemonMentioned)
-    .map((record) => scoreRecord(record, strategy, siteProfile))
+    .filter((record) => !record.visibilityScore.brandMentioned)
+    .map((record) => scoreRecord(record, strategy, ownedInventory))
     .sort((a, b) => b.score - a.score);
 
   const top = candidates[0];
   const recommendations = top
-    ? [buildRecommendation({ record: top.record, strategy, siteProfile, rank: 1 })]
+    ? [
+        buildRecommendation({
+          record: top.record,
+          strategy,
+          ownedInventory,
+          siteProfile,
+          rank: 1,
+        }),
+      ]
     : [];
 
   return visibilityRecommendationsFileSchema.parse({
@@ -110,10 +147,175 @@ export function buildVisibilityRecommendations(input: {
   });
 }
 
+function buildSynthesisRecommendations(input: {
+  strategy: BuyerPromptStrategyInput;
+  synthesis: CrossProviderSynthesis;
+  ownedInventory: OwnedContentInventory;
+  siteProfile?: SiteProfile;
+  generatedAt?: Date;
+}): VisibilityRecommendationsFile {
+  if (input.ownedInventory.assets.length === 0) {
+    return visibilityRecommendationsFileSchema.parse({
+      brand: input.synthesis.brand,
+      provider: "synthesis",
+      providers: input.synthesis.providers,
+      generatedAt: (input.generatedAt ?? new Date()).toISOString(),
+      basedOnRunDate: input.synthesis.runDate,
+      summary: summaryFromSynthesis(input.synthesis),
+      recommendations: [],
+    });
+  }
+
+  const candidates = input.synthesis.prompts
+    .map((prompt) => scoreSynthesisPrompt(prompt, input.strategy, input.ownedInventory))
+    .filter((candidate) => candidate.confidence !== "low")
+    .sort((a, b) => b.score - a.score);
+
+  const top = candidates[0];
+  const recommendations = top
+    ? [
+        buildSynthesisRecommendation({
+          prompt: top.prompt,
+          confidence: top.confidence,
+          strategy: input.strategy,
+          ownedInventory: input.ownedInventory,
+          rank: 1,
+        }),
+      ]
+    : [];
+
+  return visibilityRecommendationsFileSchema.parse({
+    brand: input.synthesis.brand,
+    provider: "synthesis",
+    providers: input.synthesis.providers,
+    generatedAt: (input.generatedAt ?? new Date()).toISOString(),
+    basedOnRunDate: input.synthesis.runDate,
+    summary: summaryFromSynthesis(input.synthesis),
+    recommendations,
+  });
+}
+
+function summaryFromSynthesis(synthesis: CrossProviderSynthesis) {
+  return {
+    promptCount: synthesis.prompts.length,
+    brandMentionedCount: synthesis.prompts.filter(
+      (prompt) => prompt.brandMentionedProviders.length > 0,
+    ).length,
+    brandCitedCount: synthesis.prompts.filter(
+      (prompt) => prompt.brandCitedProviders.length > 0,
+    ).length,
+    competitorOnlyCount: synthesis.prompts.filter(
+      (prompt) => prompt.competitorOnlyProviders.length > 0,
+    ).length,
+    averageVisibilityScore: 0,
+  };
+}
+
+function scoreSynthesisPrompt(
+  prompt: PromptSynthesis,
+  strategy: BuyerPromptStrategyInput,
+  ownedInventory: OwnedContentInventory,
+) {
+  const dominantSourceFormat = prompt.dominantSourceFormats[0] ?? "unknown";
+  const confidence = synthesisConfidence(prompt);
+  const targetCompetitor = targetCompetitorNameFromText(
+    `${prompt.promptId} ${prompt.prompt}`,
+    strategy,
+  ) ?? prompt.dominantCompetitors[0];
+  const targetCoverage = targetCompetitor
+    ? competitorAssetStatus(targetCompetitor, ownedInventory)
+    : "unknown";
+
+  let score = groupWeight(prompt.promptGroup as PromptGroup);
+  if (prompt.recommendedGapType === "competitor_comparison_gap") score += 35;
+  if (dominantSourceFormat === "comparison_page") score += 25;
+  if (prompt.competitorOnlyProviders.length >= 2) score += 30;
+  if (prompt.dominantCompetitors.length > 0) score += 15;
+  if (targetCoverage === "missing") score += 15;
+  if (targetCoverage === "present") score -= 30;
+  if (confidence === "high") score += 20;
+  if (confidence === "medium") score += 10;
+
+  return {
+    prompt,
+    confidence,
+    score,
+  };
+}
+
+function buildSynthesisRecommendation(input: {
+  prompt: PromptSynthesis;
+  confidence: "high" | "medium" | "low";
+  strategy: BuyerPromptStrategyInput;
+  ownedInventory: OwnedContentInventory;
+  rank: number;
+}): VisibilityRecommendation {
+  const dominantSourceFormat = input.prompt.dominantSourceFormats[0] ?? "unknown";
+  const taskType = taskTypeForGap(input.prompt.recommendedGapType, dominantSourceFormat);
+  const competitorName =
+    targetCompetitorNameFromText(`${input.prompt.promptId} ${input.prompt.prompt}`, input.strategy) ??
+    input.prompt.dominantCompetitors[0];
+  const targetAssetStatus = competitorName
+    ? competitorAssetStatus(competitorName, input.ownedInventory)
+    : "unknown";
+  const relatedAssets = relatedCompetitorAssets({
+    ownedInventory: input.ownedInventory,
+    competitors: input.strategy.competitors.map((competitor) => competitor.name),
+    exclude: competitorName,
+    includeInventorySubjects: true,
+  });
+  const missingAsset = missingOrWeakAssetForGap(
+    input.prompt.recommendedGapType,
+    dominantSourceFormat,
+    input.strategy.assetInventory,
+  );
+  const citedDomains = [
+    ...new Set(input.prompt.providerResults.flatMap((result) => result.citedDomains)),
+  ];
+
+  return visibilityRecommendationSchema.parse({
+    rank: input.rank,
+    title:
+      taskType === "alternative_page" && competitorName
+        ? `Build ${competitorName} alternatives page`
+        : titleForTaskType(taskType),
+    taskType,
+    priority: input.confidence === "high" ? "high" : "medium",
+    confidence: input.confidence,
+    targetPromptId: input.prompt.promptId,
+    targetPrompt: input.prompt.prompt,
+    why: whyForSynthesisPrompt({
+      prompt: input.prompt,
+      dominantSourceFormat,
+      competitorName,
+      targetAssetStatus,
+      relatedAssets,
+      brandName: input.strategy.brand.name,
+    }),
+    evidence: {
+      promptGroup: input.prompt.promptGroup,
+      brandMentioned: input.prompt.brandMentionedProviders.length > 0,
+      brandCited: input.prompt.brandCitedProviders.length > 0,
+      competitorsMentioned: input.prompt.dominantCompetitors,
+      citedDomains,
+      dominantSourceFormat,
+      missingOrWeakAssetType: missingAsset?.type ?? null,
+      targetCompetitor: competitorName ?? null,
+      targetCompetitorAssetStatus: targetAssetStatus,
+      relatedAssets,
+    },
+    recheck: {
+      promptIds: [input.prompt.promptId],
+      afterPublish: true,
+      cadenceDays: input.strategy.defaultRecheckDays,
+    },
+  });
+}
+
 function scoreRecord(
   record: PromptScanRecord,
   strategy: BuyerPromptStrategyInput,
-  siteProfile?: SiteProfile,
+  ownedInventory: OwnedContentInventory,
 ) {
   const dominantSourceFormat = dominant(
     record.citedSources.map((source) => source.sourceFormat),
@@ -121,7 +323,7 @@ function scoreRecord(
   const missingAsset = missingOrWeakAssetForRecord(record, strategy.assetInventory);
   const targetCompetitor = targetCompetitorName(record, strategy);
   const targetCoverage = targetCompetitor
-    ? competitorAssetStatus(targetCompetitor, siteProfile)
+    ? competitorAssetStatus(targetCompetitor, ownedInventory)
     : "unknown";
   const competitorCount = record.visibilityScore.competitorsMentioned.length;
 
@@ -142,6 +344,7 @@ function scoreRecord(
 function buildRecommendation(input: {
   record: PromptScanRecord;
   strategy: BuyerPromptStrategyInput;
+  ownedInventory: OwnedContentInventory;
   siteProfile?: SiteProfile;
   rank: number;
 }): VisibilityRecommendation {
@@ -155,12 +358,13 @@ function buildRecommendation(input: {
     targetCompetitorName(record, input.strategy) ??
     record.visibilityScore.competitorsMentioned[0]?.name;
   const targetAssetStatus = competitorName
-    ? competitorAssetStatus(competitorName, input.siteProfile)
+    ? competitorAssetStatus(competitorName, input.ownedInventory)
     : "unknown";
   const relatedAssets = relatedCompetitorAssets({
-    siteProfile: input.siteProfile,
+    ownedInventory: input.ownedInventory,
     competitors: input.strategy.competitors.map((competitor) => competitor.name),
     exclude: competitorName,
+    includeInventorySubjects: true,
   });
 
   const title =
@@ -183,11 +387,12 @@ function buildRecommendation(input: {
       competitorName,
       targetAssetStatus,
       relatedAssets,
+      brandName: input.strategy.brand.name,
     }),
     evidence: {
       promptGroup: record.promptGroup,
-      tinyLemonMentioned: record.visibilityScore.tinyLemonMentioned,
-      tinyLemonCited: record.visibilityScore.tinyLemonCited,
+      brandMentioned: record.visibilityScore.brandMentioned,
+      brandCited: record.visibilityScore.brandCited,
       competitorsMentioned: record.visibilityScore.competitorsMentioned.map(
         (competitor) => competitor.name,
       ),
@@ -213,17 +418,18 @@ function whyForRecord(input: {
   competitorName?: string;
   targetAssetStatus: "present" | "missing" | "unknown";
   relatedAssets: RelatedAsset[];
+  brandName: string;
 }) {
   const why = [
     `${input.record.id} cites ${input.dominantSourceFormat.replaceAll("_", " ")} sources.`,
-    "Tiny Lemon is absent from answer and citations.",
+    `${input.brandName} is absent from answer and citations.`,
   ];
 
   if (input.competitorName) {
     why.push(`${input.competitorName} is active in this buyer answer.`);
   }
   if (input.competitorName && input.targetAssetStatus === "missing") {
-    why.push(`No ${input.competitorName}-specific alternatives page found in site-profile evidence.`);
+    why.push(`No ${input.competitorName}-specific alternatives page found in owned inventory.`);
   } else if (input.missingAsset) {
     why.push(`${input.missingAsset.type} is ${input.missingAsset.status} in strategy.json.`);
   }
@@ -253,6 +459,22 @@ function taskTypeForRecord(
   return "manual_inspection";
 }
 
+function taskTypeForGap(
+  gapType: string,
+  dominantSourceFormat: string,
+): VisibilityRecommendation["taskType"] {
+  if (gapType === "competitor_comparison_gap") return "alternative_page";
+  if (gapType === "marketplace_gap") return "shopify_app_store_listing";
+  if (gapType === "community_gap") return "community_answer";
+  if (gapType === "guide_gap") return "guide";
+  if (dominantSourceFormat === "comparison_page") return "comparison_page";
+  if (dominantSourceFormat === "blog_guide" || dominantSourceFormat === "listicle") {
+    return "guide";
+  }
+
+  return "manual_inspection";
+}
+
 function titleForTaskType(taskType: VisibilityRecommendation["taskType"]) {
   if (taskType === "comparison_page") return "Build comparison page";
   if (taskType === "shopify_app_store_listing") return "Improve Shopify App Store listing";
@@ -266,7 +488,14 @@ function targetCompetitorName(
   record: PromptScanRecord,
   strategy: Pick<BuyerPromptStrategyInput, "competitors">,
 ) {
-  const haystack = `${record.id} ${record.prompt}`.toLowerCase();
+  return targetCompetitorNameFromText(`${record.id} ${record.prompt}`, strategy);
+}
+
+function targetCompetitorNameFromText(
+  text: string,
+  strategy: Pick<BuyerPromptStrategyInput, "competitors">,
+) {
+  const haystack = text.toLowerCase();
 
   return strategy.competitors.find((competitor) =>
     [competitor.name, ...competitor.aliases].some((alias) =>
@@ -281,10 +510,12 @@ type RelatedAsset = {
   matchedCompetitors: string[];
 };
 
-function competitorAssetStatus(competitorName: string, siteProfile?: SiteProfile) {
-  if (!siteProfile) return "unknown";
+function competitorAssetStatus(
+  competitorName: string,
+  ownedInventory: OwnedContentInventory,
+) {
   const assets = relatedCompetitorAssets({
-    siteProfile,
+    ownedInventory,
     competitors: [competitorName],
   });
 
@@ -292,34 +523,76 @@ function competitorAssetStatus(competitorName: string, siteProfile?: SiteProfile
 }
 
 function relatedCompetitorAssets(input: {
-  siteProfile?: SiteProfile;
+  ownedInventory: OwnedContentInventory;
   competitors: string[];
   exclude?: string;
+  includeInventorySubjects?: boolean;
 }): RelatedAsset[] {
-  if (!input.siteProfile) return [];
   const excluded = input.exclude ? normalizeName(input.exclude) : "";
   const assets: RelatedAsset[] = [];
 
-  for (const page of input.siteProfile.existingContent) {
-    const text = [page.url, page.title, page.excerpt].join(" ");
+  for (const asset of input.ownedInventory.assets) {
+    const text = assetSearchText(asset);
     if (!/\b(alternative|alternatives|competitor|competitors|compare|comparison|vs)\b/i.test(text)) {
       continue;
     }
 
-    const matchedCompetitors = input.competitors.filter((competitor) => {
+    const matchedCompetitors = [
+      ...input.competitors,
+      ...(input.includeInventorySubjects ? extractAssetSubjects(asset) : []),
+    ].filter((competitor, index, all) => {
       const normalized = normalizeName(competitor);
-      return normalized !== excluded && normalizeName(text).includes(normalized);
+      if (!normalized || normalized === excluded) return false;
+      if (all.findIndex((item) => normalizeName(item) === normalized) !== index) {
+        return false;
+      }
+      return normalizeName(text).includes(normalized);
     });
     if (matchedCompetitors.length === 0) continue;
 
     assets.push({
-      title: extractAssetTitle(text, matchedCompetitors[0] ?? "competitor"),
-      url: page.url,
+      title: asset.title || extractAssetTitle(text, matchedCompetitors[0] ?? "competitor"),
+      url: asset.url,
       matchedCompetitors,
     });
   }
 
   return dedupeRelatedAssets(assets);
+}
+
+function extractAssetSubjects(asset: OwnedSiteAsset) {
+  const text = [asset.title, asset.slug, ...asset.headings].join(" ");
+  const subjects = new Set<string>();
+  const patterns = [
+    /\b([A-Z][A-Za-z0-9 .&-]{1,40})\s+Alternatives?\b/g,
+    /\bAlternatives?\s+to\s+([A-Z][A-Za-z0-9 .&-]{1,40})\b/g,
+  ];
+
+  for (const pattern of patterns) {
+    for (const match of text.matchAll(pattern)) {
+      const subject = cleanSubject(match[1] ?? "");
+      if (subject) subjects.add(subject);
+    }
+  }
+
+  return [...subjects];
+}
+
+function cleanSubject(value: string) {
+  return value
+    .replace(/\s+/g, " ")
+    .replace(/\s+(for|and|or|with)\s+.*$/i, "")
+    .trim();
+}
+
+function assetSearchText(asset: OwnedSiteAsset) {
+  return [
+    asset.url,
+    asset.slug,
+    asset.title,
+    asset.excerpt,
+    ...asset.headings,
+  ].join(" ");
 }
 
 function extractAssetTitle(text: string, competitorName: string) {
@@ -367,6 +640,80 @@ function missingOrWeakAssetForRecord(
     record.promptGroup === "competitor_comparison"
       ? "alternative_page"
       : dominant(record.citedSources.map((source) => assetTypeForSourceFormat(source.sourceFormat)));
+
+  return inventory.find(
+    (asset) =>
+      asset.type === wantedType && (asset.status === "missing" || asset.status === "unknown"),
+  );
+}
+
+function whyForSynthesisPrompt(input: {
+  prompt: PromptSynthesis;
+  dominantSourceFormat: string;
+  competitorName?: string;
+  targetAssetStatus: "present" | "missing" | "unknown";
+  relatedAssets: RelatedAsset[];
+  brandName: string;
+}) {
+  const why = [
+    `${input.prompt.promptId} shows ${input.prompt.recommendedGapType.replaceAll("_", " ")} across providers.`,
+    `${input.brandName} is mentioned by ${input.prompt.brandMentionedProviders.length}/${input.prompt.providerResults.length} providers and cited by ${input.prompt.brandCitedProviders.length}/${input.prompt.providerResults.length}.`,
+  ];
+
+  if (input.prompt.competitorOnlyProviders.length >= 2) {
+    why.push(
+      `${input.prompt.competitorOnlyProviders.length} providers show competitor-only answers.`,
+    );
+  }
+  if (input.dominantSourceFormat !== "unknown") {
+    why.push(`Dominant source format is ${input.dominantSourceFormat.replaceAll("_", " ")}.`);
+  }
+  if (input.competitorName && input.targetAssetStatus === "missing") {
+    why.push(`No ${input.competitorName}-specific alternatives page found in owned inventory.`);
+  }
+  if (input.relatedAssets.length > 0) {
+    const related = input.relatedAssets
+      .slice(0, 2)
+      .map((asset) => asset.title)
+      .join("; ");
+    why.push(`Related competitor asset exists: ${related}. Reuse that pattern.`);
+  }
+
+  return why;
+}
+
+function synthesisConfidence(prompt: PromptSynthesis): "high" | "medium" | "low" {
+  if (prompt.competitorOnlyProviders.length >= 2) return "high";
+
+  const sourceFormatCounts = new Map<string, number>();
+  for (const result of prompt.providerResults) {
+    if (result.dominantSourceFormat === "unknown") continue;
+    sourceFormatCounts.set(
+      result.dominantSourceFormat,
+      (sourceFormatCounts.get(result.dominantSourceFormat) ?? 0) + 1,
+    );
+  }
+  if ([...sourceFormatCounts.values()].some((count) => count >= 2)) return "high";
+
+  const hasStrongCitationPattern = prompt.providerResults.some(
+    (result) =>
+      result.recommendationConfidence === "high" ||
+      result.citedDomains.length >= 3 ||
+      (result.dominantSourceFormat !== "unknown" && result.citedDomains.length >= 2),
+  );
+
+  return hasStrongCitationPattern ? "medium" : "low";
+}
+
+function missingOrWeakAssetForGap(
+  gapType: string,
+  dominantSourceFormat: string,
+  inventory: AssetInventoryItem[],
+) {
+  const wantedType =
+    gapType === "competitor_comparison_gap"
+      ? "alternative_page"
+      : assetTypeForSourceFormat(dominantSourceFormat as SourceFormat);
 
   return inventory.find(
     (asset) =>

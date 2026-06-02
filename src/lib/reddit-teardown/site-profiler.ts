@@ -223,9 +223,31 @@ function compactText(text: string) {
 }
 
 function inferCompanyName(input: { title: string; hostname: string }) {
-  const fromTitle = input.title.split(/[|-]/)[0]?.trim();
-  if (fromTitle && fromTitle.length <= 60) return fromTitle;
-  return input.hostname.replace(/^www\./, "").split(".")[0] ?? input.hostname;
+  return brandNameFromHostname(input.hostname);
+}
+
+function brandNameFromHostname(hostname: string) {
+  const base = hostname
+    .replace(/^www\./, "")
+    .split(".")[0]
+    ?.replace(/[-_]+/g, " ")
+    .trim();
+
+  if (!base) return hostname;
+
+  return base
+    .split(/\s+/)
+    .map(formatBrandToken)
+    .join(" ");
+}
+
+function formatBrandToken(token: string) {
+  const lower = token.toLowerCase();
+  if (["ai", "api", "seo", "crm", "cms"].includes(lower)) {
+    return lower.toUpperCase();
+  }
+
+  return `${lower.slice(0, 1).toUpperCase()}${lower.slice(1)}`;
 }
 
 function inferHeadline(text: string, fallback: string) {

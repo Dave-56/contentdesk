@@ -34,7 +34,7 @@ test("classifies source formats and citation quality separately", () => {
   );
 });
 
-test("prompt analysis scores Tiny Lemon visibility and competitor-only gaps", () => {
+test("prompt analysis scores brand visibility and competitor-only gaps", () => {
   const record = analyzePromptResult({
     config: configFixture(),
     prompt: {
@@ -54,8 +54,8 @@ test("prompt analysis scores Tiny Lemon visibility and competitor-only gaps", ()
     runDate: new Date("2026-06-01T00:00:00.000Z"),
   });
 
-  assert.equal(record.visibilityScore.tinyLemonMentioned, true);
-  assert.equal(record.visibilityScore.tinyLemonCited, false);
+  assert.equal(record.visibilityScore.brandMentioned, true);
+  assert.equal(record.visibilityScore.brandCited, false);
   assert.equal(record.visibilityScore.mentionPosition, "middle");
   assert.equal(record.visibilityScore.competitorsMentioned.length, 2);
   assert.equal(record.visibilityScore.competitorsCited.length, 1);
@@ -96,8 +96,8 @@ test("prompt scan run summarizes the baseline across prompts", () => {
   });
 
   assert.equal(run.summary.promptCount, 2);
-  assert.equal(run.summary.tinyLemonMentionedCount, 1);
-  assert.equal(run.summary.tinyLemonCitedCount, 1);
+  assert.equal(run.summary.brandMentionedCount, 1);
+  assert.equal(run.summary.brandCitedCount, 1);
   assert.equal(run.summary.competitorOnlyCount, 1);
   assert.equal(run.recheckCadenceDays, 1);
 });

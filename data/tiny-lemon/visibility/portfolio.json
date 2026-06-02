@@ -1,31 +1,31 @@
 {
   "brand": "Tiny Lemon",
-  "generatedAt": "2026-06-01T21:04:34.020Z",
+  "generatedAt": "2026-06-02T05:04:32.522Z",
   "portfolioSize": 10,
   "selectionRule": "Cover the journey, but overweight prompts closest to purchase, competitor comparison, and realistic asset opportunities.",
   "selectedPrompts": [
     {
-      "id": "competitor-botika-alternatives",
+      "id": "competitor-antla-ai-virtual-try-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Botika alternatives for Shopify fashion brands?"
+      "prompt": "What are the best Antla – AI Virtual Try alternatives for Shopify fashion brands?"
     },
     {
-      "id": "competitor-flair-alternatives",
+      "id": "competitor-claid-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Flair alternatives for Shopify fashion brands?"
+      "prompt": "What are the best Claid alternatives for Shopify fashion brands?"
     },
     {
-      "id": "competitor-modelia-alternatives",
+      "id": "competitor-moda-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Modelia alternatives for Shopify fashion brands?"
+      "prompt": "What are the best MODA alternatives for Shopify fashion brands?"
     },
     {
-      "id": "purchase-choose-choose-app",
+      "id": "purchase-choose-choose-product",
       "group": "high_intent_purchase",
       "prompt": "Which AI model photo app should I choose for Shopify fashion brands?"
     },
     {
-      "id": "purchase-app-choose-app",
+      "id": "purchase-app-choose-product",
       "group": "high_intent_purchase",
       "prompt": "Is there a Shopify app that helps Shopify fashion brands with AI on-model product photos?"
     },
@@ -45,22 +45,22 @@
       "prompt": "How do AI model photo apps work for Shopify fashion brands?"
     },
     {
-      "id": "problem-avoid-photoshoot",
+      "id": "problem-solve-core-problem",
       "group": "problem_aware",
-      "prompt": "How can Shopify fashion brands create model photos without hiring models or booking a photoshoot?"
+      "prompt": "How can Shopify fashion brands create AI on-model product photos without a traditional photoshoot?"
     },
     {
-      "id": "integration-prepare-pdp",
+      "id": "integration-prepare-workflow",
       "group": "integration_use_case",
       "prompt": "How should Shopify fashion brands prepare AI on-model product photos for a Shopify product page launch?"
     }
   ],
   "selectedCandidates": [
     {
-      "id": "competitor-botika-alternatives",
+      "id": "competitor-antla-ai-virtual-try-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Botika alternatives for Shopify fashion brands?",
-      "buyerJob": "Compare known AI photo tools and decide which one fits a Shopify fashion store.",
+      "prompt": "What are the best Antla – AI Virtual Try alternatives for Shopify fashion brands?",
+      "buyerJob": "Compare known AI model photo app options and decide which one fits Shopify fashion brands.",
       "source": "competitor",
       "score": {
         "buyerIntent": 5,
@@ -74,10 +74,10 @@
       "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
     },
     {
-      "id": "competitor-flair-alternatives",
+      "id": "competitor-claid-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Flair alternatives for Shopify fashion brands?",
-      "buyerJob": "Compare known AI photo tools and decide which one fits a Shopify fashion store.",
+      "prompt": "What are the best Claid alternatives for Shopify fashion brands?",
+      "buyerJob": "Compare known AI model photo app options and decide which one fits Shopify fashion brands.",
       "source": "competitor",
       "score": {
         "buyerIntent": 5,
@@ -91,10 +91,10 @@
       "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
     },
     {
-      "id": "competitor-modelia-alternatives",
+      "id": "competitor-moda-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Modelia alternatives for Shopify fashion brands?",
-      "buyerJob": "Compare known AI photo tools and decide which one fits a Shopify fashion store.",
+      "prompt": "What are the best MODA alternatives for Shopify fashion brands?",
+      "buyerJob": "Compare known AI model photo app options and decide which one fits Shopify fashion brands.",
       "source": "competitor",
       "score": {
         "buyerIntent": 5,
@@ -108,10 +108,10 @@
       "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
     },
     {
-      "id": "purchase-choose-choose-app",
+      "id": "purchase-choose-choose-product",
       "group": "high_intent_purchase",
       "prompt": "Which AI model photo app should I choose for Shopify fashion brands?",
-      "buyerJob": "Choose the app to install or try for AI fashion product photos.",
+      "buyerJob": "Choose the AI model photo app to try or buy.",
       "source": "purchase",
       "score": {
         "buyerIntent": 5,
@@ -125,10 +125,10 @@
       "rationale": "Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 5."
     },
     {
-      "id": "purchase-app-choose-app",
+      "id": "purchase-app-choose-product",
       "group": "high_intent_purchase",
       "prompt": "Is there a Shopify app that helps Shopify fashion brands with AI on-model product photos?",
-      "buyerJob": "Choose the app to install or try for AI fashion product photos.",
+      "buyerJob": "Choose the AI model photo app to try or buy.",
       "source": "purchase",
       "score": {
         "buyerIntent": 5,
@@ -145,7 +145,7 @@
       "id": "category-best-find-category-tools",
       "group": "category_search",
       "prompt": "What are the best AI model photo apps for Shopify fashion brands?",
-      "buyerJob": "Discover which AI product photography tools exist for Shopify apparel workflows.",
+      "buyerJob": "Discover which AI model photo app options exist for Shopify fashion brands.",
       "source": "category",
       "score": {
         "buyerIntent": 4,
@@ -162,7 +162,7 @@
       "id": "category-apps-find-category-tools",
       "group": "category_search",
       "prompt": "Which apps help Shopify fashion brands with AI on-model product photos?",
-      "buyerJob": "Discover which AI product photography tools exist for Shopify apparel workflows.",
+      "buyerJob": "Discover which AI model photo app options exist for Shopify fashion brands.",
       "source": "category",
       "score": {
         "buyerIntent": 4,
@@ -179,7 +179,7 @@
       "id": "solution-understand-workflow",
       "group": "solution_aware",
       "prompt": "How do AI model photo apps work for Shopify fashion brands?",
-      "buyerJob": "Understand whether AI model photo apps can produce usable ecommerce photos.",
+      "buyerJob": "Understand whether AI model photo app can handle AI on-model product photos.",
       "source": "buyer_job",
       "score": {
         "buyerIntent": 4,
@@ -193,10 +193,10 @@
       "rationale": "Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 3, asset opportunity 4."
     },
     {
-      "id": "problem-avoid-photoshoot",
+      "id": "problem-solve-core-problem",
       "group": "problem_aware",
-      "prompt": "How can Shopify fashion brands create model photos without hiring models or booking a photoshoot?",
-      "buyerJob": "Find a cheaper way to create model photos without a traditional photoshoot.",
+      "prompt": "How can Shopify fashion brands create AI on-model product photos without a traditional photoshoot?",
+      "buyerJob": "Find a better way to create AI on-model product photos without a traditional photoshoot.",
       "source": "buyer_job",
       "score": {
         "buyerIntent": 3,
@@ -210,10 +210,10 @@
       "rationale": "Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
     },
     {
-      "id": "integration-prepare-pdp",
+      "id": "integration-prepare-workflow",
       "group": "integration_use_case",
       "prompt": "How should Shopify fashion brands prepare AI on-model product photos for a Shopify product page launch?",
-      "buyerJob": "Prepare launch-ready product page images for a Shopify fashion catalog.",
+      "buyerJob": "Prepare AI on-model product photos for a Shopify product page launch.",
       "source": "buyer_job",
       "score": {
         "buyerIntent": 3,
@@ -229,10 +229,10 @@
   ],
   "candidates": [
     {
-      "id": "competitor-botika-alternatives",
+      "id": "competitor-antla-ai-virtual-try-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Botika alternatives for Shopify fashion brands?",
-      "buyerJob": "Compare known AI photo tools and decide which one fits a Shopify fashion store.",
+      "prompt": "What are the best Antla – AI Virtual Try alternatives for Shopify fashion brands?",
+      "buyerJob": "Compare known AI model photo app options and decide which one fits Shopify fashion brands.",
       "source": "competitor",
       "score": {
         "buyerIntent": 5,
@@ -246,10 +246,10 @@
       "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
     },
     {
-      "id": "competitor-flair-alternatives",
+      "id": "competitor-claid-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Flair alternatives for Shopify fashion brands?",
-      "buyerJob": "Compare known AI photo tools and decide which one fits a Shopify fashion store.",
+      "prompt": "What are the best Claid alternatives for Shopify fashion brands?",
+      "buyerJob": "Compare known AI model photo app options and decide which one fits Shopify fashion brands.",
       "source": "competitor",
       "score": {
         "buyerIntent": 5,
@@ -263,10 +263,10 @@
       "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
     },
     {
-      "id": "competitor-modelia-alternatives",
+      "id": "competitor-moda-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Modelia alternatives for Shopify fashion brands?",
-      "buyerJob": "Compare known AI photo tools and decide which one fits a Shopify fashion store.",
+      "prompt": "What are the best MODA alternatives for Shopify fashion brands?",
+      "buyerJob": "Compare known AI model photo app options and decide which one fits Shopify fashion brands.",
       "source": "competitor",
       "score": {
         "buyerIntent": 5,
@@ -280,10 +280,10 @@
       "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
     },
     {
-      "id": "competitor-pebblely-alternatives",
+      "id": "competitor-onmodel-ai-models-photos-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Pebblely alternatives for Shopify fashion brands?",
-      "buyerJob": "Compare known AI photo tools and decide which one fits a Shopify fashion store.",
+      "prompt": "What are the best OnModel ‑ AI Models Photos alternatives for Shopify fashion brands?",
+      "buyerJob": "Compare known AI model photo app options and decide which one fits Shopify fashion brands.",
       "source": "competitor",
       "score": {
         "buyerIntent": 5,
@@ -297,10 +297,10 @@
       "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
     },
     {
-      "id": "competitor-photoroom-alternatives",
+      "id": "competitor-virtual-try-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Photoroom alternatives for Shopify fashion brands?",
-      "buyerJob": "Compare known AI photo tools and decide which one fits a Shopify fashion store.",
+      "prompt": "What are the best Virtual try alternatives for Shopify fashion brands?",
+      "buyerJob": "Compare known AI model photo app options and decide which one fits Shopify fashion brands.",
       "source": "competitor",
       "score": {
         "buyerIntent": 5,
@@ -314,10 +314,10 @@
       "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
     },
     {
-      "id": "purchase-choose-choose-app",
+      "id": "purchase-choose-choose-product",
       "group": "high_intent_purchase",
       "prompt": "Which AI model photo app should I choose for Shopify fashion brands?",
-      "buyerJob": "Choose the app to install or try for AI fashion product photos.",
+      "buyerJob": "Choose the AI model photo app to try or buy.",
       "source": "purchase",
       "score": {
         "buyerIntent": 5,
@@ -331,10 +331,10 @@
       "rationale": "Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 5."
     },
     {
-      "id": "purchase-app-choose-app",
+      "id": "purchase-app-choose-product",
       "group": "high_intent_purchase",
       "prompt": "Is there a Shopify app that helps Shopify fashion brands with AI on-model product photos?",
-      "buyerJob": "Choose the app to install or try for AI fashion product photos.",
+      "buyerJob": "Choose the AI model photo app to try or buy.",
       "source": "purchase",
       "score": {
         "buyerIntent": 5,
@@ -351,7 +351,7 @@
       "id": "category-best-find-category-tools",
       "group": "category_search",
       "prompt": "What are the best AI model photo apps for Shopify fashion brands?",
-      "buyerJob": "Discover which AI product photography tools exist for Shopify apparel workflows.",
+      "buyerJob": "Discover which AI model photo app options exist for Shopify fashion brands.",
       "source": "category",
       "score": {
         "buyerIntent": 4,
@@ -368,7 +368,7 @@
       "id": "category-apps-find-category-tools",
       "group": "category_search",
       "prompt": "Which apps help Shopify fashion brands with AI on-model product photos?",
-      "buyerJob": "Discover which AI product photography tools exist for Shopify apparel workflows.",
+      "buyerJob": "Discover which AI model photo app options exist for Shopify fashion brands.",
       "source": "category",
       "score": {
         "buyerIntent": 4,
@@ -385,7 +385,7 @@
       "id": "solution-understand-workflow",
       "group": "solution_aware",
       "prompt": "How do AI model photo apps work for Shopify fashion brands?",
-      "buyerJob": "Understand whether AI model photo apps can produce usable ecommerce photos.",
+      "buyerJob": "Understand whether AI model photo app can handle AI on-model product photos.",
       "source": "buyer_job",
       "score": {
         "buyerIntent": 4,
@@ -399,10 +399,10 @@
       "rationale": "Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 3, asset opportunity 4."
     },
     {
-      "id": "problem-avoid-photoshoot",
+      "id": "problem-solve-core-problem",
       "group": "problem_aware",
-      "prompt": "How can Shopify fashion brands create model photos without hiring models or booking a photoshoot?",
-      "buyerJob": "Find a cheaper way to create model photos without a traditional photoshoot.",
+      "prompt": "How can Shopify fashion brands create AI on-model product photos without a traditional photoshoot?",
+      "buyerJob": "Find a better way to create AI on-model product photos without a traditional photoshoot.",
       "source": "buyer_job",
       "score": {
         "buyerIntent": 3,
@@ -416,10 +416,10 @@
       "rationale": "Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
     },
     {
-      "id": "integration-prepare-pdp",
+      "id": "integration-prepare-workflow",
       "group": "integration_use_case",
       "prompt": "How should Shopify fashion brands prepare AI on-model product photos for a Shopify product page launch?",
-      "buyerJob": "Prepare launch-ready product page images for a Shopify fashion catalog.",
+      "buyerJob": "Prepare AI on-model product photos for a Shopify product page launch.",
       "source": "buyer_job",
       "score": {
         "buyerIntent": 3,

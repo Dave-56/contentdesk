@@ -2,8 +2,7 @@
   "brand": {
     "name": "Tiny Lemon",
     "aliases": [
-      "TinyLemon",
-      "tinylemon"
+      "TinyLemon"
     ],
     "domains": [
       "tinylemon.xyz"
@@ -17,53 +16,45 @@
   },
   "competitors": [
     {
-      "name": "Botika",
-      "aliases": [
-        "Botika.io"
-      ],
-      "domains": [
-        "botika.io"
-      ]
-    },
-    {
-      "name": "Photoroom",
-      "aliases": [
-        "PhotoRoom"
-      ],
-      "domains": [
-        "photoroom.com"
-      ]
-    },
-    {
-      "name": "Pebblely",
-      "aliases": [],
-      "domains": [
-        "pebblely.com"
-      ]
-    },
-    {
-      "name": "Flair",
-      "aliases": [
-        "Flair AI"
-      ],
-      "domains": [
-        "flair.ai"
-      ]
-    },
-    {
-      "name": "Modelia",
-      "aliases": [],
-      "domains": [
-        "modelia.ai"
-      ]
-    },
-    {
       "name": "Claid",
-      "aliases": [
-        "Claid.ai"
-      ],
+      "aliases": [],
       "domains": [
         "claid.ai"
+      ]
+    },
+    {
+      "name": "OnModel ‑ AI Models Photos",
+      "aliases": [],
+      "domains": [
+        "apps.shopify.com"
+      ]
+    },
+    {
+      "name": "Antla – AI Virtual Try",
+      "aliases": [],
+      "domains": [
+        "devit.group"
+      ]
+    },
+    {
+      "name": "Virtual try",
+      "aliases": [],
+      "domains": [
+        "claid.ai"
+      ]
+    },
+    {
+      "name": "MODA",
+      "aliases": [],
+      "domains": [
+        "apps.shopify.com"
+      ]
+    },
+    {
+      "name": "Bloom",
+      "aliases": [],
+      "domains": [
+        "owlmix.webflow.io"
       ]
     }
   ],
@@ -71,79 +62,79 @@
     {
       "type": "shopify_app_store_listing",
       "status": "unknown",
-      "notes": "Confirm whether Tiny Lemon has a live Shopify App Store listing."
+      "notes": "Infer from website/search later; not confirmed from standard site crawl."
     },
     {
       "type": "homepage",
       "status": "present",
       "url": "https://tinylemon.xyz/",
-      "notes": "Primary owned landing page."
+      "notes": "Homepage found during website profiling."
     },
     {
       "type": "comparison_page",
       "status": "missing",
-      "notes": "No canonical comparison page inventory yet."
+      "notes": "No canonical comparison page found during standard site crawl."
     },
     {
       "type": "alternative_page",
       "status": "missing",
-      "notes": "No known Botika/Modelia/Photoroom alternatives pages yet."
+      "notes": "No alternatives page found during standard site crawl."
     },
     {
       "type": "blog_guide",
-      "status": "unknown",
+      "status": "present",
       "url": "https://tinylemon.xyz/blog",
-      "notes": "Blog exists, but specific prompt coverage needs scanning."
+      "notes": "Blog/resources page found."
     },
     {
       "type": "docs_help",
       "status": "unknown",
-      "notes": "Confirm whether help docs exist."
+      "notes": "Docs/help coverage not confirmed."
     },
     {
       "type": "reddit_community_mention",
       "status": "unknown",
-      "notes": "No structured community mention inventory yet."
+      "notes": "Community mentions require separate search."
     },
     {
       "type": "youtube_video",
-      "status": "missing",
-      "notes": "No known YouTube proof asset yet."
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
     },
     {
       "type": "review_profile",
       "status": "unknown",
-      "notes": "Confirm review-site presence."
+      "notes": "Review profiles require separate search."
     },
     {
       "type": "case_study",
-      "status": "missing",
-      "notes": "No case study inventory yet."
+      "status": "unknown",
+      "notes": "Case studies require separate search."
     }
   ],
   "prompts": [
     {
-      "id": "competitor-botika-alternatives",
+      "id": "competitor-antla-ai-virtual-try-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Botika alternatives for Shopify fashion brands?"
+      "prompt": "What are the best Antla – AI Virtual Try alternatives for Shopify fashion brands?"
     },
     {
-      "id": "competitor-flair-alternatives",
+      "id": "competitor-claid-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Flair alternatives for Shopify fashion brands?"
+      "prompt": "What are the best Claid alternatives for Shopify fashion brands?"
     },
     {
-      "id": "competitor-modelia-alternatives",
+      "id": "competitor-moda-alternatives",
       "group": "competitor_comparison",
-      "prompt": "What are the best Modelia alternatives for Shopify fashion brands?"
+      "prompt": "What are the best MODA alternatives for Shopify fashion brands?"
     },
     {
-      "id": "purchase-choose-choose-app",
+      "id": "purchase-choose-choose-product",
       "group": "high_intent_purchase",
       "prompt": "Which AI model photo app should I choose for Shopify fashion brands?"
     },
     {
-      "id": "purchase-app-choose-app",
+      "id": "purchase-app-choose-product",
       "group": "high_intent_purchase",
       "prompt": "Is there a Shopify app that helps Shopify fashion brands with AI on-model product photos?"
     },
@@ -163,12 +154,12 @@
       "prompt": "How do AI model photo apps work for Shopify fashion brands?"
     },
     {
-      "id": "problem-avoid-photoshoot",
+      "id": "problem-solve-core-problem",
       "group": "problem_aware",
-      "prompt": "How can Shopify fashion brands create model photos without hiring models or booking a photoshoot?"
+      "prompt": "How can Shopify fashion brands create AI on-model product photos without a traditional photoshoot?"
     },
     {
-      "id": "integration-prepare-pdp",
+      "id": "integration-prepare-workflow",
       "group": "integration_use_case",
       "prompt": "How should Shopify fashion brands prepare AI on-model product photos for a Shopify product page launch?"
     }

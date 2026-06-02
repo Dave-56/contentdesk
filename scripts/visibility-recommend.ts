@@ -3,29 +3,52 @@ import path from "node:path";
 import { buyerPromptStrategyInputSchema } from "@/lib/buyer-prompt-strategist/schemas";
 import { promptScanRunSchema } from "@/lib/prompt-scan/schemas";
 import { siteProfileSchema } from "@/lib/reddit-teardown/schemas";
+import { crossProviderSynthesisSchema } from "@/lib/visibility/synthesis";
 import { buildVisibilityRecommendations } from "@/lib/visibility/recommender";
+import { ownedContentInventorySchema } from "@/lib/visibility/site-inventory";
 
 const defaultStrategyPath = "data/tiny-lemon/visibility/strategy.json";
 const defaultRunPath = "data/tiny-lemon/visibility/runs/2026-06-01.json";
+const defaultOwnedInventoryPath = "data/tiny-lemon/visibility/owned-content-inventory.json";
 const defaultSiteProfilePath = "data/tiny-lemon/visibility/site-profile.json";
 const defaultOutputPath = "data/tiny-lemon/visibility/recommendations.json";
 
 export async function recommendVisibility(input: {
   strategyPath?: string;
   runPath?: string;
+  summaryPath?: string;
+  ownedInventoryPath?: string;
   siteProfilePath?: string;
   outputPath?: string;
 } = {}) {
   const strategyPath = input.strategyPath ?? defaultStrategyPath;
   const runPath = input.runPath ?? defaultRunPath;
+  const summaryPath = input.summaryPath;
+  const ownedInventoryPath = input.ownedInventoryPath ?? defaultOwnedInventoryPath;
   const siteProfilePath = input.siteProfilePath ?? defaultSiteProfilePath;
   const outputPath = input.outputPath ?? defaultOutputPath;
   const strategy = buyerPromptStrategyInputSchema.parse(
     JSON.parse(await readFile(strategyPath, "utf8")),
   );
-  const run = promptScanRunSchema.parse(JSON.parse(await readFile(runPath, "utf8")));
+  const runOrSynthesis = summaryPath
+    ? {
+        synthesis: crossProviderSynthesisSchema.parse(
+          JSON.parse(await readFile(summaryPath, "utf8")),
+        ),
+      }
+    : {
+        run: promptScanRunSchema.parse(JSON.parse(await readFile(runPath, "utf8"))),
+      };
+  const ownedInventory = ownedContentInventorySchema.parse(
+    JSON.parse(await readFile(ownedInventoryPath, "utf8")),
+  );
   const siteProfile = await readOptionalJson(siteProfilePath, siteProfileSchema);
-  const recommendations = buildVisibilityRecommendations({ strategy, run, siteProfile });
+  const recommendations = buildVisibilityRecommendations({
+    strategy,
+    ...runOrSynthesis,
+    ownedInventory,
+    siteProfile,
+  });
 
   await mkdir(path.dirname(outputPath), { recursive: true });
   await writeFile(outputPath, `${JSON.stringify(recommendations, null, 2)}\n`);
@@ -60,6 +83,8 @@ function parseArgs(args: string[]) {
   const parsed: {
     strategyPath?: string;
     runPath?: string;
+    summaryPath?: string;
+    ownedInventoryPath?: string;
     siteProfilePath?: string;
     outputPath?: string;
   } = {};
@@ -73,6 +98,16 @@ function parseArgs(args: string[]) {
     }
     if (arg === "--run") {
       parsed.runPath = args[index + 1];
+      index += 1;
+      continue;
+    }
+    if (arg === "--summary") {
+      parsed.summaryPath = args[index + 1];
+      index += 1;
+      continue;
+    }
+    if (arg === "--owned-inventory") {
+      parsed.ownedInventoryPath = args[index + 1];
       index += 1;
       continue;
     }
