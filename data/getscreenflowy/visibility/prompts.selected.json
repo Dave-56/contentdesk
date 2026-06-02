@@ -1,0 +1,167 @@
+{
+  "brand": {
+    "name": "ScreenFlowy",
+    "aliases": [
+      "Get ScreenFlowy",
+      "getscreenflowy"
+    ],
+    "domains": [
+      "getscreenflowy.com"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "competitors": [
+    {
+      "name": "Loom",
+      "aliases": [],
+      "domains": [
+        "loom.com"
+      ]
+    },
+    {
+      "name": "Screen Studio",
+      "aliases": [],
+      "domains": [
+        "screen.studio"
+      ]
+    },
+    {
+      "name": "Tella",
+      "aliases": [],
+      "domains": [
+        "tella.tv"
+      ]
+    },
+    {
+      "name": "Zight",
+      "aliases": [],
+      "domains": [
+        "zight.com"
+      ]
+    },
+    {
+      "name": "ScreenPal",
+      "aliases": [],
+      "domains": [
+        "screenpal.com"
+      ]
+    },
+    {
+      "name": "VEED Screen Recorder",
+      "aliases": [],
+      "domains": [
+        "veed.io"
+      ]
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "missing",
+      "notes": "Not a Shopify app."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://www.getscreenflowy.com/",
+      "notes": "Homepage found during website profiling."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page found during standard site crawl."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No alternatives page found during standard site crawl."
+    },
+    {
+      "type": "blog_guide",
+      "status": "unknown",
+      "notes": "Blog route redirects to sign-in during crawl; public blog coverage not confirmed."
+    },
+    {
+      "type": "docs_help",
+      "status": "unknown",
+      "notes": "Docs route redirects to sign-in during crawl; public docs coverage not confirmed."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "Community mentions require separate search."
+    },
+    {
+      "type": "youtube_video",
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Review profiles require separate search."
+    },
+    {
+      "type": "case_study",
+      "status": "unknown",
+      "notes": "Case studies require separate search."
+    }
+  ],
+  "prompts": [
+    {
+      "id": "competitor-loom-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Loom alternatives for product demos and tutorials?"
+    },
+    {
+      "id": "competitor-screen-studio-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Screen Studio alternatives for product demos and tutorials?"
+    },
+    {
+      "id": "competitor-screenpal-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best ScreenPal alternatives for product demos and tutorials?"
+    },
+    {
+      "id": "purchase-choose-choose-screen-recorder",
+      "group": "high_intent_purchase",
+      "prompt": "Which browser-based screen recorder should creators, founders, product marketers, educators, and teams choose for product demos and tutorials?"
+    },
+    {
+      "id": "purchase-use-case-choose-screen-recorder",
+      "group": "high_intent_purchase",
+      "prompt": "Which screen recorder should creators, founders, product marketers, educators, and teams use for recording a video?"
+    },
+    {
+      "id": "category-best-find-browser-screen-recorders",
+      "group": "category_search",
+      "prompt": "What are the best browser-based screen recorder tools for product demos and tutorials?"
+    },
+    {
+      "id": "category-tools-find-browser-screen-recorders",
+      "group": "category_search",
+      "prompt": "Which screen recorder tools help creators, founders, product marketers, educators, and teams with product demos and tutorials?"
+    },
+    {
+      "id": "solution-understand-demo-recording-workflow",
+      "group": "solution_aware",
+      "prompt": "How do browser-based screen recorder tools work for product demos and tutorials?"
+    },
+    {
+      "id": "problem-record-screen-without-download",
+      "group": "problem_aware",
+      "prompt": "How can creators, founders, product marketers, educators, and teams avoid installing desktop recording software?"
+    },
+    {
+      "id": "integration-prepare-product-demo",
+      "group": "integration_use_case",
+      "prompt": "How should creators, founders, product marketers, educators, and teams use screen recorder tools for product demos and tutorials?"
+    }
+  ]
+}

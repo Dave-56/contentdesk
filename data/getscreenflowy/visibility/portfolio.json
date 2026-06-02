@@ -1,0 +1,436 @@
+{
+  "brand": "ScreenFlowy",
+  "generatedAt": "2026-06-02T17:42:49.952Z",
+  "portfolioSize": 10,
+  "selectionRule": "Cover the journey, but overweight prompts closest to purchase, competitor comparison, and realistic asset opportunities.",
+  "selectedPrompts": [
+    {
+      "id": "competitor-loom-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Loom alternatives for product demos and tutorials?"
+    },
+    {
+      "id": "competitor-screen-studio-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Screen Studio alternatives for product demos and tutorials?"
+    },
+    {
+      "id": "competitor-screenpal-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best ScreenPal alternatives for product demos and tutorials?"
+    },
+    {
+      "id": "purchase-choose-choose-screen-recorder",
+      "group": "high_intent_purchase",
+      "prompt": "Which browser-based screen recorder should creators, founders, product marketers, educators, and teams choose for product demos and tutorials?"
+    },
+    {
+      "id": "purchase-use-case-choose-screen-recorder",
+      "group": "high_intent_purchase",
+      "prompt": "Which screen recorder should creators, founders, product marketers, educators, and teams use for recording a video?"
+    },
+    {
+      "id": "category-best-find-browser-screen-recorders",
+      "group": "category_search",
+      "prompt": "What are the best browser-based screen recorder tools for product demos and tutorials?"
+    },
+    {
+      "id": "category-tools-find-browser-screen-recorders",
+      "group": "category_search",
+      "prompt": "Which screen recorder tools help creators, founders, product marketers, educators, and teams with product demos and tutorials?"
+    },
+    {
+      "id": "solution-understand-demo-recording-workflow",
+      "group": "solution_aware",
+      "prompt": "How do browser-based screen recorder tools work for product demos and tutorials?"
+    },
+    {
+      "id": "problem-record-screen-without-download",
+      "group": "problem_aware",
+      "prompt": "How can creators, founders, product marketers, educators, and teams avoid installing desktop recording software?"
+    },
+    {
+      "id": "integration-prepare-product-demo",
+      "group": "integration_use_case",
+      "prompt": "How should creators, founders, product marketers, educators, and teams use screen recorder tools for product demos and tutorials?"
+    }
+  ],
+  "selectedCandidates": [
+    {
+      "id": "competitor-loom-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Loom alternatives for product demos and tutorials?",
+      "buyerJob": "Compare ScreenFlowy with Loom, Screen Studio, Tella, Zight, and other screen recording tools.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-screen-studio-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Screen Studio alternatives for product demos and tutorials?",
+      "buyerJob": "Compare ScreenFlowy with Loom, Screen Studio, Tella, Zight, and other screen recording tools.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-screenpal-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best ScreenPal alternatives for product demos and tutorials?",
+      "buyerJob": "Compare ScreenFlowy with Loom, Screen Studio, Tella, Zight, and other screen recording tools.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "purchase-choose-choose-screen-recorder",
+      "group": "high_intent_purchase",
+      "prompt": "Which browser-based screen recorder should creators, founders, product marketers, educators, and teams choose for product demos and tutorials?",
+      "buyerJob": "Choose the screen recorder to use for product demos, tutorials, or async videos.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 29,
+      "rationale": "Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "purchase-use-case-choose-screen-recorder",
+      "group": "high_intent_purchase",
+      "prompt": "Which screen recorder should creators, founders, product marketers, educators, and teams use for recording a video?",
+      "buyerJob": "Choose the screen recorder to use for product demos, tutorials, or async videos.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 29,
+      "rationale": "Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "category-best-find-browser-screen-recorders",
+      "group": "category_search",
+      "prompt": "What are the best browser-based screen recorder tools for product demos and tutorials?",
+      "buyerJob": "Discover browser-based screen recorders that can create demos, tutorials, and quick videos.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 26,
+      "rationale": "Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-tools-find-browser-screen-recorders",
+      "group": "category_search",
+      "prompt": "Which screen recorder tools help creators, founders, product marketers, educators, and teams with product demos and tutorials?",
+      "buyerJob": "Discover browser-based screen recorders that can create demos, tutorials, and quick videos.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 26,
+      "rationale": "Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "solution-understand-demo-recording-workflow",
+      "group": "solution_aware",
+      "prompt": "How do browser-based screen recorder tools work for product demos and tutorials?",
+      "buyerJob": "Understand how to record a polished product demo with screen capture, webcam, microphone, and zoom effects.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 3,
+        "assetOpportunity": 4
+      },
+      "totalScore": 24,
+      "rationale": "Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 3, asset opportunity 4."
+    },
+    {
+      "id": "problem-record-screen-without-download",
+      "group": "problem_aware",
+      "prompt": "How can creators, founders, product marketers, educators, and teams avoid installing desktop recording software?",
+      "buyerJob": "Find a simple way to record smooth screen videos without installing desktop recording software.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-prepare-product-demo",
+      "group": "integration_use_case",
+      "prompt": "How should creators, founders, product marketers, educators, and teams use screen recorder tools for product demos and tutorials?",
+      "buyerJob": "Prepare a product demo, tutorial, or async walkthrough for sharing with customers or teammates.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 3,
+        "assetOpportunity": 3
+      },
+      "totalScore": 23,
+      "rationale": "Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 3, asset opportunity 3."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "competitor-loom-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Loom alternatives for product demos and tutorials?",
+      "buyerJob": "Compare ScreenFlowy with Loom, Screen Studio, Tella, Zight, and other screen recording tools.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-screen-studio-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Screen Studio alternatives for product demos and tutorials?",
+      "buyerJob": "Compare ScreenFlowy with Loom, Screen Studio, Tella, Zight, and other screen recording tools.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-screenpal-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best ScreenPal alternatives for product demos and tutorials?",
+      "buyerJob": "Compare ScreenFlowy with Loom, Screen Studio, Tella, Zight, and other screen recording tools.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-tella-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Tella alternatives for product demos and tutorials?",
+      "buyerJob": "Compare ScreenFlowy with Loom, Screen Studio, Tella, Zight, and other screen recording tools.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-zight-alternatives",
+      "group": "competitor_comparison",
+      "prompt": "What are the best Zight alternatives for product demos and tutorials?",
+      "buyerJob": "Compare ScreenFlowy with Loom, Screen Studio, Tella, Zight, and other screen recording tools.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "purchase-choose-choose-screen-recorder",
+      "group": "high_intent_purchase",
+      "prompt": "Which browser-based screen recorder should creators, founders, product marketers, educators, and teams choose for product demos and tutorials?",
+      "buyerJob": "Choose the screen recorder to use for product demos, tutorials, or async videos.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 29,
+      "rationale": "Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "purchase-use-case-choose-screen-recorder",
+      "group": "high_intent_purchase",
+      "prompt": "Which screen recorder should creators, founders, product marketers, educators, and teams use for recording a video?",
+      "buyerJob": "Choose the screen recorder to use for product demos, tutorials, or async videos.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 29,
+      "rationale": "Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "category-best-find-browser-screen-recorders",
+      "group": "category_search",
+      "prompt": "What are the best browser-based screen recorder tools for product demos and tutorials?",
+      "buyerJob": "Discover browser-based screen recorders that can create demos, tutorials, and quick videos.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 26,
+      "rationale": "Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-tools-find-browser-screen-recorders",
+      "group": "category_search",
+      "prompt": "Which screen recorder tools help creators, founders, product marketers, educators, and teams with product demos and tutorials?",
+      "buyerJob": "Discover browser-based screen recorders that can create demos, tutorials, and quick videos.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 26,
+      "rationale": "Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "solution-understand-demo-recording-workflow",
+      "group": "solution_aware",
+      "prompt": "How do browser-based screen recorder tools work for product demos and tutorials?",
+      "buyerJob": "Understand how to record a polished product demo with screen capture, webcam, microphone, and zoom effects.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 3,
+        "assetOpportunity": 4
+      },
+      "totalScore": 24,
+      "rationale": "Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 3, asset opportunity 4."
+    },
+    {
+      "id": "problem-record-screen-without-download",
+      "group": "problem_aware",
+      "prompt": "How can creators, founders, product marketers, educators, and teams avoid installing desktop recording software?",
+      "buyerJob": "Find a simple way to record smooth screen videos without installing desktop recording software.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-prepare-product-demo",
+      "group": "integration_use_case",
+      "prompt": "How should creators, founders, product marketers, educators, and teams use screen recorder tools for product demos and tutorials?",
+      "buyerJob": "Prepare a product demo, tutorial, or async walkthrough for sharing with customers or teammates.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 3,
+        "assetOpportunity": 3
+      },
+      "totalScore": 23,
+      "rationale": "Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 3, asset opportunity 3."
+    }
+  ]
+}

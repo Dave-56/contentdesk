@@ -21,6 +21,17 @@
   "primaryUseCases": [
     "AI on-model product photos"
   ],
+  "market": "shopify_app",
+  "buyerLanguage": {
+    "buyerNoun": "Shopify fashion brands",
+    "categoryNoun": "AI model photo app",
+    "productNoun": "AI model photo app",
+    "useCaseNoun": "AI on-model product photos",
+    "painNoun": "booking a traditional photoshoot",
+    "conversionNoun": "a Shopify product page launch",
+    "comparisonNoun": "AI on-model product photos"
+  },
+  "classificationWarnings": [],
   "buyerJobs": [
     {
       "id": "solve-core-problem",

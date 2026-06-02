@@ -1,0 +1,188 @@
+{
+  "brand": {
+    "name": "Getscreenflowy",
+    "aliases": [],
+    "domains": [
+      "getscreenflowy.com"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "audience": "buyers evaluating this product category",
+  "category": "analytics tool",
+  "positioning": "ScreenFlowy - Smooth Screen Recording in Your Browser ScreenFlowy Demo Pricing Record Now Smooth screen recording directly in your browser. Record smooth screen videos with webcam, zoom effects, and instant editing directly in your browser. Record Now Watch Demo How to use? Pricing Simple one-time pricing for modern screen recording. Free $0 one-time Perfect for basic screen recordings and quick exports. 2 minute recordings 1080P exports Zoom effects Browser-based recorder Instant exports Record Now Early Bird • First 10 Users Pro $19 one-time Advanced recording tools for creators and professionals. Unlimited recordings Microphone recording Webcam recording Webcam editing controls 60 FPS exp",
+  "conversionGoal": "a demo request",
+  "primaryUseCases": [
+    "Tools Dashboard Recorder Other Products Product Mockups Generator Links Pricing Demo Twitter Contact Legal Terms of serv",
+    "The core buyer problem needs manual review from the site copy",
+    "ScreenFlowy - Smooth Screen Recording in Your Browser ScreenFlowy Demo Pricing Record Now Smooth screen recording direct"
+  ],
+  "market": "saas",
+  "classificationWarnings": [
+    {
+      "field": "buyerLanguage",
+      "message": "AI classification was unavailable. Fill buyerLanguage manually before running prompt:select.",
+      "severity": "manual_review"
+    }
+  ],
+  "buyerJobs": [
+    {
+      "id": "solve-core-problem",
+      "group": "problem_aware",
+      "job": "Find a better way to handle the core buyer problem needs manual review from the site copy.",
+      "pain": "the core buyer problem needs manual review from the site copy",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "find-category-tools",
+      "group": "category_search",
+      "job": "Discover which analytics tool options exist for buyers evaluating this product category.",
+      "pain": "finding analytics tool options",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "understand-workflow",
+      "group": "solution_aware",
+      "job": "Understand whether analytics tool can handle Tools Dashboard Recorder Other Products Product Mockups Generator Links Pricing Demo Twitter Contact Legal Terms of serv.",
+      "pain": "understanding analytics tool workflows",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "compare-alternatives",
+      "group": "competitor_comparison",
+      "job": "Compare known analytics tool options and decide which one fits buyers evaluating this product category.",
+      "pain": "comparing analytics tool alternatives",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    },
+    {
+      "id": "prepare-workflow",
+      "group": "integration_use_case",
+      "job": "Prepare Tools Dashboard Recorder Other Products Product Mockups Generator Links Pricing Demo Twitter Contact Legal Terms of serv for a demo request.",
+      "pain": "preparing Tools Dashboard Recorder Other Products Product Mockups Generator Links Pricing Demo Twitter Contact Legal Terms of serv",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 3
+    },
+    {
+      "id": "choose-product",
+      "group": "high_intent_purchase",
+      "job": "Choose the analytics tool to try or buy.",
+      "pain": "choosing the right analytics tool",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Screenflow",
+      "aliases": [],
+      "domains": [
+        "zight.com"
+      ]
+    },
+    {
+      "name": "Cpoclub",
+      "aliases": [],
+      "domains": [
+        "cpoclub.com"
+      ]
+    },
+    {
+      "name": "Dashboard Mockup Generator",
+      "aliases": [],
+      "domains": [
+        "aipostmockup.com"
+      ]
+    },
+    {
+      "name": "Mockupstage",
+      "aliases": [],
+      "domains": [
+        "mockupstage.com"
+      ]
+    },
+    {
+      "name": "Product and Web Analytics Tool",
+      "aliases": [],
+      "domains": [
+        "amplitude.com"
+      ]
+    },
+    {
+      "name": "Dashboard Competitor Price",
+      "aliases": [],
+      "domains": [
+        "slidegeeks.com"
+      ]
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "missing",
+      "notes": "Not classified as a Shopify app."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://www.getscreenflowy.com/",
+      "notes": "Homepage found during website profiling."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page found during standard site crawl."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No alternatives page found during standard site crawl."
+    },
+    {
+      "type": "blog_guide",
+      "status": "present",
+      "url": "https://www.getscreenflowy.com/signin?callbackUrl=%2Fblog",
+      "notes": "Blog/resources page found."
+    },
+    {
+      "type": "docs_help",
+      "status": "present",
+      "url": "https://www.getscreenflowy.com/signin?callbackUrl=%2Fdocs",
+      "notes": "Docs/help page found."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "Community mentions require separate search."
+    },
+    {
+      "type": "youtube_video",
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Review profiles require separate search."
+    },
+    {
+      "type": "case_study",
+      "status": "unknown",
+      "notes": "Case studies require separate search."
+    }
+  ],
+  "portfolioSize": 10
+}

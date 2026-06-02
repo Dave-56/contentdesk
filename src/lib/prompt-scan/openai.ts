@@ -11,6 +11,7 @@ export async function runOpenAiPrompt(input: {
   apiKey: string;
   prompt: string;
   model?: string;
+  signal?: AbortSignal;
 }): Promise<ProviderPromptResult> {
   const response = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",
@@ -26,6 +27,7 @@ export async function runOpenAiPrompt(input: {
       include: ["web_search_call.action.sources"],
       input: input.prompt,
     }),
+    signal: input.signal,
   });
 
   if (!response.ok) {
@@ -51,10 +53,11 @@ export function createOpenAiProvider(input: {
 
   return {
     id: "openai",
-    scanPrompt({ prompt }) {
+    scanPrompt({ prompt, signal }) {
       return runPrompt({
         apiKey: input.apiKey,
         prompt,
+        ...(signal ? { signal } : {}),
       });
     },
   };

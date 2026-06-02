@@ -67,6 +67,8 @@ test("recommends Botika alternatives page from competitor comparison gap", () =>
       positioning: "Create AI on-model photos for Shopify fashion products.",
       conversionGoal: "install Shopify app",
       primaryUseCases: ["AI on-model product photos"],
+      market: "shopify_app",
+      classificationWarnings: [],
       portfolioSize: 10,
       buyerJobs: [
         {
@@ -258,6 +260,8 @@ function strategyFixture() {
     positioning: "Create AI on-model photos for Shopify fashion products.",
     conversionGoal: "install Shopify app",
     primaryUseCases: ["AI on-model product photos"],
+    market: "shopify_app" as const,
+    classificationWarnings: [],
     portfolioSize: 10,
     buyerJobs: [
       {

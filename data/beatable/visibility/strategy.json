@@ -1,0 +1,193 @@
+{
+  "brand": {
+    "name": "Beatable",
+    "aliases": [],
+    "domains": [
+      "beatable.co"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "audience": "founders, entrepreneurs, and early-stage startups",
+  "category": "AI business idea validation platform",
+  "positioning": "AI-powered platform for validating business ideas with market analysis, competitor intelligence, SWOT, ICP definition, and actionable plans",
+  "conversionGoal": "start a business idea validation",
+  "primaryUseCases": [
+    "validate a business idea",
+    "analyze market size and landscape",
+    "research competitors",
+    "identify opportunities and risks",
+    "generate actionable startup strategy"
+  ],
+  "market": "saas",
+  "buyerLanguage": {
+    "buyerNoun": "founders",
+    "categoryNoun": "business idea validation platform",
+    "productNoun": "validator",
+    "useCaseNoun": "idea validation",
+    "painNoun": "startup uncertainty",
+    "conversionNoun": "validation",
+    "comparisonNoun": "validation tool"
+  },
+  "classificationWarnings": [],
+  "buyerJobs": [
+    {
+      "id": "solve-core-problem",
+      "group": "problem_aware",
+      "job": "Find a better way to handle startup uncertainty.",
+      "pain": "startup uncertainty",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "find-category-tools",
+      "group": "category_search",
+      "job": "Discover which AI business idea validation platform options exist for founders, entrepreneurs, and early-stage startups.",
+      "pain": "finding AI business idea validation platform options",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "understand-workflow",
+      "group": "solution_aware",
+      "job": "Understand whether AI business idea validation platform can handle idea validation.",
+      "pain": "understanding AI business idea validation platform workflows",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "compare-alternatives",
+      "group": "competitor_comparison",
+      "job": "Compare known AI business idea validation platform options and decide which one fits founders, entrepreneurs, and early-stage startups.",
+      "pain": "comparing AI business idea validation platform alternatives",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    },
+    {
+      "id": "prepare-workflow",
+      "group": "integration_use_case",
+      "job": "Prepare idea validation for validation.",
+      "pain": "preparing idea validation",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 3
+    },
+    {
+      "id": "choose-product",
+      "group": "high_intent_purchase",
+      "job": "Choose the AI business idea validation platform to try or buy.",
+      "pain": "choosing the right AI business idea validation platform",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Test Your Idea in 120s",
+      "aliases": [],
+      "domains": [
+        "ideaproof.io"
+      ]
+    },
+    {
+      "name": "ValidatorAI.com",
+      "aliases": [],
+      "domains": [
+        "validatorai.com"
+      ]
+    },
+    {
+      "name": "StartupMate",
+      "aliases": [],
+      "domains": [
+        "startupmate.ai"
+      ]
+    },
+    {
+      "name": "Startupconcept",
+      "aliases": [],
+      "domains": [
+        "startupconcept.ai"
+      ]
+    },
+    {
+      "name": "Futureaipath",
+      "aliases": [],
+      "domains": [
+        "futureaipath.com"
+      ]
+    },
+    {
+      "name": "We respect your privacy",
+      "aliases": [],
+      "domains": [
+        "ideaproof.io"
+      ]
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "missing",
+      "notes": "Not classified as a Shopify app."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://beatable.co/",
+      "notes": "Homepage found during website profiling."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page found during standard site crawl."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No alternatives page found during standard site crawl."
+    },
+    {
+      "type": "blog_guide",
+      "status": "present",
+      "url": "https://beatable.co/blog/",
+      "notes": "Blog/resources page found."
+    },
+    {
+      "type": "docs_help",
+      "status": "present",
+      "url": "https://beatable.co/faq",
+      "notes": "Docs/help page found."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "Community mentions require separate search."
+    },
+    {
+      "type": "youtube_video",
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Review profiles require separate search."
+    },
+    {
+      "type": "case_study",
+      "status": "unknown",
+      "notes": "Case studies require separate search."
+    }
+  ],
+  "portfolioSize": 10
+}

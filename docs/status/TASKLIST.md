@@ -126,9 +126,16 @@ Acceptance:
 - [x] Update recommender to read synthesis plus owned inventory.
 - [x] Add `visibility:run` to orchestrate Perplexity, OpenAI, Anthropic, synthesis, and optional recommendation.
 - [x] Make `visibility:run` fail-soft per provider and record partial synthesis provider errors.
+- [x] Add AI Gateway buyer-language classification to `prompt:infer`.
+- [x] Make `prompt:select` require reviewed `buyerLanguage` before generating prompts.
+- [x] Add brand-neutral prompt builders that assemble from `buyerLanguage` instead of raw strategy clauses.
+- [x] Add `scripts/prompt-workflow.sh` for infer-review-select commands.
 - [ ] Add request timeout per provider prompt call.
 - [ ] Add bounded prompt concurrency for `visibility:run`.
 - [ ] Add skip-existing provider files by default plus `--force` rerun control.
+- [ ] Tighten `prompt:infer` competitor filtering for broad SaaS categories.
+- [ ] Add buyerLanguage quality checks for too-generic product/comparison nouns.
+- [ ] Add clearer prompt-infer failure output when AI classification fails.
 - [x] Store exact blog/article URLs from sitemap or blog index in `owned-content-inventory.json`.
 - [x] Use owned-site content inventory before recommending new owned assets.
 - [ ] V2: Add Shopify app entity profile before strategy generation.

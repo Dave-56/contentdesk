@@ -47,11 +47,16 @@ multi-provider runs spend API credits and should be intentional. See
   `runs/YYYY-MM-DD.anthropic.json`, then writes `runs/YYYY-MM-DD.summary.json`.
 - Website-first strategy inference: `npm run prompt:infer -- --url <url>` writes one editable
   `strategy.json` plus `site-profile.json` and `research-sources.inferred.json`; it does not
-  select prompts or scan. `npm run prompt:select` rejects URL input and only uses reviewed
-  strategy files.
+  scan. It uses AI Gateway structured classification when available to create
+  `buyerLanguage`, `market`, and `classificationWarnings`. If classification is unavailable
+  or fails, fallback strategy is review-only and `prompt:select` refuses to run until
+  `buyerLanguage` exists.
 - Buyer Prompt Strategist: `npm run prompt:select` writes
-  `data/tiny-lemon/visibility/portfolio.json` and
-  `data/tiny-lemon/visibility/prompts.selected.json`.
+  `portfolio.json` and `prompts.selected.json` from a reviewed strategy file. Prompt
+  assembly uses `buyerLanguage` nouns only; deterministic code validates and assembles,
+  but does not try to understand market language. Helper:
+  `scripts/prompt-workflow.sh infer <url>` then review strategy, then
+  `scripts/prompt-workflow.sh select data/<slug>/visibility/strategy.json`.
 - Prompt scan env loading: `scripts/prompt-scan.ts` now imports `@/lib/load-env`, so
   `PERPLEXITY_API_KEY` can be read from `.env.local`.
 - Visibility recommendations: `npm run visibility:recommend` writes
@@ -71,6 +76,15 @@ multi-provider runs spend API credits and should be intentional. See
 - Verification on 2026-06-02: `npm test -- src/lib/prompt-scan/provider.test.ts src/lib/visibility/synthesis.test.ts src/lib/visibility/recommender.test.ts`
   passed, `npm run typecheck` passed, and temp-file full/partial synthesis plus
   recommendation smokes passed.
+- Buyer-prompt inference verification on 2026-06-02: AI Gateway env loads through
+  `@/lib/load-env`; previous classifier fallback was caused by AI Gateway rejecting optional
+  structured-output fields, not by a missing key. Schema now requires `comparisonNoun` and
+  `warnings`; direct classifier test passed for Beatable. `npm run prompt:infer -- --url
+  https://beatable.co/` wrote `data/beatable/visibility/strategy.json` with
+  `buyerLanguage`, and `npm run prompt:select -- data/beatable/visibility/strategy.json
+  --out data/beatable/visibility` selected 10/12 prompts. Generated prompts are usable but
+  still show quality risks: competitor inference can be noisy and product nouns such as
+  "validator" may be too terse.
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
   "update repo memory" stop routine.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
@@ -92,12 +106,15 @@ multi-provider runs spend API credits and should be intentional. See
   the run. OpenAI web-search calls are materially slower than Perplexity and Anthropic.
 
 ## Blockers
-- _(none recorded — add as they appear)_
+- Fresh URL strategy quality now depends on AI Gateway classification. Without it, inferred
+  strategies are intentionally review-only and cannot select prompts.
+- Competitor inference for non-Tiny-Lemon SaaS can still pull noisy domains from broad search
+  results.
 
 ## Next 3 actions
-1. Add request timeout, bounded prompt concurrency, and skip-existing/force controls for
+1. Tighten `prompt:infer` competitor filtering and add manual-review warnings when competitor
+   evidence is weak or broad.
+2. Add buyerLanguage quality checks for too-generic `productNoun`/`comparisonNoun` values
+   before `prompt:select` writes selected prompts.
+3. Add request timeout, bounded prompt concurrency, and skip-existing/force controls for
    `visibility:run`; OpenAI web search is slow enough to make sequential scans painful.
-2. Inspect `runs/2026-06-02.summary.json` for provider disagreement and citation extraction
-   quality.
-3. Build/publish the Botika alternatives page using the existing Modelia alternatives page
-   pattern, then re-run `competitor-botika-alternatives`.

@@ -60,6 +60,32 @@ test("small portfolio keeps comparison and decision prompts overweighted", () =>
   assert.equal(groups.category_search, 1);
 });
 
+test("SaaS portfolio uses buyerLanguage without Shopify leakage", () => {
+  const portfolio = buildBuyerPromptPortfolio({
+    strategy: saasStrategyFixture(),
+    generatedAt: new Date("2026-06-01T00:00:00.000Z"),
+  });
+  const promptText = portfolio.selectedPrompts.map((prompt) => prompt.prompt).join("\n");
+  const groups = groupCounts(portfolio.selectedPrompts.map((prompt) => prompt.group));
+
+  assert.equal(portfolio.selectedPrompts.length, 10);
+  assert.equal(groups.competitor_comparison, 3);
+  assert.equal(groups.high_intent_purchase, 2);
+  assert.doesNotMatch(promptText, /shopify/i);
+  assert.match(promptText, /customer onboarding checklist tool/i);
+  assert.match(promptText, /launching customer onboarding flows/i);
+  assert.ok(portfolio.selectedPrompts.every((prompt) => prompt.prompt.endsWith("?")));
+  assert.doesNotMatch(promptText, /with Configure|for launch a|prepare Configure/);
+});
+
+test("tiny lemon keeps Shopify-specific purchase prompt", () => {
+  const portfolio = buildBuyerPromptPortfolio({ strategy: strategyFixture() });
+  const promptText = portfolio.selectedPrompts.map((prompt) => prompt.prompt).join("\n");
+
+  assert.match(promptText, /Shopify app/i);
+  assert.match(promptText, /Shopify fashion brands/i);
+});
+
 function groupCounts(groups: string[]) {
   return groups.reduce<Record<string, number>>((counts, group) => {
     counts[group] = (counts[group] ?? 0) + 1;
@@ -88,6 +114,16 @@ function strategyFixture(
       "Tiny Lemon helps Shopify fashion brands create AI on-model product photos.",
     conversionGoal: "a Shopify product page launch",
     primaryUseCases: ["AI on-model product photos"],
+    market: "shopify_app",
+    buyerLanguage: {
+      buyerNoun: "Shopify fashion brands",
+      categoryNoun: "AI model photo app",
+      productNoun: "AI model photo app",
+      useCaseNoun: "AI on-model product photos",
+      painNoun: "hiring models or booking a photoshoot",
+      conversionNoun: "a Shopify product page launch",
+      comparisonNoun: "AI model photos",
+    },
     portfolioSize: 10,
     buyerJobs: [
       {
@@ -166,5 +202,110 @@ function strategyFixture(
       },
     ],
     ...overrides,
+  });
+}
+
+function saasStrategyFixture(): BuyerPromptStrategyInput {
+  return buyerPromptStrategyInputSchema.parse({
+    brand: {
+      name: "OnboardKit",
+      aliases: [],
+      domains: ["onboardkit.example"],
+    },
+    provider: "perplexity",
+    defaultRecheckDays: 1,
+    experimentWindowDays: {
+      min: 30,
+      max: 60,
+    },
+    audience: "customer success teams",
+    category: "customer onboarding checklist tool",
+    positioning:
+      "OnboardKit helps SaaS teams build repeatable onboarding checklists.",
+    conversionGoal: "launching an onboarding workflow",
+    primaryUseCases: ["launching customer onboarding flows"],
+    market: "saas",
+    buyerLanguage: {
+      buyerNoun: "customer success teams",
+      categoryNoun: "customer onboarding checklist tool",
+      productNoun: "onboarding checklist tool",
+      useCaseNoun: "launching customer onboarding flows",
+      painNoun: "managing onboarding steps in spreadsheets",
+      conversionNoun: "launching an onboarding workflow",
+      comparisonNoun: "customer onboarding workflows",
+    },
+    portfolioSize: 10,
+    buyerJobs: [
+      {
+        id: "replace-spreadsheets",
+        group: "problem_aware",
+        job: "Find a better way to manage onboarding steps.",
+        pain: "managing onboarding steps in spreadsheets",
+        commercialCloseness: 4,
+        productFit: 5,
+        assetOpportunity: 4,
+      },
+      {
+        id: "find-onboarding-tools",
+        group: "category_search",
+        job: "Discover onboarding checklist tools.",
+        pain: "finding onboarding workflow tools",
+        commercialCloseness: 4,
+        productFit: 5,
+        assetOpportunity: 4,
+      },
+      {
+        id: "understand-onboarding-workflow",
+        group: "solution_aware",
+        job: "Understand how onboarding checklist tools work.",
+        pain: "standardizing onboarding workflows",
+        commercialCloseness: 3,
+        productFit: 5,
+        assetOpportunity: 4,
+      },
+      {
+        id: "compare-onboarding-tools",
+        group: "competitor_comparison",
+        job: "Compare onboarding workflow tools.",
+        pain: "comparing onboarding tool alternatives",
+        commercialCloseness: 5,
+        productFit: 5,
+        assetOpportunity: 5,
+      },
+      {
+        id: "prepare-onboarding-workflow",
+        group: "integration_use_case",
+        job: "Prepare an onboarding workflow.",
+        pain: "preparing onboarding workflows",
+        commercialCloseness: 4,
+        productFit: 5,
+        assetOpportunity: 3,
+      },
+      {
+        id: "choose-onboarding-tool",
+        group: "high_intent_purchase",
+        job: "Choose an onboarding checklist tool.",
+        pain: "choosing an onboarding checklist tool",
+        commercialCloseness: 5,
+        productFit: 5,
+        assetOpportunity: 5,
+      },
+    ],
+    competitors: [
+      { name: "Userflow", aliases: [], domains: ["userflow.com"] },
+      { name: "Chameleon", aliases: [], domains: ["chameleon.io"] },
+      { name: "Appcues", aliases: [], domains: ["appcues.com"] },
+      { name: "Userpilot", aliases: [], domains: ["userpilot.com"] },
+    ],
+    assetInventory: [
+      {
+        type: "comparison_page",
+        status: "missing",
+      },
+      {
+        type: "blog_guide",
+        status: "unknown",
+      },
+    ],
   });
 }

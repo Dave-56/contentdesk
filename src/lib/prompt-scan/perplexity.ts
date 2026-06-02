@@ -22,6 +22,7 @@ export async function runPerplexityPrompt(input: {
   apiKey: string;
   prompt: string;
   model?: string;
+  signal?: AbortSignal;
 }): Promise<ProviderPromptResult> {
   const response = await fetch("https://api.perplexity.ai/chat/completions", {
     method: "POST",
@@ -46,6 +47,7 @@ export async function runPerplexityPrompt(input: {
         },
       ],
     }),
+    signal: input.signal,
   });
 
   if (!response.ok) {
@@ -77,10 +79,11 @@ export function createPerplexityProvider(input: {
 
   return {
     id: "perplexity",
-    scanPrompt({ prompt }) {
+    scanPrompt({ prompt, signal }) {
       return runPrompt({
         apiKey: input.apiKey,
         prompt,
+        ...(signal ? { signal } : {}),
       });
     },
   };

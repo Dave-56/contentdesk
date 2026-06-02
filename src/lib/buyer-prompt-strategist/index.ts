@@ -2,6 +2,7 @@ import {
   buyerPromptCandidateSchema,
   buyerPromptPortfolioSchema,
   type BuyerPromptCandidate,
+  type BuyerPromptLanguage,
   type BuyerPromptStrategyInput,
   type PromptQualityScore,
 } from "@/lib/buyer-prompt-strategist/schemas";
@@ -51,8 +52,7 @@ export function buildBuyerPromptPortfolio(input: {
 export function generateBuyerPromptCandidates(
   strategy: BuyerPromptStrategyInput,
 ): Array<Omit<BuyerPromptCandidate, "score" | "totalScore" | "rationale">> {
-  const primaryUseCase = strategy.primaryUseCases[0];
-  const categoryPlural = pluralCategory(strategy.category);
+  const language = promptLanguage(strategy);
   const candidates: Array<
     Omit<BuyerPromptCandidate, "score" | "totalScore" | "rationale">
   > = [];
@@ -64,7 +64,7 @@ export function generateBuyerPromptCandidates(
         group: job.group,
         source: "buyer_job",
         buyerJob: job.job,
-        prompt: `How can ${strategy.audience} ${job.pain}?`,
+        prompt: buildProblemAwarePrompt(language),
       });
     }
 
@@ -75,14 +75,14 @@ export function generateBuyerPromptCandidates(
           group: job.group,
           source: "category",
           buyerJob: job.job,
-          prompt: `What are the best ${categoryPlural} for ${strategy.audience}?`,
+          prompt: buildCategorySearchPrompt(language),
         },
         {
-          id: slug(`category apps ${job.id}`),
+          id: slug(`category tools ${job.id}`),
           group: job.group,
           source: "category",
           buyerJob: job.job,
-          prompt: `Which apps help ${strategy.audience} with ${primaryUseCase}?`,
+          prompt: buildCategoryUseCasePrompt(language),
         },
       );
     }
@@ -93,7 +93,7 @@ export function generateBuyerPromptCandidates(
           group: job.group,
           source: "buyer_job",
           buyerJob: job.job,
-          prompt: `How do ${categoryPlural} work for ${strategy.audience}?`,
+          prompt: buildSolutionAwarePrompt(language),
       });
     }
 
@@ -103,7 +103,7 @@ export function generateBuyerPromptCandidates(
         group: job.group,
         source: "buyer_job",
         buyerJob: job.job,
-        prompt: `How should ${strategy.audience} prepare ${primaryUseCase} for ${strategy.conversionGoal}?`,
+        prompt: buildIntegrationPrompt(language),
       });
     }
 
@@ -114,14 +114,14 @@ export function generateBuyerPromptCandidates(
           group: job.group,
           source: "purchase",
           buyerJob: job.job,
-          prompt: `Which ${strategy.category} should I choose for ${strategy.audience}?`,
+          prompt: buildPurchasePrompt(language),
         },
         {
-          id: slug(`purchase app ${job.id}`),
+          id: slug(`purchase use case ${job.id}`),
           group: job.group,
           source: "purchase",
           buyerJob: job.job,
-          prompt: `Is there a Shopify app that helps ${strategy.audience} with ${primaryUseCase}?`,
+          prompt: buildMarketPurchasePrompt(strategy, language),
         },
       );
     }
@@ -137,11 +137,88 @@ export function generateBuyerPromptCandidates(
       group: "competitor_comparison",
       source: "competitor",
       buyerJob: comparisonJob.job,
-      prompt: `What are the best ${competitor.name} alternatives for ${strategy.audience}?`,
+      prompt: buildCompetitorPrompt(competitor.name, language),
     });
   }
 
-  return dedupeCandidates(candidates);
+  return dedupeCandidates(candidates).filter((candidate) =>
+    promptQualityIssues(candidate.prompt, strategy).length === 0
+  );
+}
+
+function promptLanguage(strategy: BuyerPromptStrategyInput): BuyerPromptLanguage {
+  if (!strategy.buyerLanguage) {
+    throw new Error(
+      "buyerLanguage is required before selecting prompts. Run prompt:infer with AI classification or edit strategy.json manually.",
+    );
+  }
+
+  return strategy.buyerLanguage;
+}
+
+function buildProblemAwarePrompt(language: BuyerPromptLanguage) {
+  return `How can ${language.buyerNoun} avoid ${language.painNoun}?`;
+}
+
+function buildCategorySearchPrompt(language: BuyerPromptLanguage) {
+  return `What are the best ${pluralCategory(language.categoryNoun)} for ${language.useCaseNoun}?`;
+}
+
+function buildCategoryUseCasePrompt(language: BuyerPromptLanguage) {
+  return `Which ${pluralCategory(language.productNoun)} help ${language.buyerNoun} with ${language.useCaseNoun}?`;
+}
+
+function buildSolutionAwarePrompt(language: BuyerPromptLanguage) {
+  return `How do ${pluralCategory(language.categoryNoun)} work for ${language.useCaseNoun}?`;
+}
+
+function buildIntegrationPrompt(language: BuyerPromptLanguage) {
+  return `How should ${language.buyerNoun} use ${pluralCategory(language.productNoun)} for ${language.useCaseNoun}?`;
+}
+
+function buildPurchasePrompt(language: BuyerPromptLanguage) {
+  return `Which ${language.categoryNoun} should ${language.buyerNoun} choose for ${language.useCaseNoun}?`;
+}
+
+function buildMarketPurchasePrompt(
+  strategy: BuyerPromptStrategyInput,
+  language: BuyerPromptLanguage,
+) {
+  if (effectiveMarket(strategy) === "shopify_app") {
+    return `Which Shopify app helps ${language.buyerNoun} with ${language.useCaseNoun}?`;
+  }
+
+  return `Which ${language.productNoun} should ${language.buyerNoun} use for ${language.conversionNoun}?`;
+}
+
+function buildCompetitorPrompt(
+  competitorName: string,
+  language: BuyerPromptLanguage,
+) {
+  return `What are the best ${competitorName} alternatives for ${language.comparisonNoun ?? language.useCaseNoun}?`;
+}
+
+function promptQualityIssues(prompt: string, strategy: BuyerPromptStrategyInput) {
+  const issues: string[] = [];
+  if (!prompt.endsWith("?")) issues.push("Prompt must be a question.");
+  if (prompt.length > 180) issues.push("Prompt is too long.");
+  if (!/^(What|Which|How|Is|Are|Can|Should)\b/.test(prompt)) {
+    issues.push("Prompt must start like a buyer question.");
+  }
+  if (effectiveMarket(strategy) !== "shopify_app" && /\bshopify\b/i.test(prompt)) {
+    issues.push("Non-Shopify strategy cannot generate Shopify prompts.");
+  }
+  if (/\b(with|for|prepare)\s+[A-Z][a-z]+(?:\s+[a-z]+){2,}/.test(prompt)) {
+    issues.push("Prompt appears to contain a pasted marketing clause.");
+  }
+  if (/\bfor\s+(record|install|choose|upgrade|create)\b/i.test(prompt)) {
+    issues.push("Prompt contains an ungrammatical verb phrase.");
+  }
+  if (/\bteams\s+recording\b/i.test(prompt)) {
+    issues.push("Prompt contains clause-like audience wording.");
+  }
+
+  return issues;
 }
 
 function scoreCandidate(
@@ -271,6 +348,7 @@ function assetOpportunityScore(
   }
   if (
     group === "high_intent_purchase" &&
+    effectiveMarket(strategy) === "shopify_app" &&
     hasUnknownOrMissingAsset(strategy, "shopify_app_store_listing")
   ) {
     return 5;
@@ -341,8 +419,29 @@ function slug(value: string) {
 }
 
 function pluralCategory(category: string) {
-  if (/\btools?$/i.test(category)) return category;
-  if (/\bapps?$/i.test(category)) return category.replace(/\bapp$/i, "apps");
+  if (/\btools$/i.test(category)) return category;
+  if (/\btool$/i.test(category)) return `${category}s`;
+  if (/\bapps$/i.test(category)) return category;
+  if (/\bapp$/i.test(category)) return category.replace(/\bapp$/i, "apps");
 
   return `${category} tools`;
+}
+
+function effectiveMarket(strategy: BuyerPromptStrategyInput) {
+  const text = [
+    strategy.market,
+    strategy.audience,
+    strategy.category,
+    strategy.positioning,
+    strategy.conversionGoal,
+    ...strategy.primaryUseCases,
+  ].join(" ").toLowerCase();
+  if (
+    text.includes("shopify") &&
+    /\b(app|merchant|store|product page|pdp|catalog|checkout|admin|fashion brand)\b/.test(text)
+  ) {
+    return "shopify_app" as const;
+  }
+
+  return strategy.market;
 }

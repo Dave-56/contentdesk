@@ -11,6 +11,7 @@ export async function runAnthropicPrompt(input: {
   apiKey: string;
   prompt: string;
   model?: string;
+  signal?: AbortSignal;
 }): Promise<ProviderPromptResult> {
   const response = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
@@ -31,6 +32,7 @@ export async function runAnthropicPrompt(input: {
       ],
       tools: [{ type: "web_search_20250305", name: "web_search", max_uses: 5 }],
     }),
+    signal: input.signal,
   });
 
   if (!response.ok) {
@@ -56,10 +58,11 @@ export function createAnthropicProvider(input: {
 
   return {
     id: "anthropic",
-    scanPrompt({ prompt }) {
+    scanPrompt({ prompt, signal }) {
       return runPrompt({
         apiKey: input.apiKey,
         prompt,
+        ...(signal ? { signal } : {}),
       });
     },
   };

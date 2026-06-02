@@ -8,6 +8,12 @@ import type { ProviderRunError } from "@/lib/visibility/synthesis";
 const defaultInputPath = "data/tiny-lemon/visibility/prompts.selected.json";
 const defaultOutputDir = "data/tiny-lemon/visibility/runs";
 const providers: PromptScanConfig["provider"][] = ["perplexity", "openai", "anthropic"];
+const defaultConcurrencyByProvider = {
+  perplexity: 3,
+  openai: 2,
+  anthropic: 3,
+} satisfies Record<PromptScanConfig["provider"], number>;
+const defaultTimeoutMs = 120_000;
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
@@ -18,17 +24,25 @@ async function main() {
 
   console.log(`[visibility:run] input ${inputPath}`);
   console.log(`[visibility:run] date ${date}`);
+  console.log(
+    `[visibility:run] timeout ${args.timeoutMs ?? defaultTimeoutMs}ms, force ${args.force ? "yes" : "no"}`,
+  );
 
   const providerErrors: ProviderRunError[] = [];
 
   for (const provider of providers) {
-    console.log(`[visibility:run] scanning ${provider}`);
+    const concurrency = args.concurrency ?? defaultConcurrencyByProvider[provider];
+    console.log(`[visibility:run] scanning ${provider} with concurrency ${concurrency}`);
     try {
       await scanPrompts({
         inputPath,
         outputDir,
         providerOverride: provider,
         runDate,
+        concurrency,
+        timeoutMs: args.timeoutMs ?? defaultTimeoutMs,
+        skipExisting: true,
+        force: args.force,
       });
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
@@ -68,6 +82,9 @@ function parseArgs(args: string[]) {
     date?: string;
     recommend?: boolean;
     recommendOutputPath?: string;
+    concurrency?: number;
+    timeoutMs?: number;
+    force?: boolean;
   } = {};
 
   for (let index = 0; index < args.length; index += 1) {
@@ -96,7 +113,29 @@ function parseArgs(args: string[]) {
       index += 1;
       continue;
     }
+    if (arg === "--concurrency") {
+      parsed.concurrency = positiveInt(Number(args[index + 1]), "concurrency");
+      index += 1;
+      continue;
+    }
+    if (arg === "--timeout-ms") {
+      parsed.timeoutMs = positiveInt(Number(args[index + 1]), "timeout-ms");
+      index += 1;
+      continue;
+    }
+    if (arg === "--force") {
+      parsed.force = true;
+      continue;
+    }
   }
 
   return parsed;
+}
+
+function positiveInt(value: number, name: string) {
+  if (!Number.isInteger(value) || value < 1) {
+    throw new Error(`--${name} must be a positive integer.`);
+  }
+
+  return value;
 }

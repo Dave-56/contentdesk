@@ -10,6 +10,7 @@ export type PromptProvider = {
     prompt: string;
     brand: PromptScanConfig["brand"];
     competitors: PromptScanConfig["competitors"];
+    signal?: AbortSignal;
   }): Promise<ProviderPromptResult>;
 };
 

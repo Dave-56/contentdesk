@@ -10,6 +10,48 @@ import {
 const text = z.string().trim().min(1);
 const score = z.number().int().min(1).max(5);
 
+export const buyerPromptMarketSchema = z.enum(["shopify_app", "saas"]);
+
+export const buyerPromptLanguageSchema = z.object({
+  buyerNoun: text,
+  categoryNoun: text,
+  productNoun: text,
+  useCaseNoun: text,
+  painNoun: text,
+  conversionNoun: text,
+  comparisonNoun: text,
+});
+
+export const buyerPromptClassificationWarningSchema = z.object({
+  field: text,
+  message: text,
+  severity: z.enum(["info", "warning", "manual_review"]),
+});
+
+export const buyerPromptMarketClassificationSchema = z.object({
+  brandName: text,
+  market: buyerPromptMarketSchema,
+  category: text,
+  audience: text,
+  positioning: text,
+  conversionGoal: text,
+  primaryUseCases: z.array(text).min(1),
+  buyerLanguage: buyerPromptLanguageSchema,
+  confidence: z.object({
+    brand: score,
+    category: score,
+    audience: score,
+    buyerLanguage: score,
+  }),
+  warnings: z.array(buyerPromptClassificationWarningSchema),
+});
+
+export type BuyerPromptMarketClassification = z.infer<
+  typeof buyerPromptMarketClassificationSchema
+>;
+
+export type BuyerPromptLanguage = z.infer<typeof buyerPromptLanguageSchema>;
+
 export const buyerPromptStrategyInputSchema = z.object({
   brand: z.object({
     name: text,
@@ -27,6 +69,9 @@ export const buyerPromptStrategyInputSchema = z.object({
   positioning: text,
   conversionGoal: text,
   primaryUseCases: z.array(text).min(1),
+  market: buyerPromptMarketSchema.default("saas"),
+  buyerLanguage: buyerPromptLanguageSchema.optional(),
+  classificationWarnings: z.array(buyerPromptClassificationWarningSchema).default([]),
   buyerJobs: z.array(
     z.object({
       id: text,

@@ -5,9 +5,11 @@ import type { SiteProfile } from "@/lib/reddit-teardown/schemas";
 import type { AssetInventoryItem, Competitor } from "@/lib/prompt-scan/schemas";
 import {
   buyerPromptStrategyInputSchema,
+  type BuyerPromptMarketClassification,
   type BuyerPromptStrategyInput,
 } from "@/lib/buyer-prompt-strategist/schemas";
 import type { ResearchSource } from "@/lib/schemas";
+import { classifyBuyerPromptMarket } from "@/lib/buyer-prompt-strategist/classify";
 
 export type InferredBuyerPromptStrategy = {
   strategy: BuyerPromptStrategyInput;
@@ -20,10 +22,22 @@ export async function inferBuyerPromptStrategyFromWebsite(input: {
   portfolioSize?: number;
 }): Promise<InferredBuyerPromptStrategy> {
   const siteProfile = await profileSite(input.url);
-  const baseStrategy = buildStrategyFromSiteProfile({
-    siteProfile,
-    portfolioSize: input.portfolioSize,
+  let classificationError: string | undefined;
+  const classification = await classifyBuyerPromptMarket({ siteProfile }).catch((error) => {
+    classificationError = error instanceof Error ? error.message : String(error);
+    return null;
   });
+  const baseStrategy = classification
+    ? buildStrategyFromMarketClassification({
+        siteProfile,
+        classification,
+        portfolioSize: input.portfolioSize,
+      })
+    : buildStrategyFromSiteProfile({
+        siteProfile,
+        portfolioSize: input.portfolioSize,
+        classificationError,
+      });
   const researchSources = await discoverMarketSources(baseStrategy).catch(() => []);
   const competitors = inferCompetitors({
     brandName: baseStrategy.brand.name,
@@ -43,9 +57,53 @@ export async function inferBuyerPromptStrategyFromWebsite(input: {
   };
 }
 
+export function buildStrategyFromMarketClassification(input: {
+  siteProfile: SiteProfile;
+  classification: BuyerPromptMarketClassification;
+  portfolioSize?: number;
+}): BuyerPromptStrategyInput {
+  const { classification, siteProfile } = input;
+  const domain = new URL(siteProfile.websiteUrl).hostname.replace(/^www\./, "");
+  const primaryUseCase = classification.buyerLanguage.useCaseNoun;
+  const problemPain = classification.buyerLanguage.painNoun;
+
+  return buyerPromptStrategyInputSchema.parse({
+    brand: {
+      name: classification.brandName,
+      aliases: aliasCandidates(classification.brandName),
+      domains: [domain],
+    },
+    provider: "perplexity",
+    defaultRecheckDays: 1,
+    experimentWindowDays: {
+      min: 30,
+      max: 60,
+    },
+    audience: classification.audience,
+    category: classification.category,
+    positioning: classification.positioning,
+    conversionGoal: classification.conversionGoal,
+    primaryUseCases: classification.primaryUseCases,
+    market: classification.market,
+    buyerLanguage: classification.buyerLanguage,
+    classificationWarnings: classification.warnings,
+    portfolioSize: input.portfolioSize ?? 10,
+    buyerJobs: buildBuyerJobs({
+      audience: classification.audience,
+      category: classification.category,
+      primaryUseCase,
+      conversionGoal: classification.buyerLanguage.conversionNoun,
+      problemPain,
+    }),
+    competitors: [],
+    assetInventory: inferAssetInventory(siteProfile, classification.market),
+  });
+}
+
 export function buildStrategyFromSiteProfile(input: {
   siteProfile: SiteProfile;
   portfolioSize?: number;
+  classificationError?: string;
 }): BuyerPromptStrategyInput {
   const { siteProfile } = input;
   const combinedText = [
@@ -65,6 +123,7 @@ export function buildStrategyFromSiteProfile(input: {
   const problemPain = normalizePain(siteProfile.problemSolved, primaryUseCase);
   const domain = new URL(siteProfile.websiteUrl).hostname.replace(/^www\./, "");
   const brandName = inferBrandName(siteProfile, domain);
+  const market = inferMarket(combinedText);
 
   return buyerPromptStrategyInputSchema.parse({
     brand: {
@@ -83,66 +142,93 @@ export function buildStrategyFromSiteProfile(input: {
     positioning: siteProfile.summary,
     conversionGoal,
     primaryUseCases,
-    portfolioSize: input.portfolioSize ?? 10,
-    buyerJobs: [
+    market,
+    classificationWarnings: [
       {
-        id: "solve-core-problem",
-        group: "problem_aware",
-        job: `Find a better way to ${problemPain}.`,
-        pain: problemPain,
-        commercialCloseness: 3,
-        productFit: 5,
-        assetOpportunity: 4,
-      },
-      {
-        id: "find-category-tools",
-        group: "category_search",
-        job: `Discover which ${category} options exist for ${audience}.`,
-        pain: `find ${category} options for ${audience}`,
-        commercialCloseness: 4,
-        productFit: 5,
-        assetOpportunity: 4,
-      },
-      {
-        id: "understand-workflow",
-        group: "solution_aware",
-        job: `Understand whether ${category} can handle ${primaryUseCase}.`,
-        pain: `understand how ${category} works for ${primaryUseCase}`,
-        commercialCloseness: 3,
-        productFit: 5,
-        assetOpportunity: 4,
-      },
-      {
-        id: "compare-alternatives",
-        group: "competitor_comparison",
-        job: `Compare known ${category} options and decide which one fits ${audience}.`,
-        pain: `compare ${category} alternatives for ${primaryUseCase}`,
-        commercialCloseness: 5,
-        productFit: 5,
-        assetOpportunity: 5,
-      },
-      {
-        id: "prepare-workflow",
-        group: "integration_use_case",
-        job: `Prepare ${primaryUseCase} for ${conversionGoal}.`,
-        pain: `prepare ${primaryUseCase} for ${conversionGoal}`,
-        commercialCloseness: 4,
-        productFit: 5,
-        assetOpportunity: 3,
-      },
-      {
-        id: "choose-product",
-        group: "high_intent_purchase",
-        job: `Choose the ${category} to try or buy.`,
-        pain: `choose the right ${category} for ${audience}`,
-        commercialCloseness: 5,
-        productFit: 5,
-        assetOpportunity: 5,
+        field: "buyerLanguage",
+        message:
+          input.classificationError
+            ? `AI classification failed: ${input.classificationError.slice(0, 500)}`
+            : "AI classification was unavailable. Fill buyerLanguage manually before running prompt:select.",
+        severity: "manual_review",
       },
     ],
+    portfolioSize: input.portfolioSize ?? 10,
+    buyerJobs: buildBuyerJobs({
+      audience,
+      category,
+      primaryUseCase,
+      conversionGoal,
+      problemPain,
+    }),
     competitors: [],
-    assetInventory: inferAssetInventory(siteProfile),
+    assetInventory: inferAssetInventory(siteProfile, market),
   });
+}
+
+function buildBuyerJobs(input: {
+  audience: string;
+  category: string;
+  primaryUseCase: string;
+  conversionGoal: string;
+  problemPain: string;
+}): BuyerPromptStrategyInput["buyerJobs"] {
+  return [
+    {
+      id: "solve-core-problem",
+      group: "problem_aware",
+      job: `Find a better way to handle ${input.problemPain}.`,
+      pain: input.problemPain,
+      commercialCloseness: 3,
+      productFit: 5,
+      assetOpportunity: 4,
+    },
+    {
+      id: "find-category-tools",
+      group: "category_search",
+      job: `Discover which ${input.category} options exist for ${input.audience}.`,
+      pain: `finding ${input.category} options`,
+      commercialCloseness: 4,
+      productFit: 5,
+      assetOpportunity: 4,
+    },
+    {
+      id: "understand-workflow",
+      group: "solution_aware",
+      job: `Understand whether ${input.category} can handle ${input.primaryUseCase}.`,
+      pain: `understanding ${input.category} workflows`,
+      commercialCloseness: 3,
+      productFit: 5,
+      assetOpportunity: 4,
+    },
+    {
+      id: "compare-alternatives",
+      group: "competitor_comparison",
+      job: `Compare known ${input.category} options and decide which one fits ${input.audience}.`,
+      pain: `comparing ${input.category} alternatives`,
+      commercialCloseness: 5,
+      productFit: 5,
+      assetOpportunity: 5,
+    },
+    {
+      id: "prepare-workflow",
+      group: "integration_use_case",
+      job: `Prepare ${input.primaryUseCase} for ${input.conversionGoal}.`,
+      pain: `preparing ${input.primaryUseCase}`,
+      commercialCloseness: 4,
+      productFit: 5,
+      assetOpportunity: 3,
+    },
+    {
+      id: "choose-product",
+      group: "high_intent_purchase",
+      job: `Choose the ${input.category} to try or buy.`,
+      pain: `choosing the right ${input.category}`,
+      commercialCloseness: 5,
+      productFit: 5,
+      assetOpportunity: 5,
+    },
+  ];
 }
 
 async function discoverMarketSources(strategy: BuyerPromptStrategyInput) {
@@ -239,6 +325,18 @@ function inferCategory(text: string, siteProfile: SiteProfile) {
   return titleCategory || "software product";
 }
 
+function inferMarket(text: string) {
+  const lower = text.toLowerCase();
+  if (
+    lower.includes("shopify") &&
+    /\b(app|merchant|store|product page|pdp|catalog|checkout|admin)\b/.test(lower)
+  ) {
+    return "shopify_app" as const;
+  }
+
+  return "saas" as const;
+}
+
 function inferPrimaryUseCases(siteProfile: SiteProfile) {
   const combinedText = [
     ...siteProfile.featuresUseCases,
@@ -271,7 +369,10 @@ function inferConversionGoal(text: string) {
   return "a buying decision";
 }
 
-function inferAssetInventory(siteProfile: SiteProfile): AssetInventoryItem[] {
+function inferAssetInventory(
+  siteProfile: SiteProfile,
+  market: BuyerPromptStrategyInput["market"] = "saas",
+): AssetInventoryItem[] {
   const pageByKind = new Map(siteProfile.existingContent.map((page) => [page.kind, page]));
   const homepage = pageByKind.get("homepage");
   const blog = pageByKind.get("blog") ?? pageByKind.get("resources");
@@ -280,8 +381,11 @@ function inferAssetInventory(siteProfile: SiteProfile): AssetInventoryItem[] {
   return [
     {
       type: "shopify_app_store_listing",
-      status: "unknown",
-      notes: "Infer from website/search later; not confirmed from standard site crawl.",
+      status: market === "shopify_app" ? "unknown" : "missing",
+      notes:
+        market === "shopify_app"
+          ? "Infer from website/search later; not confirmed from standard site crawl."
+          : "Not classified as a Shopify app.",
     },
     {
       type: "homepage",
