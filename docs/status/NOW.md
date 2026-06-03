@@ -113,6 +113,14 @@ multi-provider runs spend API credits and should be intentional. See
 - DataJelly finding: DataJelly already has a strong guide library. Recommendation should
   expand existing guides such as "Why Pages Break After Deploy (And No One Notices)" or
   "Guard Test Suite: What We Monitor" when they can answer the discovered buyer question.
+- Ahrefs CMO research note on 2026-06-03: AI-search optimization is not SEO with schema.
+  Reported findings: "Best X" listicles are heavily cited by ChatGPT, many top citations
+  are from sources marketers cannot directly edit, cited AI pages can have zero Google
+  organic visibility, retrieved URLs and cited URLs are different, schema has little
+  measured citation lift, YouTube mentions correlate strongly with AI brand visibility, and
+  AI citation sources churn while answer meaning stays stable. Product implication: track
+  owned content, off-site inclusion, listicle/review opportunities, YouTube/video assets,
+  retrieved-vs-cited states, and re-test trends over time.
 - Visibility run caveat on 2026-06-03: Anthropic prompt scans can fail because account
   credit is too low, but current output can still record a 0/10 provider run. Fix needed:
   prompt-level provider failures should mark the provider/run invalid or partial, not look
@@ -143,6 +151,8 @@ multi-provider runs spend API credits and should be intentional. See
 - Prompt-set quality needs demand evidence. LLM-generated buyer prompts are plausible, but
   should be strengthened with SERP, autocomplete/PAA, competitor titles, forums/reviews, and
   Search Console when available.
+- AEO opportunity quality needs off-site evidence too. Some wins require getting included on
+  third-party listicles/reviews/directories or creating video proof, not updating owned pages.
 - Provider failure handling is incomplete for Anthropic credit errors during visibility runs.
 
 ## Next 3 actions

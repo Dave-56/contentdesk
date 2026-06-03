@@ -143,7 +143,13 @@ Acceptance:
 - [ ] Add buyer-question discovery from Google SERP, autocomplete/PAA, competitor titles, forums/reviews, AI answers, and Search Console when available.
 - [ ] Score buyer-question evidence by demand signal, pain signal, competitive signal, product fit, content gap, and AEO gap.
 - [ ] Add cited-source analysis that records which pages/models cited, which competitors were named, and why the source won.
+- [ ] Separate retrieved, cited, and brand-mentioned states in visibility outputs and recommendations.
 - [ ] Add recommendation gap classifier: missing page, weak existing page, off-site citation gap, comparison gap, proof/case-study gap, and prompt-set gap.
+- [ ] Add off-site inclusion recommendations for third-party listicles, reviews, directories, app stores, and partner/resource pages.
+- [ ] Add "Best X for Y" listicle opportunity detection for buyer-intent prompt sets and recommendations.
+- [ ] Add YouTube/video asset audit and recommendation path for demo/explainer videos when video presence is likely to help AI visibility.
+- [ ] De-prioritize schema/meta-tag-only AEO recommendations unless tied to a concrete crawl/indexing issue.
+- [ ] Track repeated scan trends and semantic answer stability so citation churn does not trigger noisy recommendations.
 - [ ] Generate page-level work orders: exact page to create/update, H2s to add, examples/proof to include, competitor comparisons to cover, and prompts to re-run.
 - [ ] Mark provider runs invalid/partial when prompt-level API failures dominate, especially Anthropic low-credit errors.
 - [ ] V2: Add Shopify app entity profile before strategy generation.
