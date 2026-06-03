@@ -29,6 +29,9 @@ test("builds raw owned-content inventory from site profile and blog articles", (
           excerpt: "Blog index.",
         },
       ],
+      evidenceQuality: "thin",
+      profileSources: [],
+      profileWarnings: [],
     },
     blogArticles: [
       {

@@ -1,0 +1,93 @@
+{
+  "websiteUrl": "https://vanishing.page/",
+  "companyName": "vanishing.page",
+  "title": "vanishing.page",
+  "metaDescription": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tie",
+  "headline": "End-to-end encrypted ephemeral messaging service",
+  "summary": "End-to-end encrypted messages that disappear after being read a set number of times or after a chosen date.",
+  "audienceGuess": "People sending sensitive information and files",
+  "problemSolved": "Sending sensitive information through links or messages that should not remain accessible indefinitely.",
+  "featuresUseCases": [
+    "A web app that encrypts content with a 128-bit AES key before it reaches the server, stores it temporarily, and deletes it after a read limit or expiration date; the decryption key lives in the URL fragment so it is not sent to the server.",
+    "Sending sensitive messages",
+    "Sharing confidential information by link",
+    "Uploading files for limited-time access",
+    "Creating messages that expire after a date",
+    "Creating messages that disappear after a set number of reads"
+  ],
+  "existingContent": [
+    {
+      "url": "https://vanishing.page/",
+      "title": "vanishing.page",
+      "kind": "homepage",
+      "excerpt": "TARGET_URL: https://vanishing.page/\n\nTITLE: vanishing.page\n\nMETA_DESCRIPTION: End-to-end encrypted messages with a limited lifespan\n\nOG_TITLE: vanishing.page\n\nOG_DESCRIPTION: End-to-end encrypted messages with a limited lifespan\n\nHTML_TEXT:\nvanishing.page\n\nSAME_ORIGIN_JS_PRODUCT_TEXT:\n`:null} End-to-end encrypted messages with a limited lifespan.\nThis will save a message to a database, then delete it after it has been read some number of times, or after a given date.\nRead more about how this works.\nYour content is encrypted with a 128 bit <a href=\nAES key before it ever gets to our servers , so we can't read it, and no one else can either, unless you give them the key.\nSee the cryptography .) The decryption key is in the link itself, so transferring data is as simple as pasting the link.\nURI fragment is never sent to the server.\nIf you need to send important or sensitive information, such as <ul class=\nEnd-to-end encrypted messages with a limited lifespan\nHow vanishing.page keeps messages private: end-to-end encryption, read limits, and expiration.\nin e&&typeof e.message==\nThat message does not exist.\nTime limit settings < name=\nBuy a subscription to upload files\nDrop a file here < type=\nThe key is in the URL, after the # character.\nAccount <button type="
+    }
+  ],
+  "evidenceQuality": "strong",
+  "profileSources": [
+    {
+      "provider": "perplexity",
+      "query": "Perplexity exact-domain business read for https://vanishing.page/",
+      "url": "https://wearetechwomen.com/the-mystery-of-disappearing-web-pages/",
+      "title": "",
+      "excerpt": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand.",
+      "extractedMarkdown": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand. The target site’s own title, meta description, OG description, and on-page text all describe the same product at vanishing.page: an end-to-end encrypted message service with a limited lifespan that deletes messages after a read limit or date. The copy also references its own upload/files and account flows, tying the business directly to this exact domain. End-to-end encrypted messages that disappear after being read a set number of times or after a chosen date. Sending sensitive information through links or messages that should not remain accessible indefinitely. A web app that encrypts content with a 128-bit AES key before it reaches the server, stores it temporarily, and deletes it after a read limit or expiration date; the decryption key lives in the URL fragment so it is not sent to the server.",
+      "fetchedAt": "2026-06-03T04:15:18.365Z"
+    },
+    {
+      "provider": "perplexity",
+      "query": "Perplexity exact-domain business read for https://vanishing.page/",
+      "url": "https://www.ndss-symposium.org/wp-content/uploads/2017/09/bilg.pdf",
+      "title": "",
+      "excerpt": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand.",
+      "extractedMarkdown": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand. The target site’s own title, meta description, OG description, and on-page text all describe the same product at vanishing.page: an end-to-end encrypted message service with a limited lifespan that deletes messages after a read limit or date. The copy also references its own upload/files and account flows, tying the business directly to this exact domain. End-to-end encrypted messages that disappear after being read a set number of times or after a chosen date. Sending sensitive information through links or messages that should not remain accessible indefinitely. A web app that encrypts content with a 128-bit AES key before it reaches the server, stores it temporarily, and deletes it after a read limit or expiration date; the decryption key lives in the URL fragment so it is not sent to the server.",
+      "fetchedAt": "2026-06-03T04:15:18.365Z"
+    },
+    {
+      "provider": "perplexity",
+      "query": "Perplexity exact-domain business read for https://vanishing.page/",
+      "url": "http://dev.ipol.im/~jlezama/vanishing_points/CVPR2014-873_camera_ready.pdf",
+      "title": "",
+      "excerpt": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand.",
+      "extractedMarkdown": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand. The target site’s own title, meta description, OG description, and on-page text all describe the same product at vanishing.page: an end-to-end encrypted message service with a limited lifespan that deletes messages after a read limit or date. The copy also references its own upload/files and account flows, tying the business directly to this exact domain. End-to-end encrypted messages that disappear after being read a set number of times or after a chosen date. Sending sensitive information through links or messages that should not remain accessible indefinitely. A web app that encrypts content with a 128-bit AES key before it reaches the server, stores it temporarily, and deletes it after a read limit or expiration date; the decryption key lives in the URL fragment so it is not sent to the server.",
+      "fetchedAt": "2026-06-03T04:15:18.365Z"
+    },
+    {
+      "provider": "perplexity",
+      "query": "Perplexity exact-domain business read for https://vanishing.page/",
+      "url": "https://network.informatica.com/s/question/0D56S0000AD6i5OSQR/accepted-data-domains-disappearing",
+      "title": "",
+      "excerpt": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand.",
+      "extractedMarkdown": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand. The target site’s own title, meta description, OG description, and on-page text all describe the same product at vanishing.page: an end-to-end encrypted message service with a limited lifespan that deletes messages after a read limit or date. The copy also references its own upload/files and account flows, tying the business directly to this exact domain. End-to-end encrypted messages that disappear after being read a set number of times or after a chosen date. Sending sensitive information through links or messages that should not remain accessible indefinitely. A web app that encrypts content with a 128-bit AES key before it reaches the server, stores it temporarily, and deletes it after a read limit or expiration date; the decryption key lives in the URL fragment so it is not sent to the server.",
+      "fetchedAt": "2026-06-03T04:15:18.365Z"
+    },
+    {
+      "provider": "perplexity",
+      "query": "Perplexity exact-domain business read for https://vanishing.page/",
+      "url": "https://pubs.acs.org/doi/10.1021/acs.jcim.9b01075",
+      "title": "",
+      "excerpt": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand.",
+      "extractedMarkdown": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand. The target site’s own title, meta description, OG description, and on-page text all describe the same product at vanishing.page: an end-to-end encrypted message service with a limited lifespan that deletes messages after a read limit or date. The copy also references its own upload/files and account flows, tying the business directly to this exact domain. End-to-end encrypted messages that disappear after being read a set number of times or after a chosen date. Sending sensitive information through links or messages that should not remain accessible indefinitely. A web app that encrypts content with a 128-bit AES key before it reaches the server, stores it temporarily, and deletes it after a read limit or expiration date; the decryption key lives in the URL fragment so it is not sent to the server.",
+      "fetchedAt": "2026-06-03T04:15:18.365Z"
+    },
+    {
+      "provider": "perplexity",
+      "query": "Perplexity exact-domain business read for https://vanishing.page/",
+      "url": "https://discourse.gohugo.io/t/pages-in-nested-content-directory-vanish-completely/24915",
+      "title": "",
+      "excerpt": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand.",
+      "extractedMarkdown": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand. The target site’s own title, meta description, OG description, and on-page text all describe the same product at vanishing.page: an end-to-end encrypted message service with a limited lifespan that deletes messages after a read limit or date. The copy also references its own upload/files and account flows, tying the business directly to this exact domain. End-to-end encrypted messages that disappear after being read a set number of times or after a chosen date. Sending sensitive information through links or messages that should not remain accessible indefinitely. A web app that encrypts content with a 128-bit AES key before it reaches the server, stores it temporarily, and deletes it after a read limit or expiration date; the decryption key lives in the URL fragment so it is not sent to the server.",
+      "fetchedAt": "2026-06-03T04:15:18.365Z"
+    },
+    {
+      "provider": "perplexity",
+      "query": "Perplexity exact-domain business read for https://vanishing.page/",
+      "url": "https://vanishing.page/",
+      "title": "vanishing.page",
+      "excerpt": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand.",
+      "extractedMarkdown": "The target domain’s own metadata and page copy explicitly identify vanishing.page as a service for end-to-end encrypted messages with a limited lifespan, including deletion after reads or a date and optional file upload. The identity is tied directly to this exact URL/domain, with no need to infer another brand. The target site’s own title, meta description, OG description, and on-page text all describe the same product at vanishing.page: an end-to-end encrypted message service with a limited lifespan that deletes messages after a read limit or date. The copy also references its own upload/files and account flows, tying the business directly to this exact domain. End-to-end encrypted messages that disappear after being read a set number of times or after a chosen date. Sending sensitive information through links or messages that should not remain accessible indefinitely. A web app that encrypts content with a 128-bit AES key before it reaches the server, stores it temporarily, and deletes it after a read limit or expiration date; the decryption key lives in the URL fragment so it is not sent to the server.",
+      "fetchedAt": "2026-06-03T04:15:18.365Z"
+    }
+  ],
+  "profileWarnings": []
+}

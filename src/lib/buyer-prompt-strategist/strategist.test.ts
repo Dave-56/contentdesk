@@ -3,15 +3,15 @@ import test from "node:test";
 
 import {
   buildBuyerPromptPortfolio,
-  generateBuyerPromptCandidates,
 } from "@/lib/buyer-prompt-strategist";
 import {
   buyerPromptStrategyInputSchema,
+  type BuyerPromptCandidate,
   type BuyerPromptStrategyInput,
 } from "@/lib/buyer-prompt-strategist/schemas";
 
-test("generates buyer prompt candidates from buyer jobs and competitors", () => {
-  const candidates = generateBuyerPromptCandidates(strategyFixture());
+test("selects LLM-crafted buyer prompt candidates", async () => {
+  const candidates = llmCandidateFixtures();
 
   assert.ok(candidates.length >= 10);
   assert.ok(
@@ -26,10 +26,11 @@ test("generates buyer prompt candidates from buyer jobs and competitors", () => 
   );
 });
 
-test("selects a balanced but commercially weighted prompt portfolio", () => {
-  const portfolio = buildBuyerPromptPortfolio({
+test("selects a balanced but commercially weighted prompt portfolio", async () => {
+  const portfolio = await buildBuyerPromptPortfolio({
     strategy: strategyFixture(),
     generatedAt: new Date("2026-06-01T00:00:00.000Z"),
+    candidateGenerator: async () => llmCandidateFixtures(),
   });
   const groups = groupCounts(portfolio.selectedPrompts.map((prompt) => prompt.group));
 
@@ -48,9 +49,12 @@ test("selects a balanced but commercially weighted prompt portfolio", () => {
   );
 });
 
-test("small portfolio keeps comparison and decision prompts overweighted", () => {
+test("small portfolio keeps comparison and decision prompts overweighted", async () => {
   const strategy = strategyFixture({ portfolioSize: 5 });
-  const portfolio = buildBuyerPromptPortfolio({ strategy });
+  const portfolio = await buildBuyerPromptPortfolio({
+    strategy,
+    candidateGenerator: async () => llmCandidateFixtures(),
+  });
   const groups = groupCounts(portfolio.selectedPrompts.map((prompt) => prompt.group));
 
   assert.equal(portfolio.selectedPrompts.length, 5);
@@ -60,10 +64,11 @@ test("small portfolio keeps comparison and decision prompts overweighted", () =>
   assert.equal(groups.category_search, 1);
 });
 
-test("SaaS portfolio uses buyerLanguage without Shopify leakage", () => {
-  const portfolio = buildBuyerPromptPortfolio({
+test("SaaS portfolio uses buyerLanguage without Shopify leakage", async () => {
+  const portfolio = await buildBuyerPromptPortfolio({
     strategy: saasStrategyFixture(),
     generatedAt: new Date("2026-06-01T00:00:00.000Z"),
+    candidateGenerator: async () => saasCandidateFixtures(),
   });
   const promptText = portfolio.selectedPrompts.map((prompt) => prompt.prompt).join("\n");
   const groups = groupCounts(portfolio.selectedPrompts.map((prompt) => prompt.group));
@@ -78,12 +83,43 @@ test("SaaS portfolio uses buyerLanguage without Shopify leakage", () => {
   assert.doesNotMatch(promptText, /with Configure|for launch a|prepare Configure/);
 });
 
-test("tiny lemon keeps Shopify-specific purchase prompt", () => {
-  const portfolio = buildBuyerPromptPortfolio({ strategy: strategyFixture() });
+test("tiny lemon keeps Shopify-specific purchase prompt", async () => {
+  const portfolio = await buildBuyerPromptPortfolio({
+    strategy: strategyFixture(),
+    candidateGenerator: async () => llmCandidateFixtures(),
+  });
   const promptText = portfolio.selectedPrompts.map((prompt) => prompt.prompt).join("\n");
 
   assert.match(promptText, /Shopify app/i);
   assert.match(promptText, /Shopify fashion brands/i);
+});
+
+test("refuses to select prompts when strategy has manual_review warnings", async () => {
+  const strategy = strategyFixture({
+    classificationWarnings: [
+      {
+        field: "category",
+        message: "Multiple unrelated brands appear in the cited sources; classification is uncertain.",
+        severity: "manual_review",
+      },
+    ],
+  });
+
+  await assert.rejects(
+    () => buildBuyerPromptPortfolio({
+      strategy,
+      candidateGenerator: async () => llmCandidateFixtures(),
+    }),
+    /manual_review/,
+  );
+  // --force / allowManualReview bypasses the gate.
+  await assert.doesNotReject(() =>
+    buildBuyerPromptPortfolio({
+      strategy,
+      allowManualReview: true,
+      candidateGenerator: async () => llmCandidateFixtures(),
+    }),
+  );
 });
 
 function groupCounts(groups: string[]) {
@@ -91,6 +127,61 @@ function groupCounts(groups: string[]) {
     counts[group] = (counts[group] ?? 0) + 1;
     return counts;
   }, {});
+}
+
+type CandidateDraft = Omit<BuyerPromptCandidate, "score" | "totalScore" | "rationale"> & {
+  llmRationale?: string;
+};
+
+function llmCandidateFixtures(): CandidateDraft[] {
+  return [
+    candidate("problem_aware", "awareness", "How can Shopify fashion brands create model photos without hiring models or booking a photoshoot?", "buyer_job"),
+    candidate("category_search", "consideration", "What are the best AI model photo apps for Shopify fashion brands?", "category"),
+    candidate("category_search", "evaluation", "Which AI product photo tools work best for small Shopify clothing brands?", "category"),
+    candidate("solution_aware", "consideration", "How do AI on-model product photos work for Shopify apparel stores?", "buyer_job"),
+    candidate("integration_use_case", "consideration", "How should Shopify fashion brands use AI model photos before a product page launch?", "buyer_job"),
+    candidate("competitor_comparison", "evaluation", "What are the best Botika alternatives for AI model photos?", "competitor"),
+    candidate("competitor_comparison", "evaluation", "What are the best Modelia alternatives for AI on-model product photos?", "competitor"),
+    candidate("competitor_comparison", "evaluation", "How does Tiny Lemon compare with Photoroom for Shopify product photos?", "competitor"),
+    candidate("high_intent_purchase", "decision", "Which Shopify app should fashion brands choose for AI on-model product photos?", "purchase"),
+    candidate("high_intent_purchase", "decision", "Which AI model photo app should Shopify fashion brands use for a product page launch?", "purchase"),
+    candidate("high_intent_purchase", "decision", "Is Tiny Lemon a good fit for Shopify apparel brands replacing traditional photoshoots?", "purchase"),
+    candidate("category_search", "consideration", "What AI photo tools help Shopify fashion brands turn flat lays into model photos?", "category"),
+  ];
+}
+
+function saasCandidateFixtures(): CandidateDraft[] {
+  return [
+    candidate("problem_aware", "awareness", "How can customer success teams avoid managing onboarding steps in spreadsheets?", "buyer_job"),
+    candidate("category_search", "consideration", "What are the best customer onboarding checklist tools for launching customer onboarding flows?", "category"),
+    candidate("category_search", "evaluation", "Which onboarding checklist tools help customer success teams launch repeatable onboarding workflows?", "category"),
+    candidate("solution_aware", "consideration", "How do customer onboarding checklist tools work for launching customer onboarding flows?", "buyer_job"),
+    candidate("integration_use_case", "consideration", "How should customer success teams use onboarding checklist tools for launching customer onboarding flows?", "buyer_job"),
+    candidate("competitor_comparison", "evaluation", "What are the best GuideCX alternatives for customer onboarding workflows?", "competitor"),
+    candidate("competitor_comparison", "evaluation", "What are the best Arrows alternatives for customer onboarding workflows?", "competitor"),
+    candidate("competitor_comparison", "evaluation", "How does OnboardKit compare with Rocketlane for customer onboarding workflows?", "competitor"),
+    candidate("high_intent_purchase", "decision", "Which customer onboarding checklist tool should customer success teams choose for launching customer onboarding flows?", "purchase"),
+    candidate("high_intent_purchase", "decision", "Which onboarding checklist tool should customer success teams use for launching an onboarding workflow?", "purchase"),
+    candidate("high_intent_purchase", "decision", "Is OnboardKit a good fit for customer success teams replacing spreadsheet onboarding?", "purchase"),
+    candidate("category_search", "consideration", "What tools help customer success teams standardize onboarding checklists?", "category"),
+  ];
+}
+
+function candidate(
+  group: CandidateDraft["group"],
+  journeyPhase: CandidateDraft["journeyPhase"],
+  prompt: string,
+  source: CandidateDraft["source"],
+): CandidateDraft {
+  return {
+    id: prompt.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""),
+    group,
+    journeyPhase,
+    prompt,
+    buyerJob: "LLM-crafted buyer question",
+    source,
+    llmRationale: `Maps to ${journeyPhase}.`,
+  };
 }
 
 function strategyFixture(

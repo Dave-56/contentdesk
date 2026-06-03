@@ -1,0 +1,530 @@
+{
+  "brand": "DataJelly Guard",
+  "generatedAt": "2026-06-03T03:49:15.824Z",
+  "portfolioSize": 10,
+  "selectionRule": "Cover the journey, but overweight prompts closest to purchase, competitor comparison, and realistic asset opportunities.",
+  "selectedPrompts": [
+    {
+      "id": "competitor-comparison-should-i-choose-datajelly-guard-or-checkly-for-monitoring-revenue-critical-pages-on-a-javascript-app",
+      "group": "competitor_comparison",
+      "prompt": "Should I choose DataJelly Guard or Checkly for monitoring revenue-critical pages on a JavaScript app?"
+    },
+    {
+      "id": "high-intent-purchase-what-is-the-best-tool-to-start-a-free-trial-for-monitoring-revenue-critical-pages-on-a-javascript-site",
+      "group": "high_intent_purchase",
+      "prompt": "What is the best tool to start a free trial for monitoring revenue-critical pages on a JavaScript site?"
+    },
+    {
+      "id": "competitor-comparison-is-datajelly-guard-or-checkly-better-for-monitoring-pricing-and-checkout-pages-after-deploys",
+      "group": "competitor_comparison",
+      "prompt": "Is DataJelly Guard or Checkly better for monitoring pricing and checkout pages after deploys?"
+    },
+    {
+      "id": "high-intent-purchase-which-production-page-monitoring-product-is-easiest-to-trial-for-a-small-team-shipping-a-modern-web-app",
+      "group": "high_intent_purchase",
+      "prompt": "Which production page monitoring product is easiest to trial for a small team shipping a modern web app?"
+    },
+    {
+      "id": "competitor-comparison-how-does-datajelly-guard-compare-to-checkly-for-monitoring-what-users-actually-see-on-the-page",
+      "group": "competitor_comparison",
+      "prompt": "How does DataJelly Guard compare to Checkly for monitoring what users actually see on the page?"
+    },
+    {
+      "id": "category-search-what-are-the-best-production-page-monitoring-tools-for-modern-javascript-websites",
+      "group": "category_search",
+      "prompt": "What are the best production page monitoring tools for modern JavaScript websites?"
+    },
+    {
+      "id": "category-search-which-production-page-monitoring-tools-are-best-for-catching-blank-renders-on-javascript-apps",
+      "group": "category_search",
+      "prompt": "Which production page monitoring tools are best for catching blank renders on JavaScript apps?"
+    },
+    {
+      "id": "problem-aware-how-do-teams-shipping-javascript-apps-catch-silent-page-breakages-before-users-or-google-notice",
+      "group": "problem_aware",
+      "prompt": "How do teams shipping JavaScript apps catch silent page breakages before users or Google notice?"
+    },
+    {
+      "id": "solution-aware-can-production-page-monitoring-catch-missing-content-broken-ctas-and-metadata-issues-on-live-pages",
+      "group": "solution_aware",
+      "prompt": "Can production page monitoring catch missing content, broken CTAs, and metadata issues on live pages?"
+    },
+    {
+      "id": "integration-use-case-how-do-teams-set-up-monitoring-for-homepage-pricing-signup-checkout-and-docs-pages-without-a-lot-of-overhead",
+      "group": "integration_use_case",
+      "prompt": "How do teams set up monitoring for homepage, pricing, signup, checkout, and docs pages without a lot of overhead?"
+    }
+  ],
+  "selectedCandidates": [
+    {
+      "id": "competitor-comparison-should-i-choose-datajelly-guard-or-checkly-for-monitoring-revenue-critical-pages-on-a-javascript-app",
+      "group": "competitor_comparison",
+      "journeyPhase": "decision",
+      "prompt": "Should I choose DataJelly Guard or Checkly for monitoring revenue-critical pages on a JavaScript app?",
+      "buyerJob": "Compare known Production page monitoring / website monitoring / edge visibility options and decide which one fits Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "LLM rationale: A clear late-stage comparison question with strong purchase intent. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-what-is-the-best-tool-to-start-a-free-trial-for-monitoring-revenue-critical-pages-on-a-javascript-site",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "What is the best tool to start a free trial for monitoring revenue-critical pages on a JavaScript site?",
+      "buyerJob": "Choose the Production page monitoring / website monitoring / edge visibility to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 29,
+      "rationale": "LLM rationale: Strong decision-stage language anchored to the conversion goal and ICP use case. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-is-datajelly-guard-or-checkly-better-for-monitoring-pricing-and-checkout-pages-after-deploys",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "Is DataJelly Guard or Checkly better for monitoring pricing and checkout pages after deploys?",
+      "buyerJob": "Compare known Production page monitoring / website monitoring / edge visibility options and decide which one fits Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 28,
+      "rationale": "LLM rationale: Ties competitor comparison to a practical, high-intent scenario buyers care about. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-which-production-page-monitoring-product-is-easiest-to-trial-for-a-small-team-shipping-a-modern-web-app",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Which production page monitoring product is easiest to trial for a small team shipping a modern web app?",
+      "buyerJob": "Choose the Production page monitoring / website monitoring / edge visibility to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 28,
+      "rationale": "LLM rationale: Captures practical buying intent for lean teams and aligns with free-trial conversion. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-how-does-datajelly-guard-compare-to-checkly-for-monitoring-what-users-actually-see-on-the-page",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "How does DataJelly Guard compare to Checkly for monitoring what users actually see on the page?",
+      "buyerJob": "Compare known Production page monitoring / website monitoring / edge visibility options and decide which one fits Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Leans into the positioning around what users actually see while staying natural. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "category-search-what-are-the-best-production-page-monitoring-tools-for-modern-javascript-websites",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "What are the best production page monitoring tools for modern JavaScript websites?",
+      "buyerJob": "Discover which Production page monitoring / website monitoring / edge visibility options exist for Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 25,
+      "rationale": "LLM rationale: Natural category search prompt using the strategy's category noun and audience language. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-which-production-page-monitoring-tools-are-best-for-catching-blank-renders-on-javascript-apps",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "Which production page monitoring tools are best for catching blank renders on JavaScript apps?",
+      "buyerJob": "Discover which Production page monitoring / website monitoring / edge visibility options exist for Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 24,
+      "rationale": "LLM rationale: Evaluation-oriented category question focused on one of the sharpest pains: blank renders. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-how-do-teams-shipping-javascript-apps-catch-silent-page-breakages-before-users-or-google-notice",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "How do teams shipping JavaScript apps catch silent page breakages before users or Google notice?",
+      "buyerJob": "Find a better way to handle silent page breakages.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 3,
+        "assetOpportunity": 4
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Uses ICP language directly and frames the core pain in a natural answer-engine question. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 3, asset opportunity 4."
+    },
+    {
+      "id": "solution-aware-can-production-page-monitoring-catch-missing-content-broken-ctas-and-metadata-issues-on-live-pages",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "Can production page monitoring catch missing content, broken CTAs, and metadata issues on live pages?",
+      "buyerJob": "Understand whether Production page monitoring / website monitoring / edge visibility can handle monitoring revenue-critical pages.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Directly maps to key use cases around missing content, CTAs, and metadata. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-how-do-teams-set-up-monitoring-for-homepage-pricing-signup-checkout-and-docs-pages-without-a-lot-of-overhead",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "How do teams set up monitoring for homepage, pricing, signup, checkout, and docs pages without a lot of overhead?",
+      "buyerJob": "Prepare monitoring revenue-critical pages for start free trial.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 3
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Grounded in the primary monitored page types and framed as a realistic implementation concern. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 3."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "competitor-comparison-should-i-choose-datajelly-guard-or-checkly-for-monitoring-revenue-critical-pages-on-a-javascript-app",
+      "group": "competitor_comparison",
+      "journeyPhase": "decision",
+      "prompt": "Should I choose DataJelly Guard or Checkly for monitoring revenue-critical pages on a JavaScript app?",
+      "buyerJob": "Compare known Production page monitoring / website monitoring / edge visibility options and decide which one fits Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "LLM rationale: A clear late-stage comparison question with strong purchase intent. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-what-is-the-best-tool-to-start-a-free-trial-for-monitoring-revenue-critical-pages-on-a-javascript-site",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "What is the best tool to start a free trial for monitoring revenue-critical pages on a JavaScript site?",
+      "buyerJob": "Choose the Production page monitoring / website monitoring / edge visibility to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 29,
+      "rationale": "LLM rationale: Strong decision-stage language anchored to the conversion goal and ICP use case. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-is-datajelly-guard-or-checkly-better-for-monitoring-pricing-and-checkout-pages-after-deploys",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "Is DataJelly Guard or Checkly better for monitoring pricing and checkout pages after deploys?",
+      "buyerJob": "Compare known Production page monitoring / website monitoring / edge visibility options and decide which one fits Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 28,
+      "rationale": "LLM rationale: Ties competitor comparison to a practical, high-intent scenario buyers care about. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-which-production-page-monitoring-product-is-easiest-to-trial-for-a-small-team-shipping-a-modern-web-app",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Which production page monitoring product is easiest to trial for a small team shipping a modern web app?",
+      "buyerJob": "Choose the Production page monitoring / website monitoring / edge visibility to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 28,
+      "rationale": "LLM rationale: Captures practical buying intent for lean teams and aligns with free-trial conversion. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-how-does-datajelly-guard-compare-to-checkly-for-monitoring-what-users-actually-see-on-the-page",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "How does DataJelly Guard compare to Checkly for monitoring what users actually see on the page?",
+      "buyerJob": "Compare known Production page monitoring / website monitoring / edge visibility options and decide which one fits Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Leans into the positioning around what users actually see while staying natural. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-are-the-main-differences-between-datajelly-guard-and-checkly-for-page-level-visibility",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the main differences between DataJelly Guard and Checkly for page-level visibility?",
+      "buyerJob": "Compare known Production page monitoring / website monitoring / edge visibility options and decide which one fits Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Simple, realistic comparison phrasing buyers commonly use in answer engines. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "category-search-what-are-the-best-production-page-monitoring-tools-for-modern-javascript-websites",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "What are the best production page monitoring tools for modern JavaScript websites?",
+      "buyerJob": "Discover which Production page monitoring / website monitoring / edge visibility options exist for Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 25,
+      "rationale": "LLM rationale: Natural category search prompt using the strategy's category noun and audience language. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-which-production-page-monitoring-tools-are-best-for-catching-blank-renders-on-javascript-apps",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "Which production page monitoring tools are best for catching blank renders on JavaScript apps?",
+      "buyerJob": "Discover which Production page monitoring / website monitoring / edge visibility options exist for Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 24,
+      "rationale": "LLM rationale: Evaluation-oriented category question focused on one of the sharpest pains: blank renders. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-what-should-i-look-for-in-a-page-level-visibility-layer-for-revenue-critical-pages",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "What should I look for in a page-level visibility layer for revenue-critical pages?",
+      "buyerJob": "Discover which Production page monitoring / website monitoring / edge visibility options exist for Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "LLM rationale: Uses the product noun from buyer language and moves the buyer toward structured evaluation. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-how-do-teams-shipping-javascript-apps-catch-silent-page-breakages-before-users-or-google-notice",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "How do teams shipping JavaScript apps catch silent page breakages before users or Google notice?",
+      "buyerJob": "Find a better way to handle silent page breakages.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 3,
+        "assetOpportunity": 4
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Uses ICP language directly and frames the core pain in a natural answer-engine question. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 3, asset opportunity 4."
+    },
+    {
+      "id": "solution-aware-can-production-page-monitoring-catch-missing-content-broken-ctas-and-metadata-issues-on-live-pages",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "Can production page monitoring catch missing content, broken CTAs, and metadata issues on live pages?",
+      "buyerJob": "Understand whether Production page monitoring / website monitoring / edge visibility can handle monitoring revenue-critical pages.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Directly maps to key use cases around missing content, CTAs, and metadata. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-how-do-teams-set-up-monitoring-for-homepage-pricing-signup-checkout-and-docs-pages-without-a-lot-of-overhead",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "How do teams set up monitoring for homepage, pricing, signup, checkout, and docs pages without a lot of overhead?",
+      "buyerJob": "Prepare monitoring revenue-critical pages for start free trial.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 3
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Grounded in the primary monitored page types and framed as a realistic implementation concern. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 3."
+    },
+    {
+      "id": "solution-aware-how-does-production-page-monitoring-work-for-javascript-heavy-sites-compared-with-basic-uptime-monitoring",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "How does production page monitoring work for JavaScript-heavy sites compared with basic uptime monitoring?",
+      "buyerJob": "Understand whether Production page monitoring / website monitoring / edge visibility can handle monitoring revenue-critical pages.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Bridges solution understanding with the comparison noun from buyer language. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "category-search-is-there-a-website-monitoring-tool-that-shows-what-users-crawlers-and-ai-systems-actually-see-on-a-page",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "Is there a website monitoring tool that shows what users, crawlers, and AI systems actually see on a page?",
+      "buyerJob": "Discover which Production page monitoring / website monitoring / edge visibility options exist for Teams shipping JavaScript apps, modern websites, and revenue-critical pages.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Reflects the positioning in a realistic buyer question rather than keyword stuffing. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-can-i-send-page-breakage-alerts-to-slack-email-or-webhooks-when-production-pages-fail",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "Can I send page breakage alerts to Slack, email, or webhooks when production pages fail?",
+      "buyerJob": "Prepare monitoring revenue-critical pages for start free trial.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 3
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Uses a concrete integration/use-case from the strategy to surface implementation-level intent. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 3."
+    },
+    {
+      "id": "problem-aware-what-causes-javascript-pages-to-break-silently-on-homepage-pricing-or-checkout-pages",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "What causes JavaScript pages to break silently on homepage, pricing, or checkout pages?",
+      "buyerJob": "Find a better way to handle silent page breakages.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Connects the pain to revenue-critical pages called out in the strategy. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 4."
+    }
+  ]
+}

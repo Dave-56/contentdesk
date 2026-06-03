@@ -1,0 +1,57 @@
+{
+  "websiteUrl": "https://www.getscreenflowy.com/",
+  "companyName": "ScreenFlowy",
+  "title": "ScreenFlowy",
+  "metaDescription": "The target domain clearly identifies ScreenFlowy as a browser-based screen recording product. First-party copy states it records screen, webcam, and audio with zero setup, offers zoom effects, instant editing, and exports, and is aimed at c",
+  "headline": "Browser-based screen recording software",
+  "summary": "Smooth screen recording directly in the browser with webcam, zoom effects, and instant editing",
+  "audienceGuess": "Creators, teams, tutorial makers, demo makers, and people sharing quick screen videos",
+  "problemSolved": "Users need a fast way to record polished screen videos without downloads, heavy setup, or watermark friction",
+  "featuresUseCases": [
+    "A browser-only recorder that captures screen, webcam, and audio, supports zoom effects and webcam editing controls, and offers instant exports",
+    "Screen recording for demos",
+    "Tutorial and walkthrough creation",
+    "Creator video recording",
+    "Screen, webcam, and audio capture",
+    "Quick sharing and instant export"
+  ],
+  "existingContent": [
+    {
+      "url": "https://www.getscreenflowy.com/",
+      "title": "ScreenFlowy",
+      "kind": "homepage",
+      "excerpt": "TARGET_URL: https://www.getscreenflowy.com/\n\nTITLE: ScreenFlowy - Smooth Screen Recording in Your Browser\n\nMETA_DESCRIPTION: Record smooth screen videos with webcam, zoom effects, and instant editing directly in your browser. Fast, simple, and professional screen recording for creators and teams.\n\nOG_TITLE: ScreenFlowy - Smooth Screen Recording Directly in Your Browser\n\nOG_DESCRIPTION: Record smooth screen videos with webcam, zoom effects, and instant editing directly in your browser.\n\nCANONICAL: https://www.getscreenflowy.com\n\nHTML_TEXT:\nScreenFlowy - Smooth Screen Recording in Your Browser ScreenFlowy Demo Pricing Record Now Smooth screen recording directly in your browser. Record smooth screen videos with webcam, zoom effects, and instant editing directly in your browser. Record Now Watch Demo How to use? Pricing Simple one-time pricing for modern screen recording. Free $0 one-time Perfect for basic screen recordings and quick exports. 2 minute recordings 1080P exports Zoom effects Browser-based recorder Instant exports Record Now Early Bird • First 10 Users Pro $19 one-time Advanced recording tools for creators and professionals. Unlimited recordings Microphone recording Webcam recording Webcam editing controls 60 FPS exports High-quality exports Webcam format exports Priority future updates Coming soon: 2K exports Coming soon: 4K exports Upgrade to Pro It is preferred to use your Gmail account Fast • Simple • Professional Start Recording Beautiful Videos in Seconds Record your screen, webcam, and audio with zero setup. Built for creators, teams, tutorials, demos, and quick sharing. Start Recording Watch Demo No downloads • No watermark • Free to start ScreenFlowy Smooth screen recording directly in your browser. Tools Dashboard Recorder Other Products Product Mockups Generator Links Pricing Demo Twitter Contact Legal Terms of services Privacy policy Refund policy\n\nSAME_ORIGIN_JS_PRODUCT_TEXT:\n\" in the React Server Manifest.\nThis is probably a bug in the React Server Components bundler.\n\" in the React Server Consumer Manifest.\nRead more: https://nextjs.org/docs/messages/non-standard-node-env',eu=\"Pages with\nwas not found on the server.\nRead more: https://nextjs.org/docs/messages/failed-to-find-server-action`),\nUnexpected server data: missing bootstrap script.\nfor the full message or use the non-minified dev environment for full errors and additional helpful warnings.\nin window||(delete nJ.animationend.animation,delete nJ.animationiteration.animation,delete nJ.animationstart.animation),\nView transition was skipped because document visibility state is hidden.\nSkipping view transition because document visibility state has become hidden."
+    }
+  ],
+  "evidenceQuality": "strong",
+  "profileSources": [
+    {
+      "provider": "perplexity",
+      "query": "Perplexity exact-domain business read for https://www.getscreenflowy.com/",
+      "url": "https://www.getscreenflowy.com",
+      "title": "",
+      "excerpt": "The target domain clearly identifies ScreenFlowy as a browser-based screen recording product. First-party copy states it records screen, webcam, and audio with zero setup, offers zoom effects, instant editing, and exports, and is aimed at creators, teams, tutorials, demos, and quick sharing. The business mapping to the exact URL is strong and unambiguous.",
+      "extractedMarkdown": "The target domain clearly identifies ScreenFlowy as a browser-based screen recording product. First-party copy states it records screen, webcam, and audio with zero setup, offers zoom effects, instant editing, and exports, and is aimed at creators, teams, tutorials, demos, and quick sharing. The business mapping to the exact URL is strong and unambiguous. The exact target domain hosts ScreenFlowy, and the first-party site copy explicitly identifies the product as a browser-based screen recorder for smooth screen videos with webcam, zoom effects, and instant editing. The canonical URL also matches the target domain. Smooth screen recording directly in the browser with webcam, zoom effects, and instant editing Users need a fast way to record polished screen videos without downloads, heavy setup, or watermark friction A browser-only recorder that captures screen, webcam, and audio, supports zoom effects and webcam editing controls, and offers instant exports",
+      "fetchedAt": "2026-06-03T02:51:42.572Z"
+    },
+    {
+      "provider": "perplexity",
+      "query": "Perplexity exact-domain business read for https://www.getscreenflowy.com/",
+      "url": "https://peerlist.io/scroll/post/ACTHOK8E8GAMG699PHGPR6ODE6LGLG",
+      "title": "",
+      "excerpt": "The target domain clearly identifies ScreenFlowy as a browser-based screen recording product. First-party copy states it records screen, webcam, and audio with zero setup, offers zoom effects, instant editing, and exports, and is aimed at creators, teams, tutorials, demos, and quick sharing. The business mapping to the exact URL is strong and unambiguous.",
+      "extractedMarkdown": "The target domain clearly identifies ScreenFlowy as a browser-based screen recording product. First-party copy states it records screen, webcam, and audio with zero setup, offers zoom effects, instant editing, and exports, and is aimed at creators, teams, tutorials, demos, and quick sharing. The business mapping to the exact URL is strong and unambiguous. The exact target domain hosts ScreenFlowy, and the first-party site copy explicitly identifies the product as a browser-based screen recorder for smooth screen videos with webcam, zoom effects, and instant editing. The canonical URL also matches the target domain. Smooth screen recording directly in the browser with webcam, zoom effects, and instant editing Users need a fast way to record polished screen videos without downloads, heavy setup, or watermark friction A browser-only recorder that captures screen, webcam, and audio, supports zoom effects and webcam editing controls, and offers instant exports",
+      "fetchedAt": "2026-06-03T02:51:42.572Z"
+    },
+    {
+      "provider": "perplexity",
+      "query": "Perplexity exact-domain business read for https://www.getscreenflowy.com/",
+      "url": "https://www.getscreenflowy.com/",
+      "title": "ScreenFlowy",
+      "excerpt": "The target domain clearly identifies ScreenFlowy as a browser-based screen recording product. First-party copy states it records screen, webcam, and audio with zero setup, offers zoom effects, instant editing, and exports, and is aimed at creators, teams, tutorials, demos, and quick sharing. The business mapping to the exact URL is strong and unambiguous.",
+      "extractedMarkdown": "The target domain clearly identifies ScreenFlowy as a browser-based screen recording product. First-party copy states it records screen, webcam, and audio with zero setup, offers zoom effects, instant editing, and exports, and is aimed at creators, teams, tutorials, demos, and quick sharing. The business mapping to the exact URL is strong and unambiguous. The exact target domain hosts ScreenFlowy, and the first-party site copy explicitly identifies the product as a browser-based screen recorder for smooth screen videos with webcam, zoom effects, and instant editing. The canonical URL also matches the target domain. Smooth screen recording directly in the browser with webcam, zoom effects, and instant editing Users need a fast way to record polished screen videos without downloads, heavy setup, or watermark friction A browser-only recorder that captures screen, webcam, and audio, supports zoom effects and webcam editing controls, and offers instant exports",
+      "fetchedAt": "2026-06-03T02:51:42.572Z"
+    }
+  ],
+  "profileWarnings": []
+}

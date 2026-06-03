@@ -156,7 +156,7 @@ export function normalizeStrategicFingerprint(value: string) {
 }
 
 export const researchSourceSchema = z.object({
-  provider: z.enum(["parallel", "seed"]),
+  provider: z.enum(["parallel", "perplexity", "seed"]),
   query: requiredText,
   url: z.string().url(),
   title: optionalText,

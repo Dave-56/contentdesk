@@ -23,6 +23,8 @@ export async function classifyBuyerPromptMarket(input: {
 }
 
 function classificationPrompt(siteProfile: SiteProfile) {
+  const { profileSources, profileWarnings, ...facts } = siteProfile;
+
   return [
     "You classify buyer-prompt language for ContentDesk.",
     "Return only fields in the requested schema.",
@@ -36,12 +38,31 @@ function classificationPrompt(siteProfile: SiteProfile) {
     "- categoryNoun should name the product category a buyer would search.",
     "- productNoun should be shorter than categoryNoun when possible.",
     "- useCaseNoun, painNoun, and conversionNoun must be noun phrases or gerund phrases, not full sentences.",
-    "- If evidence is thin or ambiguous, add a manual_review warning.",
-    "- categoryNoun must match the product described by site facts, not an adjacent or generic category.",
+    "- categoryNoun must match the product described by the cited evidence, not an adjacent or generic category.",
+    "- Ground category, audience, and market in the cited sources below. Do not classify from the brand name alone.",
+    `- Evidence quality is "${facts.evidenceQuality}". If it is thin or the sources do not clearly confirm the product, add a manual_review warning and prefer a broader categoryNoun.`,
     "",
-    "Website facts:",
-    JSON.stringify(siteProfile, null, 2),
+    "Website facts (static scrape):",
+    JSON.stringify(facts, null, 2),
+    "",
+    "Cited evidence sources:",
+    formatSourcesForPrompt(profileSources),
   ].join("\n");
+}
+
+function formatSourcesForPrompt(sources: SiteProfile["profileSources"]) {
+  if (sources.length === 0) {
+    return "(none — only static scrape available; treat product identification as low-confidence)";
+  }
+
+  return sources
+    .map((source, index) => {
+      const body = (source.extractedMarkdown || source.excerpt || "").slice(0, 1200);
+      return [`[${index + 1}] ${source.title || source.url}`, source.url, body]
+        .filter(Boolean)
+        .join("\n");
+    })
+    .join("\n\n");
 }
 
 function isAiGatewayConfigured() {

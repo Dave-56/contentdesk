@@ -1,3 +1,4 @@
+import "@/lib/load-env";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { buildBuyerPromptPortfolio } from "@/lib/buyer-prompt-strategist";
@@ -12,6 +13,7 @@ export async function selectPrompts(input: {
   outputDir?: string;
   portfolioPath?: string;
   selectedScanConfigPath?: string;
+  allowManualReview?: boolean;
 } = {}) {
   const strategy = buyerPromptStrategyInputSchema.parse(
     JSON.parse(await readFile(input.inputPath ?? defaultInputPath, "utf8")),
@@ -21,7 +23,10 @@ export async function selectPrompts(input: {
     input.portfolioPath ?? path.join(outputDir, "portfolio.json");
   const resolvedSelectedScanConfigPath =
     input.selectedScanConfigPath ?? path.join(outputDir, "prompts.selected.json");
-  const portfolio = buildBuyerPromptPortfolio({ strategy });
+  const portfolio = await buildBuyerPromptPortfolio({
+    strategy,
+    allowManualReview: input.allowManualReview,
+  });
   const selectedScanConfig = promptScanConfigSchema.parse({
     brand: strategy.brand,
     provider: strategy.provider,
@@ -73,6 +78,7 @@ function parseArgs(args: string[]) {
   const parsed: {
     inputPath?: string;
     outputDir?: string;
+    allowManualReview?: boolean;
   } = {};
 
   for (let index = 0; index < args.length; index += 1) {
@@ -85,6 +91,10 @@ function parseArgs(args: string[]) {
     if (arg === "--out") {
       parsed.outputDir = args[index + 1];
       index += 1;
+      continue;
+    }
+    if (arg === "--force") {
+      parsed.allowManualReview = true;
       continue;
     }
     if (arg && !parsed.inputPath) parsed.inputPath = arg;

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  buildStrategyFromBusinessRead,
   buildStrategyFromMarketClassification,
   buildStrategyFromSiteProfile,
 } from "@/lib/buyer-prompt-strategist/infer";
@@ -15,7 +16,8 @@ test("infers buyer prompt strategy fields from a website profile", () => {
 
   assert.equal(strategy.brand.name, "Tiny Lemon");
   assert.equal(strategy.audience, "Shopify fashion brands");
-  assert.equal(strategy.category, "AI model photo app");
+  // Generic fallback: category is title-derived, not a hardcoded product label.
+  assert.equal(strategy.category, "AI model photos for Shopify");
   assert.equal(strategy.market, "shopify_app");
   assert.equal(strategy.buyerLanguage, undefined);
   assert.equal(strategy.classificationWarnings[0]?.severity, "manual_review");
@@ -76,6 +78,73 @@ test("builds strategy from LLM market classification", () => {
   );
 });
 
+test("builds strategy from Perplexity business read with clear competitors only", () => {
+  const strategy = buildStrategyFromBusinessRead({
+    siteProfile: saasSiteProfileFixture(),
+    businessRead: {
+      targetUrl: "https://onboardkit.example/",
+      targetDomain: "onboardkit.example",
+      targetIdentityConfirmed: true,
+      targetIdentityReason:
+        "The target domain describes OnboardKit as customer onboarding software.",
+      brandName: "OnboardKit",
+      market: "saas",
+      product: "customer onboarding checklist tool",
+      category: "customer onboarding checklist tool",
+      audience: "customer success teams",
+      positioning:
+        "OnboardKit helps SaaS teams launch repeatable onboarding workflows.",
+      problemSolved:
+        "Customer onboarding steps get lost across spreadsheets and manual handoffs.",
+      solution: "Repeatable onboarding checklists and progress tracking.",
+      conversionGoal: "launching an onboarding workflow",
+      primaryUseCases: ["launching customer onboarding flows"],
+      buyerLanguage: {
+        buyerNoun: "customer success teams",
+        categoryNoun: "customer onboarding checklist tool",
+        productNoun: "onboarding checklist tool",
+        useCaseNoun: "launching customer onboarding flows",
+        painNoun: "managing onboarding steps in spreadsheets",
+        conversionNoun: "launching an onboarding workflow",
+        comparisonNoun: "customer onboarding workflows",
+      },
+      competitors: [
+        {
+          name: "GuideCX",
+          aliases: [],
+          domains: ["guidecx.com"],
+          clearAlternative: true,
+          confidence: 5,
+          reason: "Direct onboarding workflow alternative.",
+        },
+        {
+          name: "Unclear CRM",
+          aliases: [],
+          domains: ["crm.example"],
+          clearAlternative: false,
+          confidence: 2,
+          reason: "Adjacent but not a clear onboarding checklist tool.",
+        },
+      ],
+      confidence: {
+        targetIdentity: 5,
+        product: 5,
+        category: 5,
+        audience: 5,
+        buyerLanguage: 5,
+      },
+      warnings: [],
+      citations: ["https://onboardkit.example/"],
+      evidenceSummary: "OnboardKit is a customer onboarding checklist tool.",
+    },
+    portfolioSize: 10,
+  });
+
+  assert.equal(strategy.brand.name, "OnboardKit");
+  assert.equal(strategy.buyerLanguage?.categoryNoun, "customer onboarding checklist tool");
+  assert.deepEqual(strategy.competitors.map((competitor) => competitor.name), ["GuideCX"]);
+});
+
 function siteProfileFixture(): SiteProfile {
   return {
     websiteUrl: "https://tinylemon.xyz/",
@@ -109,6 +178,9 @@ function siteProfileFixture(): SiteProfile {
         excerpt: "AI product photography guides for Shopify fashion brands.",
       },
     ],
+    evidenceQuality: "thin",
+    profileSources: [],
+    profileWarnings: [],
   };
 }
 
@@ -138,5 +210,8 @@ function saasSiteProfileFixture(): SiteProfile {
           "OnboardKit helps customer success teams manage onboarding workflows.",
       },
     ],
+    evidenceQuality: "thin",
+    profileSources: [],
+    profileWarnings: [],
   };
 }

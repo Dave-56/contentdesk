@@ -1,0 +1,566 @@
+{
+  "brand": "Insider Alpha",
+  "generatedAt": "2026-06-03T02:57:12.781Z",
+  "portfolioSize": 10,
+  "selectionRule": "Cover the journey, but overweight prompts closest to purchase, competitor comparison, and realistic asset opportunities.",
+  "selectedPrompts": [
+    {
+      "id": "competitor-comparison-how-does-insider-alpha-compare-with-housestockwatch-for-filer-level-trade-analysis",
+      "group": "competitor_comparison",
+      "prompt": "How does Insider Alpha compare with HouseStockWatch for filer-level trade analysis?"
+    },
+    {
+      "id": "competitor-comparison-is-insider-alpha-better-than-quiver-quantitative-for-stock-act-disclosure-tracking",
+      "group": "competitor_comparison",
+      "prompt": "Is Insider Alpha better than Quiver Quantitative for STOCK Act disclosure tracking?"
+    },
+    {
+      "id": "competitor-comparison-should-i-use-insider-alpha-or-capitol-trades-for-congressional-trade-alerts-and-exports",
+      "group": "competitor_comparison",
+      "prompt": "Should I use Insider Alpha or Capitol Trades for congressional trade alerts and exports?"
+    },
+    {
+      "id": "high-intent-purchase-what-s-the-best-platform-to-sign-up-for-if-i-want-real-time-alerts-on-congressional-stock-trades",
+      "group": "high_intent_purchase",
+      "prompt": "What’s the best platform to sign up for if I want real-time alerts on congressional stock trades?"
+    },
+    {
+      "id": "high-intent-purchase-which-congressional-stock-trade-data-platform-should-i-choose-for-searchable-filings-alerts-and-csv-exports",
+      "group": "high_intent_purchase",
+      "prompt": "Which congressional stock trade data platform should I choose for searchable filings, alerts, and CSV exports?"
+    },
+    {
+      "id": "category-search-what-are-the-best-congressional-stock-trade-data-platforms-for-traders-and-researchers",
+      "group": "category_search",
+      "prompt": "What are the best congressional stock trade data platforms for traders and researchers?"
+    },
+    {
+      "id": "category-search-which-platforms-let-me-search-congressional-trades-by-filer-or-ticker",
+      "group": "category_search",
+      "prompt": "Which platforms let me search congressional trades by filer or ticker?"
+    },
+    {
+      "id": "integration-use-case-which-congressional-stock-trade-data-platforms-are-best-for-filer-analysis-and-alert-workflows",
+      "group": "integration_use_case",
+      "prompt": "Which congressional stock trade data platforms are best for filer analysis and alert workflows?"
+    },
+    {
+      "id": "solution-aware-can-a-political-trading-data-platform-send-real-time-alerts-when-a-member-of-congress-reports-a-trade",
+      "group": "solution_aware",
+      "prompt": "Can a political trading data platform send real-time alerts when a member of Congress reports a trade?"
+    },
+    {
+      "id": "problem-aware-what-s-the-best-way-to-track-stock-act-disclosures-without-manually-checking-filings-every-day",
+      "group": "problem_aware",
+      "prompt": "What’s the best way to track STOCK Act disclosures without manually checking filings every day?"
+    }
+  ],
+  "selectedCandidates": [
+    {
+      "id": "competitor-comparison-how-does-insider-alpha-compare-with-housestockwatch-for-filer-level-trade-analysis",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "How does Insider Alpha compare with HouseStockWatch for filer-level trade analysis?",
+      "buyerJob": "Compare known Alternative data / political trading data analytics options and decide which one fits Traders, researchers, and investors.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Targets a differentiating use case in the strategy: filer analysis. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-is-insider-alpha-better-than-quiver-quantitative-for-stock-act-disclosure-tracking",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "Is Insider Alpha better than Quiver Quantitative for STOCK Act disclosure tracking?",
+      "buyerJob": "Compare known Alternative data / political trading data analytics options and decide which one fits Traders, researchers, and investors.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Very close to the buyer’s core pain and likely to surface high-value comparison answers. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-should-i-use-insider-alpha-or-capitol-trades-for-congressional-trade-alerts-and-exports",
+      "group": "competitor_comparison",
+      "journeyPhase": "decision",
+      "prompt": "Should I use Insider Alpha or Capitol Trades for congressional trade alerts and exports?",
+      "buyerJob": "Compare known Alternative data / political trading data analytics options and decide which one fits Traders, researchers, and investors.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Decision-stage comparison anchored on two concrete must-have features: alerts and exports. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-what-s-the-best-platform-to-sign-up-for-if-i-want-real-time-alerts-on-congressional-stock-trades",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "What’s the best platform to sign up for if I want real-time alerts on congressional stock trades?",
+      "buyerJob": "Choose the Alternative data / political trading data analytics to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Uses conversion language and the strongest decision-driving use case from the strategy. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-which-congressional-stock-trade-data-platform-should-i-choose-for-searchable-filings-alerts-and-csv-exports",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Which congressional stock trade data platform should I choose for searchable filings, alerts, and CSV exports?",
+      "buyerJob": "Choose the Alternative data / political trading data analytics to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Bundles the key product capabilities into a realistic bottom-funnel selection question. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "category-search-what-are-the-best-congressional-stock-trade-data-platforms-for-traders-and-researchers",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "What are the best congressional stock trade data platforms for traders and researchers?",
+      "buyerJob": "Discover which Alternative data / political trading data analytics options exist for Traders, researchers, and investors.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "LLM rationale: Strong category search prompt using the exact categoryNoun and ICP audience language. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-which-platforms-let-me-search-congressional-trades-by-filer-or-ticker",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "Which platforms let me search congressional trades by filer or ticker?",
+      "buyerJob": "Discover which Alternative data / political trading data analytics options exist for Traders, researchers, and investors.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "LLM rationale: Maps directly to primary use cases and reflects a realistic feature-led buyer question. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-which-congressional-stock-trade-data-platforms-are-best-for-filer-analysis-and-alert-workflows",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "Which congressional stock trade data platforms are best for filer analysis and alert workflows?",
+      "buyerJob": "Prepare trade alerts and filer analysis for sign up.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 3
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Combines useCaseNoun language with category discovery in a natural buyer phrasing. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 3."
+    },
+    {
+      "id": "solution-aware-can-a-political-trading-data-platform-send-real-time-alerts-when-a-member-of-congress-reports-a-trade",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "Can a political trading data platform send real-time alerts when a member of Congress reports a trade?",
+      "buyerJob": "Understand whether Alternative data / political trading data analytics can handle trade alerts and filer analysis.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Ties directly to the platform positioning and primary use case of real-time trade alerts. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-what-s-the-best-way-to-track-stock-act-disclosures-without-manually-checking-filings-every-day",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "What’s the best way to track STOCK Act disclosures without manually checking filings every day?",
+      "buyerJob": "Find a better way to handle STOCK Act disclosure tracking.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Matches the core pain in buyer language around STOCK Act disclosure tracking and frames a realistic top-of-funnel research question. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 4."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "competitor-comparison-how-does-insider-alpha-compare-with-housestockwatch-for-filer-level-trade-analysis",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "How does Insider Alpha compare with HouseStockWatch for filer-level trade analysis?",
+      "buyerJob": "Compare known Alternative data / political trading data analytics options and decide which one fits Traders, researchers, and investors.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Targets a differentiating use case in the strategy: filer analysis. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-is-insider-alpha-better-than-quiver-quantitative-for-stock-act-disclosure-tracking",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "Is Insider Alpha better than Quiver Quantitative for STOCK Act disclosure tracking?",
+      "buyerJob": "Compare known Alternative data / political trading data analytics options and decide which one fits Traders, researchers, and investors.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Very close to the buyer’s core pain and likely to surface high-value comparison answers. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-should-i-use-insider-alpha-or-capitol-trades-for-congressional-trade-alerts-and-exports",
+      "group": "competitor_comparison",
+      "journeyPhase": "decision",
+      "prompt": "Should I use Insider Alpha or Capitol Trades for congressional trade alerts and exports?",
+      "buyerJob": "Compare known Alternative data / political trading data analytics options and decide which one fits Traders, researchers, and investors.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Decision-stage comparison anchored on two concrete must-have features: alerts and exports. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-what-s-the-best-platform-to-sign-up-for-if-i-want-real-time-alerts-on-congressional-stock-trades",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "What’s the best platform to sign up for if I want real-time alerts on congressional stock trades?",
+      "buyerJob": "Choose the Alternative data / political trading data analytics to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Uses conversion language and the strongest decision-driving use case from the strategy. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-which-congressional-stock-trade-data-platform-should-i-choose-for-searchable-filings-alerts-and-csv-exports",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Which congressional stock trade data platform should I choose for searchable filings, alerts, and CSV exports?",
+      "buyerJob": "Choose the Alternative data / political trading data analytics to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Bundles the key product capabilities into a realistic bottom-funnel selection question. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-is-insider-alpha-worth-signing-up-for-if-i-m-using-congressional-trades-as-part-of-my-research-process",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Is Insider Alpha worth signing up for if I’m using congressional trades as part of my research process?",
+      "buyerJob": "Choose the Alternative data / political trading data analytics to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 24,
+      "rationale": "LLM rationale: Brand-specific, conversion-oriented, and realistic for answer engines at the decision stage. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-what-should-i-try-first-if-i-need-a-stock-trading-signals-platform-built-around-congressional-disclosures",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "What should I try first if I need a stock trading signals platform built around congressional disclosures?",
+      "buyerJob": "Choose the Alternative data / political trading data analytics to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 24,
+      "rationale": "LLM rationale: Bottom-funnel prompt framed naturally around trying a product, aligned to signup conversion. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "category-search-what-are-the-best-congressional-stock-trade-data-platforms-for-traders-and-researchers",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "What are the best congressional stock trade data platforms for traders and researchers?",
+      "buyerJob": "Discover which Alternative data / political trading data analytics options exist for Traders, researchers, and investors.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "LLM rationale: Strong category search prompt using the exact categoryNoun and ICP audience language. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-which-platforms-let-me-search-congressional-trades-by-filer-or-ticker",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "Which platforms let me search congressional trades by filer or ticker?",
+      "buyerJob": "Discover which Alternative data / political trading data analytics options exist for Traders, researchers, and investors.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "LLM rationale: Maps directly to primary use cases and reflects a realistic feature-led buyer question. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-which-political-trading-data-alternatives-are-best-for-researchers-who-need-csv-exports-and-ticker-search",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "Which political trading data alternatives are best for researchers who need CSV exports and ticker search?",
+      "buyerJob": "Discover which Alternative data / political trading data analytics options exist for Traders, researchers, and investors.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "LLM rationale: Uses comparisonNoun language and adds concrete must-have features to signal evaluation-stage intent. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-what-s-the-most-accurate-platform-for-searchable-and-exportable-congressional-trade-data",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "What’s the most accurate platform for searchable and exportable congressional trade data?",
+      "buyerJob": "Discover which Alternative data / political trading data analytics options exist for Traders, researchers, and investors.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Brings in the brand positioning around searchable, exportable intelligence and frames it as an evaluation question. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-which-congressional-stock-trade-data-platforms-are-best-for-filer-analysis-and-alert-workflows",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "Which congressional stock trade data platforms are best for filer analysis and alert workflows?",
+      "buyerJob": "Prepare trade alerts and filer analysis for sign up.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 3
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Combines useCaseNoun language with category discovery in a natural buyer phrasing. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 3."
+    },
+    {
+      "id": "solution-aware-can-a-political-trading-data-platform-send-real-time-alerts-when-a-member-of-congress-reports-a-trade",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "Can a political trading data platform send real-time alerts when a member of Congress reports a trade?",
+      "buyerJob": "Understand whether Alternative data / political trading data analytics can handle trade alerts and filer analysis.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Ties directly to the platform positioning and primary use case of real-time trade alerts. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "solution-aware-what-should-i-look-for-in-a-stock-trading-signals-platform-focused-on-congressional-trades",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "What should I look for in a stock trading signals platform focused on congressional trades?",
+      "buyerJob": "Understand whether Alternative data / political trading data analytics can handle trade alerts and filer analysis.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Moves the buyer from category discovery into structured evaluation criteria using productNoun language. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-what-s-the-best-way-to-track-stock-act-disclosures-without-manually-checking-filings-every-day",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "What’s the best way to track STOCK Act disclosures without manually checking filings every day?",
+      "buyerJob": "Find a better way to handle STOCK Act disclosure tracking.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Matches the core pain in buyer language around STOCK Act disclosure tracking and frames a realistic top-of-funnel research question. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-can-i-export-congressional-trade-data-to-csv-for-my-own-research-workflow",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "Can I export congressional trade data to CSV for my own research workflow?",
+      "buyerJob": "Prepare trade alerts and filer analysis for sign up.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 3
+      },
+      "totalScore": 19,
+      "rationale": "LLM rationale: Directly reflects a primary use case and a common practical buyer concern for researchers. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 3."
+    },
+    {
+      "id": "problem-aware-how-do-traders-monitor-congressional-stock-trades-in-real-time",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "How do traders monitor congressional stock trades in real time?",
+      "buyerJob": "Find a better way to handle STOCK Act disclosure tracking.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 18,
+      "rationale": "LLM rationale: Uses ICP language directly and introduces the real-time alert angle without naming a product yet. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-is-there-a-faster-way-to-turn-stock-act-filings-into-usable-trading-signals",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "Is there a faster way to turn STOCK Act filings into usable trading signals?",
+      "buyerJob": "Find a better way to handle STOCK Act disclosure tracking.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 18,
+      "rationale": "LLM rationale: Bridges the problem to the product category using the buyerLanguage term stock trading signals platform. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    }
+  ]
+}

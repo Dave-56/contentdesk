@@ -1,8 +1,12 @@
+import { generateText, Output } from "ai";
+import { z } from "zod";
 import {
   buyerPromptCandidateSchema,
   buyerPromptPortfolioSchema,
+  llmBuyerPromptCandidateSchema,
   type BuyerPromptCandidate,
-  type BuyerPromptLanguage,
+  type BuyerPromptPortfolio,
+  type LlmBuyerPromptCandidate,
   type BuyerPromptStrategyInput,
   type PromptQualityScore,
 } from "@/lib/buyer-prompt-strategist/schemas";
@@ -20,12 +24,56 @@ const GROUP_TARGETS_10: Record<PromptGroup, number> = {
   high_intent_purchase: 2,
 };
 
+type BuyerPromptCandidateDraft =
+  Omit<BuyerPromptCandidate, "score" | "totalScore" | "rationale"> & {
+    llmRationale?: string;
+  };
+
+type BuyerPromptCandidateGenerator = (
+  strategy: BuyerPromptStrategyInput,
+) => Promise<BuyerPromptCandidateDraft[]>;
+
+export class ManualReviewRequiredError extends Error {
+  readonly warnings: NonNullable<BuyerPromptStrategyInput["classificationWarnings"]>;
+
+  constructor(warnings: NonNullable<BuyerPromptStrategyInput["classificationWarnings"]>) {
+    super(
+      [
+        "Strategy has unresolved manual_review warnings; refusing to select prompts.",
+        "Resolve these in strategy.json (or re-run prompt:infer), or pass --force to override:",
+        ...warnings.map((warning) => `- [${warning.field}] ${warning.message}`),
+      ].join("\n"),
+    );
+    this.name = "ManualReviewRequiredError";
+    this.warnings = warnings;
+  }
+}
+
 export function buildBuyerPromptPortfolio(input: {
   strategy: BuyerPromptStrategyInput;
   generatedAt?: Date;
+  allowManualReview?: boolean;
+  candidateGenerator?: BuyerPromptCandidateGenerator;
+}): Promise<BuyerPromptPortfolio> {
+  return buildBuyerPromptPortfolioAsync(input);
+}
+
+export async function buildBuyerPromptPortfolioAsync(input: {
+  strategy: BuyerPromptStrategyInput;
+  generatedAt?: Date;
+  allowManualReview?: boolean;
+  candidateGenerator?: BuyerPromptCandidateGenerator;
 }) {
+  if (!input.allowManualReview) {
+    const blocking = (input.strategy.classificationWarnings ?? []).filter(
+      (warning) => warning.severity === "manual_review",
+    );
+    if (blocking.length > 0) throw new ManualReviewRequiredError(blocking);
+  }
+
   const generatedAt = input.generatedAt ?? new Date();
-  const candidates = generateBuyerPromptCandidates(input.strategy)
+  const candidateGenerator = input.candidateGenerator ?? generateBuyerPromptCandidates;
+  const candidates = (await candidateGenerator(input.strategy))
     .map((candidate) => scoreCandidate(candidate, input.strategy))
     .sort(sortCandidates);
   const selectedCandidates = selectPromptPortfolio({
@@ -49,153 +97,72 @@ export function buildBuyerPromptPortfolio(input: {
   });
 }
 
-export function generateBuyerPromptCandidates(
+export async function generateBuyerPromptCandidates(
   strategy: BuyerPromptStrategyInput,
-): Array<Omit<BuyerPromptCandidate, "score" | "totalScore" | "rationale">> {
-  const language = promptLanguage(strategy);
-  const candidates: Array<
-    Omit<BuyerPromptCandidate, "score" | "totalScore" | "rationale">
-  > = [];
+): Promise<BuyerPromptCandidateDraft[]> {
+  assertPromptLanguage(strategy);
+  const { output } = await generateText({
+    model: process.env.CONTENTDESK_AI_MODEL ?? "openai/gpt-5.4",
+    output: Output.object({
+      schema: z.object({
+        candidates: z.array(llmBuyerPromptCandidateSchema).min(12).max(25),
+      }),
+    }),
+    prompt: buyerPromptCandidatePrompt(strategy),
+  });
 
-  for (const job of strategy.buyerJobs) {
-    if (job.group === "problem_aware") {
-      candidates.push({
-        id: slug(`problem ${job.id}`),
-        group: job.group,
-        source: "buyer_job",
-        buyerJob: job.job,
-        prompt: buildProblemAwarePrompt(language),
-      });
-    }
-
-    if (job.group === "category_search") {
-      candidates.push(
-        {
-          id: slug(`category best ${job.id}`),
-          group: job.group,
-          source: "category",
-          buyerJob: job.job,
-          prompt: buildCategorySearchPrompt(language),
-        },
-        {
-          id: slug(`category tools ${job.id}`),
-          group: job.group,
-          source: "category",
-          buyerJob: job.job,
-          prompt: buildCategoryUseCasePrompt(language),
-        },
-      );
-    }
-
-    if (job.group === "solution_aware") {
-      candidates.push({
-          id: slug(`solution ${job.id}`),
-          group: job.group,
-          source: "buyer_job",
-          buyerJob: job.job,
-          prompt: buildSolutionAwarePrompt(language),
-      });
-    }
-
-    if (job.group === "integration_use_case") {
-      candidates.push({
-        id: slug(`integration ${job.id}`),
-        group: job.group,
-        source: "buyer_job",
-        buyerJob: job.job,
-        prompt: buildIntegrationPrompt(language),
-      });
-    }
-
-    if (job.group === "high_intent_purchase") {
-      candidates.push(
-        {
-          id: slug(`purchase choose ${job.id}`),
-          group: job.group,
-          source: "purchase",
-          buyerJob: job.job,
-          prompt: buildPurchasePrompt(language),
-        },
-        {
-          id: slug(`purchase use case ${job.id}`),
-          group: job.group,
-          source: "purchase",
-          buyerJob: job.job,
-          prompt: buildMarketPurchasePrompt(strategy, language),
-        },
-      );
-    }
-  }
-
-  const comparisonJob =
-    strategy.buyerJobs.find((job) => job.group === "competitor_comparison") ??
-    strategy.buyerJobs[0];
-
-  for (const competitor of strategy.competitors.slice(0, 5)) {
-    candidates.push({
-      id: slug(`competitor ${competitor.name} alternatives`),
-      group: "competitor_comparison",
-      source: "competitor",
-      buyerJob: comparisonJob.job,
-      prompt: buildCompetitorPrompt(competitor.name, language),
-    });
-  }
+  const candidates = output.candidates.map(candidateFromLlm);
 
   return dedupeCandidates(candidates).filter((candidate) =>
     promptQualityIssues(candidate.prompt, strategy).length === 0
   );
 }
 
-function promptLanguage(strategy: BuyerPromptStrategyInput): BuyerPromptLanguage {
+function assertPromptLanguage(strategy: BuyerPromptStrategyInput) {
   if (!strategy.buyerLanguage) {
     throw new Error(
       "buyerLanguage is required before selecting prompts. Run prompt:infer with AI classification or edit strategy.json manually.",
     );
   }
-
-  return strategy.buyerLanguage;
 }
 
-function buildProblemAwarePrompt(language: BuyerPromptLanguage) {
-  return `How can ${language.buyerNoun} avoid ${language.painNoun}?`;
+function buyerPromptCandidatePrompt(strategy: BuyerPromptStrategyInput) {
+  return [
+    "You are ContentDesk's buyer-prompt strategist.",
+    "Generate natural answer-engine buyer questions from the reviewed strategy.",
+    "",
+    "Framework:",
+    "- Prompts are buyer questions, not keywords.",
+    "- Map each prompt to buyer journey phase: awareness, consideration, evaluation, decision.",
+    "- Cover the journey, but overweight evaluation and decision prompts.",
+    "- Include competitor/alternative prompts only for credible competitors in strategy.",
+    "- Use ICP language from buyerLanguage and buyerJobs.",
+    "- Prompts must be realistic questions a buyer would ask ChatGPT, Perplexity, Google AI, or Claude.",
+    "- Avoid formulaic noun stuffing.",
+    "",
+    "Prompt group mapping:",
+    "- awareness: problem_aware",
+    "- consideration: category_search, solution_aware, integration_use_case",
+    "- evaluation: competitor_comparison, category_search",
+    "- decision: high_intent_purchase, competitor_comparison",
+    "",
+    "Return 15-25 candidates. Each prompt must end with a question mark.",
+    "",
+    "Strategy:",
+    JSON.stringify(strategy, null, 2),
+  ].join("\n");
 }
 
-function buildCategorySearchPrompt(language: BuyerPromptLanguage) {
-  return `What are the best ${pluralCategory(language.categoryNoun)} for ${language.useCaseNoun}?`;
-}
-
-function buildCategoryUseCasePrompt(language: BuyerPromptLanguage) {
-  return `Which ${pluralCategory(language.productNoun)} help ${language.buyerNoun} with ${language.useCaseNoun}?`;
-}
-
-function buildSolutionAwarePrompt(language: BuyerPromptLanguage) {
-  return `How do ${pluralCategory(language.categoryNoun)} work for ${language.useCaseNoun}?`;
-}
-
-function buildIntegrationPrompt(language: BuyerPromptLanguage) {
-  return `How should ${language.buyerNoun} use ${pluralCategory(language.productNoun)} for ${language.useCaseNoun}?`;
-}
-
-function buildPurchasePrompt(language: BuyerPromptLanguage) {
-  return `Which ${language.categoryNoun} should ${language.buyerNoun} choose for ${language.useCaseNoun}?`;
-}
-
-function buildMarketPurchasePrompt(
-  strategy: BuyerPromptStrategyInput,
-  language: BuyerPromptLanguage,
-) {
-  if (effectiveMarket(strategy) === "shopify_app") {
-    return `Which Shopify app helps ${language.buyerNoun} with ${language.useCaseNoun}?`;
-  }
-
-  return `Which ${language.productNoun} should ${language.buyerNoun} use for ${language.conversionNoun}?`;
-}
-
-function buildCompetitorPrompt(
-  competitorName: string,
-  language: BuyerPromptLanguage,
-) {
-  return `What are the best ${competitorName} alternatives for ${language.comparisonNoun ?? language.useCaseNoun}?`;
+function candidateFromLlm(candidate: LlmBuyerPromptCandidate): BuyerPromptCandidateDraft {
+  return {
+    id: slug(`${candidate.group} ${candidate.prompt}`),
+    group: candidate.group,
+    journeyPhase: candidate.journeyPhase,
+    prompt: candidate.prompt,
+    buyerJob: candidate.buyerJob,
+    source: candidate.source,
+    llmRationale: candidate.rationale,
+  };
 }
 
 function promptQualityIssues(prompt: string, strategy: BuyerPromptStrategyInput) {
@@ -222,7 +189,7 @@ function promptQualityIssues(prompt: string, strategy: BuyerPromptStrategyInput)
 }
 
 function scoreCandidate(
-  candidate: Omit<BuyerPromptCandidate, "score" | "totalScore" | "rationale">,
+  candidate: BuyerPromptCandidateDraft,
   strategy: BuyerPromptStrategyInput,
 ): BuyerPromptCandidate {
   const job = strategy.buyerJobs.find((item) => item.group === candidate.group);
@@ -364,16 +331,17 @@ function assetOpportunityScore(
 }
 
 function rationaleForCandidate(
-  candidate: Pick<BuyerPromptCandidate, "group" | "source">,
+  candidate: Pick<BuyerPromptCandidateDraft, "group" | "source" | "llmRationale">,
   score: PromptQualityScore,
 ) {
   return [
+    candidate.llmRationale ? `LLM rationale: ${candidate.llmRationale}` : "",
     `Selected candidate for ${candidate.group}.`,
     candidate.source === "competitor"
       ? "It tests a competitor-shaped evaluation gap."
       : "It maps to a buyer job and can be rechecked after an asset is shipped.",
     `Scores: buyer intent ${score.buyerIntent}, commercial closeness ${score.commercialCloseness}, ICP fit ${score.icpFit}, product fit ${score.productFit}, competitive likelihood ${score.competitiveLikelihood}, asset opportunity ${score.assetOpportunity}.`,
-  ].join(" ");
+  ].filter(Boolean).join(" ");
 }
 
 function hasMissingAsset(
@@ -416,15 +384,6 @@ function slug(value: string) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
-}
-
-function pluralCategory(category: string) {
-  if (/\btools$/i.test(category)) return category;
-  if (/\btool$/i.test(category)) return `${category}s`;
-  if (/\bapps$/i.test(category)) return category;
-  if (/\bapp$/i.test(category)) return category.replace(/\bapp$/i, "apps");
-
-  return `${category} tools`;
 }
 
 function effectiveMarket(strategy: BuyerPromptStrategyInput) {

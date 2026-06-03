@@ -1,0 +1,1726 @@
+{
+  "brand": "Insider Alpha",
+  "provider": "anthropic",
+  "runDate": "2026-06-03T03:01:40.104Z",
+  "recheckCadenceDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "records": [
+    {
+      "id": "competitor-comparison-how-does-insider-alpha-compare-with-housestockwatch-for-filer-level-trade-analysis",
+      "prompt": "How does Insider Alpha compare with HouseStockWatch for filer-level trade analysis?",
+      "promptGroup": "competitor_comparison",
+      "provider": "anthropic",
+      "answerText": "I'll search for information about both of these tools to help you compare them for filer-level trade analysis.I want to be careful here, because there's an important distinction that affects whether these two tools are even comparable. Let me clarify what I'm finding.\n\n**On \"HouseStockWatch\"**\n\nThe closest match is **House Stock Watcher**, which is a *congressional* trade tracker, not a corporate insider tracker. It's updated daily to show the stock trades US Representatives are making as they are reported, with notifications when new reports are uploaded. It draws on STOCK Act disclosures — the filings that require lawmakers to disclose their trades publicly within 45 days under the STOCK Act of 2012. So its \"filers\" are members of Congress.\n\n**On \"Insider Alpha\"**\n\nThis is where I have to be honest: I could not find a product specifically named \"Insider Alpha\" in the search results. There are several similarly named tools, but none is an exact match:\n- **AlphaInsider** (by Alpha Insider Inc.) is a *trading-strategy* social platform — it's about finding trading strategies that work, competing to be the best trader, live trade updates, and searching/filtering/comparing strategies — not a filer-level insider-trade analytics tool.\n- **AlphaSpread** is a stock-valuation platform that includes insider-transaction alerts but is not focused on filer-level analysis.\n\nSo I can't reliably tell you about \"Insider Alpha\" specifically without guessing, which I'd rather not do.\n\n**The bigger issue: different data domains**\n\nFor a meaningful \"filer-level trade analysis\" comparison, it helps to know whether you mean:\n\n1. **Corporate insiders** (executives, directors, 10%+ owners filing SEC Form 4) — tracked by tools like Insider Screener, secform4, and the Insider Trades app. For example, Insider Screener offers genuine filer-level analytics: it ranks company insiders using historical performance data, so you can see whose past trades have done well over different time horizons — not just who trades the most. It also distinguishes routine traders with predictable patterns versus opportunistic traders with irregular timing.\n\n2. **Congressional filers** (members of Congress filing under the STOCK Act) — which is House Stock Watcher's domain, along with competitors like Capitol Trades, Quiver Quantitative, Unusual Whales, and AltIndex. These do offer real filer-level analysis; for instance, Quiver downloads the disclosures, parses them for stock trades, fetches the stock's performance following the transaction, and calculates each politician's cumulative return.\n\n**What would help me give you a useful answer**\n\nCould you confirm:\n- The exact name/URL of the **\"Insider Alpha\"** app you mean (it may be a Shopify-listed app I'm not fin",
+      "citedUrls": [
+        "https://housestockwatcher.com/",
+        "https://www.insiderfinance.io/congress-trades",
+        "https://apps.apple.com/us/app/alphainsider/id1571323550",
+        "https://www.insiderscreener.com/en/",
+        "https://www.quiverquant.com/congresstrading/",
+        "https://www.secform4.com/",
+        "https://www.quiverquant.com/insiders/",
+        "https://apps.apple.com/us/app/trade-insider-stocks-alert/id1605330436",
+        "https://apps.apple.com/us/app/insider-trades/id6748567454",
+        "https://play.google.com/store/apps/details?id=com.goodtechllc.InsiderTrades&hl=en",
+        "https://www.sec.gov/data-research/sec-markets-data/insider-transactions-data-sets",
+        "https://www.alphaspread.com/dashboard/watchlists",
+        "https://www.capitoltrades.com/",
+        "https://www.capitoltrades.com/trades",
+        "https://www.capitoltrades.com/politicians",
+        "https://unusualwhales.com/politics",
+        "https://senatestockwatcher.com/",
+        "https://altindex.com/congress-trading",
+        "https://apify.com/ryanclinton/congress-stock-tracker"
+      ],
+      "citedDomains": [
+        "housestockwatcher.com",
+        "insiderfinance.io",
+        "apps.apple.com",
+        "insiderscreener.com",
+        "quiverquant.com",
+        "secform4.com",
+        "play.google.com",
+        "sec.gov",
+        "alphaspread.com",
+        "capitoltrades.com",
+        "unusualwhales.com",
+        "senatestockwatcher.com",
+        "altindex.com",
+        "apify.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://housestockwatcher.com/",
+          "domain": "housestockwatcher.com",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.insiderfinance.io/congress-trades",
+          "domain": "insiderfinance.io",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.apple.com/us/app/alphainsider/id1571323550",
+          "domain": "apps.apple.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.insiderscreener.com/en/",
+          "domain": "insiderscreener.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/congresstrading/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.secform4.com/",
+          "domain": "secform4.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/insiders/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.apple.com/us/app/trade-insider-stocks-alert/id1605330436",
+          "domain": "apps.apple.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.apple.com/us/app/insider-trades/id6748567454",
+          "domain": "apps.apple.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://play.google.com/store/apps/details?id=com.goodtechllc.InsiderTrades&hl=en",
+          "domain": "play.google.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.sec.gov/data-research/sec-markets-data/insider-transactions-data-sets",
+          "domain": "sec.gov",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.alphaspread.com/dashboard/watchlists",
+          "domain": "alphaspread.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/trades",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/politicians",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://unusualwhales.com/politics",
+          "domain": "unusualwhales.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://senatestockwatcher.com/",
+          "domain": "senatestockwatcher.com",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://altindex.com/congress-trading",
+          "domain": "altindex.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apify.com/ryanclinton/congress-stock-tracker",
+          "domain": "apify.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-03T03:01:40.104Z",
+      "visibilityScore": {
+        "brandMentioned": true,
+        "brandCited": false,
+        "mentionPosition": "top",
+        "competitorsMentioned": [
+          {
+            "name": "Quiver Quantitative",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Capitol Trades",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "HouseStockWatch",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 19,
+        "sourceStrength": "weak",
+        "score": 20
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-04"
+    },
+    {
+      "id": "competitor-comparison-is-insider-alpha-better-than-quiver-quantitative-for-stock-act-disclosure-tracking",
+      "prompt": "Is Insider Alpha better than Quiver Quantitative for STOCK Act disclosure tracking?",
+      "promptGroup": "competitor_comparison",
+      "provider": "anthropic",
+      "answerText": "I'll research both platforms to help you compare their STOCK Act disclosure tracking capabilities.Let me search specifically for \"Insider Alpha\" since I haven't found details on that specific platform yet.Based on my research, I need to be upfront with you about an important finding.\n\n## \"Insider Alpha\" doesn't appear to be a distinct product\n\nAfter searching, I couldn't find a standalone STOCK Act tracking platform or app actually named \"Insider Alpha.\" What I did find is that the rise of politician stock tracker apps has popularized the concept of \"The Insider Alpha\"—the theory suggests that because politicians participate in policy-making, they may possess a unique understanding of future regulatory shifts. So \"insider alpha\" appears to be an industry *concept* (the excess returns from following political/insider trades) rather than a specific competing product.\n\nIf you're evaluating a specific app called \"Insider Alpha,\" it may be a newer or niche tool that isn't well-indexed yet. It would help to share a link so I can compare it accurately.\n\n## What I can tell you about Quiver Quantitative\n\nQuiver is a well-established and well-documented platform for this use case:\n\n- **Scope & data:** Quiver Quantitative is a research platform designed for retail traders, offering access to over 30 alternative data sets, including congressional stock trades, social media sentiment, and corporate lobbying activity.\n- **How it processes STOCK Act data:** The Stock Trading on Congressional Knowledge Act requires U.S. Senators and Representatives to publicly file and disclose any financial transaction within 45 days of its occurrence. They download those disclosures, parse them for stock trades, fetch the stock's performance in the time following the transaction, and calculate each politician's cumulative return from their trades.\n- **Analytics depth:** Algorithmic traders can also take advantage of a backtesting interface, which uses metrics like CAGR, Sharpe Ratio, Alpha, Beta, and Max Drawdown to evaluate strategy performance.\n- **Pricing:** The platform is also budget-friendly. It offers a free plan that includes core features, while premium plans start at $25.00 per month. For those on the fence, trial periods are available to explore the premium features before committing.\n- **Coverage history:** The US Congress Trading dataset tracks US Equity trades made by members of Congress in the Senate and House of Representatives. The data covers 1,800 US Equities, starts in January 2016, and is delivered on a daily frequency.\n\n## How to think about the comparison\n\nRather than one being universally \"better,\" the right tool depends on your needs. Across the landscape of STOCK Act trackers, the key differentiators tend to be:\n\n1. **Alert speed** — academic research on congressional trading alpha consistently finds that excess returns are concentrated in the days and weeks immediately following the actual",
+      "citedUrls": [
+        "https://www.bitget.com/wiki/politician-stock-tracker-app",
+        "https://www.quantvps.com/blog/quiver-quantitative-review",
+        "https://www.quiverquant.com/congresstrading/",
+        "https://www.quantconnect.com/data/quiver-quantitative-congress-trading",
+        "https://tradercongress.com/blog/free-congress-stock-trading-tracker",
+        "https://www.capitoltrades.com/",
+        "https://www.congress.gov/bill/119th-congress/house-bill/7008",
+        "https://www.insiderfinance.io/congress-trades",
+        "https://www.barchart.com/investing-ideas/politician-insider-trading",
+        "https://play.google.com/store/apps/details?id=com.maikotrindade.insiderwatcher&hl=en_US",
+        "https://www.govgreed.com/",
+        "https://www.congressstock.com/",
+        "https://www.quiverquant.com/",
+        "https://www.quiverquant.com/politicians/",
+        "https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/quiver-quantitative/us-congress-trading",
+        "https://www.quiverquant.com/congress-live-net-worth/",
+        "https://www.quiverquant.com/news/Here+are+the+Top+Stocks+That+Congress+has+Been+Buying+Lately",
+        "https://www.quiverquant.com/strategies/s/Congress%20Buys/",
+        "https://www.quiverquant.com/strategies/"
+      ],
+      "citedDomains": [
+        "bitget.com",
+        "quantvps.com",
+        "quiverquant.com",
+        "quantconnect.com",
+        "tradercongress.com",
+        "capitoltrades.com",
+        "congress.gov",
+        "insiderfinance.io",
+        "barchart.com",
+        "play.google.com",
+        "govgreed.com",
+        "congressstock.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.bitget.com/wiki/politician-stock-tracker-app",
+          "domain": "bitget.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quantvps.com/blog/quiver-quantitative-review",
+          "domain": "quantvps.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/congresstrading/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quantconnect.com/data/quiver-quantitative-congress-trading",
+          "domain": "quantconnect.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tradercongress.com/blog/free-congress-stock-trading-tracker",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.congress.gov/bill/119th-congress/house-bill/7008",
+          "domain": "congress.gov",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.insiderfinance.io/congress-trades",
+          "domain": "insiderfinance.io",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.barchart.com/investing-ideas/politician-insider-trading",
+          "domain": "barchart.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://play.google.com/store/apps/details?id=com.maikotrindade.insiderwatcher&hl=en_US",
+          "domain": "play.google.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.govgreed.com/",
+          "domain": "govgreed.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.congressstock.com/",
+          "domain": "congressstock.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/politicians/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/quiver-quantitative/us-congress-trading",
+          "domain": "quantconnect.com",
+          "sourceFormat": "vendor_docs",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/congress-live-net-worth/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/news/Here+are+the+Top+Stocks+That+Congress+has+Been+Buying+Lately",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/strategies/s/Congress%20Buys/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/strategies/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-03T03:01:40.104Z",
+      "visibilityScore": {
+        "brandMentioned": true,
+        "brandCited": false,
+        "mentionPosition": "top",
+        "competitorsMentioned": [
+          {
+            "name": "Quiver Quantitative",
+            "mentioned": true,
+            "mentionCount": 2,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 19,
+        "sourceStrength": "weak",
+        "score": 30
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-04"
+    },
+    {
+      "id": "competitor-comparison-should-i-use-insider-alpha-or-capitol-trades-for-congressional-trade-alerts-and-exports",
+      "prompt": "Should I use Insider Alpha or Capitol Trades for congressional trade alerts and exports?",
+      "promptGroup": "competitor_comparison",
+      "provider": "anthropic",
+      "answerText": "I'll research both platforms to help you compare them for congressional trade alerts and exports.I have good detail on Capitol Trades but I should clarify what \"Insider Alpha\" specifically refers to, since the search didn't surface that exact product. Let me check.Here's how the two stack up for your two priorities — alerts and exports.\n\n## Quick answer\n\nFor **congressional trade alerts plus data exports**, **Capitol Trades is not the strongest fit** — it's an excellent free browsing and research tool, but it isn't built around configurable alerts or CSV/API exports. If exports and alerts are your core requirement, you may actually want to look beyond both names.\n\nOne important caveat: **\"Insider Alpha\" isn't clearly identifiable as a current product** in available sources. There are several similarly named tools (InsiderFinance, Quiver Quantitative's \"Alpha\" metric, Stock Insider app, Barchart's \"Weighted Alpha\" column), so it's worth confirming exactly which product you mean. I'll cover what each platform actually offers below.\n\n## Capitol Trades — strong for browsing, weak for exports/alerts\n\n- It's a polished free tool. Capitol Trades is a free online platform that aggregates and tracks stock trades and other investment activities by members of the United States Congress, drawing from public financial disclosures.\n- Filtering is its standout strength. The filtering system is one of its strongest features for a free tool: you can filter by chamber, party, committee, state, asset type, transaction type, trade size, sector, and issuer country.\n- It covers a broad universe of members and asset types. It tracks approximately 200 politicians with financial disclosures, covers stocks, ETFs, mutual funds, options, crypto, and bonds, and has logged over $2.3 billion in trading volume across its database.\n- **The catch for your use case:** it stays at the raw-data layer. The core limitation is the same one that applies to all raw-data tools: Capitol Trades shows you the trade but not what it means. There is no committee context layered onto individual disclosures, no explanation of whether a specific trade timing is noteworthy given active legislation, and no insider significance scoring. Its own pages emphasize browsing and filtering rather than alert subscriptions or downloadable exports — you can track US politician trades for free and discover which stocks, assets, companies, and issuers politicians are buying or selling.\n\n## On \"Insider Alpha\"\n\nI couldn't find a definitive product by that exact name. The closest matches in the alerts/export space:\n\n- **InsiderFinance Congress Trading** offers what sounds like what you're describing. The top tools for monitoring Congress trading include InsiderFinance Congress Trading: real-time trade alerts and analysis. It also lets you analyze financial disclosures filed by lawmakers, with features including sector-specific insights to identify which industries are seeing the most activity, stock alerts to get notified when lawmakers make",
+      "citedUrls": [
+        "https://grokipedia.com/page/Capitol_Trades",
+        "https://kapitol.ai/best-congress-stock-trackers",
+        "https://www.capitoltrades.com/trades",
+        "https://www.insiderfinance.io/congress-trades",
+        "https://apps.apple.com/us/app/stock-insider-congress-trades/id6737145743",
+        "https://www.capitoltrades.com/",
+        "https://apps.apple.com/us/app/stock-insider-track-trades/id6737145743",
+        "https://www.quiverquant.com/congresstrading/",
+        "https://www.barchart.com/investing-ideas/politician-insider-trading",
+        "https://unusualwhales.com/politics",
+        "https://play.google.com/store/apps/details?id=com.maikotrindade.insiderwatcher&hl=en_US",
+        "https://pelositracker.app/",
+        "https://www.capitoltrades.com/politicians",
+        "https://www.nber.org/papers/w35041",
+        "https://www.capitoltrades.com/articles",
+        "https://play.google.com/store/apps/details?id=com.maikotrindade.insiderwatcher",
+        "https://www.capitolexposed.com/",
+        "https://unusualwhales.com/congress-trading-report-2025",
+        "https://www.bitget.com/wiki/how-to-track-congress-stock-trades",
+        "https://www.quiverquant.com/insiders/",
+        "https://site.financialmodelingprep.com/datasets/ownership-senate-insider"
+      ],
+      "citedDomains": [
+        "grokipedia.com",
+        "kapitol.ai",
+        "capitoltrades.com",
+        "insiderfinance.io",
+        "apps.apple.com",
+        "quiverquant.com",
+        "barchart.com",
+        "unusualwhales.com",
+        "play.google.com",
+        "pelositracker.app",
+        "nber.org",
+        "capitolexposed.com",
+        "bitget.com",
+        "site.financialmodelingprep.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://grokipedia.com/page/Capitol_Trades",
+          "domain": "grokipedia.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://kapitol.ai/best-congress-stock-trackers",
+          "domain": "kapitol.ai",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.capitoltrades.com/trades",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.insiderfinance.io/congress-trades",
+          "domain": "insiderfinance.io",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.apple.com/us/app/stock-insider-congress-trades/id6737145743",
+          "domain": "apps.apple.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.apple.com/us/app/stock-insider-track-trades/id6737145743",
+          "domain": "apps.apple.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/congresstrading/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.barchart.com/investing-ideas/politician-insider-trading",
+          "domain": "barchart.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://unusualwhales.com/politics",
+          "domain": "unusualwhales.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://play.google.com/store/apps/details?id=com.maikotrindade.insiderwatcher&hl=en_US",
+          "domain": "play.google.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://pelositracker.app/",
+          "domain": "pelositracker.app",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/politicians",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.nber.org/papers/w35041",
+          "domain": "nber.org",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/articles",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://play.google.com/store/apps/details?id=com.maikotrindade.insiderwatcher",
+          "domain": "play.google.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitolexposed.com/",
+          "domain": "capitolexposed.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://unusualwhales.com/congress-trading-report-2025",
+          "domain": "unusualwhales.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.bitget.com/wiki/how-to-track-congress-stock-trades",
+          "domain": "bitget.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/insiders/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://site.financialmodelingprep.com/datasets/ownership-senate-insider",
+          "domain": "site.financialmodelingprep.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-03T03:01:40.104Z",
+      "visibilityScore": {
+        "brandMentioned": true,
+        "brandCited": false,
+        "mentionPosition": "top",
+        "competitorsMentioned": [
+          {
+            "name": "Quiver Quantitative",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Capitol Trades",
+            "mentioned": true,
+            "mentionCount": 5,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 21,
+        "sourceStrength": "medium",
+        "score": 25
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-04"
+    },
+    {
+      "id": "high-intent-purchase-what-s-the-best-platform-to-sign-up-for-if-i-want-real-time-alerts-on-congressional-stock-trades",
+      "prompt": "What’s the best platform to sign up for if I want real-time alerts on congressional stock trades?",
+      "promptGroup": "high_intent_purchase",
+      "provider": "anthropic",
+      "answerText": "I'll search for current information on platforms that track congressional stock trades.There's no single \"best\" — it depends on whether you want raw speed, deep analytics, mobile push notifications, or a free option. Here's how the leading platforms stack up for real-time alerts on congressional trades:\n\n## Top picks for real-time alerts\n\n**Unusual Whales** — One of the fastest and most polished. Trades are processed within 24 to 48 hours of appearing in the official government portals, which is faster than most competitors, and the politics section allows filtering by politician or ticker with clean visual output. It lets you track unusual House, Senate, and SCOTUS investing, as well as corporate lobbying, for free. Premium runs around $48/month.\n\n**TraderCongress** — The most comprehensive if you want context, not just trade data. It's the only platform that combines six data sources in a single dashboard: congressional trades (STOCK Act), SEC insider filings (Form 4), government contracts, lobbying activity, dark pool/off-exchange data, and federal spending — with data syncing every 30 minutes. There's a free tier, though it comes with a 30-day data delay.\n\n**InsiderFinance** — Built around real-time alerting. It provides real-time analysis of financial disclosures filed by lawmakers, with sector-specific insights, stock alerts that notify you when lawmakers make high-value trades, and performance metrics to compare lawmakers' trades with your portfolio.\n\n## Best mobile apps (push notifications)\n\nIf you specifically want phone alerts:\n\n- **Capitol Gains** (iOS) — AI-powered notable trade detection, lobbying context, and real-time alerts. You can browse the live trade feed for free and unlock AI insights and full history with Pro. Its AI flags trades that deserve a closer look — like when a committee member trades in a sector they directly oversee.\n\n- **Stock Insider** (iOS) — Offers real-time push alerts on new filings and policy events, an AI-powered stock screener, a portfolio tracker, and custom watchlists with smart notification filters. It also recently added a feature that lets you upload a custom watchlist of tickers and get alerted whenever there's congressional trading activity on those stocks.\n\n## Best free option\n\n**Capitol Trades** — Clean and purpose-built. It has the cleanest interface, requires no sign-up, and is purpose-built for this exact use case. It's great for browsing but is more of a viewer than an alert engine.\n\n## For research/backtesting\n\n**Quiver Quantitative** — Str",
+      "citedUrls": [
+        "https://kapitol.ai/best-congress-stock-trackers",
+        "https://unusualwhales.com/politics",
+        "https://tradercongress.com/blog/how-to-track-congressional-stock-trades",
+        "https://www.insiderfinance.io/congress-trades",
+        "https://www.capitolgainsapp.com/",
+        "https://apps.apple.com/us/app/stock-insider-congress-trades/id6737145743",
+        "https://meridianfin.io/knowledge/best-congress-stock-trackers-2026",
+        "https://www.capitoltrades.com/trades",
+        "https://pelositracker.app/",
+        "https://apps.apple.com/us/app/wolf-of-washington/id6744653240",
+        "https://apps.apple.com/us/app/capitol-gains-stock-tracker/id6760779864",
+        "https://www.capitoltrades.com/",
+        "https://tradercongress.com/",
+        "https://tradercongress.com/blog/best-congress-stock-trading-trackers",
+        "https://www.quiverquant.com/congresstrading/",
+        "https://www.quiverquant.com/"
+      ],
+      "citedDomains": [
+        "kapitol.ai",
+        "unusualwhales.com",
+        "tradercongress.com",
+        "insiderfinance.io",
+        "capitolgainsapp.com",
+        "apps.apple.com",
+        "meridianfin.io",
+        "capitoltrades.com",
+        "pelositracker.app",
+        "quiverquant.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://kapitol.ai/best-congress-stock-trackers",
+          "domain": "kapitol.ai",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://unusualwhales.com/politics",
+          "domain": "unusualwhales.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tradercongress.com/blog/how-to-track-congressional-stock-trades",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.insiderfinance.io/congress-trades",
+          "domain": "insiderfinance.io",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitolgainsapp.com/",
+          "domain": "capitolgainsapp.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.apple.com/us/app/stock-insider-congress-trades/id6737145743",
+          "domain": "apps.apple.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://meridianfin.io/knowledge/best-congress-stock-trackers-2026",
+          "domain": "meridianfin.io",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.capitoltrades.com/trades",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://pelositracker.app/",
+          "domain": "pelositracker.app",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.apple.com/us/app/wolf-of-washington/id6744653240",
+          "domain": "apps.apple.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.apple.com/us/app/capitol-gains-stock-tracker/id6760779864",
+          "domain": "apps.apple.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tradercongress.com/",
+          "domain": "tradercongress.com",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tradercongress.com/blog/best-congress-stock-trading-trackers",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.quiverquant.com/congresstrading/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-03T03:01:40.104Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Quiver Quantitative",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Capitol Trades",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 16,
+        "sourceStrength": "medium",
+        "score": 0
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-04"
+    },
+    {
+      "id": "high-intent-purchase-which-congressional-stock-trade-data-platform-should-i-choose-for-searchable-filings-alerts-and-csv-exports",
+      "prompt": "Which congressional stock trade data platform should I choose for searchable filings, alerts, and CSV exports?",
+      "promptGroup": "high_intent_purchase",
+      "provider": "anthropic",
+      "answerText": "I'll research the current options for congressional stock trade tracking platforms with those specific features.Based on my research, here's a breakdown of the leading congressional stock trade platforms that specifically address your three requirements—searchable filings, alerts, and CSV exports.\n\n## Top picks for all three features (search + alerts + CSV)\n\n**CapitolExposed** is one of the strongest all-in-one fits. It lets you search members, compare companies, trace committee ties, export records, and move from a filing to the documents behind it. It offers REST API, CSV exports, and embeddable Web Components, and it's checked for new filings every 15 minutes. Notably, it's positioned as a free forever public-interest project with no paywall, which makes it attractive if budget is a concern.\n\n**Barchart** is a solid choice if you want robust, granular CSV control. It offers strong search and filtering—you can view all trades for the last 60 days with the option to select a different date range, choose from Buy or Sell transactions only and different transaction sizes—plus a dedicated name search where a \"Search by Politician Name\" button lets you search for a specific name in the database, with last name required and first name optional. On exports, free members are limited to 1 site download per day, Barchart Plus members have 10 downloads per day, while Barchart Premier members may download up to 250 .csv files per day. The tradeoff: it's tiered, so meaningful CSV volume requires a paid plan.\n\n**Pelosi Tracker** bundles all three in its Pro tier, which includes disclosure filing alerts, personalised watchlists, advanced analytics and excess returns, export data to CSV, and priority notifications (email, push, Discord).\n\n## Other strong options worth considering\n\n**TraderCongress** emphasizes breadth, combining congressional trades with several other datasets. It offers 6 integrated data sources: congressional trades, government contracts (USASpending.gov), lobbying disclosures, dark pool/off-exchange data, corporate insider trades, and federal agency spending, and syncs frequently—syncing with official disclosure databases every 30 minutes to surface new filings as soon as they appear. It has a free tier with ticker-level search, though note the source is the platform's own creator, so the comparison is self-authored.\n\n**Capitol Trades** is the go-to free option for clean searchable browsing. You can track US politician trades for free and discover which stocks, assets, companies, or issuers politicians are buying or selling. However, it's lighter on built-in alerts and CSV export compared",
+      "citedUrls": [
+        "https://www.capitolexposed.com/",
+        "https://www.barchart.com/investing-ideas/politician-insider-trading",
+        "https://pelositracker.app/",
+        "https://tradercongress.com/blog/best-congress-stock-trading-trackers",
+        "https://tradercongress.com/blog/how-to-track-congressional-stock-trades",
+        "https://www.capitoltrades.com/trades",
+        "https://www.insiderfinance.io/congress-trades",
+        "https://apify.com/ryanclinton/congress-stock-tracker",
+        "https://www.quiverquant.com/congresstrading/",
+        "https://www.capitoltrades.com/",
+        "https://www.bitget.com/wiki/how-to-track-congress-stock-trades",
+        "https://finnhub.io/docs/api/congressional-trading",
+        "https://tradercongress.com/blog/free-congress-stock-trading-tracker",
+        "https://www.lambdafin.com/articles/capitol-trades-api",
+        "https://site.financialmodelingprep.com/datasets/ownership-senate-insider",
+        "https://politicalstocks.eu/"
+      ],
+      "citedDomains": [
+        "capitolexposed.com",
+        "barchart.com",
+        "pelositracker.app",
+        "tradercongress.com",
+        "capitoltrades.com",
+        "insiderfinance.io",
+        "apify.com",
+        "quiverquant.com",
+        "bitget.com",
+        "finnhub.io",
+        "lambdafin.com",
+        "site.financialmodelingprep.com",
+        "politicalstocks.eu"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.capitolexposed.com/",
+          "domain": "capitolexposed.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.barchart.com/investing-ideas/politician-insider-trading",
+          "domain": "barchart.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://pelositracker.app/",
+          "domain": "pelositracker.app",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tradercongress.com/blog/best-congress-stock-trading-trackers",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://tradercongress.com/blog/how-to-track-congressional-stock-trades",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/trades",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.insiderfinance.io/congress-trades",
+          "domain": "insiderfinance.io",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apify.com/ryanclinton/congress-stock-tracker",
+          "domain": "apify.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/congresstrading/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.bitget.com/wiki/how-to-track-congress-stock-trades",
+          "domain": "bitget.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://finnhub.io/docs/api/congressional-trading",
+          "domain": "finnhub.io",
+          "sourceFormat": "vendor_docs",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tradercongress.com/blog/free-congress-stock-trading-tracker",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.lambdafin.com/articles/capitol-trades-api",
+          "domain": "lambdafin.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://site.financialmodelingprep.com/datasets/ownership-senate-insider",
+          "domain": "site.financialmodelingprep.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://politicalstocks.eu/",
+          "domain": "politicalstocks.eu",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-03T03:01:40.104Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Capitol Trades",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 16,
+        "sourceStrength": "medium",
+        "score": 0
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-04"
+    },
+    {
+      "id": "category-search-what-are-the-best-congressional-stock-trade-data-platforms-for-traders-and-researchers",
+      "prompt": "What are the best congressional stock trade data platforms for traders and researchers?",
+      "promptGroup": "category_search",
+      "provider": "anthropic",
+      "answerText": "I'll research the current landscape of congressional stock trade tracking platforms for you.Based on current sources, here's an overview of the best congressional stock trade data platforms, organized by use case.\n\n## For Traders (browsing & alerts)\n\n**Capitol Trades** — The go-to free option. It lets you track US politician trades for free and discover which stocks, assets, companies, and issuers politicians are buying or selling. It's frequently praised for having the cleanest interface, no sign-up required, and being purpose-built for this exact use case.\n\n**Unusual Whales** — Best for traders who also follow options flow. It tracks unusual House, Senate, and SCOTUS investing plus corporate lobbying for free, positioning itself as a place to see everything across finance, politics, and investing. On data speed, trades are processed within 24 to 48 hours of appearing in the official government portals, which is faster than most competitors, and the politics section allows filtering by politician or ticker with clean visual output. The firm also runs the **NANC** and **KRUZ** ETFs for passive exposure — NANC replicates the stock holdings of Democratic members of Congress and rebalances quarterly based on the latest STOCK Act disclosures, while KRUZ replicates Republican congressional holdings using the same methodology.\n\n**InsiderFinance** — Geared toward active traders wanting real-time alerts. It provides real-time analysis of financial disclosures filed by lawmakers, with sector-specific insights, stock alerts when lawmakers make high-value trades, and performance metrics to compare lawmakers' trades with your portfolio.\n\n## For Researchers & Quants\n\n**Quiver Quantitative** — Strong choice for analytical and backtesting work. It downloads disclosures filed within 45 days of a transaction under the STOCK Act, parses them for stock trades, fetches the stock's subsequent performance, and calculates each politician's cumulative return. Its premium tier is research-oriented: at $25/month or $300/year it unlocks a congress trading backtester to simulate historical strategies, a stock screener filtered by congressional activity, and politician portfolio tracking with leaderboards — making it the only platform that easily lets you test whether mirroring, say, Armed Services Committee members outperforms a broader congressional basket. For developers, the API has separate pricing, starting at $10/month for the Hobbyist tier and $75/month for the Trader tier. In API evaluations, Quiver aggregates congressional trades",
+      "citedUrls": [
+        "https://www.capitoltrades.com/trades",
+        "https://meridianfin.io/knowledge/best-congress-stock-trackers-2026",
+        "https://unusualwhales.com/politics",
+        "https://kapitol.ai/best-congress-stock-trackers",
+        "https://tradercongress.com/blog/how-to-track-congressional-stock-trades",
+        "https://www.insiderfinance.io/congress-trades",
+        "https://www.quiverquant.com/congresstrading/",
+        "https://www.lambdafin.com/articles/capitol-trades-api",
+        "https://tradercongress.com/blog/best-congress-stock-trading-trackers",
+        "https://www.capitoltrades.com/",
+        "https://www.quiverquant.com/",
+        "https://apify.com/johnvc/us-congress-financial-disclosures-and-stock-trading-data",
+        "https://github.com/johnisanerd/Apify-Congressional-Trading-Data-Scraper",
+        "https://www.politiciantradetracker.us/",
+        "https://finbrain.tech/datasets/house-trades/",
+        "https://site.financialmodelingprep.com/datasets/ownership-senate-insider",
+        "https://apify.com/ryanclinton/congress-stock-tracker/api"
+      ],
+      "citedDomains": [
+        "capitoltrades.com",
+        "meridianfin.io",
+        "unusualwhales.com",
+        "kapitol.ai",
+        "tradercongress.com",
+        "insiderfinance.io",
+        "quiverquant.com",
+        "lambdafin.com",
+        "apify.com",
+        "github.com",
+        "politiciantradetracker.us",
+        "finbrain.tech",
+        "site.financialmodelingprep.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.capitoltrades.com/trades",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://meridianfin.io/knowledge/best-congress-stock-trackers-2026",
+          "domain": "meridianfin.io",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://unusualwhales.com/politics",
+          "domain": "unusualwhales.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://kapitol.ai/best-congress-stock-trackers",
+          "domain": "kapitol.ai",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://tradercongress.com/blog/how-to-track-congressional-stock-trades",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.insiderfinance.io/congress-trades",
+          "domain": "insiderfinance.io",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/congresstrading/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.lambdafin.com/articles/capitol-trades-api",
+          "domain": "lambdafin.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tradercongress.com/blog/best-congress-stock-trading-trackers",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.capitoltrades.com/",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apify.com/johnvc/us-congress-financial-disclosures-and-stock-trading-data",
+          "domain": "apify.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://github.com/johnisanerd/Apify-Congressional-Trading-Data-Scraper",
+          "domain": "github.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.politiciantradetracker.us/",
+          "domain": "politiciantradetracker.us",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://finbrain.tech/datasets/house-trades/",
+          "domain": "finbrain.tech",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://site.financialmodelingprep.com/datasets/ownership-senate-insider",
+          "domain": "site.financialmodelingprep.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apify.com/ryanclinton/congress-stock-tracker/api",
+          "domain": "apify.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-03T03:01:40.104Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Quiver Quantitative",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Capitol Trades",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 17,
+        "sourceStrength": "medium",
+        "score": 0
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-04"
+    },
+    {
+      "id": "category-search-which-platforms-let-me-search-congressional-trades-by-filer-or-ticker",
+      "prompt": "Which platforms let me search congressional trades by filer or ticker?",
+      "promptGroup": "category_search",
+      "provider": "anthropic",
+      "answerText": "I'll search for current platforms that let you track congressional stock trades.Several platforms let you search congressional trades by filer (member) and/or ticker. Here are the main options:\n\n## Free Platforms\n\n**Capitol Trades** — One of the most popular free trackers. It lets you track US politician trades for free and discover which stocks, assets, companies, and issuers politicians are buying or selling. You can filter by Senate or House, party, committee, and state to see \"what's trading\" on Capitol Hill.\n\n**Unusual Whales** — Lets you track unusual House, Senate, and SCOTUS investing, and corporate lobbying for free, as well as deep dive into the most unusual trading and political deals. This is also the data provider behind the NANC and GOP congressional-trading ETFs.\n\n**CongressStocks** — Lets you browse and filter every disclosed transaction, search by member, ticker, side, or chamber, and view trading volume over time for any ticker with monthly buy/sell activity breakdowns. You can also pick any senator or representative and see their full trading history vs. the S&P 500.\n\n**CongressFlow** — Tracks every stock trade made by members of Congress, showing what politicians are buying and selling, filing delays, and returns since the trade — free and updated daily.\n\n## Freemium / Paid Platforms\n\n**Quiver Quantitative** — One of the best-known trackers. It lets you track stock trading activity by members of U.S. Congress, view recent trades, search by politician or stock, and see the most active traders in the Senate and House. Basic access is free, while advanced features cost $10 to $75 per month.\n\n**TraderCongress** — Offers broad filtering. You can search by ticker, representative name, party (D/R/I), chamber, transaction type (Purchase/Sale/Exchange), and date, and see which representatives are buying tickers like MSFT, AAPL, AMZN, NVDA, and GOOGL. It starts free, with an upgrade for real-time data and advanced features.\n\n**InsiderFinance** — Tracks politicians and capitol trades plus portfolios for U.S. senators and House representatives, as soon as they are reported. It also offers sector-specific insights and stock alerts.\n\n**Kapitol.ai** — All trade data comes from official Congressional financial disclosures filed under the STOCK Act; it aggregates filings from both the House and Senate,",
+      "citedUrls": [
+        "https://www.capitoltrades.com/trades",
+        "https://www.capitoltrades.com/politicians",
+        "https://unusualwhales.com/politics",
+        "https://congresstocks.com/",
+        "https://congressflow.com/",
+        "https://www.quiverquant.com/congresstrading/",
+        "https://govfacts.org/accountability-ethics/ethics-conflicts-of-interest/stock-trading-by-officials/how-you-can-see-your-congresspersons-stock-trades/",
+        "https://tradercongress.com/",
+        "https://www.insiderfinance.io/congress-trades",
+        "https://kapitol.ai/",
+        "https://apify.com/ryanclinton/congress-stock-tracker",
+        "https://www.capitoltrades.com/",
+        "https://www.morningstar.com/funds/2-etfs-that-track-congressional-stock-trades"
+      ],
+      "citedDomains": [
+        "capitoltrades.com",
+        "unusualwhales.com",
+        "congresstocks.com",
+        "congressflow.com",
+        "quiverquant.com",
+        "govfacts.org",
+        "tradercongress.com",
+        "insiderfinance.io",
+        "kapitol.ai",
+        "apify.com",
+        "morningstar.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.capitoltrades.com/trades",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/politicians",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://unusualwhales.com/politics",
+          "domain": "unusualwhales.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://congresstocks.com/",
+          "domain": "congresstocks.com",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://congressflow.com/",
+          "domain": "congressflow.com",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/congresstrading/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://govfacts.org/accountability-ethics/ethics-conflicts-of-interest/stock-trading-by-officials/how-you-can-see-your-congresspersons-stock-trades/",
+          "domain": "govfacts.org",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tradercongress.com/",
+          "domain": "tradercongress.com",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.insiderfinance.io/congress-trades",
+          "domain": "insiderfinance.io",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://kapitol.ai/",
+          "domain": "kapitol.ai",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apify.com/ryanclinton/congress-stock-tracker",
+          "domain": "apify.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.morningstar.com/funds/2-etfs-that-track-congressional-stock-trades",
+          "domain": "morningstar.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-03T03:01:40.104Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Quiver Quantitative",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Capitol Trades",
+            "mentioned": true,
+            "mentionCount": 2,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 13,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-04"
+    },
+    {
+      "id": "integration-use-case-which-congressional-stock-trade-data-platforms-are-best-for-filer-analysis-and-alert-workflows",
+      "prompt": "Which congressional stock trade data platforms are best for filer analysis and alert workflows?",
+      "promptGroup": "integration_use_case",
+      "provider": "anthropic",
+      "answerText": "I'll research the current landscape of congressional stock trade tracking platforms to give you accurate recommendations.Based on current sources, here's a rundown of the best congressional stock trade platforms specifically for **filer (member) analysis** and **alert workflows** — the two needs you mentioned.\n\n## Best for filer/member analysis\n\n**Capitol Trades** — The strongest free option for clean filer-level browsing. You can filter by Senate or House, Party, Committee, and State to get detailed information about what's trading on Capitol Hill. It's widely regarded as focusing on one thing and doing it well: presenting congressional stock trading data in a clean, simple, easy-to-understand way — a great entry point for anyone curious about what politicians are trading. The interface is intuitive with clear dashboards, letting you filter by politician, party, or chamber and view detailed transaction histories for each member.\n\n**Quiver Quantitative** — Best for deep, cross-referenced research and API access. They download disclosures, parse them for stock trades, fetch the stock's performance following the transaction, and calculate each politician's cumulative return, with a Politician Stock Portfolio Leaderboard. Beyond trades, Quiver also tracks corporate lobbying efforts, government contracts, and even social-media stock mentions, letting you see a broader picture of a company's political and social influence. The tradeoff: the platform can be overwhelming for beginners, and with so much information it can be difficult to know where to focus without a clear strategy.\n\n**CongressStocks** — Good for member-vs-benchmark portfolio analysis. You can pick any senator or representative and see their full trading history vs. the S&P 500, with ranked returns for every member of Congress, filterable by period and chamber to find who beats the market.\n\n## Best for alert workflows\n\n**Kapitol.ai** — Built around scored, filtered email alerts rather than raw feeds. Their system monitors all 535 Congress members, both House and Senate, and automatically pulls every new filing the moment it's published, so no trade slips through the cracks. Importantly for workflow signal-to-noise, they score each trade based on committee positions, trade size, timing, and sector relevance — only trades with real insider signal make it to your feed, complete with context. Once a new disclosure is published, it goes through scoring, context analysis, and quality review, then you receive an email alert — most trades are published within hours of the original filing.\n\n**Capitol Gains** — A native iOS option combining AI sco",
+      "citedUrls": [
+        "https://www.capitoltrades.com/politicians",
+        "https://intellectia.ai/blog/best-congress-stock-tracker",
+        "https://www.quiverquant.com/congresstrading/",
+        "https://congresstocks.com/",
+        "https://kapitol.ai/",
+        "https://www.capitoltrades.com/trades",
+        "https://www.capitoltrades.com/",
+        "https://tradercongress.com/blog/best-congress-stock-trading-trackers",
+        "https://us.trendlyne.com/us/politicians/recent-trades/",
+        "https://pelositracker.app/",
+        "https://www.insiderfinance.io/congress-trades",
+        "https://tradercongress.com/blog/free-congress-stock-trading-tracker",
+        "https://tradercongress.com/blog/how-to-track-congressional-stock-trades",
+        "https://www.barchart.com/investing-ideas/politician-insider-trading",
+        "https://unusualwhales.com/politics",
+        "https://www.capitolgainsapp.com/",
+        "https://www.benzinga.com/government-trades"
+      ],
+      "citedDomains": [
+        "capitoltrades.com",
+        "intellectia.ai",
+        "quiverquant.com",
+        "congresstocks.com",
+        "kapitol.ai",
+        "tradercongress.com",
+        "us.trendlyne.com",
+        "pelositracker.app",
+        "insiderfinance.io",
+        "barchart.com",
+        "unusualwhales.com",
+        "capitolgainsapp.com",
+        "benzinga.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.capitoltrades.com/politicians",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://intellectia.ai/blog/best-congress-stock-tracker",
+          "domain": "intellectia.ai",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.quiverquant.com/congresstrading/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://congresstocks.com/",
+          "domain": "congresstocks.com",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://kapitol.ai/",
+          "domain": "kapitol.ai",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/trades",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tradercongress.com/blog/best-congress-stock-trading-trackers",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://us.trendlyne.com/us/politicians/recent-trades/",
+          "domain": "us.trendlyne.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://pelositracker.app/",
+          "domain": "pelositracker.app",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.insiderfinance.io/congress-trades",
+          "domain": "insiderfinance.io",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tradercongress.com/blog/free-congress-stock-trading-tracker",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://tradercongress.com/blog/how-to-track-congressional-stock-trades",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.barchart.com/investing-ideas/politician-insider-trading",
+          "domain": "barchart.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://unusualwhales.com/politics",
+          "domain": "unusualwhales.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitolgainsapp.com/",
+          "domain": "capitolgainsapp.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.benzinga.com/government-trades",
+          "domain": "benzinga.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-03T03:01:40.104Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Quiver Quantitative",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Capitol Trades",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 17,
+        "sourceStrength": "medium",
+        "score": 0
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-04"
+    },
+    {
+      "id": "solution-aware-can-a-political-trading-data-platform-send-real-time-alerts-when-a-member-of-congress-reports-a-trade",
+      "prompt": "Can a political trading data platform send real-time alerts when a member of Congress reports a trade?",
+      "promptGroup": "solution_aware",
+      "provider": "anthropic",
+      "answerText": "I'll search for current information on this topic.Yes — this is one of the core features of modern political trading data platforms. Several services are built specifically to alert you when a member of Congress files a trade disclosure. Here's how it works and what the leading options offer.\n\n## The legal basis\n\nThese alerts are possible because of a federal disclosure law. The Stock Trading on Congressional Knowledge (STOCK) Act requires U.S. Senators and Representatives to publicly file and disclose any financial transaction within 45 days of its occurrence. Platforms monitor these public filings and push them to subscribers. Trades are sourced from official congressional disclosures: the U.S. House Clerk's Financial Disclosure portal and the Senate Office of Public Records' Electronic Filing system.\n\nOne important nuance: \"real-time\" refers to the **filing**, not the trade itself. Because members have up to 45 days to report, alerts notify you the moment a disclosure is published, but the underlying trade may be weeks old.\n\n## Platforms that offer trade-report alerts\n\n**Congress Trade Alerts** offers tiered notification speeds. Its Pro plan ($5/mo or $48/yr) provides a real-time feed with no delay, personal alerts via email, Telegram, Discord, and push, plus watchlist rules with min-amount and buy/sell filters. The Trader plan ($25/mo) adds sub-60-second alerts and full API access.\n\n**Capitol Gains** is a native iOS app with AI-driven detection. You can bookmark members to track and get push notifications when they trade, when notable transactions are detected, or when large trades hit. Its AI parses raw PDF filings, resolves tickers, maps committee assignments, and scores each trade for significance in real time.\n\n**PoliTrackr** is a focused, email-based alerting tool. It's purely a monitoring and alert app that tracks stock trades disclosed by U.S. Congress members, automatically monitoring new filings and sending an email summary when tracked members disclose a stock purchase or sale. Note its cadence: data is updated daily, and you'll receive a maximum of one email per day regardless of how many members you track or how many disclosures they make.\n\n**The Insiders Lab** emphasizes filtering and validation. It provides real-time Congress trading alerts from House and Senate disclosures, lets you see alerts by member, ticker, direction and size, and allows filtering by chamber, member, ticker, direction, size and time windows.\n\n**Pelosi Tracker Pro** added alerts in a recent update. ",
+      "citedUrls": [
+        "https://www.quiverquant.com/congresstrading/",
+        "http://congresstradealerts.com/",
+        "https://www.capitolgainsapp.com/",
+        "https://politrackr.com/",
+        "https://theinsiderslab.com/en/congress-alerts",
+        "https://www.insiderfinance.io/congress-trades",
+        "https://www.capitoltrades.com/",
+        "https://kapitol.ai/",
+        "https://apps.apple.com/us/app/stock-insider-congress-trades/id6737145743",
+        "https://unusualwhales.com/lp/congressional-trade-alerts-subscription",
+        "https://hillsignals.com/tracker",
+        "https://pelositracker.app/articles/introducing-pelosi-tracker-pro",
+        "https://www.capitoltrades.com/trades",
+        "https://pelositracker.app/",
+        "https://apps.apple.com/us/app/wolf-of-washington/id6744653240"
+      ],
+      "citedDomains": [
+        "quiverquant.com",
+        "congresstradealerts.com",
+        "capitolgainsapp.com",
+        "politrackr.com",
+        "theinsiderslab.com",
+        "insiderfinance.io",
+        "capitoltrades.com",
+        "kapitol.ai",
+        "apps.apple.com",
+        "unusualwhales.com",
+        "hillsignals.com",
+        "pelositracker.app"
+      ],
+      "citedSources": [
+        {
+          "url": "https://www.quiverquant.com/congresstrading/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "http://congresstradealerts.com/",
+          "domain": "congresstradealerts.com",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitolgainsapp.com/",
+          "domain": "capitolgainsapp.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://politrackr.com/",
+          "domain": "politrackr.com",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://theinsiderslab.com/en/congress-alerts",
+          "domain": "theinsiderslab.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.insiderfinance.io/congress-trades",
+          "domain": "insiderfinance.io",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://kapitol.ai/",
+          "domain": "kapitol.ai",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.apple.com/us/app/stock-insider-congress-trades/id6737145743",
+          "domain": "apps.apple.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://unusualwhales.com/lp/congressional-trade-alerts-subscription",
+          "domain": "unusualwhales.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://hillsignals.com/tracker",
+          "domain": "hillsignals.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://pelositracker.app/articles/introducing-pelosi-tracker-pro",
+          "domain": "pelositracker.app",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/trades",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://pelositracker.app/",
+          "domain": "pelositracker.app",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://apps.apple.com/us/app/wolf-of-washington/id6744653240",
+          "domain": "apps.apple.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-03T03:01:40.104Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 15,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-04"
+    },
+    {
+      "id": "problem-aware-what-s-the-best-way-to-track-stock-act-disclosures-without-manually-checking-filings-every-day",
+      "prompt": "What’s the best way to track STOCK Act disclosures without manually checking filings every day?",
+      "promptGroup": "problem_aware",
+      "provider": "anthropic",
+      "answerText": "I'll search for current tools and services that track STOCK Act disclosures automatically.The best way to avoid manually checking filings is to use an automated tracker that ingests the official House and Senate disclosures and sends you alerts. Here's how to think about your options.\n\n## First, understand why automation matters\n\nManually tracking these trades is genuinely painful because checking congressional stock trades means looking at two completely different government systems — the House Clerk Financial Disclosure portal and the Senate EFD search system — each with its own interface, data format, and quirks. Good third-party tools consolidate both feeds into one place and notify you automatically.\n\nOne thing worth setting expectations on: no tool can give you truly \"real-time\" trades, because the STOCK Act gives members up to 45 days from the date of the trade to file their disclosure, and in practice, many members file closer to the deadline, and some file late. The realistic window from trade execution to public visibility is anywhere from a few days to eight or nine weeks, and no tool can close this structural delay because it is written into the law.\n\n## Tools with automated alerts (so you stop checking manually)\n\n**Free options:**\n- **Capitol Trades** — widely regarded as the best free option for browsing. It's an excellent starting point for anyone new to congressional trading data — if you just want to browse filings and don't need context or alerts, it's hard to beat for the price.\n- **House/Senate Stock Watcher** — lightweight projects that pull straight from the government portals. Both tools update daily and provide email or notification alerts when new filings are uploaded.\n- **Quiver Quantitative** — has a free tier and a programmatic API. It is the most data-complete tool with both a consumer web interface and a full programmatic API, and the free tier is genuinely functional: it provides live access to congressional trading data, government contracts, lobbying data, and social trends.\n\n**Alert-focused / paid options:**\n- **InsiderFinance** — built around notifications. You can get notified when lawmakers make high-value trades, along with sector-specific insights and performance metrics.\n- **Pelosi Tracker (pelositracker.app)** — offers notifications when new congressional financial disclosures are filed, with a Pro tier adding disclosure filing alerts, personalised watchlists, advanced analytics, CSV export, and priority notifications via email, push, and Discord.\n- **Signal Congress** — focuses on filtering out noise. It ingests every STOCK Act disclosure daily from the House Clerk and Senate Ethics Committee, shows every filed trade in real time, and surfaces the highest-convi",
+      "citedUrls": [
+        "https://apify.com/ryanclinton/congress-stock-tracker",
+        "https://kapitol.ai/best-congress-stock-trackers",
+        "https://tradercongress.com/blog/best-congress-stock-trading-trackers",
+        "https://www.insiderfinance.io/congress-trades",
+        "https://pelositracker.app/",
+        "https://www.signalcongress.com/",
+        "https://www.congressstock.com/",
+        "https://www.quiverquant.com/congresstrading/",
+        "https://congresstocks.com/",
+        "https://www.stockactwatch.com/",
+        "https://www.capitoltrades.com/",
+        "https://trendspider.com/markets/congress-trading/",
+        "https://us.trendlyne.com/us/politicians/recent-trades/",
+        "https://www.capitoltrades.com/trades",
+        "https://www.capitoltrades.com/politicians",
+        "https://www.barchart.com/investing-ideas/politician-insider-trading"
+      ],
+      "citedDomains": [
+        "apify.com",
+        "kapitol.ai",
+        "tradercongress.com",
+        "insiderfinance.io",
+        "pelositracker.app",
+        "signalcongress.com",
+        "congressstock.com",
+        "quiverquant.com",
+        "congresstocks.com",
+        "stockactwatch.com",
+        "capitoltrades.com",
+        "trendspider.com",
+        "us.trendlyne.com",
+        "barchart.com"
+      ],
+      "citedSources": [
+        {
+          "url": "https://apify.com/ryanclinton/congress-stock-tracker",
+          "domain": "apify.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://kapitol.ai/best-congress-stock-trackers",
+          "domain": "kapitol.ai",
+          "sourceFormat": "listicle",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://tradercongress.com/blog/best-congress-stock-trading-trackers",
+          "domain": "tradercongress.com",
+          "sourceFormat": "blog_guide",
+          "citationQuality": "affiliate_seo"
+        },
+        {
+          "url": "https://www.insiderfinance.io/congress-trades",
+          "domain": "insiderfinance.io",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://pelositracker.app/",
+          "domain": "pelositracker.app",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.signalcongress.com/",
+          "domain": "signalcongress.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.congressstock.com/",
+          "domain": "congressstock.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.quiverquant.com/congresstrading/",
+          "domain": "quiverquant.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://congresstocks.com/",
+          "domain": "congresstocks.com",
+          "sourceFormat": "product_page",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.stockactwatch.com/",
+          "domain": "stockactwatch.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://trendspider.com/markets/congress-trading/",
+          "domain": "trendspider.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://us.trendlyne.com/us/politicians/recent-trades/",
+          "domain": "us.trendlyne.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/trades",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.capitoltrades.com/politicians",
+          "domain": "capitoltrades.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        },
+        {
+          "url": "https://www.barchart.com/investing-ideas/politician-insider-trading",
+          "domain": "barchart.com",
+          "sourceFormat": "unknown",
+          "citationQuality": "unknown"
+        }
+      ],
+      "runDate": "2026-06-03T03:01:40.104Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [
+          {
+            "name": "Quiver Quantitative",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          },
+          {
+            "name": "Capitol Trades",
+            "mentioned": true,
+            "mentionCount": 1,
+            "cited": false,
+            "citationCount": 0
+          }
+        ],
+        "competitorsCited": [],
+        "citationCount": 16,
+        "sourceStrength": "medium",
+        "score": 0
+      },
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "medium",
+      "recheckDate": "2026-06-04"
+    }
+  ],
+  "summary": {
+    "promptCount": 10,
+    "brandMentionedCount": 3,
+    "brandCitedCount": 0,
+    "competitorOnlyCount": 6,
+    "averageVisibilityScore": 8
+  }
+}

@@ -1,0 +1,512 @@
+{
+  "brand": "Coolie",
+  "generatedAt": "2026-06-03T04:16:04.278Z",
+  "portfolioSize": 10,
+  "selectionRule": "Cover the journey, but overweight prompts closest to purchase, competitor comparison, and realistic asset opportunities.",
+  "selectedPrompts": [
+    {
+      "id": "competitor-comparison-which-is-better-for-outbound-teams-coolie-or-zoominfo-if-we-care-more-about-real-time-signals-than-static-data",
+      "group": "competitor_comparison",
+      "prompt": "Which is better for outbound teams, Coolie or ZoomInfo, if we care more about real-time signals than static data?"
+    },
+    {
+      "id": "competitor-comparison-is-clay-or-coolie-better-for-sales-teams-that-want-research-backed-personalized-outreach-at-scale",
+      "group": "competitor_comparison",
+      "prompt": "Is Clay or Coolie better for sales teams that want research-backed personalized outreach at scale?"
+    },
+    {
+      "id": "high-intent-purchase-is-coolie-a-good-fit-for-outbound-revenue-teams-that-need-high-intent-prospecting-and-account-prioritization",
+      "group": "high_intent_purchase",
+      "prompt": "Is Coolie a good fit for outbound revenue teams that need high-intent prospecting and account prioritization?"
+    },
+    {
+      "id": "competitor-comparison-what-s-the-difference-between-coolie-and-apollo-for-sdr-prospecting-workflows",
+      "group": "competitor_comparison",
+      "prompt": "What’s the difference between Coolie and Apollo for SDR prospecting workflows?"
+    },
+    {
+      "id": "high-intent-purchase-should-our-sales-team-book-a-demo-with-coolie-for-ai-prospect-research-and-outbound-personalization",
+      "group": "high_intent_purchase",
+      "prompt": "Should our sales team book a demo with Coolie for AI prospect research and outbound personalization?"
+    },
+    {
+      "id": "category-search-what-are-the-best-ai-sales-intelligence-platforms-for-sdr-teams-doing-outbound-prospecting",
+      "group": "category_search",
+      "prompt": "What are the best AI sales intelligence platforms for SDR teams doing outbound prospecting?"
+    },
+    {
+      "id": "category-search-which-sales-intelligence-tools-are-best-for-account-scoring-and-prioritizing-outbound-prospects",
+      "group": "category_search",
+      "prompt": "Which sales intelligence tools are best for account scoring and prioritizing outbound prospects?"
+    },
+    {
+      "id": "integration-use-case-what-tools-help-sales-teams-turn-buying-signals-into-personalized-outreach-sequences",
+      "group": "integration_use_case",
+      "prompt": "What tools help sales teams turn buying signals into personalized outreach sequences?"
+    },
+    {
+      "id": "problem-aware-what-s-the-best-way-to-find-high-intent-prospects-in-real-time-for-outbound-sales",
+      "group": "problem_aware",
+      "prompt": "What’s the best way to find high-intent prospects in real time for outbound sales?"
+    },
+    {
+      "id": "solution-aware-can-an-ai-prospect-research-platform-actually-generate-personalized-outreach-sequences-for-sdrs",
+      "group": "solution_aware",
+      "prompt": "Can an AI prospect research platform actually generate personalized outreach sequences for SDRs?"
+    }
+  ],
+  "selectedCandidates": [
+    {
+      "id": "competitor-comparison-which-is-better-for-outbound-teams-coolie-or-zoominfo-if-we-care-more-about-real-time-signals-than-static-data",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "Which is better for outbound teams, Coolie or ZoomInfo, if we care more about real-time signals than static data?",
+      "buyerJob": "Compare known AI sales intelligence and prospect research options and decide which one fits Sales teams, SDRs, and outbound revenue teams.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "LLM rationale: Highlights a likely differentiation angle in a buyer's natural decision language. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-is-clay-or-coolie-better-for-sales-teams-that-want-research-backed-personalized-outreach-at-scale",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "Is Clay or Coolie better for sales teams that want research-backed personalized outreach at scale?",
+      "buyerJob": "Compare known AI sales intelligence and prospect research options and decide which one fits Sales teams, SDRs, and outbound revenue teams.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 29,
+      "rationale": "LLM rationale: Uses the brand's positioning language naturally while preserving buyer realism. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 4, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-is-coolie-a-good-fit-for-outbound-revenue-teams-that-need-high-intent-prospecting-and-account-prioritization",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Is Coolie a good fit for outbound revenue teams that need high-intent prospecting and account prioritization?",
+      "buyerJob": "Choose the AI sales intelligence and prospect research to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Brand-specific fit question with clear commercial intent and ICP language. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-s-the-difference-between-coolie-and-apollo-for-sdr-prospecting-workflows",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What’s the difference between Coolie and Apollo for SDR prospecting workflows?",
+      "buyerJob": "Compare known AI sales intelligence and prospect research options and decide which one fits Sales teams, SDRs, and outbound revenue teams.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Simple, high-frequency comparison phrasing commonly used in AI search tools. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-should-our-sales-team-book-a-demo-with-coolie-for-ai-prospect-research-and-outbound-personalization",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Should our sales team book a demo with Coolie for AI prospect research and outbound personalization?",
+      "buyerJob": "Choose the AI sales intelligence and prospect research to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Directly tied to the conversion goal and phrased like a realistic internal buying question. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "category-search-what-are-the-best-ai-sales-intelligence-platforms-for-sdr-teams-doing-outbound-prospecting",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "What are the best AI sales intelligence platforms for SDR teams doing outbound prospecting?",
+      "buyerJob": "Discover which AI sales intelligence and prospect research options exist for Sales teams, SDRs, and outbound revenue teams.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Natural category search prompt using the ICP's team language and category noun. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-which-sales-intelligence-tools-are-best-for-account-scoring-and-prioritizing-outbound-prospects",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "Which sales intelligence tools are best for account scoring and prioritizing outbound prospects?",
+      "buyerJob": "Discover which AI sales intelligence and prospect research options exist for Sales teams, SDRs, and outbound revenue teams.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 25,
+      "rationale": "LLM rationale: Moves from broad category exploration into a sharper use-case-driven evaluation query. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-what-tools-help-sales-teams-turn-buying-signals-into-personalized-outreach-sequences",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "What tools help sales teams turn buying signals into personalized outreach sequences?",
+      "buyerJob": "Prepare personalized outreach sequences for book demo.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 3,
+        "assetOpportunity": 3
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Grounded in Coolie's differentiation around buying signals and research-backed outreach. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 3, asset opportunity 3."
+    },
+    {
+      "id": "problem-aware-what-s-the-best-way-to-find-high-intent-prospects-in-real-time-for-outbound-sales",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "What’s the best way to find high-intent prospects in real time for outbound sales?",
+      "buyerJob": "Find a better way to handle manual prospect research.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Aligns to Coolie's positioning around real-time lead discovery and buying signals while staying problem-first. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "solution-aware-can-an-ai-prospect-research-platform-actually-generate-personalized-outreach-sequences-for-sdrs",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "Can an AI prospect research platform actually generate personalized outreach sequences for SDRs?",
+      "buyerJob": "Understand whether AI sales intelligence and prospect research can handle personalized outreach sequences.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Directly mirrors the buyer job and uses the product noun and use case noun from buyer language. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "competitor-comparison-which-is-better-for-outbound-teams-coolie-or-zoominfo-if-we-care-more-about-real-time-signals-than-static-data",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "Which is better for outbound teams, Coolie or ZoomInfo, if we care more about real-time signals than static data?",
+      "buyerJob": "Compare known AI sales intelligence and prospect research options and decide which one fits Sales teams, SDRs, and outbound revenue teams.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "LLM rationale: Highlights a likely differentiation angle in a buyer's natural decision language. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-is-clay-or-coolie-better-for-sales-teams-that-want-research-backed-personalized-outreach-at-scale",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "Is Clay or Coolie better for sales teams that want research-backed personalized outreach at scale?",
+      "buyerJob": "Compare known AI sales intelligence and prospect research options and decide which one fits Sales teams, SDRs, and outbound revenue teams.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 29,
+      "rationale": "LLM rationale: Uses the brand's positioning language naturally while preserving buyer realism. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 4, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-is-coolie-a-good-fit-for-outbound-revenue-teams-that-need-high-intent-prospecting-and-account-prioritization",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Is Coolie a good fit for outbound revenue teams that need high-intent prospecting and account prioritization?",
+      "buyerJob": "Choose the AI sales intelligence and prospect research to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Brand-specific fit question with clear commercial intent and ICP language. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-s-the-difference-between-coolie-and-apollo-for-sdr-prospecting-workflows",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What’s the difference between Coolie and Apollo for SDR prospecting workflows?",
+      "buyerJob": "Compare known AI sales intelligence and prospect research options and decide which one fits Sales teams, SDRs, and outbound revenue teams.",
+      "source": "competitor",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Simple, high-frequency comparison phrasing commonly used in AI search tools. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-should-our-sales-team-book-a-demo-with-coolie-for-ai-prospect-research-and-outbound-personalization",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Should our sales team book a demo with Coolie for AI prospect research and outbound personalization?",
+      "buyerJob": "Choose the AI sales intelligence and prospect research to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Directly tied to the conversion goal and phrased like a realistic internal buying question. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "category-search-what-are-the-best-ai-sales-intelligence-platforms-for-sdr-teams-doing-outbound-prospecting",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "What are the best AI sales intelligence platforms for SDR teams doing outbound prospecting?",
+      "buyerJob": "Discover which AI sales intelligence and prospect research options exist for Sales teams, SDRs, and outbound revenue teams.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Natural category search prompt using the ICP's team language and category noun. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "high-intent-purchase-which-ai-prospect-research-platform-should-we-try-first-for-real-time-lead-discovery-and-personalized-outreach",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Which AI prospect research platform should we try first for real-time lead discovery and personalized outreach?",
+      "buyerJob": "Choose the AI sales intelligence and prospect research to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Strong product-trial intent framed around Coolie's primary use cases. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-what-should-i-look-for-before-choosing-an-ai-sales-intelligence-platform-for-my-sdr-team",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "What should I look for before choosing an AI sales intelligence platform for my SDR team?",
+      "buyerJob": "Choose the AI sales intelligence and prospect research to try or buy.",
+      "source": "purchase",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 25,
+      "rationale": "LLM rationale: A classic decision-stage query that can route buyers into evaluation of Coolie's strengths. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "category-search-which-sales-intelligence-tools-are-best-for-account-scoring-and-prioritizing-outbound-prospects",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "Which sales intelligence tools are best for account scoring and prioritizing outbound prospects?",
+      "buyerJob": "Discover which AI sales intelligence and prospect research options exist for Sales teams, SDRs, and outbound revenue teams.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 25,
+      "rationale": "LLM rationale: Moves from broad category exploration into a sharper use-case-driven evaluation query. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-what-s-the-best-sales-intelligence-platform-for-real-time-lead-discovery-and-prospect-research",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "What’s the best sales intelligence platform for real-time lead discovery and prospect research?",
+      "buyerJob": "Discover which AI sales intelligence and prospect research options exist for Sales teams, SDRs, and outbound revenue teams.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 24,
+      "rationale": "LLM rationale: Evaluation-stage phrasing with commercial intent around a shortlist-worthy capability set. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-which-ai-prospect-research-platforms-can-find-leads-in-real-time-and-help-personalize-outreach",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "Which AI prospect research platforms can find leads in real time and help personalize outreach?",
+      "buyerJob": "Discover which AI sales intelligence and prospect research options exist for Sales teams, SDRs, and outbound revenue teams.",
+      "source": "category",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "LLM rationale: Connects two primary use cases in one realistic buyer question. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-what-tools-help-sales-teams-turn-buying-signals-into-personalized-outreach-sequences",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "What tools help sales teams turn buying signals into personalized outreach sequences?",
+      "buyerJob": "Prepare personalized outreach sequences for book demo.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 3,
+        "assetOpportunity": 3
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Grounded in Coolie's differentiation around buying signals and research-backed outreach. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 3, asset opportunity 3."
+    },
+    {
+      "id": "problem-aware-what-s-the-best-way-to-find-high-intent-prospects-in-real-time-for-outbound-sales",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "What’s the best way to find high-intent prospects in real time for outbound sales?",
+      "buyerJob": "Find a better way to handle manual prospect research.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Aligns to Coolie's positioning around real-time lead discovery and buying signals while staying problem-first. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-how-can-sales-teams-reduce-manual-prospect-research-without-hiring-more-sdrs",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "How can sales teams reduce manual prospect research without hiring more SDRs?",
+      "buyerJob": "Find a better way to handle manual prospect research.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 3,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Uses the ICP's pain language directly and frames the problem in a natural way an outbound leader or SDR manager would ask. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "solution-aware-can-an-ai-prospect-research-platform-actually-generate-personalized-outreach-sequences-for-sdrs",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "Can an AI prospect research platform actually generate personalized outreach sequences for SDRs?",
+      "buyerJob": "Understand whether AI sales intelligence and prospect research can handle personalized outreach sequences.",
+      "source": "buyer_job",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Directly mirrors the buyer job and uses the product noun and use case noun from buyer language. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    }
+  ]
+}

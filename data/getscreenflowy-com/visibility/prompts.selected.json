@@ -1,0 +1,137 @@
+{
+  "brand": {
+    "name": "ScreenFlowy",
+    "aliases": [],
+    "domains": [
+      "getscreenflowy.com"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "competitors": [
+    {
+      "name": "Loom",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "Screencastify",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "Tella",
+      "aliases": [],
+      "domains": []
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "missing",
+      "notes": "Not classified as a Shopify app."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://www.getscreenflowy.com/",
+      "notes": "Homepage found during website profiling."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page found during standard site crawl."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No alternatives page found during standard site crawl."
+    },
+    {
+      "type": "blog_guide",
+      "status": "unknown",
+      "notes": "Blog coverage not confirmed."
+    },
+    {
+      "type": "docs_help",
+      "status": "unknown",
+      "notes": "Docs/help coverage not confirmed."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "Community mentions require separate search."
+    },
+    {
+      "type": "youtube_video",
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Review profiles require separate search."
+    },
+    {
+      "type": "case_study",
+      "status": "unknown",
+      "notes": "Case studies require separate search."
+    }
+  ],
+  "prompts": [
+    {
+      "id": "competitor-comparison-how-does-screenflowy-compare-to-tella-for-creator-videos-and-walkthroughs",
+      "group": "competitor_comparison",
+      "prompt": "How does ScreenFlowy compare to Tella for creator videos and walkthroughs?"
+    },
+    {
+      "id": "competitor-comparison-should-i-choose-screenflowy-or-loom-for-quick-product-demos",
+      "group": "competitor_comparison",
+      "prompt": "Should I choose ScreenFlowy or Loom for quick product demos?"
+    },
+    {
+      "id": "competitor-comparison-is-screenflowy-a-better-browser-based-screen-recorder-than-screencastify",
+      "group": "competitor_comparison",
+      "prompt": "Is ScreenFlowy a better browser-based screen recorder than Screencastify?"
+    },
+    {
+      "id": "high-intent-purchase-which-screen-recorder-should-i-choose-if-i-need-quick-setup-webcam-plus-screen-and-fast-exports",
+      "group": "high_intent_purchase",
+      "prompt": "Which screen recorder should I choose if I need quick setup, webcam plus screen, and fast exports?"
+    },
+    {
+      "id": "high-intent-purchase-what-s-the-best-screen-recording-software-to-buy-for-fast-browser-based-demos",
+      "group": "high_intent_purchase",
+      "prompt": "What’s the best screen recording software to buy for fast browser-based demos?"
+    },
+    {
+      "id": "category-search-what-s-the-best-screen-recorder-for-quick-screen-shares-and-walkthrough-videos-in-the-browser",
+      "group": "category_search",
+      "prompt": "What’s the best screen recorder for quick screen shares and walkthrough videos in the browser?"
+    },
+    {
+      "id": "category-search-what-s-the-best-browser-based-screen-recorder-for-creators-making-tutorials-and-demos",
+      "group": "category_search",
+      "prompt": "What’s the best browser-based screen recorder for creators making tutorials and demos?"
+    },
+    {
+      "id": "solution-aware-can-a-browser-based-screen-recorder-handle-tutorials-product-demos-and-webcam-presentations-in-one-workflow",
+      "group": "solution_aware",
+      "prompt": "Can a browser-based screen recorder handle tutorials, product demos, and webcam presentations in one workflow?"
+    },
+    {
+      "id": "integration-use-case-what-should-i-look-for-in-a-screen-recorder-if-i-need-to-create-tutorials-and-demos-fast-for-my-team-or-audience",
+      "group": "integration_use_case",
+      "prompt": "What should I look for in a screen recorder if I need to create tutorials and demos fast for my team or audience?"
+    },
+    {
+      "id": "problem-aware-what-s-the-easiest-way-to-reduce-recording-friction-when-i-need-to-make-quick-tutorials-and-demos",
+      "group": "problem_aware",
+      "prompt": "What’s the easiest way to reduce recording friction when I need to make quick tutorials and demos?"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import {
   assetInventoryItemSchema,
   competitorSchema,
   promptInputSchema,
+  sourceFormatSchema,
   promptGroupSchema,
   providerSchema,
 } from "@/lib/prompt-scan/schemas";
@@ -11,6 +12,15 @@ const text = z.string().trim().min(1);
 const score = z.number().int().min(1).max(5);
 
 export const buyerPromptMarketSchema = z.enum(["shopify_app", "saas"]);
+
+export const buyerJourneyPhaseSchema = z.enum([
+  "awareness",
+  "consideration",
+  "evaluation",
+  "decision",
+]);
+
+export type BuyerJourneyPhase = z.infer<typeof buyerJourneyPhaseSchema>;
 
 export const buyerPromptLanguageSchema = z.object({
   buyerNoun: text,
@@ -51,6 +61,43 @@ export type BuyerPromptMarketClassification = z.infer<
 >;
 
 export type BuyerPromptLanguage = z.infer<typeof buyerPromptLanguageSchema>;
+
+export const perplexityBusinessReadSchema = z.object({
+  targetUrl: z.string().url(),
+  targetDomain: text,
+  targetIdentityConfirmed: z.boolean(),
+  targetIdentityReason: text,
+  brandName: text,
+  market: buyerPromptMarketSchema,
+  product: text,
+  category: text,
+  audience: text,
+  positioning: text,
+  problemSolved: text,
+  solution: text,
+  conversionGoal: text,
+  primaryUseCases: z.array(text).min(1),
+  buyerLanguage: buyerPromptLanguageSchema,
+  competitors: z.array(
+    competitorSchema.extend({
+      clearAlternative: z.boolean(),
+      confidence: score,
+      reason: text,
+    }),
+  ).default([]),
+  confidence: z.object({
+    targetIdentity: score,
+    product: score,
+    category: score,
+    audience: score,
+    buyerLanguage: score,
+  }),
+  warnings: z.array(buyerPromptClassificationWarningSchema).default([]),
+  citations: z.array(z.string().url()).default([]),
+  evidenceSummary: text,
+});
+
+export type PerplexityBusinessRead = z.infer<typeof perplexityBusinessReadSchema>;
 
 export const buyerPromptStrategyInputSchema = z.object({
   brand: z.object({
@@ -106,6 +153,7 @@ export type PromptQualityScore = z.infer<typeof promptQualityScoreSchema>;
 export const buyerPromptCandidateSchema = z.object({
   id: text,
   group: promptGroupSchema,
+  journeyPhase: buyerJourneyPhaseSchema.default("consideration"),
   prompt: text,
   buyerJob: text,
   source: z.enum(["buyer_job", "competitor", "purchase", "category"]),
@@ -115,6 +163,19 @@ export const buyerPromptCandidateSchema = z.object({
 });
 
 export type BuyerPromptCandidate = z.infer<typeof buyerPromptCandidateSchema>;
+
+export const llmBuyerPromptCandidateSchema = z.object({
+  group: promptGroupSchema,
+  journeyPhase: buyerJourneyPhaseSchema,
+  prompt: text,
+  buyerJob: text,
+  source: z.enum(["buyer_job", "competitor", "purchase", "category"]),
+  buyerIntent: text,
+  rationale: text,
+  expectedSourceFormats: z.array(sourceFormatSchema),
+});
+
+export type LlmBuyerPromptCandidate = z.infer<typeof llmBuyerPromptCandidateSchema>;
 
 export const buyerPromptPortfolioSchema = z.object({
   brand: text,

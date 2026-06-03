@@ -1,0 +1,137 @@
+{
+  "brand": {
+    "name": "vanishing.page",
+    "aliases": [],
+    "domains": [
+      "vanishing.page"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "competitors": [
+    {
+      "name": "Privnote",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "OneTimeSecret",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "Self-Destructing Message",
+      "aliases": [],
+      "domains": []
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "missing",
+      "notes": "Not classified as a Shopify app."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://vanishing.page/",
+      "notes": "Homepage found during website profiling."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page found during standard site crawl."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No alternatives page found during standard site crawl."
+    },
+    {
+      "type": "blog_guide",
+      "status": "unknown",
+      "notes": "Blog coverage not confirmed."
+    },
+    {
+      "type": "docs_help",
+      "status": "unknown",
+      "notes": "Docs/help coverage not confirmed."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "Community mentions require separate search."
+    },
+    {
+      "type": "youtube_video",
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Review profiles require separate search."
+    },
+    {
+      "type": "case_study",
+      "status": "unknown",
+      "notes": "Case studies require separate search."
+    }
+  ],
+  "prompts": [
+    {
+      "id": "competitor-comparison-how-does-vanishing-page-compare-with-privnote-and-onetimesecret-for-confidential-file-and-message-sharing",
+      "group": "competitor_comparison",
+      "prompt": "How does vanishing.page compare with Privnote and OneTimeSecret for confidential file and message sharing?"
+    },
+    {
+      "id": "competitor-comparison-which-is-more-secure-for-self-destructing-encrypted-messages-vanishing-page-privnote-or-onetimesecret",
+      "group": "competitor_comparison",
+      "prompt": "Which is more secure for self-destructing encrypted messages: vanishing.page, Privnote, or OneTimeSecret?"
+    },
+    {
+      "id": "category-search-what-self-destructing-encrypted-messaging-tools-are-best-for-sending-sensitive-information-and-files",
+      "group": "category_search",
+      "prompt": "What self-destructing encrypted messaging tools are best for sending sensitive information and files?"
+    },
+    {
+      "id": "high-intent-purchase-can-vanishing-page-handle-temporary-file-sharing-for-sensitive-documents-well-enough-to-replace-my-current-method",
+      "group": "high_intent_purchase",
+      "prompt": "Can vanishing.page handle temporary file sharing for sensitive documents well enough to replace my current method?"
+    },
+    {
+      "id": "high-intent-purchase-is-vanishing-page-a-good-choice-for-sharing-confidential-information-by-link-with-an-expiration-date",
+      "group": "high_intent_purchase",
+      "prompt": "Is vanishing.page a good choice for sharing confidential information by link with an expiration date?"
+    },
+    {
+      "id": "high-intent-purchase-what-should-i-check-before-choosing-a-self-destructing-encrypted-messaging-service-for-sensitive-data-sharing",
+      "group": "high_intent_purchase",
+      "prompt": "What should I check before choosing a self-destructing encrypted messaging service for sensitive data sharing?"
+    },
+    {
+      "id": "category-search-what-are-the-best-self-destructing-message-saas-products-for-one-time-secrets-expiring-notes-and-temporary-file-sharing",
+      "group": "category_search",
+      "prompt": "What are the best self-destructing message SaaS products for one-time secrets, expiring notes, and temporary file sharing?"
+    },
+    {
+      "id": "integration-use-case-what-s-the-easiest-way-to-set-up-limited-lifespan-message-sharing-for-sensitive-client-or-personal-information",
+      "group": "integration_use_case",
+      "prompt": "What’s the easiest way to set up limited-lifespan message sharing for sensitive client or personal information?"
+    },
+    {
+      "id": "problem-aware-how-can-i-share-confidential-information-by-link-without-leaving-a-permanent-copy-behind",
+      "group": "problem_aware",
+      "prompt": "How can I share confidential information by link without leaving a permanent copy behind?"
+    },
+    {
+      "id": "solution-aware-how-does-a-self-destructing-encrypted-message-service-usually-work-for-limited-lifespan-message-sharing",
+      "group": "solution_aware",
+      "prompt": "How does a self-destructing encrypted message service usually work for limited-lifespan message sharing?"
+    }
+  ]
+}

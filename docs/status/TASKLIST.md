@@ -1,6 +1,6 @@
 ---
 title: ContentDesk MVP Tasklist
-updated: 2026-06-02
+updated: 2026-06-03
 type: living
 status: current
 ---
@@ -138,6 +138,14 @@ Acceptance:
 - [ ] Add clearer prompt-infer failure output when AI classification fails.
 - [x] Store exact blog/article URLs from sitemap or blog index in `owned-content-inventory.json`.
 - [x] Use owned-site content inventory before recommending new owned assets.
+- [ ] Add owned-content inventory crawler for arbitrary lead domains: homepage, blog, guides, docs, comparisons, integrations, case studies, pricing, and FAQ.
+- [ ] Store owned-content page fields: URL, title, H1, meta description, summary, page type, topic, inferred buyer question, freshness, and matched prompts.
+- [ ] Add buyer-question discovery from Google SERP, autocomplete/PAA, competitor titles, forums/reviews, AI answers, and Search Console when available.
+- [ ] Score buyer-question evidence by demand signal, pain signal, competitive signal, product fit, content gap, and AEO gap.
+- [ ] Add cited-source analysis that records which pages/models cited, which competitors were named, and why the source won.
+- [ ] Add recommendation gap classifier: missing page, weak existing page, off-site citation gap, comparison gap, proof/case-study gap, and prompt-set gap.
+- [ ] Generate page-level work orders: exact page to create/update, H2s to add, examples/proof to include, competitor comparisons to cover, and prompts to re-run.
+- [ ] Mark provider runs invalid/partial when prompt-level API failures dominate, especially Anthropic low-credit errors.
 - [ ] V2: Add Shopify app entity profile before strategy generation.
 - [ ] V2: Add Shopify asset audit for homepage, App Store listing, docs, blog, alternatives pages, demos, reviews, and community mentions.
 - [ ] V2: Feed asset audit into `strategy.json` instead of using guessed `assetInventory`.

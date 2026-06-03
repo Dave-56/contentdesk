@@ -1,0 +1,164 @@
+{
+  "brand": {
+    "name": "ScreenFlowy",
+    "aliases": [],
+    "domains": [
+      "getscreenflowy.com"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "audience": "Creators, teams, tutorial makers, demo makers, and people sharing quick screen videos",
+  "category": "Screen recording software",
+  "positioning": "Smooth screen recording directly in the browser with webcam, zoom effects, and instant editing",
+  "conversionGoal": "Record now / upgrade to Pro / watch demo",
+  "primaryUseCases": [
+    "Screen recording for demos",
+    "Tutorial and walkthrough creation",
+    "Creator video recording",
+    "Screen, webcam, and audio capture",
+    "Quick sharing and instant export"
+  ],
+  "market": "saas",
+  "buyerLanguage": {
+    "buyerNoun": "creators and teams",
+    "categoryNoun": "screen recording software",
+    "productNoun": "browser-based screen recorder",
+    "useCaseNoun": "screen demos and tutorials",
+    "painNoun": "heavy setup and downloads",
+    "conversionNoun": "record now",
+    "comparisonNoun": "Loom alternatives"
+  },
+  "classificationWarnings": [],
+  "buyerJobs": [
+    {
+      "id": "solve-core-problem",
+      "group": "problem_aware",
+      "job": "Find a better way to handle heavy setup and downloads.",
+      "pain": "heavy setup and downloads",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "find-category-tools",
+      "group": "category_search",
+      "job": "Discover which Screen recording software options exist for Creators, teams, tutorial makers, demo makers, and people sharing quick screen videos.",
+      "pain": "finding Screen recording software options",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "understand-workflow",
+      "group": "solution_aware",
+      "job": "Understand whether Screen recording software can handle screen demos and tutorials.",
+      "pain": "understanding Screen recording software workflows",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "compare-alternatives",
+      "group": "competitor_comparison",
+      "job": "Compare known Screen recording software options and decide which one fits Creators, teams, tutorial makers, demo makers, and people sharing quick screen videos.",
+      "pain": "comparing Screen recording software alternatives",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    },
+    {
+      "id": "prepare-workflow",
+      "group": "integration_use_case",
+      "job": "Prepare screen demos and tutorials for record now.",
+      "pain": "preparing screen demos and tutorials",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 3
+    },
+    {
+      "id": "choose-product",
+      "group": "high_intent_purchase",
+      "job": "Choose the Screen recording software to try or buy.",
+      "pain": "choosing the right Screen recording software",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Loom",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "Vidyard",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "Camtasia",
+      "aliases": [],
+      "domains": []
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "missing",
+      "notes": "Not classified as a Shopify app."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://www.getscreenflowy.com/",
+      "notes": "Homepage found during website profiling."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page found during standard site crawl."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No alternatives page found during standard site crawl."
+    },
+    {
+      "type": "blog_guide",
+      "status": "unknown",
+      "notes": "Blog coverage not confirmed."
+    },
+    {
+      "type": "docs_help",
+      "status": "unknown",
+      "notes": "Docs/help coverage not confirmed."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "Community mentions require separate search."
+    },
+    {
+      "type": "youtube_video",
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Review profiles require separate search."
+    },
+    {
+      "type": "case_study",
+      "status": "unknown",
+      "notes": "Case studies require separate search."
+    }
+  ],
+  "portfolioSize": 10
+}

@@ -2,6 +2,7 @@ import "@/lib/load-env";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { inferBuyerPromptStrategyFromWebsite } from "@/lib/buyer-prompt-strategist/infer";
+import { InsufficientSiteProfileEvidenceError } from "@/lib/buyer-prompt-strategist/site-profile";
 
 export async function inferPrompts(input: {
   url: string;
@@ -10,7 +11,7 @@ export async function inferPrompts(input: {
   const inferred = await inferBuyerPromptStrategyFromWebsite({ url: input.url });
   const outputDir =
     input.outputDir ??
-    path.join("data", slug(inferred.strategy.brand.name), "visibility");
+    path.join("data", domainSlug(input.url), "visibility");
   const strategyPath = path.join(outputDir, "strategy.json");
   const siteProfilePath = path.join(outputDir, "site-profile.json");
   const researchSourcesPath = path.join(outputDir, "research-sources.inferred.json");
@@ -52,7 +53,31 @@ export async function inferPrompts(input: {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.url) throw new Error("Usage: npm run prompt:infer -- --url https://example.com");
-  await inferPrompts({ url: args.url, outputDir: args.outputDir });
+  try {
+    await inferPrompts({ url: args.url, outputDir: args.outputDir });
+  } catch (error) {
+    if (error instanceof InsufficientSiteProfileEvidenceError) {
+      const outputDir =
+        args.outputDir ??
+        path.join("data", domainSlug(error.siteProfile.websiteUrl), "visibility");
+      const siteProfilePath = path.join(outputDir, "site-profile.json");
+      const researchSourcesPath = path.join(outputDir, "research-sources.inferred.json");
+
+      await mkdir(outputDir, { recursive: true });
+      await writeFile(siteProfilePath, `${JSON.stringify(error.siteProfile, null, 2)}\n`);
+      await writeFile(
+        researchSourcesPath,
+        `${JSON.stringify(error.siteProfile.profileSources, null, 2)}\n`,
+      );
+
+      console.error(`[prompt:infer] stopped: ${error.message}`);
+      console.error(`[prompt:infer] wrote ${siteProfilePath}`);
+      console.error(`[prompt:infer] wrote ${researchSourcesPath}`);
+      process.exit(1);
+    }
+
+    throw error;
+  }
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -93,4 +118,10 @@ function slug(value: string) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "") || "brand";
+}
+
+function domainSlug(rawUrl: string) {
+  const withProtocol = /^https?:\/\//i.test(rawUrl) ? rawUrl : `https://${rawUrl}`;
+  const hostname = new URL(withProtocol).hostname.replace(/^www\./, "");
+  return slug(hostname);
 }

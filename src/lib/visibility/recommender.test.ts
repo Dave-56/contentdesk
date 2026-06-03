@@ -49,6 +49,9 @@ test("recommends Botika alternatives page from competitor comparison gap", () =>
             "Best Modelia Alternatives for Shopify Fashion Product Photos. Compare the top Modelia competitors for Shopify fashion brands.",
         },
       ],
+      evidenceQuality: "thin",
+      profileSources: [],
+      profileWarnings: [],
     },
     strategy: {
       brand: {

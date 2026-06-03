@@ -48,6 +48,16 @@ export async function profileSite(rawUrl: string): Promise<SiteProfile> {
     problemSolved: inferProblem(combinedText),
     featuresUseCases: inferFeatures(combinedText),
     existingContent: discoveredPages,
+    evidenceQuality: "thin",
+    profileSources: [],
+    profileWarnings: [
+      {
+        field: "profileSources",
+        severity: "info",
+        message:
+          "Static site profiler only. Use buyer-prompt site-profile enrichment for visibility inference.",
+      },
+    ],
   };
 }
 

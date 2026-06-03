@@ -1,10 +1,17 @@
 import { z } from "zod";
+import { researchSourceSchema } from "@/lib/schemas";
 
 export const discoveredPageSchema = z.object({
   url: z.string().url(),
   title: z.string().default(""),
   kind: z.enum(["homepage", "about", "pricing", "blog", "resources", "docs", "faq", "other"]),
   excerpt: z.string().default(""),
+});
+
+export const profileWarningSchema = z.object({
+  field: z.string().trim().min(1),
+  message: z.string().trim().min(1),
+  severity: z.enum(["info", "warning", "manual_review"]),
 });
 
 export const siteProfileSchema = z.object({
@@ -18,6 +25,9 @@ export const siteProfileSchema = z.object({
   problemSolved: z.string(),
   featuresUseCases: z.array(z.string()),
   existingContent: z.array(discoveredPageSchema),
+  evidenceQuality: z.enum(["strong", "thin", "insufficient"]).default("thin"),
+  profileSources: z.array(researchSourceSchema).default([]),
+  profileWarnings: z.array(profileWarningSchema).default([]),
 });
 
 export const buyerPromptSchema = z.object({
@@ -80,6 +90,7 @@ export const teardownPacketSchema = z.object({
 });
 
 export type DiscoveredPage = z.infer<typeof discoveredPageSchema>;
+export type ProfileWarning = z.infer<typeof profileWarningSchema>;
 export type SiteProfile = z.infer<typeof siteProfileSchema>;
 export type BuyerPrompt = z.infer<typeof buyerPromptSchema>;
 export type DiscoverySearch = z.infer<typeof discoverySearchSchema>;

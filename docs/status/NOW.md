@@ -1,6 +1,6 @@
 ---
 title: NOW — Current Operating Truth
-updated: 2026-06-02
+updated: 2026-06-03
 type: living
 status: current
 read_before: [docs/MAP.md]
@@ -47,14 +47,29 @@ multi-provider runs spend API credits and should be intentional. See
   `runs/YYYY-MM-DD.anthropic.json`, then writes `runs/YYYY-MM-DD.summary.json`.
 - Website-first strategy inference: `npm run prompt:infer -- --url <url>` writes one editable
   `strategy.json` plus `site-profile.json` and `research-sources.inferred.json`; it does not
-  scan. It uses AI Gateway structured classification when available to create
-  `buyerLanguage`, `market`, and `classificationWarnings`. If classification is unavailable
-  or fails, fallback strategy is review-only and `prompt:select` refuses to run until
-  `buyerLanguage` exists.
+  scan. Current path is Perplexity-only for business understanding, anchored to the exact
+  target URL/domain and first-party site context. Parallel is not used by `prompt:infer`.
+  `site-profile.json` carries `profileSources` as Perplexity citations plus
+  `profileWarnings`.
+- Vanishing rule: if static scrape + search enrichment can't confirm enough product evidence,
+  `prompt:infer` stops (`InsufficientSiteProfileEvidenceError`), writes the profile + sources
+  for review, and exits 1 — it never falls through to generic software prompts.
+- Brand-homonym guard: when relevant sources share the brand name but resolve to many
+  distinct domains and none reference the target domain (e.g. xenith.life → MetaStock/football
+  /sleeping-bag "Xenith"), evidence is capped (never `strong`), downgraded to `insufficient`
+  when static text is also thin, and a `manual_review` warning is added.
+- Manual-review gate: `prompt:select` refuses when `strategy.classificationWarnings` contains
+  any `manual_review` entry (not just when `buyerLanguage` is missing). Pass `--force` to
+  override after human review. Verified on xenith.life: classifier flagged brand ambiguity →
+  select refused.
+- Fallback strategy is brand-neutral: when AI classification is unavailable/fails, the
+  keyword fallback derives category/use-cases generically (no product-specific hardcodes),
+  stays review-only, and `prompt:select` refuses to run until `buyerLanguage` exists.
 - Buyer Prompt Strategist: `npm run prompt:select` writes
   `portfolio.json` and `prompts.selected.json` from a reviewed strategy file. Prompt
-  assembly uses `buyerLanguage` nouns only; deterministic code validates and assembles,
-  but does not try to understand market language. Helper:
+  selection now uses LLM-drafted buyer questions from the reviewed `strategy.json`; code
+  still owns validation, dedupe, portfolio size, group balance, file writes, and
+  manual-review gating. Helper:
   `scripts/prompt-workflow.sh infer <url>` then review strategy, then
   `scripts/prompt-workflow.sh select data/<slug>/visibility/strategy.json`.
 - Prompt scan env loading: `scripts/prompt-scan.ts` now imports `@/lib/load-env`, so
@@ -85,6 +100,23 @@ multi-provider runs spend API credits and should be intentional. See
   --out data/beatable/visibility` selected 10/12 prompts. Generated prompts are usable but
   still show quality risks: competitor inference can be noisy and product nouns such as
   "validator" may be too terse.
+- Lead teardown learning on 2026-06-03: runs for DataJelly, Coolie, ScreenFlowy, and
+  Insider Alpha showed the same pattern: brand/comparison prompts often work, but broad
+  buyer questions are where competitors win. Google SERPs and customer-owned blog indexes
+  materially changed recommendations. The next recommendation layer needs owned-content
+  inventory before saying "write new guide", demand-backed buyer-question discovery before
+  final prompt sets, cited-source analysis, and gap classification before work orders.
+- Coolie finding: Coolie has many blog posts, but sample posts were broad/product-story
+  content. Gap is not "no blog"; gap is buyer-question framing. Recommendation should be
+  "update/expand the right existing post" when owned content exists, not default to new
+  content.
+- DataJelly finding: DataJelly already has a strong guide library. Recommendation should
+  expand existing guides such as "Why Pages Break After Deploy (And No One Notices)" or
+  "Guard Test Suite: What We Monitor" when they can answer the discovered buyer question.
+- Visibility run caveat on 2026-06-03: Anthropic prompt scans can fail because account
+  credit is too low, but current output can still record a 0/10 provider run. Fix needed:
+  prompt-level provider failures should mark the provider/run invalid or partial, not look
+  like real zero visibility.
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
   "update repo memory" stop routine.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
@@ -106,15 +138,19 @@ multi-provider runs spend API credits and should be intentional. See
   the run. OpenAI web-search calls are materially slower than Perplexity and Anthropic.
 
 ## Blockers
-- Fresh URL strategy quality now depends on AI Gateway classification. Without it, inferred
-  strategies are intentionally review-only and cannot select prompts.
-- Competitor inference for non-Tiny-Lemon SaaS can still pull noisy domains from broad search
-  results.
+- Recommendation quality now depends on knowing owned content. Without blog/guide inventory,
+  the system can recommend creating pages the customer already has.
+- Prompt-set quality needs demand evidence. LLM-generated buyer prompts are plausible, but
+  should be strengthened with SERP, autocomplete/PAA, competitor titles, forums/reviews, and
+  Search Console when available.
+- Provider failure handling is incomplete for Anthropic credit errors during visibility runs.
 
 ## Next 3 actions
-1. Tighten `prompt:infer` competitor filtering and add manual-review warnings when competitor
-   evidence is weak or broad.
-2. Add buyerLanguage quality checks for too-generic `productNoun`/`comparisonNoun` values
-   before `prompt:select` writes selected prompts.
-3. Add request timeout, bounded prompt concurrency, and skip-existing/force controls for
-   `visibility:run`; OpenAI web search is slow enough to make sequential scans painful.
+1. Build owned-content inventory crawler for blog/guides/docs/comparison pages and attach
+   page title, URL, H1, meta, summary, buyer question, topic, type, and freshness.
+2. Add buyer-question discovery and scoring from demand evidence: Google SERP,
+   autocomplete/PAA, competitor titles, forums/reviews, AI answers, and Search Console when
+   available.
+3. Add recommendation gap classifier: missing page, weak existing page, off-site citation
+   gap, comparison gap, proof/case-study gap, and prompt-set gap, then output page-level work
+   orders.

@@ -1,0 +1,155 @@
+{
+  "brand": {
+    "name": "Insider Alpha",
+    "aliases": [
+      "InsiderAlpha"
+    ],
+    "domains": [
+      "followtheinsider.com"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "audience": "Investors, traders, and research users who want to monitor disclosed congressional and executive branch stock trades.",
+  "category": "political/financial data intelligence",
+  "positioning": "Searchable congressional trading database with signals built from STOCK Act disclosures.",
+  "conversionGoal": "signup",
+  "primaryUseCases": [
+    "Search and filter congressional stock trades",
+    "Monitor STOCK Act disclosures over time",
+    "Track trades by filer or official",
+    "Use disclosed trades as investment research signals"
+  ],
+  "market": "saas",
+  "buyerLanguage": {
+    "buyerNoun": "subscriber",
+    "categoryNoun": "data platform",
+    "productNoun": "signals tool",
+    "useCaseNoun": "trade monitoring",
+    "painNoun": "manual filing review",
+    "conversionNoun": "signup",
+    "comparisonNoun": "alternative"
+  },
+  "classificationWarnings": [
+    {
+      "field": "targetIdentity",
+      "message": "manual_review recommended because the site snapshot is thin and there is limited public evidence beyond the homepage copy.",
+      "severity": "info"
+    }
+  ],
+  "buyerJobs": [
+    {
+      "id": "solve-core-problem",
+      "group": "problem_aware",
+      "job": "Find a better way to handle manual filing review.",
+      "pain": "manual filing review",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "find-category-tools",
+      "group": "category_search",
+      "job": "Discover which political/financial data intelligence options exist for Investors, traders, and research users who want to monitor disclosed congressional and executive branch stock trades..",
+      "pain": "finding political/financial data intelligence options",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "understand-workflow",
+      "group": "solution_aware",
+      "job": "Understand whether political/financial data intelligence can handle trade monitoring.",
+      "pain": "understanding political/financial data intelligence workflows",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "compare-alternatives",
+      "group": "competitor_comparison",
+      "job": "Compare known political/financial data intelligence options and decide which one fits Investors, traders, and research users who want to monitor disclosed congressional and executive branch stock trades..",
+      "pain": "comparing political/financial data intelligence alternatives",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    },
+    {
+      "id": "prepare-workflow",
+      "group": "integration_use_case",
+      "job": "Prepare trade monitoring for signup.",
+      "pain": "preparing trade monitoring",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 3
+    },
+    {
+      "id": "choose-product",
+      "group": "high_intent_purchase",
+      "job": "Choose the political/financial data intelligence to try or buy.",
+      "pain": "choosing the right political/financial data intelligence",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    }
+  ],
+  "competitors": [],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "missing",
+      "notes": "Not classified as a Shopify app."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://followtheinsider.com/",
+      "notes": "Homepage found during website profiling."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page found during standard site crawl."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No alternatives page found during standard site crawl."
+    },
+    {
+      "type": "blog_guide",
+      "status": "unknown",
+      "notes": "Blog coverage not confirmed."
+    },
+    {
+      "type": "docs_help",
+      "status": "unknown",
+      "notes": "Docs/help coverage not confirmed."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "Community mentions require separate search."
+    },
+    {
+      "type": "youtube_video",
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Review profiles require separate search."
+    },
+    {
+      "type": "case_study",
+      "status": "unknown",
+      "notes": "Case studies require separate search."
+    }
+  ],
+  "portfolioSize": 10
+}

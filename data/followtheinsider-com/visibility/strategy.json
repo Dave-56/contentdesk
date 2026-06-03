@@ -1,0 +1,166 @@
+{
+  "brand": {
+    "name": "Insider Alpha",
+    "aliases": [
+      "InsiderAlpha"
+    ],
+    "domains": [
+      "followtheinsider.com"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "audience": "Traders, researchers, and investors",
+  "category": "Alternative data / political trading data analytics",
+  "positioning": "Searchable, exportable STOCK Act trade intelligence with real-time alerts and filer analysis.",
+  "conversionGoal": "Signup",
+  "primaryUseCases": [
+    "Track U.S. congressional stock trades",
+    "Search trades by filer or ticker",
+    "Set real-time trade alerts",
+    "Export trade data to CSV",
+    "Analyze filer trading patterns"
+  ],
+  "market": "saas",
+  "buyerLanguage": {
+    "buyerNoun": "traders and researchers",
+    "categoryNoun": "congressional stock trade data platform",
+    "productNoun": "stock trading signals platform",
+    "useCaseNoun": "trade alerts and filer analysis",
+    "painNoun": "STOCK Act disclosure tracking",
+    "conversionNoun": "sign up",
+    "comparisonNoun": "political trading data alternatives"
+  },
+  "classificationWarnings": [],
+  "buyerJobs": [
+    {
+      "id": "solve-core-problem",
+      "group": "problem_aware",
+      "job": "Find a better way to handle STOCK Act disclosure tracking.",
+      "pain": "STOCK Act disclosure tracking",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "find-category-tools",
+      "group": "category_search",
+      "job": "Discover which Alternative data / political trading data analytics options exist for Traders, researchers, and investors.",
+      "pain": "finding Alternative data / political trading data analytics options",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "understand-workflow",
+      "group": "solution_aware",
+      "job": "Understand whether Alternative data / political trading data analytics can handle trade alerts and filer analysis.",
+      "pain": "understanding Alternative data / political trading data analytics workflows",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "compare-alternatives",
+      "group": "competitor_comparison",
+      "job": "Compare known Alternative data / political trading data analytics options and decide which one fits Traders, researchers, and investors.",
+      "pain": "comparing Alternative data / political trading data analytics alternatives",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    },
+    {
+      "id": "prepare-workflow",
+      "group": "integration_use_case",
+      "job": "Prepare trade alerts and filer analysis for sign up.",
+      "pain": "preparing trade alerts and filer analysis",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 3
+    },
+    {
+      "id": "choose-product",
+      "group": "high_intent_purchase",
+      "job": "Choose the Alternative data / political trading data analytics to try or buy.",
+      "pain": "choosing the right Alternative data / political trading data analytics",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Quiver Quantitative",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "Capitol Trades",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "HouseStockWatch",
+      "aliases": [],
+      "domains": []
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "missing",
+      "notes": "Not classified as a Shopify app."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://followtheinsider.com/",
+      "notes": "Homepage found during website profiling."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page found during standard site crawl."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No alternatives page found during standard site crawl."
+    },
+    {
+      "type": "blog_guide",
+      "status": "unknown",
+      "notes": "Blog coverage not confirmed."
+    },
+    {
+      "type": "docs_help",
+      "status": "unknown",
+      "notes": "Docs/help coverage not confirmed."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "Community mentions require separate search."
+    },
+    {
+      "type": "youtube_video",
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Review profiles require separate search."
+    },
+    {
+      "type": "case_study",
+      "status": "unknown",
+      "notes": "Case studies require separate search."
+    }
+  ],
+  "portfolioSize": 10
+}
