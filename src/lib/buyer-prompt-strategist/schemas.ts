@@ -62,6 +62,49 @@ export type BuyerPromptMarketClassification = z.infer<
 
 export type BuyerPromptLanguage = z.infer<typeof buyerPromptLanguageSchema>;
 
+export const promptEvidenceSourceTypeSchema = z.enum([
+  "autocomplete",
+  "serp",
+  "reddit_forum",
+  "gsc",
+  "manual",
+]);
+
+export const promptEvidenceQualitySchema = z.enum([
+  "unproven",
+  "low",
+  "medium",
+  "high",
+]);
+
+export const serpIntentSchema = z.enum([
+  "choose_tool",
+  "compare_tools",
+  "solve_problem",
+  "learn_definition",
+  "get_inspiration",
+  "troubleshoot",
+  "mixed",
+  "unrelated",
+]);
+
+export const intentMatchSchema = z.enum(["weak", "medium", "strong"]);
+
+export const buyerPromptDemandEvidenceSchema = z.object({
+  sourceType: promptEvidenceSourceTypeSchema,
+  query: text,
+  evidenceText: text,
+  url: z.string().url().optional(),
+  title: text.optional(),
+  snippet: text.optional(),
+  rank: z.number().int().min(1).optional(),
+  observedAt: z.string().datetime(),
+});
+
+export type BuyerPromptDemandEvidence = z.infer<
+  typeof buyerPromptDemandEvidenceSchema
+>;
+
 export const perplexityBusinessReadSchema = z.object({
   targetUrl: z.string().url(),
   targetDomain: text,
@@ -157,6 +200,11 @@ export const buyerPromptCandidateSchema = z.object({
   prompt: text,
   buyerJob: text,
   source: z.enum(["buyer_job", "competitor", "purchase", "category"]),
+  rawQuery: text.optional(),
+  evidenceQuality: promptEvidenceQualitySchema.optional(),
+  serpIntent: serpIntentSchema.optional(),
+  intentMatch: intentMatchSchema.optional(),
+  demandEvidence: z.array(buyerPromptDemandEvidenceSchema).optional(),
   score: promptQualityScoreSchema,
   totalScore: z.number().int().min(6).max(30),
   rationale: text,
@@ -176,6 +224,42 @@ export const llmBuyerPromptCandidateSchema = z.object({
 });
 
 export type LlmBuyerPromptCandidate = z.infer<typeof llmBuyerPromptCandidateSchema>;
+
+export const discoveredBuyerPromptCandidateSchema = z.object({
+  id: text,
+  group: promptGroupSchema,
+  journeyPhase: buyerJourneyPhaseSchema.default("consideration"),
+  rawQuery: text,
+  prompt: text,
+  buyerJob: text,
+  source: z.enum(["buyer_job", "competitor", "purchase", "category"]),
+  evidenceQuality: promptEvidenceQualitySchema,
+  serpIntent: serpIntentSchema.default("mixed"),
+  intentMatch: intentMatchSchema.default("medium"),
+  demandEvidence: z.array(buyerPromptDemandEvidenceSchema).min(1),
+});
+
+export type DiscoveredBuyerPromptCandidate = z.infer<
+  typeof discoveredBuyerPromptCandidateSchema
+>;
+
+export const buyerPromptDiscoveryFileSchema = z.object({
+  brand: text,
+  generatedAt: z.string().datetime(),
+  strategySource: text.optional(),
+  seedProbes: z.array(
+    z.object({
+      query: text,
+      group: promptGroupSchema,
+      sourceField: text,
+    }),
+  ),
+  candidates: z.array(discoveredBuyerPromptCandidateSchema),
+});
+
+export type BuyerPromptDiscoveryFile = z.infer<
+  typeof buyerPromptDiscoveryFileSchema
+>;
 
 export const buyerPromptPortfolioSchema = z.object({
   brand: text,

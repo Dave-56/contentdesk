@@ -83,6 +83,12 @@ test("answer signal separates recommendation variants from mentions and citation
       rank: null,
     },
     {
+      answerText: "Choose Tiny Lemon for a Shopify-native on-model photo workflow.",
+      expected: "recommended",
+      sentiment: "positive",
+      rank: null,
+    },
+    {
       answerText: "Consider Tiny Lemon if you want a Shopify-native workflow.",
       expected: "qualified",
       sentiment: "mixed",
@@ -123,6 +129,34 @@ test("answer signal separates recommendation variants from mentions and citation
     assert.equal(record.answerSignal?.brandCitations.includes("owned"), true);
     assert.equal(record.answerSignal?.quote, item.answerText);
   }
+});
+
+test("answer signal exposes competitor recommendation state", () => {
+  const record = analyzePromptResult({
+    config: configFixture(),
+    prompt: {
+      id: "competitor-signal",
+      group: "category_search",
+      prompt: "Which AI model photo app should I use?",
+    },
+    result: {
+      answerText:
+        "Botika is the top pick for larger fashion catalogs. Tiny Lemon is mentioned as a Shopify-native option.",
+      citedUrls: [
+        "https://example.com/best-botika-alternatives",
+        "https://reviews.example.com/tiny-lemon-review",
+      ],
+    },
+    runDate: new Date("2026-06-01T00:00:00.000Z"),
+  });
+
+  const botikaSignal = record.competitorSignals?.find(
+    (competitor) => competitor.name === "Botika",
+  );
+  assert.equal(botikaSignal?.recommended, true);
+  assert.equal(botikaSignal?.recommendation, "top_pick");
+  assert.equal(record.answerSignal?.competitorSignals[0]?.recommended, true);
+  assert.equal(record.answerSignal?.brandCitations.includes("third_party"), true);
 });
 
 test("prompt scan run summarizes the baseline across prompts", () => {

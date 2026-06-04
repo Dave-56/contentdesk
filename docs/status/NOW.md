@@ -74,6 +74,14 @@ multi-provider runs spend API credits and should be intentional. See
   `scripts/prompt-workflow.sh select data/<slug>/visibility/strategy.json`.
 - Prompt scan env loading: `scripts/prompt-scan.ts` now imports `@/lib/load-env`, so
   `PERPLEXITY_API_KEY` can be read from `.env.local`.
+- Slack default routing now has a rollback flag. `CONTENTDESK_SLACK_DEFAULT=topics` keeps
+  the old `/contentdesk` Research Strategist topic-picker flow; `CONTENTDESK_SLACK_DEFAULT=visibility`
+  makes `/contentdesk` show the latest validated visibility recommendation card instead.
+  Slack remains the control surface and production runner, while visibility owns "what work
+  should we do?" The visibility approval path re-reads `recommendations.json`, checks
+  `runId` + recommendation hash for stale clicks, uses cycle status to avoid duplicate
+  approvals, and fails closed for unsupported task types. Manual `/contentdesk article ...`,
+  profile/setup/edit-profile, publish approval, and Reddit teardown paths remain available.
 - Visibility recommendations: `npm run visibility:recommend` writes
   `data/tiny-lemon/visibility/recommendations.json` from `strategy.json`,
   `owned-content-inventory.json`, and either a single run or `--summary` synthesis file.
@@ -97,10 +105,21 @@ multi-provider runs spend API credits and should be intentional. See
   understanding complete; `/faq` now classifies as `faq`, `/contact` as `other`.
   `owned-content-inventory.json` is the exact owned asset source of truth;
   `site-profile.json` stays broad brand/page context.
+- Prompt scan and synthesis now track answer-level recommendation state, not only mention
+  and citation. Prompt records can include `answerSignal` and `competitorSignals`; summaries
+  count brand recommended, brand top-pick, competitor-recommended-only,
+  cited-but-not-recommended, and recommended-but-not-cited states. Cross-provider synthesis carries
+  `brandRecommendedProviders`, `brandTopPickProviders`, `competitorRecommendedOnlyProviders`,
+  and recommendation-aware gap types such as `competitor_recommended_gap`, `proof_gap`,
+  `citation_gap`, `recommendation_gap`, `top_pick_gap`, `mention_gap`, and `absent_gap`.
+  `visibility:recommend` now emits `promptGaps` so Slack/cards can preserve the diagnosis
+  behind the top task.
 - Owned-content crawler caveat: full unbounded runs can be slow on larger sites because
   understanding is sequential. Use `--max-pages` while testing lead domains. Excerpts still
   include repeated nav/footer boilerplate, so extraction cleanup is still needed before using
   excerpt similarity as strong evidence.
+- Verification on 2026-06-04: `npm run typecheck` and `npm test` passed after adding the
+  Slack visibility adapter/card/approval path and recommendation-aware prompt-gap outputs.
 - Verification on 2026-06-04: `npm test -- src/lib/visibility/site-inventory.test.ts`
   passed and `npm run typecheck` passed after adding owned-content crawler progress logs,
   CLI crawl bounds, and path-first page-type classification.
@@ -173,13 +192,17 @@ multi-provider runs spend API credits and should be intentional. See
 - AEO opportunity quality needs off-site evidence too. Some wins require getting included on
   third-party listicles/reviews/directories or creating video proof, not updating owned pages.
 - Provider failure handling is incomplete for Anthropic credit errors during visibility runs.
+- Slack visibility production runner currently supports page/guide-like tasks only:
+  `alternative_page`, `comparison_page`, and `guide`. Recommendations such as
+  `shopify_app_store_listing`, `community_answer`, and `manual_inspection` show in Slack but
+  fail closed until fix-kit/reply/inspection production paths exist.
 
 ## Next 3 actions
-1. Add buyer-question discovery and scoring from demand evidence: Google SERP,
+1. Add production paths for non-article visibility tasks, starting with
+   `shopify_app_store_listing` fix kits because the current Tiny Lemon recommendation can
+   surface that task type.
+2. Add buyer-question discovery and scoring from demand evidence: Google SERP,
    autocomplete/PAA, competitor titles, forums/reviews, AI answers, and Search Console when
    available.
-2. Add recommendation gap classifier: missing page, weak existing page, off-site citation
-   gap, comparison gap, proof/case-study gap, and prompt-set gap, then output page-level work
-   orders.
 3. Clean owned-content excerpts by stripping nav/footer boilerplate and add safer full-site
    understanding controls for larger lead domains.

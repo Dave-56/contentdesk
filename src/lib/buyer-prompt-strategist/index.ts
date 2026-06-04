@@ -6,6 +6,7 @@ import {
   llmBuyerPromptCandidateSchema,
   type BuyerPromptCandidate,
   type BuyerPromptPortfolio,
+  type DiscoveredBuyerPromptCandidate,
   type LlmBuyerPromptCandidate,
   type BuyerPromptStrategyInput,
   type PromptQualityScore,
@@ -53,6 +54,7 @@ export function buildBuyerPromptPortfolio(input: {
   strategy: BuyerPromptStrategyInput;
   generatedAt?: Date;
   allowManualReview?: boolean;
+  discoveredCandidates?: DiscoveredBuyerPromptCandidate[];
   candidateGenerator?: BuyerPromptCandidateGenerator;
 }): Promise<BuyerPromptPortfolio> {
   return buildBuyerPromptPortfolioAsync(input);
@@ -62,6 +64,7 @@ export async function buildBuyerPromptPortfolioAsync(input: {
   strategy: BuyerPromptStrategyInput;
   generatedAt?: Date;
   allowManualReview?: boolean;
+  discoveredCandidates?: DiscoveredBuyerPromptCandidate[];
   candidateGenerator?: BuyerPromptCandidateGenerator;
 }) {
   if (!input.allowManualReview) {
@@ -72,7 +75,11 @@ export async function buildBuyerPromptPortfolioAsync(input: {
   }
 
   const generatedAt = input.generatedAt ?? new Date();
-  const candidateGenerator = input.candidateGenerator ?? generateBuyerPromptCandidates;
+  const candidateGenerator =
+    input.candidateGenerator ??
+    (input.discoveredCandidates
+      ? async () => discoveredCandidateDrafts(input.discoveredCandidates ?? [])
+      : generateBuyerPromptCandidates);
   const candidates = (await candidateGenerator(input.strategy))
     .map((candidate) => scoreCandidate(candidate, input.strategy))
     .sort(sortCandidates);
@@ -331,11 +338,20 @@ function assetOpportunityScore(
 }
 
 function rationaleForCandidate(
-  candidate: Pick<BuyerPromptCandidateDraft, "group" | "source" | "llmRationale">,
+  candidate: Pick<
+    BuyerPromptCandidateDraft,
+    "group" | "source" | "llmRationale" | "evidenceQuality" | "demandEvidence"
+  >,
   score: PromptQualityScore,
 ) {
   return [
     candidate.llmRationale ? `LLM rationale: ${candidate.llmRationale}` : "",
+    candidate.evidenceQuality
+      ? `Demand evidence: ${candidate.evidenceQuality}; ${(candidate.demandEvidence ?? [])
+        .map((item) => `${item.sourceType} "${item.evidenceText}"`)
+        .slice(0, 3)
+        .join("; ")}.`
+      : "",
     `Selected candidate for ${candidate.group}.`,
     candidate.source === "competitor"
       ? "It tests a competitor-shaped evaluation gap."
@@ -366,7 +382,40 @@ function hasUnknownOrMissingAsset(
 
 function sortCandidates(left: BuyerPromptCandidate, right: BuyerPromptCandidate) {
   if (right.totalScore !== left.totalScore) return right.totalScore - left.totalScore;
+  const evidenceDelta = evidenceRank(right.evidenceQuality) - evidenceRank(left.evidenceQuality);
+  if (evidenceDelta !== 0) return evidenceDelta;
   return left.prompt.localeCompare(right.prompt);
+}
+
+function discoveredCandidateDrafts(
+  candidates: DiscoveredBuyerPromptCandidate[],
+): BuyerPromptCandidateDraft[] {
+  return candidates
+    .filter((candidate) =>
+      candidate.evidenceQuality === "medium" || candidate.evidenceQuality === "high"
+    )
+    .map((candidate) => ({
+      id: candidate.id,
+      group: candidate.group,
+      journeyPhase: candidate.journeyPhase,
+      prompt: candidate.prompt,
+      buyerJob: candidate.buyerJob,
+      source: candidate.source,
+      rawQuery: candidate.rawQuery,
+      evidenceQuality: candidate.evidenceQuality,
+      serpIntent: candidate.serpIntent,
+      intentMatch: candidate.intentMatch,
+      demandEvidence: candidate.demandEvidence,
+      llmRationale: `Normalized from evidence-backed query: ${candidate.rawQuery}`,
+    }));
+}
+
+function evidenceRank(quality: BuyerPromptCandidate["evidenceQuality"]) {
+  if (quality === "high") return 3;
+  if (quality === "medium") return 2;
+  if (quality === "low") return 1;
+
+  return 0;
 }
 
 function dedupeCandidates<T extends { prompt: string }>(candidates: T[]) {

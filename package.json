@@ -11,6 +11,7 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "lint": "eslint .",
+    "prompt:discover": "tsx scripts/prompt-discover.ts",
     "prompt:infer": "tsx scripts/prompt-infer.ts",
     "prompt:select": "tsx scripts/prompt-select.ts",
     "prompt:scan": "tsx scripts/prompt-scan.ts",

@@ -101,6 +101,12 @@ export function analyzePromptResult(input: {
       citedSources,
     }),
   };
+  const nextAction = recommendedNextAction({
+    brandName: input.config.brand.name,
+    citedSources,
+    visibilityScore,
+    assetInventory: input.config.assetInventory,
+  });
 
   return promptScanRecordSchema.parse({
     id: input.prompt.id,
@@ -114,18 +120,9 @@ export function analyzePromptResult(input: {
     runDate: runDate.toISOString(),
     visibilityScore,
     answerSignal,
-    contentdeskNextAction: recommendedNextAction({
-      brandName: input.config.brand.name,
-      citedSources,
-      visibilityScore,
-      assetInventory: input.config.assetInventory,
-    }),
-    recommendedNextAction: recommendedNextAction({
-      brandName: input.config.brand.name,
-      citedSources,
-      visibilityScore,
-      assetInventory: input.config.assetInventory,
-    }),
+    competitorSignals: answerSignal.competitorSignals,
+    contentdeskNextAction: nextAction,
+    recommendedNextAction: nextAction,
     recommendationConfidence: recommendationConfidence({
       citedSources,
       competitorsMentionedCount: competitorsMentioned.length,
@@ -264,6 +261,7 @@ function analyzeAnswerSignal(input: {
       name: competitor.name,
       mentioned: visibility?.mentioned ?? false,
       cited: visibility?.cited ?? false,
+      recommended: isRecommended(recommendation),
       recommendation,
       rank: rankForRecommendation(recommendation, quote),
       sentiment: sentimentForRecommendation(recommendation),
@@ -306,6 +304,11 @@ function brandCitationTypes(input: {
       brandSlugs.some((slug) => source.url.toLowerCase().includes(slug))
     ) {
       citations.add("marketplace");
+      continue;
+    }
+
+    if (brandSlugs.some((slug) => source.url.toLowerCase().includes(slug))) {
+      citations.add("third_party");
     }
   }
 
@@ -325,7 +328,7 @@ function classifyRecommendationForAliases(input: {
   const competitorPattern = aliasRegexSource(input.competitorAliases);
 
   if (
-    new RegExp(`\\b(best|top pick|winner|choose)\\b[^.\\n;:]{0,80}\\b${aliasPattern}\\b`, "i").test(quote) ||
+    new RegExp(`\\b(best|top pick|winner|#1|number one)\\b[^.\\n;:]{0,80}\\b${aliasPattern}\\b`, "i").test(quote) ||
     new RegExp(`\\b${aliasPattern}\\b[^.\\n;:]{0,80}\\b(best|top pick|winner)\\b`, "i").test(quote)
   ) {
     return "top_pick";
@@ -379,8 +382,10 @@ function rankForRecommendation(
   recommendation: AnswerSignal["brandRecommendation"],
   quote: string | null,
 ) {
+  const rankMatch = quote?.match(/^\s*(?:#?([1-9]\d*)[.)]|ranked\s+#?([1-9]\d*)\b)/i);
+  const parsedRank = Number(rankMatch?.[1] ?? rankMatch?.[2]);
+  if (Number.isInteger(parsedRank) && parsedRank > 0) return parsedRank;
   if (recommendation === "top_pick") return 1;
-  if (quote && /^\s*(?:1\.|#1\b)/.test(quote)) return 1;
   return null;
 }
 

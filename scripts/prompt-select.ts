@@ -1,8 +1,11 @@
 import "@/lib/load-env";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { buildBuyerPromptPortfolio } from "@/lib/buyer-prompt-strategist";
-import { buyerPromptStrategyInputSchema } from "@/lib/buyer-prompt-strategist/schemas";
+import {
+  buyerPromptDiscoveryFileSchema,
+  buyerPromptStrategyInputSchema,
+} from "@/lib/buyer-prompt-strategist/schemas";
 import { promptScanConfigSchema } from "@/lib/prompt-scan/schemas";
 
 const defaultInputPath = "data/tiny-lemon/visibility/strategy.json";
@@ -13,6 +16,8 @@ export async function selectPrompts(input: {
   outputDir?: string;
   portfolioPath?: string;
   selectedScanConfigPath?: string;
+  discoveredPromptsPath?: string;
+  ignoreDiscovered?: boolean;
   allowManualReview?: boolean;
 } = {}) {
   const strategy = buyerPromptStrategyInputSchema.parse(
@@ -23,9 +28,23 @@ export async function selectPrompts(input: {
     input.portfolioPath ?? path.join(outputDir, "portfolio.json");
   const resolvedSelectedScanConfigPath =
     input.selectedScanConfigPath ?? path.join(outputDir, "prompts.selected.json");
+  const discoveredPromptsPath =
+    input.discoveredPromptsPath ?? path.join(outputDir, "prompts.discovered.json");
+  const discovery = input.ignoreDiscovered
+    ? undefined
+    : await readDiscoveryIfPresent(discoveredPromptsPath);
+  const discoveredCandidates = discovery?.candidates.filter((candidate) =>
+    candidate.evidenceQuality === "medium" || candidate.evidenceQuality === "high"
+  );
+  if (discovery && (!discoveredCandidates || discoveredCandidates.length === 0)) {
+    throw new Error(
+      `Found ${discoveredPromptsPath}, but it has no medium/high evidence candidates. Re-run prompt:discover or pass --ignore-discovered.`,
+    );
+  }
   const portfolio = await buildBuyerPromptPortfolio({
     strategy,
     allowManualReview: input.allowManualReview,
+    discoveredCandidates,
   });
   const selectedScanConfig = promptScanConfigSchema.parse({
     brand: strategy.brand,
@@ -49,6 +68,9 @@ export async function selectPrompts(input: {
 
   console.log(`[prompt:select] wrote ${resolvedPortfolioPath}`);
   console.log(`[prompt:select] wrote ${resolvedSelectedScanConfigPath}`);
+  if (discovery) {
+    console.log(`[prompt:select] used evidence file ${discoveredPromptsPath}`);
+  }
   console.log(
     `[prompt:select] selected ${portfolio.selectedPrompts.length}/${portfolio.candidates.length} prompts`,
   );
@@ -78,6 +100,8 @@ function parseArgs(args: string[]) {
   const parsed: {
     inputPath?: string;
     outputDir?: string;
+    discoveredPromptsPath?: string;
+    ignoreDiscovered?: boolean;
     allowManualReview?: boolean;
   } = {};
 
@@ -97,8 +121,29 @@ function parseArgs(args: string[]) {
       parsed.allowManualReview = true;
       continue;
     }
+    if (arg === "--discovered") {
+      parsed.discoveredPromptsPath = args[index + 1];
+      index += 1;
+      continue;
+    }
+    if (arg === "--ignore-discovered") {
+      parsed.ignoreDiscovered = true;
+      continue;
+    }
     if (arg && !parsed.inputPath) parsed.inputPath = arg;
   }
 
   return parsed;
+}
+
+async function readDiscoveryIfPresent(discoveredPromptsPath: string) {
+  try {
+    await access(discoveredPromptsPath);
+  } catch {
+    return undefined;
+  }
+
+  return buyerPromptDiscoveryFileSchema.parse(
+    JSON.parse(await readFile(discoveredPromptsPath, "utf8")),
+  );
 }

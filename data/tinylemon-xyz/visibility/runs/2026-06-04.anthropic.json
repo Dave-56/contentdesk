@@ -1,0 +1,1074 @@
+{
+  "brand": "Tiny Lemon",
+  "provider": "anthropic",
+  "runDate": "2026-06-04T00:53:24.976Z",
+  "recheckCadenceDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "records": [
+    {
+      "id": "competitor-comparison-should-i-choose-tiny-lemon-or-lalaland-ai-for-a-shopify-apparel-catalog-refresh",
+      "prompt": "Should I choose Tiny Lemon or Lalaland.ai for a Shopify apparel catalog refresh?",
+      "promptGroup": "competitor_comparison",
+      "provider": "anthropic",
+      "answerText": "[prompt:scan:error] Anthropic request failed with 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CbhK6TUavbsjW35YRfEZW\"}",
+      "citedUrls": [],
+      "citedDomains": [],
+      "citedSources": [],
+      "runDate": "2026-06-04T00:53:24.976Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 0,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "answerSignal": {
+        "brandPresence": "absent",
+        "brandCitations": [],
+        "brandRecommendation": "absent",
+        "brandRank": null,
+        "recommendationPosition": null,
+        "sentiment": "neutral",
+        "quote": null,
+        "confidence": "high",
+        "competitorSignals": [
+          {
+            "name": "Botika",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "Lalaland.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "ZMO.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          }
+        ]
+      },
+      "competitorSignals": [
+        {
+          "name": "Botika",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "Lalaland.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "ZMO.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        }
+      ],
+      "contentdeskNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "low",
+      "recheckDate": "2026-06-05"
+    },
+    {
+      "id": "competitor-comparison-which-is-better-for-a-small-shopify-clothing-brand-tiny-lemon-or-botika",
+      "prompt": "Which is better for a small Shopify clothing brand: Tiny Lemon or Botika?",
+      "promptGroup": "competitor_comparison",
+      "provider": "anthropic",
+      "answerText": "[prompt:scan:error] Anthropic request failed with 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CbhK6TWZvqoy6FVDTUb43\"}",
+      "citedUrls": [],
+      "citedDomains": [],
+      "citedSources": [],
+      "runDate": "2026-06-04T00:53:24.976Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 0,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "answerSignal": {
+        "brandPresence": "absent",
+        "brandCitations": [],
+        "brandRecommendation": "absent",
+        "brandRank": null,
+        "recommendationPosition": null,
+        "sentiment": "neutral",
+        "quote": null,
+        "confidence": "high",
+        "competitorSignals": [
+          {
+            "name": "Botika",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "Lalaland.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "ZMO.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          }
+        ]
+      },
+      "competitorSignals": [
+        {
+          "name": "Botika",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "Lalaland.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "ZMO.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        }
+      ],
+      "contentdeskNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "low",
+      "recheckDate": "2026-06-05"
+    },
+    {
+      "id": "high-intent-purchase-is-tiny-lemon-worth-trying-for-indie-fashion-brands-that-need-model-photos-fast",
+      "prompt": "Is Tiny Lemon worth trying for indie fashion brands that need model photos fast?",
+      "promptGroup": "high_intent_purchase",
+      "provider": "anthropic",
+      "answerText": "[prompt:scan:error] Anthropic request failed with 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CbhK6TUark92XouM2Kb1F\"}",
+      "citedUrls": [],
+      "citedDomains": [],
+      "citedSources": [],
+      "runDate": "2026-06-04T00:53:24.976Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 0,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "answerSignal": {
+        "brandPresence": "absent",
+        "brandCitations": [],
+        "brandRecommendation": "absent",
+        "brandRank": null,
+        "recommendationPosition": null,
+        "sentiment": "neutral",
+        "quote": null,
+        "confidence": "high",
+        "competitorSignals": [
+          {
+            "name": "Botika",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "Lalaland.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "ZMO.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          }
+        ]
+      },
+      "competitorSignals": [
+        {
+          "name": "Botika",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "Lalaland.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "ZMO.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        }
+      ],
+      "contentdeskNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "low",
+      "recheckDate": "2026-06-05"
+    },
+    {
+      "id": "high-intent-purchase-should-i-install-tiny-lemon-for-my-shopify-fashion-store-if-i-only-have-flat-lay-product-photos",
+      "prompt": "Should I install Tiny Lemon for my Shopify fashion store if I only have flat-lay product photos?",
+      "promptGroup": "high_intent_purchase",
+      "provider": "anthropic",
+      "answerText": "[prompt:scan:error] Anthropic request failed with 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CbhK6ULRrazVCWjs1AD49\"}",
+      "citedUrls": [],
+      "citedDomains": [],
+      "citedSources": [],
+      "runDate": "2026-06-04T00:53:24.976Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 0,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "answerSignal": {
+        "brandPresence": "absent",
+        "brandCitations": [],
+        "brandRecommendation": "absent",
+        "brandRank": null,
+        "recommendationPosition": null,
+        "sentiment": "neutral",
+        "quote": null,
+        "confidence": "high",
+        "competitorSignals": [
+          {
+            "name": "Botika",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "Lalaland.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "ZMO.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          }
+        ]
+      },
+      "competitorSignals": [
+        {
+          "name": "Botika",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "Lalaland.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "ZMO.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        }
+      ],
+      "contentdeskNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "low",
+      "recheckDate": "2026-06-05"
+    },
+    {
+      "id": "category-search-what-ai-product-photography-apps-are-best-for-indie-fashion-brands-on-shopify",
+      "prompt": "What AI product photography apps are best for indie fashion brands on Shopify?",
+      "promptGroup": "category_search",
+      "provider": "anthropic",
+      "answerText": "[prompt:scan:error] Anthropic request failed with 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CbhK6UEjEDPJFfqJmiVzU\"}",
+      "citedUrls": [],
+      "citedDomains": [],
+      "citedSources": [],
+      "runDate": "2026-06-04T00:53:24.976Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 0,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "answerSignal": {
+        "brandPresence": "absent",
+        "brandCitations": [],
+        "brandRecommendation": "absent",
+        "brandRank": null,
+        "recommendationPosition": null,
+        "sentiment": "neutral",
+        "quote": null,
+        "confidence": "high",
+        "competitorSignals": [
+          {
+            "name": "Botika",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "Lalaland.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "ZMO.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          }
+        ]
+      },
+      "competitorSignals": [
+        {
+          "name": "Botika",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "Lalaland.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "ZMO.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        }
+      ],
+      "contentdeskNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "low",
+      "recheckDate": "2026-06-05"
+    },
+    {
+      "id": "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget",
+      "prompt": "What is the best AI product photography app for a Shopify fashion store with no shoot budget?",
+      "promptGroup": "category_search",
+      "provider": "anthropic",
+      "answerText": "[prompt:scan:error] Anthropic request failed with 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CbhK6UV7LxSNVvWAJim7L\"}",
+      "citedUrls": [],
+      "citedDomains": [],
+      "citedSources": [],
+      "runDate": "2026-06-04T00:53:24.976Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 0,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "answerSignal": {
+        "brandPresence": "absent",
+        "brandCitations": [],
+        "brandRecommendation": "absent",
+        "brandRank": null,
+        "recommendationPosition": null,
+        "sentiment": "neutral",
+        "quote": null,
+        "confidence": "high",
+        "competitorSignals": [
+          {
+            "name": "Botika",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "Lalaland.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "ZMO.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          }
+        ]
+      },
+      "competitorSignals": [
+        {
+          "name": "Botika",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "Lalaland.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "ZMO.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        }
+      ],
+      "contentdeskNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "low",
+      "recheckDate": "2026-06-05"
+    },
+    {
+      "id": "high-intent-purchase-what-should-i-check-before-installing-an-ai-product-photography-app-on-shopify",
+      "prompt": "What should I check before installing an AI product photography app on Shopify?",
+      "promptGroup": "high_intent_purchase",
+      "provider": "anthropic",
+      "answerText": "[prompt:scan:error] Anthropic request failed with 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CbhK6UkykSiFWUWcMRDMo\"}",
+      "citedUrls": [],
+      "citedDomains": [],
+      "citedSources": [],
+      "runDate": "2026-06-04T00:53:24.976Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 0,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "answerSignal": {
+        "brandPresence": "absent",
+        "brandCitations": [],
+        "brandRecommendation": "absent",
+        "brandRank": null,
+        "recommendationPosition": null,
+        "sentiment": "neutral",
+        "quote": null,
+        "confidence": "high",
+        "competitorSignals": [
+          {
+            "name": "Botika",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "Lalaland.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "ZMO.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          }
+        ]
+      },
+      "competitorSignals": [
+        {
+          "name": "Botika",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "Lalaland.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "ZMO.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        }
+      ],
+      "contentdeskNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "low",
+      "recheckDate": "2026-06-05"
+    },
+    {
+      "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-studio-quality-product-photos-without-a-shoot-budget",
+      "prompt": "How can indie fashion brands on Shopify get studio-quality product photos without a shoot budget?",
+      "promptGroup": "problem_aware",
+      "provider": "anthropic",
+      "answerText": "[prompt:scan:error] Anthropic request failed with 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CbhK6VJUKarMo8ojcRK2P\"}",
+      "citedUrls": [],
+      "citedDomains": [],
+      "citedSources": [],
+      "runDate": "2026-06-04T00:53:24.976Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 0,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "answerSignal": {
+        "brandPresence": "absent",
+        "brandCitations": [],
+        "brandRecommendation": "absent",
+        "brandRank": null,
+        "recommendationPosition": null,
+        "sentiment": "neutral",
+        "quote": null,
+        "confidence": "high",
+        "competitorSignals": [
+          {
+            "name": "Botika",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "Lalaland.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "ZMO.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          }
+        ]
+      },
+      "competitorSignals": [
+        {
+          "name": "Botika",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "Lalaland.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "ZMO.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        }
+      ],
+      "contentdeskNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "low",
+      "recheckDate": "2026-06-05"
+    },
+    {
+      "id": "solution-aware-can-an-ai-product-photography-app-create-front-side-and-back-views-from-one-clothing-photo",
+      "prompt": "Can an AI product photography app create front, side, and back views from one clothing photo?",
+      "promptGroup": "solution_aware",
+      "provider": "anthropic",
+      "answerText": "[prompt:scan:error] Anthropic request failed with 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CbhK6VRfP8MyjymA5C334\"}",
+      "citedUrls": [],
+      "citedDomains": [],
+      "citedSources": [],
+      "runDate": "2026-06-04T00:53:24.976Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 0,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "answerSignal": {
+        "brandPresence": "absent",
+        "brandCitations": [],
+        "brandRecommendation": "absent",
+        "brandRank": null,
+        "recommendationPosition": null,
+        "sentiment": "neutral",
+        "quote": null,
+        "confidence": "high",
+        "competitorSignals": [
+          {
+            "name": "Botika",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "Lalaland.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "ZMO.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          }
+        ]
+      },
+      "competitorSignals": [
+        {
+          "name": "Botika",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "Lalaland.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "ZMO.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        }
+      ],
+      "contentdeskNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "low",
+      "recheckDate": "2026-06-05"
+    },
+    {
+      "id": "integration-use-case-can-i-publish-ai-generated-product-images-directly-to-shopify-products",
+      "prompt": "Can I publish AI-generated product images directly to Shopify products?",
+      "promptGroup": "integration_use_case",
+      "provider": "anthropic",
+      "answerText": "[prompt:scan:error] Anthropic request failed with 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CbhK6VSQojGmdiaxi2yVn\"}",
+      "citedUrls": [],
+      "citedDomains": [],
+      "citedSources": [],
+      "runDate": "2026-06-04T00:53:24.976Z",
+      "visibilityScore": {
+        "brandMentioned": false,
+        "brandCited": false,
+        "mentionPosition": "absent",
+        "competitorsMentioned": [],
+        "competitorsCited": [],
+        "citationCount": 0,
+        "sourceStrength": "weak",
+        "score": 0
+      },
+      "answerSignal": {
+        "brandPresence": "absent",
+        "brandCitations": [],
+        "brandRecommendation": "absent",
+        "brandRank": null,
+        "recommendationPosition": null,
+        "sentiment": "neutral",
+        "quote": null,
+        "confidence": "high",
+        "competitorSignals": [
+          {
+            "name": "Botika",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "Lalaland.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          },
+          {
+            "name": "ZMO.ai",
+            "mentioned": false,
+            "cited": false,
+            "recommended": false,
+            "recommendation": "absent",
+            "rank": null,
+            "sentiment": "neutral",
+            "quote": null,
+            "confidence": "high"
+          }
+        ]
+      },
+      "competitorSignals": [
+        {
+          "name": "Botika",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "Lalaland.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        },
+        {
+          "name": "ZMO.ai",
+          "mentioned": false,
+          "cited": false,
+          "recommended": false,
+          "recommendation": "absent",
+          "rank": null,
+          "sentiment": "neutral",
+          "quote": null,
+          "confidence": "high"
+        }
+      ],
+      "contentdeskNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendedNextAction": "Manually inspect the cited sources, classify the winning source pattern, then create the matching asset or fix.",
+      "recommendationConfidence": "low",
+      "recheckDate": "2026-06-05"
+    }
+  ],
+  "summary": {
+    "promptCount": 10,
+    "brandMentionedCount": 0,
+    "brandCitedCount": 0,
+    "brandRecommendedCount": 0,
+    "brandTopPickCount": 0,
+    "competitorOnlyCount": 0,
+    "competitorRecommendedOnlyCount": 0,
+    "citedButNotRecommendedCount": 0,
+    "recommendedButNotCitedCount": 0,
+    "averageVisibilityScore": 0
+  }
+}

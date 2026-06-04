@@ -6,7 +6,6 @@ import {
   type PromptScanRun,
   type PromptScanConfig,
   type AnswerSignal,
-  type SourceFormat,
 } from "@/lib/prompt-scan/schemas";
 
 export type ProviderRunError = {
@@ -70,14 +69,14 @@ export const crossProviderSynthesisSchema = z.object({
   summary: z.object({
     promptCount: z.number().int().min(0),
     providerCount: z.number().int().min(1),
-      failedProviderCount: z.number().int().min(0),
-      repeatedGapCount: z.number().int().min(0),
-      brandRecommendedCount: z.number().int().min(0).default(0),
-      brandTopPickCount: z.number().int().min(0).default(0),
-      competitorRecommendedOnlyCount: z.number().int().min(0).default(0),
-      citedButNotRecommendedCount: z.number().int().min(0).default(0),
-      recommendedButNotCitedCount: z.number().int().min(0).default(0),
-    }),
+    failedProviderCount: z.number().int().min(0),
+    repeatedGapCount: z.number().int().min(0),
+    brandRecommendedCount: z.number().int().min(0).default(0),
+    brandTopPickCount: z.number().int().min(0).default(0),
+    competitorRecommendedOnlyCount: z.number().int().min(0).default(0),
+    citedButNotRecommendedCount: z.number().int().min(0).default(0),
+    recommendedButNotCitedCount: z.number().int().min(0).default(0),
+  }),
   prompts: z.array(promptSynthesisSchema),
 });
 
@@ -155,6 +154,7 @@ export function buildCrossProviderSynthesis(input: {
         brandMentionedProviders,
         brandCitedProviders,
         brandRecommendedProviders,
+        brandTopPickProviders,
         dominantSourceFormats,
       }),
     });
@@ -258,19 +258,20 @@ function recommendedGapType(input: {
   brandMentionedProviders: string[];
   brandCitedProviders: string[];
   brandRecommendedProviders: string[];
+  brandTopPickProviders: string[];
   dominantSourceFormats: string[];
 }) {
-  if (
-    input.brandRecommendedProviders.length > 0 &&
-    input.competitorRecommendedOnlyProviders.length === 0
-  ) {
-    return "no_gap";
-  }
   if (input.competitorRecommendedOnlyProviders.length > 0) {
     return "competitor_recommended_gap";
   }
-  if (input.record.promptGroup === "competitor_comparison") {
-    return "competitor_comparison_gap";
+  if (input.brandRecommendedProviders.length > 0 && input.brandCitedProviders.length === 0) {
+    return "proof_gap";
+  }
+  if (input.brandMentionedProviders.length === 0) {
+    return input.competitorOnlyProviders.length > 0 ? "mention_gap" : "absent_gap";
+  }
+  if (input.brandCitedProviders.length === 0) {
+    return "citation_gap";
   }
   if (
     input.brandCitedProviders.length > 0 &&
@@ -278,21 +279,11 @@ function recommendedGapType(input: {
   ) {
     return "recommendation_gap";
   }
-  if (
-    input.brandMentionedProviders.length > 0 &&
-    input.brandCitedProviders.length === 0
-  ) {
-    return "citation_gap";
-  }
-  const dominantSourceFormat = input.dominantSourceFormats[0] as SourceFormat | undefined;
-  if (dominantSourceFormat === "marketplace_listing") return "marketplace_gap";
-  if (dominantSourceFormat === "reddit_thread") return "community_gap";
-  if (dominantSourceFormat === "comparison_page") return "comparison_gap";
-  if (dominantSourceFormat === "blog_guide" || dominantSourceFormat === "listicle") {
-    return "guide_gap";
+  if (input.brandTopPickProviders.length === 0) {
+    return "top_pick_gap";
   }
 
-  return "manual_inspection_gap";
+  return "no_gap";
 }
 
 function legacyAnswerSignal(record: PromptScanRecord): AnswerSignal {
@@ -312,6 +303,7 @@ function legacyAnswerSignal(record: PromptScanRecord): AnswerSignal {
       name: competitor.name,
       mentioned: competitor.mentioned,
       cited: competitor.cited,
+      recommended: false,
       recommendation: "neutral",
       rank: null,
       sentiment: "neutral",

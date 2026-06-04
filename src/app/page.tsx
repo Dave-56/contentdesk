@@ -73,6 +73,7 @@ export default function Home() {
           <a href="#coverage">Coverage</a>
           <a href="#workflow">Workflow</a>
           <a href="#surfaces">Surfaces</a>
+          <a href="/recommendations">Recommendations</a>
         </nav>
         <a className="header-cta" href="mailto:hello@contentdesk.ai">
           Start coverage

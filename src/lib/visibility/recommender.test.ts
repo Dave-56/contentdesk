@@ -198,6 +198,11 @@ test("recommender uses synthesis repeated provider gaps for high confidence", ()
   const [top] = recommendations.recommendations;
   assert.equal(recommendations.provider, "synthesis");
   assert.deepEqual(recommendations.providers, ["perplexity", "openai", "anthropic"]);
+  assert.equal(recommendations.promptGaps[0]?.promptId, "competitor-botika-alternatives");
+  assert.equal(recommendations.promptGaps[0]?.brandStatus, "recommended");
+  assert.deepEqual(recommendations.promptGaps[0]?.competitorStatus.mentioned, ["Botika"]);
+  assert.equal(recommendations.promptGaps[0]?.gapType, "recommendation_gap");
+  assert.equal(recommendations.promptGaps[0]?.sourcesUsed[0]?.domain, "wearview.co");
   assert.equal(top.title, "Build Botika alternatives page");
   assert.equal(top.confidence, "high");
   assert.equal(top.priority, "high");
@@ -264,7 +269,7 @@ test("recommender skips synthesis prompts that already have no gap", () => {
           competitorRecommendedOnlyProviders: [],
           dominantCompetitors: [],
           dominantSourceFormats: ["marketplace_listing"],
-          recommendedGapType: "marketplace_gap",
+          recommendedGapType: "absent_gap",
           providerResults: [
             providerResultFixture("perplexity", {
               brandMentioned: false,
@@ -287,7 +292,7 @@ test("recommender skips synthesis prompts that already have no gap", () => {
   const [top] = recommendations.recommendations;
   assert.equal(top.targetPromptId, "category-best-ai-product-photography-apps");
   assert.equal(top.taskType, "shopify_app_store_listing");
-  assert.match(top.why.join(" "), /marketplace gap/);
+  assert.match(top.why.join(" "), /absent gap/);
 });
 
 test("recommender emits no synthesis recommendations without owned inventory", () => {
@@ -431,7 +436,7 @@ function synthesisFixture(): CrossProviderSynthesis {
         competitorRecommendedOnlyProviders: [],
         dominantCompetitors: ["Botika"],
         dominantSourceFormats: ["comparison_page", "product_page"],
-        recommendedGapType: "competitor_comparison_gap",
+        recommendedGapType: "recommendation_gap",
         providerResults: [
           providerResultFixture("perplexity", {
             brandMentioned: false,

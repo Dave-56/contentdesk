@@ -126,6 +126,12 @@ Acceptance:
 - [x] Update recommender to read synthesis plus owned inventory.
 - [x] Add `visibility:run` to orchestrate Perplexity, OpenAI, Anthropic, synthesis, and optional recommendation.
 - [x] Make `visibility:run` fail-soft per provider and record partial synthesis provider errors.
+- [x] Add answer-level recommendation signals to prompt scan records and summaries.
+- [x] Add recommendation-aware cross-provider synthesis states and gap types.
+- [x] Add `promptGaps` to visibility recommendation outputs.
+- [x] Add Slack visibility recommendation card behind `CONTENTDESK_SLACK_DEFAULT`.
+- [x] Add stale-click, duplicate-click, and unsupported-task guards for Slack visibility recommendation approval.
+- [x] Convert approved page/guide visibility recommendations into evidence-preserving TopicBriefs for the existing production runner.
 - [x] Add AI Gateway buyer-language classification to `prompt:infer`.
 - [x] Make `prompt:select` require reviewed `buyerLanguage` before generating prompts.
 - [x] Add brand-neutral prompt builders that assemble from `buyerLanguage` instead of raw strategy clauses.
@@ -155,6 +161,8 @@ Acceptance:
 - [ ] De-prioritize schema/meta-tag-only AEO recommendations unless tied to a concrete crawl/indexing issue.
 - [ ] Track repeated scan trends and semantic answer stability so citation churn does not trigger noisy recommendations.
 - [ ] Generate page-level work orders: exact page to create/update, H2s to add, examples/proof to include, competitor comparisons to cover, and prompts to re-run.
+- [ ] Add `shopify_app_store_listing` fix-kit production runner for Slack visibility approvals.
+- [ ] Add `community_answer` and `manual_inspection` production paths for Slack visibility approvals.
 - [ ] Mark provider runs invalid/partial when prompt-level API failures dominate, especially Anthropic low-credit errors.
 - [ ] V2: Add Shopify app entity profile before strategy generation.
 - [ ] V2: Add Shopify asset audit for homepage, App Store listing, docs, blog, alternatives pages, demos, reviews, and community mentions.

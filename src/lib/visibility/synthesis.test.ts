@@ -39,7 +39,7 @@ test("groups provider runs by prompt id", () => {
   assert.deepEqual(prompt.brandCitedProviders, ["anthropic"]);
   assert.deepEqual(prompt.dominantCompetitors, ["Botika"]);
   assert.equal(prompt.dominantSourceFormats[0], "comparison_page");
-  assert.equal(prompt.recommendedGapType, "competitor_comparison_gap");
+  assert.equal(prompt.recommendedGapType, "recommendation_gap");
 });
 
 test("records failed providers in partial synthesis", () => {

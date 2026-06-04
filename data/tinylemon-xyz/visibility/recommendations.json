@@ -6,69 +6,1761 @@
     "openai",
     "anthropic"
   ],
-  "generatedAt": "2026-06-03T23:45:31.908Z",
-  "basedOnRunDate": "2026-06-03T23:39:08.534Z",
+  "generatedAt": "2026-06-04T00:59:28.743Z",
+  "basedOnRunDate": "2026-06-04T00:53:24.976Z",
   "summary": {
     "promptCount": 10,
     "brandMentionedCount": 4,
     "brandCitedCount": 4,
-    "competitorOnlyCount": 1,
+    "brandRecommendedCount": 1,
+    "brandTopPickCount": 0,
+    "competitorOnlyCount": 2,
+    "competitorRecommendedOnlyCount": 2,
+    "citedButNotRecommendedCount": 3,
+    "recommendedButNotCitedCount": 0,
     "averageVisibilityScore": 0
   },
+  "promptGaps": [
+    {
+      "promptId": "competitor-comparison-should-i-choose-tiny-lemon-or-lalaland-ai-for-a-shopify-apparel-catalog-refresh",
+      "prompt": "Should I choose Tiny Lemon or Lalaland.ai for a Shopify apparel catalog refresh?",
+      "promptGroup": "competitor_comparison",
+      "providers": [
+        "perplexity",
+        "openai",
+        "anthropic"
+      ],
+      "brandStatus": "cited",
+      "brandRecommendation": "neutral",
+      "brandMentioned": true,
+      "brandCited": true,
+      "competitorStatus": {
+        "mentioned": [
+          "Lalaland.ai"
+        ],
+        "cited": [],
+        "recommended": [
+          "Lalaland.ai"
+        ]
+      },
+      "sourcesUsed": [
+        {
+          "domain": "skillwaala.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "browzwear.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "fueler.io",
+          "format": "unknown"
+        },
+        {
+          "domain": "youtube.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "modelia.ai",
+          "format": "unknown"
+        },
+        {
+          "domain": "foxbusiness.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "textiletoday.com.bd",
+          "format": "unknown"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "tinylemon.xyz",
+          "format": "unknown"
+        },
+        {
+          "domain": "thenextweb.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "lalaland.ai",
+          "format": "unknown"
+        },
+        {
+          "domain": "pickyourapp.com",
+          "format": "unknown"
+        }
+      ],
+      "gapType": "competitor_recommended_gap",
+      "nextAction": "Inspect cited sources and create matching asset",
+      "why": "Lalaland.ai recommended while Tiny Lemon is not chosen.",
+      "providerSignals": [
+        {
+          "provider": "perplexity",
+          "brandStatus": "mentioned",
+          "brandRecommendation": "neutral",
+          "brandMentioned": true,
+          "brandCited": false,
+          "competitorsRecommended": [
+            "Lalaland.ai"
+          ],
+          "citedDomains": [
+            "skillwaala.com",
+            "browzwear.com",
+            "fueler.io",
+            "youtube.com",
+            "modelia.ai",
+            "foxbusiness.com",
+            "textiletoday.com.bd"
+          ]
+        },
+        {
+          "provider": "openai",
+          "brandStatus": "cited",
+          "brandRecommendation": "neutral",
+          "brandMentioned": true,
+          "brandCited": true,
+          "competitorsRecommended": [
+            "Lalaland.ai"
+          ],
+          "citedDomains": [
+            "apps.shopify.com",
+            "tinylemon.xyz",
+            "thenextweb.com",
+            "lalaland.ai",
+            "pickyourapp.com",
+            "vibetry.io",
+            "luminify.app",
+            "tryonaura.com",
+            "tryoncloud.com",
+            "gleame.ai",
+            "serve.fit",
+            "app.trywear.ai",
+            "shopify.com",
+            "pixelwrangler.io",
+            "shopify.noem.ai",
+            "en.wikipedia.org",
+            "reddit.com",
+            "arxiv.org",
+            "ai5050.com",
+            "techxplore.com",
+            "theoremteam.net",
+            "tiny-img.com",
+            "portfolio-tools.s3.eu-west-2.amazonaws.com",
+            "worldecomag.com",
+            "packshotr.com",
+            "beta.glood.ai",
+            "landing.lumoragen.app",
+            "huhu.ai",
+            "junior.app",
+            "huratips.com",
+            "courses.cs.umbc.edu",
+            "stg.levistrauss.levis.com",
+            "studio.apiway.ai",
+            "toolerific.ai",
+            "aitoolnet.com",
+            "toolmage.com",
+            "f6s.com",
+            "appnavigator.io",
+            "wearview.co",
+            "thesmudgereport.com",
+            "openfuture.ai",
+            "ozguryayinlari.com",
+            "make.com",
+            "help.shopify.com",
+            "heyloha.ai",
+            "lindy.ai",
+            "help.velaro.com",
+            "layerre.com",
+            "docs.heylua.ai",
+            "support.cavallo.com",
+            "assets.lulu.com",
+            "houseblend.io",
+            "fashionunited.com",
+            "finance.yahoo.com",
+            "15minutenews.com",
+            "trysignalbase.com",
+            "linkedin.com",
+            "siliconcanals.com",
+            "buyblack.org",
+            "fonkmagazine.nl",
+            "archyde.com",
+            "ftw.pi.tv",
+            "foley.com",
+            "browzwear.com",
+            "theinterline.com",
+            "lalaland-public-files.s3.eu-central-1.amazonaws.com",
+            "wire.expertini.com",
+            "ipaddress.com",
+            "play.google.com",
+            "hypestat.com",
+            "apps.shopify.com.siterate.org",
+            "letsmetrix.com",
+            "appsrankings.com",
+            "csusb.edu",
+            "nltd.com",
+            "s3.eu-west-1.amazonaws.com",
+            "assets.website-files.com",
+            "oneacadiana.org"
+          ]
+        },
+        {
+          "provider": "anthropic",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": []
+        }
+      ]
+    },
+    {
+      "promptId": "competitor-comparison-which-is-better-for-a-small-shopify-clothing-brand-tiny-lemon-or-botika",
+      "prompt": "Which is better for a small Shopify clothing brand: Tiny Lemon or Botika?",
+      "promptGroup": "competitor_comparison",
+      "providers": [
+        "perplexity",
+        "openai",
+        "anthropic"
+      ],
+      "brandStatus": "cited",
+      "brandRecommendation": "neutral",
+      "brandMentioned": true,
+      "brandCited": true,
+      "competitorStatus": {
+        "mentioned": [
+          "Botika"
+        ],
+        "cited": [],
+        "recommended": [
+          "Botika"
+        ]
+      },
+      "sourcesUsed": [
+        {
+          "domain": "accentuate.io",
+          "format": "comparison_page"
+        },
+        {
+          "domain": "photta.app",
+          "format": "comparison_page"
+        },
+        {
+          "domain": "krev.ai",
+          "format": "comparison_page"
+        },
+        {
+          "domain": "oxify.app",
+          "format": "comparison_page"
+        },
+        {
+          "domain": "youtube.com",
+          "format": "comparison_page"
+        },
+        {
+          "domain": "quickchat.ai",
+          "format": "comparison_page"
+        },
+        {
+          "domain": "wearview.co",
+          "format": "comparison_page"
+        },
+        {
+          "domain": "podifai.com",
+          "format": "comparison_page"
+        },
+        {
+          "domain": "tinylemon.xyz",
+          "format": "unknown"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "botika.io",
+          "format": "unknown"
+        },
+        {
+          "domain": "botika.com",
+          "format": "unknown"
+        }
+      ],
+      "gapType": "competitor_recommended_gap",
+      "nextAction": "Inspect cited sources and create matching asset",
+      "why": "Botika recommended while Tiny Lemon is not chosen.",
+      "providerSignals": [
+        {
+          "provider": "perplexity",
+          "brandStatus": "mentioned",
+          "brandRecommendation": "neutral",
+          "brandMentioned": true,
+          "brandCited": false,
+          "competitorsRecommended": [
+            "Botika"
+          ],
+          "citedDomains": [
+            "accentuate.io",
+            "photta.app",
+            "krev.ai",
+            "oxify.app",
+            "youtube.com",
+            "quickchat.ai",
+            "wearview.co",
+            "podifai.com"
+          ]
+        },
+        {
+          "provider": "openai",
+          "brandStatus": "cited",
+          "brandRecommendation": "neutral",
+          "brandMentioned": true,
+          "brandCited": true,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "tinylemon.xyz",
+            "apps.shopify.com",
+            "botika.io",
+            "botika.com",
+            "discover.commoninja.com",
+            "snappyit.ai",
+            "aisotools.com",
+            "accentuate.io",
+            "owlmix.webflow.io",
+            "storecensus.com",
+            "studio.apiway.ai",
+            "reddit.com",
+            "botified.ai",
+            "prodigi.com",
+            "analyzecorp.com",
+            "norcat.org",
+            "creaitivapp.com",
+            "stickyfingerscooking.com",
+            "rewarx.com",
+            "on-model.com",
+            "bestofai.com",
+            "help.botika.io",
+            "domestika.org",
+            "wearview.co",
+            "claid.ai",
+            "0e190a550a8c4c8c4b93-fcd009c875a5577fd4fe2f5b7e3bf4eb.ssl.cf2.rackcdn.com",
+            "scholarsbank.uoregon.edu",
+            "lookdepot.com",
+            "emuart.jp",
+            "us.alonot.com",
+            "static1.squarespace.com"
+          ]
+        },
+        {
+          "provider": "anthropic",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": []
+        }
+      ]
+    },
+    {
+      "promptId": "high-intent-purchase-is-tiny-lemon-worth-trying-for-indie-fashion-brands-that-need-model-photos-fast",
+      "prompt": "Is Tiny Lemon worth trying for indie fashion brands that need model photos fast?",
+      "promptGroup": "high_intent_purchase",
+      "providers": [
+        "perplexity",
+        "openai",
+        "anthropic"
+      ],
+      "brandStatus": "cited",
+      "brandRecommendation": "neutral",
+      "brandMentioned": true,
+      "brandCited": true,
+      "competitorStatus": {
+        "mentioned": [],
+        "cited": [],
+        "recommended": []
+      },
+      "sourcesUsed": [
+        {
+          "domain": "theoriginalvangoghsearanthology.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "lemon8-app.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "tinylemonstudios.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "tinylemon.xyz",
+          "format": "unknown"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "pickyourapp.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "aiclothingmodel.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "modelcast.fit",
+          "format": "unknown"
+        },
+        {
+          "domain": "getfoca.ai",
+          "format": "unknown"
+        },
+        {
+          "domain": "pixellum.ai",
+          "format": "unknown"
+        },
+        {
+          "domain": "easelfy.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "shopdigest.com",
+          "format": "unknown"
+        }
+      ],
+      "gapType": "recommendation_gap",
+      "nextAction": "Inspect cited sources and create matching asset",
+      "why": "Tiny Lemon is visible enough to be cited, but the answer does not choose it.",
+      "providerSignals": [
+        {
+          "provider": "perplexity",
+          "brandStatus": "mentioned",
+          "brandRecommendation": "neutral",
+          "brandMentioned": true,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "theoriginalvangoghsearanthology.com",
+            "lemon8-app.com",
+            "tinylemonstudios.com"
+          ]
+        },
+        {
+          "provider": "openai",
+          "brandStatus": "cited",
+          "brandRecommendation": "neutral",
+          "brandMentioned": true,
+          "brandCited": true,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "tinylemon.xyz",
+            "apps.shopify.com",
+            "pickyourapp.com",
+            "aiclothingmodel.com",
+            "modelcast.fit",
+            "getfoca.ai",
+            "pixellum.ai",
+            "easelfy.com",
+            "shopdigest.com",
+            "lookmaker.ai",
+            "lifestyle.photo",
+            "createaimodels.com",
+            "reddit.com",
+            "arxiv.org",
+            "en.wikipedia.org",
+            "foley.com",
+            "computationalcreativity.net",
+            "cs.williams.edu",
+            "ecommons.cornell.edu",
+            "s202.q4cdn.com",
+            "packshotr.com",
+            "prodshot.ai",
+            "beta.glood.ai",
+            "luminify.app",
+            "tryonora.app",
+            "help.shopify.com",
+            "landing.lumoragen.app",
+            "creaitivapp.com",
+            "theoremteam.net",
+            "stylaquin.com",
+            "litcommerce.com",
+            "heliumdev.com"
+          ]
+        },
+        {
+          "provider": "anthropic",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": []
+        }
+      ]
+    },
+    {
+      "promptId": "high-intent-purchase-should-i-install-tiny-lemon-for-my-shopify-fashion-store-if-i-only-have-flat-lay-product-photos",
+      "prompt": "Should I install Tiny Lemon for my Shopify fashion store if I only have flat-lay product photos?",
+      "promptGroup": "high_intent_purchase",
+      "providers": [
+        "perplexity",
+        "openai",
+        "anthropic"
+      ],
+      "brandStatus": "recommended",
+      "brandRecommendation": "recommended",
+      "brandMentioned": true,
+      "brandCited": true,
+      "competitorStatus": {
+        "mentioned": [],
+        "cited": [],
+        "recommended": []
+      },
+      "sourcesUsed": [
+        {
+          "domain": "soona.co",
+          "format": "unknown"
+        },
+        {
+          "domain": "shopify.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "lemon8-app.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "tinylemon.xyz",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "snappyit.ai",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "link.springer.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "pixupai.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "pickyourapp.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "packshotr.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "tryonbot.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "catalogshot.app",
+          "format": "reddit_thread"
+        }
+      ],
+      "gapType": "top_pick_gap",
+      "nextAction": "Create helpful community answer",
+      "why": "Tiny Lemon is chosen, but not yet the top pick.",
+      "providerSignals": [
+        {
+          "provider": "perplexity",
+          "brandStatus": "mentioned",
+          "brandRecommendation": "neutral",
+          "brandMentioned": true,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "soona.co",
+            "shopify.com",
+            "lemon8-app.com"
+          ]
+        },
+        {
+          "provider": "openai",
+          "brandStatus": "recommended",
+          "brandRecommendation": "recommended",
+          "brandMentioned": true,
+          "brandCited": true,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "tinylemon.xyz",
+            "apps.shopify.com",
+            "snappyit.ai",
+            "link.springer.com",
+            "pixupai.com",
+            "pickyourapp.com",
+            "packshotr.com",
+            "tryonbot.com",
+            "catalogshot.app",
+            "genlook.app",
+            "stylespin.io",
+            "onmodelmedia.com",
+            "beta.glood.ai",
+            "reddit.com",
+            "stylaquin.com",
+            "adroll.com",
+            "static-prod.como.com",
+            "litcommerce.com",
+            "cedcommerce.com",
+            "s202.q4cdn.com",
+            "apps.apple.com",
+            "help.shopify.com",
+            "shopinfo.app",
+            "growave.io",
+            "tiny-img.com",
+            "on-model.com",
+            "photta.app",
+            "fashiondiffusion.ai",
+            "metamodels.ai",
+            "sellhound.com",
+            "rewarx.com",
+            "twiink.ai",
+            "jointellos.com",
+            "arxiv.org",
+            "resources.wisdominterface.com",
+            "nightjar.so",
+            "studio.apiway.ai",
+            "tripo3d.ai",
+            "cdn.colorexpertsbd.com",
+            "ira.lib.polyu.edu.hk",
+            "artemtimoshenko.com",
+            "mattgroh.com",
+            "techxplore.com",
+            "ssoar.info"
+          ]
+        },
+        {
+          "provider": "anthropic",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": []
+        }
+      ]
+    },
+    {
+      "promptId": "category-search-what-ai-product-photography-apps-are-best-for-indie-fashion-brands-on-shopify",
+      "prompt": "What AI product photography apps are best for indie fashion brands on Shopify?",
+      "promptGroup": "category_search",
+      "providers": [
+        "perplexity",
+        "openai",
+        "anthropic"
+      ],
+      "brandStatus": "absent",
+      "brandRecommendation": "absent",
+      "brandMentioned": false,
+      "brandCited": false,
+      "competitorStatus": {
+        "mentioned": [
+          "Botika"
+        ],
+        "cited": [],
+        "recommended": []
+      },
+      "sourcesUsed": [
+        {
+          "domain": "community.shopify.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "rewarx.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "claid.ai",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "youtube.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "lumezai.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "photoroom.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "packshotr.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "catalogshot.app",
+          "format": "unknown"
+        },
+        {
+          "domain": "prodshot.ai",
+          "format": "unknown"
+        },
+        {
+          "domain": "luminify.app",
+          "format": "unknown"
+        }
+      ],
+      "gapType": "mention_gap",
+      "nextAction": "Inspect cited sources and create matching asset",
+      "why": "Tiny Lemon is not entering this answer; AI is using community.shopify.com, rewarx.com, claid.ai, youtube.com instead.",
+      "providerSignals": [
+        {
+          "provider": "perplexity",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "community.shopify.com",
+            "rewarx.com",
+            "claid.ai",
+            "youtube.com",
+            "apps.shopify.com",
+            "lumezai.com"
+          ]
+        },
+        {
+          "provider": "openai",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "apps.shopify.com",
+            "photoroom.com",
+            "packshotr.com",
+            "catalogshot.app",
+            "prodshot.ai",
+            "luminify.app",
+            "landing.lumoragen.app",
+            "photoniex.com",
+            "angleforge.studio",
+            "shopsnapai.com",
+            "getfoca.ai",
+            "botika.com",
+            "frameflow.design",
+            "reddit.com",
+            "en.wikipedia.org",
+            "apps.apple.com",
+            "pebblely.com",
+            "stylisapp.ai",
+            "spocket.co",
+            "help.photoroom.com",
+            "shopify-spy.com",
+            "pickyourapp.com",
+            "assets.ctfassets.net",
+            "issuewire.com",
+            "litcommerce.com",
+            "stylaquin.com",
+            "s3.amazonaws.com",
+            "realaiexamples.com",
+            "lifestyle.photo",
+            "zsky.ai",
+            "snapshotapp.io",
+            "scatto.ai",
+            "genlook.app",
+            "arxiv.org",
+            "creaitivapp.com",
+            "sacra-pdfs.s3.us-east-2.amazonaws.com",
+            "algolia.com",
+            "discover.commoninja.com",
+            "modelfy.ai",
+            "trypoint.ai",
+            "sellshots.co",
+            "adroll.com",
+            "speedsize.com",
+            "minnesota.ai",
+            "stylefactoryproductions.com",
+            "zeqi.ai",
+            "zeg.ai",
+            "softpulseinfotech.com",
+            "voilae.com",
+            "appslens.com",
+            "trayve.app",
+            "catalogartifact.azureedge.net",
+            "acumatica.com",
+            "bvp.com",
+            "beta.glood.ai",
+            "storeleads.app",
+            "cartcoders.com",
+            "shapps.io",
+            "weshop.ai",
+            "prodigi.com",
+            "getshotpro.com",
+            "develus.ma",
+            "claid.ai",
+            "gleame.ai",
+            "uploads-ssl.webflow.com",
+            "nusparkmediagroup.com"
+          ]
+        },
+        {
+          "provider": "anthropic",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": []
+        }
+      ]
+    },
+    {
+      "promptId": "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget",
+      "prompt": "What is the best AI product photography app for a Shopify fashion store with no shoot budget?",
+      "promptGroup": "category_search",
+      "providers": [
+        "perplexity",
+        "openai",
+        "anthropic"
+      ],
+      "brandStatus": "absent",
+      "brandRecommendation": "absent",
+      "brandMentioned": false,
+      "brandCited": false,
+      "competitorStatus": {
+        "mentioned": [],
+        "cited": [],
+        "recommended": []
+      },
+      "sourcesUsed": [
+        {
+          "domain": "nextinfashion.live",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "prodofoto.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "community.shopify.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "rewarx.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "claid.ai",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "youtube.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "marketplace_listing"
+        },
+        {
+          "domain": "packshotr.com",
+          "format": "marketplace_listing"
+        },
+        {
+          "domain": "prodshot.ai",
+          "format": "marketplace_listing"
+        },
+        {
+          "domain": "synctually.com",
+          "format": "marketplace_listing"
+        },
+        {
+          "domain": "catalogshot.app",
+          "format": "marketplace_listing"
+        }
+      ],
+      "gapType": "absent_gap",
+      "nextAction": "Improve Shopify App Store listing",
+      "why": "Tiny Lemon is not entering this answer; AI is using nextinfashion.live, prodofoto.com, community.shopify.com, rewarx.com instead.",
+      "providerSignals": [
+        {
+          "provider": "perplexity",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "nextinfashion.live",
+            "prodofoto.com",
+            "community.shopify.com",
+            "rewarx.com",
+            "claid.ai",
+            "youtube.com",
+            "apps.shopify.com"
+          ]
+        },
+        {
+          "provider": "openai",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "apps.shopify.com",
+            "packshotr.com",
+            "prodshot.ai",
+            "synctually.com",
+            "catalogshot.app",
+            "nimzo.ai",
+            "shopsnapai.com",
+            "pixovo.io",
+            "angleforge.studio",
+            "snapshotapp.io",
+            "apps.apple.com",
+            "photoniex.com",
+            "getfoca.ai",
+            "reddit.com",
+            "ru.wikipedia.org",
+            "en.wikipedia.org",
+            "assets.ctfassets.net",
+            "0e190a550a8c4c8c4b93-fcd009c875a5577fd4fe2f5b7e3bf4eb.ssl.cf2.rackcdn.com",
+            "cdn-www.enfocus.com",
+            "adroll.com",
+            "photoroom.com",
+            "help.photoroom.com",
+            "sacra-pdfs.s3.us-east-2.amazonaws.com",
+            "s3.amazonaws.com",
+            "cedcommerce.com"
+          ]
+        },
+        {
+          "provider": "anthropic",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": []
+        }
+      ]
+    },
+    {
+      "promptId": "high-intent-purchase-what-should-i-check-before-installing-an-ai-product-photography-app-on-shopify",
+      "prompt": "What should I check before installing an AI product photography app on Shopify?",
+      "promptGroup": "high_intent_purchase",
+      "providers": [
+        "perplexity",
+        "openai",
+        "anthropic"
+      ],
+      "brandStatus": "absent",
+      "brandRecommendation": "absent",
+      "brandMentioned": false,
+      "brandCited": false,
+      "competitorStatus": {
+        "mentioned": [],
+        "cited": [],
+        "recommended": []
+      },
+      "sourcesUsed": [
+        {
+          "domain": "youtube.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "mindstudio.ai",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "lumezai.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "easyappsecom.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "community.shopify.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "claid.ai",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "help.shopify.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "shopify.dev",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "pixfocal.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "craftshift.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "pixelmeasures.com",
+          "format": "reddit_thread"
+        }
+      ],
+      "gapType": "absent_gap",
+      "nextAction": "Create helpful community answer",
+      "why": "Tiny Lemon is not entering this answer; AI is using youtube.com, mindstudio.ai, lumezai.com, easyappsecom.com instead.",
+      "providerSignals": [
+        {
+          "provider": "perplexity",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "youtube.com",
+            "mindstudio.ai",
+            "lumezai.com",
+            "easyappsecom.com",
+            "apps.shopify.com",
+            "community.shopify.com",
+            "claid.ai"
+          ]
+        },
+        {
+          "provider": "openai",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "help.shopify.com",
+            "shopify.dev",
+            "pixfocal.com",
+            "craftshift.com",
+            "pixelmeasures.com",
+            "ailee.ai",
+            "litos.io",
+            "nordlight.app",
+            "productphotohelp.com",
+            "imagedimensions.com",
+            "pixelbyhand.com",
+            "dash.app",
+            "adroll.com",
+            "reddit.com",
+            "litcommerce.com",
+            "2h.media",
+            "checkli.com",
+            "academy.yoast.com",
+            "theoremteam.net",
+            "help.wholesalehelper.io",
+            "community.shopify.com",
+            "support.kachingappz.com",
+            "apps.shopify.com",
+            "help.loopreturns.com",
+            "s3.amazonaws.com",
+            "docs.cedcommerce.com",
+            "3peel.com",
+            "screensnap.pro",
+            "help.keficommerce.com",
+            "thesaashub.com",
+            "en.wikipedia.org",
+            "cedcommerce.com",
+            "img.willdesk.com",
+            "develus.ma",
+            "forms.proweaver.com",
+            "heliumdev.com",
+            "community.shopify.dev",
+            "shopapps.info",
+            "shopify.com",
+            "fivethrive.com",
+            "erpclaw.ai",
+            "docs.ongoingwarehouse.com",
+            "help.bluecore.com",
+            "ksolves.com",
+            "cleverence.com",
+            "isopeel.com",
+            "prodofoto.com",
+            "sellhound.com",
+            "support.cavallo.com"
+          ]
+        },
+        {
+          "provider": "anthropic",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": []
+        }
+      ]
+    },
+    {
+      "promptId": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-studio-quality-product-photos-without-a-shoot-budget",
+      "prompt": "How can indie fashion brands on Shopify get studio-quality product photos without a shoot budget?",
+      "promptGroup": "problem_aware",
+      "providers": [
+        "perplexity",
+        "openai",
+        "anthropic"
+      ],
+      "brandStatus": "absent",
+      "brandRecommendation": "absent",
+      "brandMentioned": false,
+      "brandCited": false,
+      "competitorStatus": {
+        "mentioned": [
+          "Botika"
+        ],
+        "cited": [],
+        "recommended": []
+      },
+      "sourcesUsed": [
+        {
+          "domain": "wearview.co",
+          "format": "unknown"
+        },
+        {
+          "domain": "rewarx.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "claid.ai",
+          "format": "unknown"
+        },
+        {
+          "domain": "kolors-ai.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "community.shopify.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "youtube.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "shopify.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "help.shopify.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "photoroom.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "adobe.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "support.google.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "fotor.com",
+          "format": "reddit_thread"
+        }
+      ],
+      "gapType": "mention_gap",
+      "nextAction": "Inspect cited sources and create matching asset",
+      "why": "Tiny Lemon is not entering this answer; AI is using wearview.co, rewarx.com, claid.ai, kolors-ai.com instead.",
+      "providerSignals": [
+        {
+          "provider": "perplexity",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "wearview.co",
+            "rewarx.com",
+            "claid.ai",
+            "kolors-ai.com",
+            "community.shopify.com",
+            "youtube.com"
+          ]
+        },
+        {
+          "provider": "openai",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "shopify.com",
+            "help.shopify.com",
+            "photoroom.com",
+            "adobe.com",
+            "support.google.com",
+            "fotor.com",
+            "help.printify.com",
+            "help.photoroom.com",
+            "adsx.com",
+            "pebblely.com",
+            "useecomai.com",
+            "apps.shopify.com",
+            "pixel-cut.org",
+            "reddit.com",
+            "teched.rocks",
+            "impact.com",
+            "techcrunch.com",
+            "changelog.shopify.com",
+            "community.shopify.com",
+            "mida.so",
+            "img101.com",
+            "aipricely.com",
+            "backdropboost.com",
+            "informaticsinc.com",
+            "en.wikipedia.org",
+            "canva.com",
+            "helpx.adobe.com",
+            "cleanshot.tools",
+            "picwish.com",
+            "ecomshot.ai",
+            "en.softonic.com",
+            "backgroundmakercompare.com",
+            "backgroundremover.com",
+            "thinkzipper.com",
+            "experienceleague.adobe.com",
+            "business.adobe.com",
+            "wwwimages2.adobe.com",
+            "developer.adobe.com",
+            "printful.com",
+            "mockupmint.com",
+            "help.printful.com",
+            "mockupanda.com",
+            "printify.com",
+            "mockupify.io",
+            "genlook.app",
+            "podmocks.com",
+            "mockupmaestro.com",
+            "techradar.com",
+            "issuewire.com",
+            "blog.shopify-playbook.com",
+            "letstalkshop.com",
+            "easyappsecom.com",
+            "bigredjelly.com",
+            "shopthemedetector.com",
+            "clyro.com",
+            "beelog.agency",
+            "supra-ai-photo-studio.sktch.io",
+            "remove.bg",
+            "openpublicapis.com",
+            "toolchase.com",
+            "public-api.org",
+            "pixelapi.dev",
+            "ai.uwarp.design",
+            "hellotars.com",
+            "cdn-www0.enfocus.com",
+            "irp-cdn.multiscreensite.com",
+            "assets.website-files.com",
+            "brandassemble.com",
+            "imagenav.net",
+            "design.toolsinfo.com",
+            "quietcanvas.art",
+            "avada.io",
+            "saashub.com",
+            "stockphotostock.com",
+            "theoremteam.net",
+            "deadeasysoftware.com",
+            "tidewatermg.com",
+            "tailwindapp.com",
+            "adroll.com",
+            "stylefactoryproductions.com",
+            "vibetry.io",
+            "fotiyo.com",
+            "pixfocal.com",
+            "ghostmannequin.app",
+            "tryonaura.com",
+            "moditry.live",
+            "withlooksy.com",
+            "wearview.co",
+            "voilae.com",
+            "androidcentral.com",
+            "womanandhome.com",
+            "instructables.com",
+            "listing-forge.com",
+            "craftprofessional.com",
+            "digitalcameraworld.com",
+            "we-heart.com",
+            "makeuseof.com",
+            "picturecorrect.com",
+            "bulkimagepro.com",
+            "diyphotography.net",
+            "personalizationpros.org",
+            "jennifermaker.com",
+            "charteroakphoto.org",
+            "static.bhphoto.com"
+          ]
+        },
+        {
+          "provider": "anthropic",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": []
+        }
+      ]
+    },
+    {
+      "promptId": "solution-aware-can-an-ai-product-photography-app-create-front-side-and-back-views-from-one-clothing-photo",
+      "prompt": "Can an AI product photography app create front, side, and back views from one clothing photo?",
+      "promptGroup": "solution_aware",
+      "providers": [
+        "perplexity",
+        "openai",
+        "anthropic"
+      ],
+      "brandStatus": "absent",
+      "brandRecommendation": "absent",
+      "brandMentioned": false,
+      "brandCited": false,
+      "competitorStatus": {
+        "mentioned": [],
+        "cited": [],
+        "recommended": []
+      },
+      "sourcesUsed": [
+        {
+          "domain": "gostudio.ai",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "nightjar.so",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "designkit.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "youtube.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "magicshot.ai",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "claid.ai",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "higgsfield.ai",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "angleforge.studio",
+          "format": "unknown"
+        },
+        {
+          "domain": "arxiv.org",
+          "format": "unknown"
+        },
+        {
+          "domain": "stability.ai",
+          "format": "unknown"
+        },
+        {
+          "domain": "m.media-amazon.com",
+          "format": "unknown"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "unknown"
+        }
+      ],
+      "gapType": "absent_gap",
+      "nextAction": "Inspect cited sources and create matching asset",
+      "why": "Tiny Lemon is not entering this answer; AI is using gostudio.ai, nightjar.so, designkit.com, youtube.com instead.",
+      "providerSignals": [
+        {
+          "provider": "perplexity",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "gostudio.ai",
+            "nightjar.so",
+            "designkit.com",
+            "youtube.com",
+            "magicshot.ai",
+            "claid.ai",
+            "higgsfield.ai"
+          ]
+        },
+        {
+          "provider": "openai",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "angleforge.studio",
+            "arxiv.org",
+            "stability.ai",
+            "m.media-amazon.com",
+            "apps.shopify.com",
+            "thephotoforge.com",
+            "luminify.app",
+            "catalogshot.app",
+            "photoniex.com",
+            "listive.app",
+            "snaproom.app",
+            "modelfy.ai",
+            "nimzo.ai",
+            "4fashionai.com",
+            "fititon.app",
+            "reddit.com",
+            "en.wikipedia.org",
+            "zhaobo.me",
+            "openaccess.thecvf.com",
+            "prodwaregroup.com",
+            "nightjar.so",
+            "designkit.com",
+            "help.shopify.com",
+            "prodofoto.com",
+            "rewarx.com",
+            "kive.ai",
+            "greenonion.ai",
+            "cw-app-marketing.s3.amazonaws.com",
+            "downloads.volusion.com",
+            "static1.squarespace.com",
+            "g-ecx.images-amazon.com",
+            "docs.clore.ai",
+            "tasarim.ai",
+            "digitalocean.com",
+            "artificial-intelligence-wiki.com",
+            "fal.ai",
+            "cgchannel.com",
+            "triposr.org",
+            "skillwaala.com",
+            "image3d.io",
+            "lumalabs.ai",
+            "toxigon.com",
+            "openreview.net",
+            "pages.cs.wisc.edu"
+          ]
+        },
+        {
+          "provider": "anthropic",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": []
+        }
+      ]
+    },
+    {
+      "promptId": "integration-use-case-can-i-publish-ai-generated-product-images-directly-to-shopify-products",
+      "prompt": "Can I publish AI-generated product images directly to Shopify products?",
+      "promptGroup": "integration_use_case",
+      "providers": [
+        "perplexity",
+        "openai",
+        "anthropic"
+      ],
+      "brandStatus": "absent",
+      "brandRecommendation": "absent",
+      "brandMentioned": false,
+      "brandCited": false,
+      "competitorStatus": {
+        "mentioned": [],
+        "cited": [],
+        "recommended": []
+      },
+      "sourcesUsed": [
+        {
+          "domain": "rewarx.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "nightjar.so",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "mindstudio.ai",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "youtube.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "lumezai.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "help.shopify.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "blog_guide"
+        },
+        {
+          "domain": "help.shopify.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "apps.shopify.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "shopify.dev",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "support.google.com",
+          "format": "reddit_thread"
+        },
+        {
+          "domain": "imagify.umegs.com",
+          "format": "reddit_thread"
+        }
+      ],
+      "gapType": "absent_gap",
+      "nextAction": "Create helpful community answer",
+      "why": "Tiny Lemon is not entering this answer; AI is using rewarx.com, nightjar.so, mindstudio.ai, youtube.com instead.",
+      "providerSignals": [
+        {
+          "provider": "perplexity",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "rewarx.com",
+            "nightjar.so",
+            "mindstudio.ai",
+            "youtube.com",
+            "lumezai.com",
+            "help.shopify.com",
+            "apps.shopify.com"
+          ]
+        },
+        {
+          "provider": "openai",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": [
+            "help.shopify.com",
+            "apps.shopify.com",
+            "shopify.dev",
+            "support.google.com",
+            "imagify.umegs.com",
+            "shopify.omagic.ai",
+            "landing.lumoragen.app",
+            "productmagicai.com",
+            "techcrunch.com",
+            "media.io",
+            "mida.so",
+            "reddit.com",
+            "en.wikipedia.org",
+            "shopify.com",
+            "api.sap.com",
+            "theoremteam.net",
+            "help.photoroom.com",
+            "changelog.shopify.com",
+            "support.ablestar.com",
+            "adroll.com",
+            "solanonapasbdc.org",
+            "shopify-dev.shopifycloud.com",
+            "community.shopify.dev",
+            "withone.ai",
+            "cdck-file-uploads-us1.s3.dualstack.us-west-2.amazonaws.com",
+            "theseus.fi",
+            "eapache.github.io",
+            "community.shopify.com",
+            "docs.oracle.com",
+            "nightjar.so",
+            "iptc.org",
+            "searchengineland.com",
+            "clearcheckcompliance.app",
+            "quickprepmedia.com",
+            "plytix.com",
+            "spec.c2pa.org",
+            "services.google.com",
+            "csp-pub.com",
+            "cleverence.com",
+            "stackoverflow.com"
+          ]
+        },
+        {
+          "provider": "anthropic",
+          "brandStatus": "absent",
+          "brandRecommendation": "absent",
+          "brandMentioned": false,
+          "brandCited": false,
+          "competitorsRecommended": [],
+          "citedDomains": []
+        }
+      ]
+    }
+  ],
   "recommendations": [
     {
       "rank": 1,
-      "title": "Improve Shopify App Store listing",
-      "taskType": "shopify_app_store_listing",
+      "title": "Build Lalaland.ai alternatives page",
+      "taskType": "alternative_page",
       "priority": "medium",
       "confidence": "medium",
-      "targetPromptId": "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget",
-      "targetPrompt": "What is the best AI product photography app for a Shopify fashion store with no shoot budget?",
+      "targetPromptId": "competitor-comparison-should-i-choose-tiny-lemon-or-lalaland-ai-for-a-shopify-apparel-catalog-refresh",
+      "targetPrompt": "Should I choose Tiny Lemon or Lalaland.ai for a Shopify apparel catalog refresh?",
       "why": [
-        "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget shows marketplace gap across providers.",
-        "Tiny Lemon is mentioned by 0/3 providers and cited by 0/3.",
-        "Dominant source format is marketplace listing.",
-        "No Botika-specific alternatives page found in owned inventory.",
+        "competitor-comparison-should-i-choose-tiny-lemon-or-lalaland-ai-for-a-shopify-apparel-catalog-refresh shows competitor recommended gap across providers.",
+        "Tiny Lemon is mentioned by 2/3 providers, cited by 1/3, and recommended by 0/3.",
+        "2 providers recommend competitors without recommending Tiny Lemon.",
+        "No Lalaland.ai-specific alternatives page found in owned inventory.",
         "Related competitor asset exists: Modelia Alternatives for Shopify Fashion Photos | TinyLemon. Reuse that pattern."
       ],
       "evidence": {
-        "promptGroup": "category_search",
-        "brandMentioned": false,
-        "brandCited": false,
+        "promptGroup": "competitor_comparison",
+        "brandMentioned": true,
+        "brandCited": true,
+        "brandRecommendation": "neutral",
+        "brandRank": null,
         "competitorsMentioned": [
-          "Botika"
+          "Lalaland.ai"
+        ],
+        "competitorsRecommended": [
+          "Lalaland.ai"
         ],
         "citedDomains": [
-          "prodofoto.com",
-          "community.shopify.com",
-          "rewarx.com",
-          "claid.ai",
+          "skillwaala.com",
+          "browzwear.com",
+          "fueler.io",
           "youtube.com",
+          "modelia.ai",
+          "foxbusiness.com",
+          "textiletoday.com.bd",
           "apps.shopify.com",
-          "lumezai.com",
-          "packshotr.com",
-          "prodshot.ai",
-          "synctually.com",
-          "catalogshot.app",
-          "nimzo.ai",
-          "cataproai.com",
-          "shopsnapai.com",
-          "miro.fashion",
-          "luminify.app",
-          "pixovo.io",
-          "angleforge.studio",
+          "tinylemon.xyz",
+          "thenextweb.com",
+          "lalaland.ai",
           "pickyourapp.com",
-          "reddit.com",
+          "vibetry.io",
+          "luminify.app",
+          "tryonaura.com",
+          "tryoncloud.com",
+          "gleame.ai",
+          "serve.fit",
+          "app.trywear.ai",
+          "shopify.com",
+          "pixelwrangler.io",
+          "shopify.noem.ai",
           "en.wikipedia.org",
-          "0e190a550a8c4c8c4b93-fcd009c875a5577fd4fe2f5b7e3bf4eb.ssl.cf2.rackcdn.com",
+          "reddit.com",
           "arxiv.org",
-          "adroll.com",
-          "weshop.ai",
-          "minnesota.ai"
+          "ai5050.com",
+          "techxplore.com",
+          "theoremteam.net",
+          "tiny-img.com",
+          "portfolio-tools.s3.eu-west-2.amazonaws.com",
+          "worldecomag.com",
+          "packshotr.com",
+          "beta.glood.ai",
+          "landing.lumoragen.app",
+          "huhu.ai",
+          "junior.app",
+          "huratips.com",
+          "courses.cs.umbc.edu",
+          "stg.levistrauss.levis.com",
+          "studio.apiway.ai",
+          "toolerific.ai",
+          "aitoolnet.com",
+          "toolmage.com",
+          "f6s.com",
+          "appnavigator.io",
+          "wearview.co",
+          "thesmudgereport.com",
+          "openfuture.ai",
+          "ozguryayinlari.com",
+          "make.com",
+          "help.shopify.com",
+          "heyloha.ai",
+          "lindy.ai",
+          "help.velaro.com",
+          "layerre.com",
+          "docs.heylua.ai",
+          "support.cavallo.com",
+          "assets.lulu.com",
+          "houseblend.io",
+          "fashionunited.com",
+          "finance.yahoo.com",
+          "15minutenews.com",
+          "trysignalbase.com",
+          "linkedin.com",
+          "siliconcanals.com",
+          "buyblack.org",
+          "fonkmagazine.nl",
+          "archyde.com",
+          "ftw.pi.tv",
+          "foley.com",
+          "theinterline.com",
+          "lalaland-public-files.s3.eu-central-1.amazonaws.com",
+          "wire.expertini.com",
+          "ipaddress.com",
+          "play.google.com",
+          "hypestat.com",
+          "apps.shopify.com.siterate.org",
+          "letsmetrix.com",
+          "appsrankings.com",
+          "csusb.edu",
+          "nltd.com",
+          "s3.eu-west-1.amazonaws.com",
+          "assets.website-files.com",
+          "oneacadiana.org"
         ],
-        "dominantSourceFormat": "marketplace_listing",
-        "missingOrWeakAssetType": "shopify_app_store_listing",
-        "targetCompetitor": "Botika",
+        "dominantSourceFormat": "unknown",
+        "missingOrWeakAssetType": "alternative_page",
+        "targetCompetitor": "Lalaland.ai",
         "targetCompetitorAssetStatus": "missing",
         "relatedAssets": [
           {
@@ -82,7 +1774,7 @@
       },
       "recheck": {
         "promptIds": [
-          "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget"
+          "competitor-comparison-should-i-choose-tiny-lemon-or-lalaland-ai-for-a-shopify-apparel-catalog-refresh"
         ],
         "afterPublish": true,
         "cadenceDays": 1

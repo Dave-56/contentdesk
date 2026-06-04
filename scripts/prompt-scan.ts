@@ -89,7 +89,7 @@ export async function scanPrompts(input: {
 
   console.log(`[prompt:scan] wrote ${outputPath}`);
   console.log(
-    `[prompt:scan] ${run.summary.brandMentionedCount}/${run.summary.promptCount} mentioned, ${run.summary.brandCitedCount}/${run.summary.promptCount} cited, average visibility ${run.summary.averageVisibilityScore}`,
+    `[prompt:scan] ${run.summary.brandMentionedCount}/${run.summary.promptCount} mentioned, ${run.summary.brandCitedCount}/${run.summary.promptCount} cited, ${run.summary.brandRecommendedCount}/${run.summary.promptCount} recommended, ${run.summary.brandTopPickCount}/${run.summary.promptCount} top pick`,
   );
 
   return {

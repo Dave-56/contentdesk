@@ -30,6 +30,54 @@ import {
 
 const recommendationPrioritySchema = z.enum(["high", "medium", "low"]);
 
+const promptGapBrandStatusSchema = z.enum([
+  "absent",
+  "mentioned",
+  "cited",
+  "recommended",
+  "top_pick",
+  "qualified",
+  "not_recommended",
+]);
+
+export const visibilityPromptGapSchema = z.object({
+  promptId: z.string().trim().min(1),
+  prompt: z.string().trim().min(1),
+  promptGroup: z.string().trim().min(1),
+  providers: z.array(providerSchema).default([]),
+  brandStatus: promptGapBrandStatusSchema,
+  brandRecommendation: answerRecommendationSchema.default("absent"),
+  brandMentioned: z.boolean(),
+  brandCited: z.boolean(),
+  competitorStatus: z.object({
+    mentioned: z.array(z.string().trim().min(1)).default([]),
+    cited: z.array(z.string().trim().min(1)).default([]),
+    recommended: z.array(z.string().trim().min(1)).default([]),
+  }),
+  sourcesUsed: z.array(
+    z.object({
+      domain: z.string().trim().min(1),
+      format: z.string().trim().min(1),
+    }),
+  ),
+  gapType: z.string().trim().min(1),
+  nextAction: z.string().trim().min(1),
+  why: z.string().trim().min(1),
+  providerSignals: z.array(
+    z.object({
+      provider: providerSchema,
+      brandStatus: promptGapBrandStatusSchema,
+      brandRecommendation: answerRecommendationSchema.default("absent"),
+      brandMentioned: z.boolean(),
+      brandCited: z.boolean(),
+      competitorsRecommended: z.array(z.string().trim().min(1)).default([]),
+      citedDomains: z.array(z.string().trim().min(1)).default([]),
+    }),
+  ).default([]),
+});
+
+export type VisibilityPromptGap = z.infer<typeof visibilityPromptGapSchema>;
+
 export const visibilityRecommendationSchema = z.object({
   rank: z.number().int().min(1),
   title: z.string().trim().min(1),
@@ -96,6 +144,7 @@ export const visibilityRecommendationsFileSchema = z.object({
     recommendedButNotCitedCount: z.number().int().min(0).default(0),
     averageVisibilityScore: z.number().min(0).max(100),
   }),
+  promptGaps: z.array(visibilityPromptGapSchema).default([]),
   recommendations: z.array(visibilityRecommendationSchema),
 });
 
@@ -156,6 +205,7 @@ export function buildVisibilityRecommendations(input: {
     generatedAt: (input.generatedAt ?? new Date()).toISOString(),
     basedOnRunDate: run.runDate,
     summary: run.summary,
+    promptGaps: run.records.map((record) => buildRunPromptGap(record, run.brand)),
     recommendations,
   });
 }
@@ -175,6 +225,9 @@ function buildSynthesisRecommendations(input: {
       generatedAt: (input.generatedAt ?? new Date()).toISOString(),
       basedOnRunDate: input.synthesis.runDate,
       summary: summaryFromSynthesis(input.synthesis),
+      promptGaps: input.synthesis.prompts.map((prompt) =>
+        buildSynthesisPromptGap(prompt, input.strategy),
+      ),
       recommendations: [],
     });
   }
@@ -205,6 +258,9 @@ function buildSynthesisRecommendations(input: {
     generatedAt: (input.generatedAt ?? new Date()).toISOString(),
     basedOnRunDate: input.synthesis.runDate,
     summary: summaryFromSynthesis(input.synthesis),
+    promptGaps: input.synthesis.prompts.map((prompt) =>
+      buildSynthesisPromptGap(prompt, input.strategy),
+    ),
     recommendations,
   });
 }
@@ -244,6 +300,223 @@ function summaryFromSynthesis(synthesis: CrossProviderSynthesis) {
   };
 }
 
+function buildRunPromptGap(record: PromptScanRecord, brandName: string): VisibilityPromptGap {
+  const recommendation = record.answerSignal?.brandRecommendation ?? "absent";
+  const brandStatus = brandStatusForSignal({
+    brandMentioned: record.visibilityScore.brandMentioned,
+    brandCited: record.visibilityScore.brandCited,
+    brandRecommendation: recommendation,
+  });
+  const competitorsRecommended =
+    record.answerSignal?.competitorSignals
+      .filter((competitor) => isRecommended(competitor.recommendation))
+      .map((competitor) => competitor.name) ?? [];
+  const gapType = runGapType(record, competitorsRecommended);
+  const sourcesUsed = sourcesUsedForRecord(record);
+
+  return visibilityPromptGapSchema.parse({
+    promptId: record.id,
+    prompt: record.prompt,
+    promptGroup: record.promptGroup,
+    providers: [record.provider],
+    brandStatus,
+    brandRecommendation: recommendation,
+    brandMentioned: record.visibilityScore.brandMentioned,
+    brandCited: record.visibilityScore.brandCited,
+    competitorStatus: {
+      mentioned: record.visibilityScore.competitorsMentioned.map(
+        (competitor) => competitor.name,
+      ),
+      cited: record.visibilityScore.competitorsCited.map((competitor) => competitor.name),
+      recommended: competitorsRecommended,
+    },
+    sourcesUsed,
+    gapType,
+    nextAction: record.contentdeskNextAction ?? record.recommendedNextAction,
+    why: promptGapWhy({
+      brandStatus,
+      competitorsRecommended,
+      sourcesUsed,
+      gapType,
+      brandName,
+    }),
+    providerSignals: [
+      {
+        provider: record.provider,
+        brandStatus,
+        brandRecommendation: recommendation,
+        brandMentioned: record.visibilityScore.brandMentioned,
+        brandCited: record.visibilityScore.brandCited,
+        competitorsRecommended,
+        citedDomains: record.citedDomains,
+      },
+    ],
+  });
+}
+
+function buildSynthesisPromptGap(
+  prompt: PromptSynthesis,
+  strategy: BuyerPromptStrategyInput,
+): VisibilityPromptGap {
+  const brandRecommendation = dominantBrandRecommendation(prompt.providerResults);
+  const brandStatus = brandStatusForSignal({
+    brandMentioned: prompt.brandMentionedProviders.length > 0,
+    brandCited: prompt.brandCitedProviders.length > 0,
+    brandRecommendation,
+  });
+  const competitorsRecommended = [
+    ...new Set(
+      prompt.providerResults.flatMap((result) => result.competitorsRecommended),
+    ),
+  ];
+  const sourcesUsed = sourcesUsedForSynthesis(prompt);
+  const nextAction = titleForTaskType(
+    taskTypeForGap({
+      gapType: prompt.recommendedGapType,
+      dominantSourceFormat: prompt.dominantSourceFormats[0] ?? "unknown",
+      promptGroup: prompt.promptGroup,
+    }),
+  );
+
+  return visibilityPromptGapSchema.parse({
+    promptId: prompt.promptId,
+    prompt: prompt.prompt,
+    promptGroup: prompt.promptGroup,
+    providers: prompt.providerResults.map((result) => result.provider),
+    brandStatus,
+    brandRecommendation,
+    brandMentioned: prompt.brandMentionedProviders.length > 0,
+    brandCited: prompt.brandCitedProviders.length > 0,
+    competitorStatus: {
+      mentioned: prompt.dominantCompetitors,
+      cited: [
+        ...new Set(
+          prompt.providerResults.flatMap((result) => result.competitorsCited),
+        ),
+      ],
+      recommended: competitorsRecommended,
+    },
+    sourcesUsed,
+    gapType: prompt.recommendedGapType,
+    nextAction,
+    why: promptGapWhy({
+      brandStatus,
+      competitorsRecommended,
+      sourcesUsed,
+      gapType: prompt.recommendedGapType,
+      brandName: strategy.brand.name,
+    }),
+    providerSignals: prompt.providerResults.map((result) => ({
+      provider: result.provider,
+      brandStatus: brandStatusForSignal({
+        brandMentioned: result.brandMentioned,
+        brandCited: result.brandCited,
+        brandRecommendation: result.brandRecommendation,
+      }),
+      brandRecommendation: result.brandRecommendation,
+      brandMentioned: result.brandMentioned,
+      brandCited: result.brandCited,
+      competitorsRecommended: result.competitorsRecommended,
+      citedDomains: result.citedDomains,
+    })),
+  });
+}
+
+function brandStatusForSignal(input: {
+  brandMentioned: boolean;
+  brandCited: boolean;
+  brandRecommendation: AnswerSignal["brandRecommendation"];
+}): VisibilityPromptGap["brandStatus"] {
+  if (input.brandRecommendation === "top_pick") return "top_pick";
+  if (input.brandRecommendation === "recommended") return "recommended";
+  if (input.brandRecommendation === "qualified") return "qualified";
+  if (input.brandRecommendation === "not_recommended") return "not_recommended";
+  if (input.brandCited) return "cited";
+  if (input.brandMentioned) return "mentioned";
+  return "absent";
+}
+
+function runGapType(record: PromptScanRecord, competitorsRecommended: string[]) {
+  const brandRecommendation = record.answerSignal?.brandRecommendation ?? "absent";
+  if (brandRecommendation === "top_pick") return "no_gap";
+  if (competitorsRecommended.length > 0 && !isRecommended(brandRecommendation)) {
+    return "competitor_recommended_gap";
+  }
+  if (isRecommended(brandRecommendation) && !record.visibilityScore.brandCited) {
+    return "proof_gap";
+  }
+  if (!record.visibilityScore.brandMentioned) {
+    return record.visibilityScore.competitorsMentioned.length > 0 ? "mention_gap" : "absent_gap";
+  }
+  if (!record.visibilityScore.brandCited) return "citation_gap";
+  if (!isRecommended(brandRecommendation)) return "recommendation_gap";
+  return "top_pick_gap";
+}
+
+function sourcesUsedForRecord(record: PromptScanRecord) {
+  return dedupeSources(
+    record.citedSources.map((source) => ({
+      domain: source.domain,
+      format: source.sourceFormat,
+    })),
+  );
+}
+
+function sourcesUsedForSynthesis(prompt: PromptSynthesis) {
+  return dedupeSources(
+    prompt.providerResults.flatMap((result) =>
+      result.citedDomains.map((domain) => ({
+        domain,
+        format: result.dominantSourceFormat,
+      })),
+    ),
+  );
+}
+
+function dedupeSources(sources: Array<{ domain: string; format: string }>) {
+  const seen = new Set<string>();
+  return sources
+    .filter((source) => {
+      const key = `${source.domain}:${source.format}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, 12);
+}
+
+function promptGapWhy(input: {
+  brandStatus: VisibilityPromptGap["brandStatus"];
+  competitorsRecommended: string[];
+  sourcesUsed: Array<{ domain: string; format: string }>;
+  gapType: string;
+  brandName: string;
+}) {
+  if (input.brandStatus === "absent") {
+    const sourceDomains = input.sourcesUsed.slice(0, 4).map((source) => source.domain);
+    return `${input.brandName} is not entering this answer; AI is using ${sourceDomains.join(", ") || "other sources"} instead.`;
+  }
+  if (input.competitorsRecommended.length > 0) {
+    return `${input.competitorsRecommended.join(", ")} recommended while ${input.brandName} is not chosen.`;
+  }
+  if (input.gapType === "recommendation_gap") {
+    return `${input.brandName} is visible enough to be cited, but the answer does not choose it.`;
+  }
+  if (input.gapType === "citation_gap") {
+    return `${input.brandName} is mentioned, but not supported by citations.`;
+  }
+  if (input.gapType === "proof_gap") {
+    return `${input.brandName} is recommended, but the answer lacks citation proof.`;
+  }
+  if (input.gapType === "top_pick_gap") {
+    return `${input.brandName} is chosen, but not yet the top pick.`;
+  }
+  if (input.brandStatus === "qualified") {
+    return `${input.brandName} is recommended with caveats; improve proof and positioning.`;
+  }
+  return `${input.brandName} status is ${input.brandStatus.replaceAll("_", " ")} for this prompt.`;
+}
+
 function scoreSynthesisPrompt(
   prompt: PromptSynthesis,
   strategy: BuyerPromptStrategyInput,
@@ -260,10 +533,13 @@ function scoreSynthesisPrompt(
     : "unknown";
 
   let score = groupWeight(prompt.promptGroup as PromptGroup);
-  if (prompt.recommendedGapType === "competitor_comparison_gap") score += 35;
+  if (prompt.recommendedGapType === "mention_gap") score += 25;
+  if (prompt.recommendedGapType === "absent_gap") score += 10;
   if (prompt.recommendedGapType === "competitor_recommended_gap") score += 45;
   if (prompt.recommendedGapType === "recommendation_gap") score += 30;
   if (prompt.recommendedGapType === "citation_gap") score += 20;
+  if (prompt.recommendedGapType === "proof_gap") score += 20;
+  if (prompt.recommendedGapType === "top_pick_gap") score += 15;
   if (dominantSourceFormat === "comparison_page") score += 25;
   if (prompt.competitorOnlyProviders.length >= 2) score += 30;
   if (prompt.competitorRecommendedOnlyProviders.length >= 1) score += 35;
@@ -289,7 +565,11 @@ function buildSynthesisRecommendation(input: {
   rank: number;
 }): VisibilityRecommendation {
   const dominantSourceFormat = input.prompt.dominantSourceFormats[0] ?? "unknown";
-  const taskType = taskTypeForGap(input.prompt.recommendedGapType, dominantSourceFormat);
+  const taskType = taskTypeForGap({
+    gapType: input.prompt.recommendedGapType,
+    dominantSourceFormat,
+    promptGroup: input.prompt.promptGroup,
+  });
   const competitorName =
     targetCompetitorNameFromText(`${input.prompt.promptId} ${input.prompt.prompt}`, input.strategy) ??
     input.prompt.dominantCompetitors[0];
@@ -302,11 +582,12 @@ function buildSynthesisRecommendation(input: {
     exclude: competitorName,
     includeInventorySubjects: true,
   });
-  const missingAsset = missingOrWeakAssetForGap(
-    input.prompt.recommendedGapType,
+  const missingAsset = missingOrWeakAssetForGap({
+    gapType: input.prompt.recommendedGapType,
     dominantSourceFormat,
-    input.strategy.assetInventory,
-  );
+    promptGroup: input.prompt.promptGroup,
+    inventory: input.strategy.assetInventory,
+  });
   const citedDomains = [
     ...new Set(input.prompt.providerResults.flatMap((result) => result.citedDomains)),
   ];
@@ -520,16 +801,28 @@ function taskTypeForRecord(
   return "manual_inspection";
 }
 
-function taskTypeForGap(
-  gapType: string,
-  dominantSourceFormat: string,
-): VisibilityRecommendation["taskType"] {
-  if (gapType === "competitor_comparison_gap") return "alternative_page";
-  if (gapType === "marketplace_gap") return "shopify_app_store_listing";
-  if (gapType === "community_gap") return "community_answer";
-  if (gapType === "guide_gap") return "guide";
-  if (dominantSourceFormat === "comparison_page") return "comparison_page";
-  if (dominantSourceFormat === "blog_guide" || dominantSourceFormat === "listicle") {
+function taskTypeForGap(input: {
+  gapType: string;
+  dominantSourceFormat: string;
+  promptGroup: string;
+}): VisibilityRecommendation["taskType"] {
+  if (input.promptGroup === "competitor_comparison") return "alternative_page";
+  if (input.dominantSourceFormat === "marketplace_listing") {
+    return "shopify_app_store_listing";
+  }
+  if (input.dominantSourceFormat === "reddit_thread") return "community_answer";
+  if (
+    input.gapType === "proof_gap" ||
+    input.dominantSourceFormat === "review_site" ||
+    input.dominantSourceFormat === "youtube_video"
+  ) {
+    return "guide";
+  }
+  if (input.dominantSourceFormat === "comparison_page") return "comparison_page";
+  if (
+    input.dominantSourceFormat === "blog_guide" ||
+    input.dominantSourceFormat === "listicle"
+  ) {
     return "guide";
   }
 
@@ -806,17 +1099,20 @@ function synthesisConfidence(prompt: PromptSynthesis): "high" | "medium" | "low"
   return hasStrongCitationPattern ? "medium" : "low";
 }
 
-function missingOrWeakAssetForGap(
-  gapType: string,
-  dominantSourceFormat: string,
-  inventory: AssetInventoryItem[],
-) {
+function missingOrWeakAssetForGap(input: {
+  gapType: string;
+  dominantSourceFormat: string;
+  promptGroup: string;
+  inventory: AssetInventoryItem[];
+}) {
   const wantedType =
-    gapType === "competitor_comparison_gap"
+    input.promptGroup === "competitor_comparison"
       ? "alternative_page"
-      : assetTypeForSourceFormat(dominantSourceFormat as SourceFormat);
+      : input.gapType === "proof_gap"
+        ? "case_study"
+        : assetTypeForSourceFormat(input.dominantSourceFormat as SourceFormat);
 
-  return inventory.find(
+  return input.inventory.find(
     (asset) =>
       asset.type === wantedType && (asset.status === "missing" || asset.status === "unknown"),
   );
