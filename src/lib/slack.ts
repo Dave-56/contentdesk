@@ -12,6 +12,7 @@ import {
   type SlackAction,
   type TopicBrief,
 } from "@/lib/schemas";
+import type { VisibilityRecommendationForSlack } from "@/lib/visibility/slack-adapter";
 
 let client: WebClient | undefined;
 
@@ -181,6 +182,82 @@ export function topicPickerBlocks(input: {
   return blocks;
 }
 
+export function visibilityRecommendationBlocks(input: {
+  cycleId: string;
+  artifactId: string;
+  recommendation: VisibilityRecommendationForSlack;
+  approved?: boolean;
+}) {
+  const recommendation = input.recommendation;
+  const approveAction: SlackAction = {
+    action: "approve_visibility_recommendation",
+    cycleId: input.cycleId,
+    artifactId: input.artifactId,
+    runId: recommendation.runId,
+    recommendationId: recommendation.id,
+    hash: recommendation.hash,
+    taskType: recommendation.taskType,
+  };
+  const statusLine = recommendation.productionSupported
+    ? "Ready for production runner."
+    : `Production runner does not support ${formatTaskType(recommendation.taskType)} yet.`;
+  const blocks: unknown[] = [
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: [
+          input.approved
+            ? "*Visibility recommendation approved*"
+            : "*Latest visibility recommendation*",
+          `*${recommendation.title}*`,
+          `Priority: *${recommendation.priority}* · Confidence: *${recommendation.confidence}*`,
+          `Task: ${formatTaskType(recommendation.taskType)} · ${statusLine}`,
+        ].join("\n"),
+      },
+    },
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: [
+          `*Buyer prompt*\n${recommendation.targetPrompt}`,
+          `*Evidence*\n${formatVisibilityEvidence(recommendation)}`,
+        ].join("\n\n"),
+      },
+    },
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: `*Why this now*\n${recommendation.why.slice(0, 4).map((reason) => `- ${reason}`).join("\n")}`,
+      },
+    },
+  ];
+
+  if (!input.approved) {
+    blocks.push({
+      type: "actions",
+      elements: [
+        {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: recommendation.productionSupported
+              ? "Approve"
+              : "Cannot run yet",
+          },
+          style: recommendation.productionSupported ? "primary" : undefined,
+          action_id: "approve_visibility_recommendation",
+          value: JSON.stringify(approveAction),
+        },
+      ],
+    });
+  }
+
+  return blocks;
+}
+
 export function topicPreviewModal(input: {
   topic: TopicBrief;
   topicNumber: number;
@@ -216,6 +293,33 @@ export function topicPreviewModal(input: {
       modalSection("Sources", formatSourceList(topic.sourceLinks)),
     ],
   } satisfies View;
+}
+
+function formatVisibilityEvidence(recommendation: VisibilityRecommendationForSlack) {
+  const competitors = recommendation.evidence.competitorsMentioned.length
+    ? recommendation.evidence.competitorsMentioned.join(", ")
+    : "none captured";
+  const domains = recommendation.evidence.citedDomains.length
+    ? recommendation.evidence.citedDomains.slice(0, 6).join(", ")
+    : "none captured";
+  const related = recommendation.evidence.relatedAssets.length
+    ? recommendation.evidence.relatedAssets
+        .slice(0, 2)
+        .map((asset) => asset.title)
+        .join("; ")
+    : "none";
+
+  return [
+    `Source format: ${formatTaskType(recommendation.evidence.dominantSourceFormat)}`,
+    `Brand mentioned: ${recommendation.evidence.brandMentioned ? "yes" : "no"} · cited: ${recommendation.evidence.brandCited ? "yes" : "no"}`,
+    `Competitors: ${competitors}`,
+    `Cited domains: ${domains}`,
+    `Related owned assets: ${related}`,
+  ].join("\n");
+}
+
+function formatTaskType(value: string) {
+  return value.replace(/_/g, " ");
 }
 
 function formatStrategyReasoning(topic: TopicBrief) {

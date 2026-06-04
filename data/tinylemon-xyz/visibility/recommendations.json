@@ -1,0 +1,92 @@
+{
+  "brand": "Tiny Lemon",
+  "provider": "synthesis",
+  "providers": [
+    "perplexity",
+    "openai",
+    "anthropic"
+  ],
+  "generatedAt": "2026-06-03T23:45:31.908Z",
+  "basedOnRunDate": "2026-06-03T23:39:08.534Z",
+  "summary": {
+    "promptCount": 10,
+    "brandMentionedCount": 4,
+    "brandCitedCount": 4,
+    "competitorOnlyCount": 1,
+    "averageVisibilityScore": 0
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "title": "Improve Shopify App Store listing",
+      "taskType": "shopify_app_store_listing",
+      "priority": "medium",
+      "confidence": "medium",
+      "targetPromptId": "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget",
+      "targetPrompt": "What is the best AI product photography app for a Shopify fashion store with no shoot budget?",
+      "why": [
+        "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget shows marketplace gap across providers.",
+        "Tiny Lemon is mentioned by 0/3 providers and cited by 0/3.",
+        "Dominant source format is marketplace listing.",
+        "No Botika-specific alternatives page found in owned inventory.",
+        "Related competitor asset exists: Modelia Alternatives for Shopify Fashion Photos | TinyLemon. Reuse that pattern."
+      ],
+      "evidence": {
+        "promptGroup": "category_search",
+        "brandMentioned": false,
+        "brandCited": false,
+        "competitorsMentioned": [
+          "Botika"
+        ],
+        "citedDomains": [
+          "prodofoto.com",
+          "community.shopify.com",
+          "rewarx.com",
+          "claid.ai",
+          "youtube.com",
+          "apps.shopify.com",
+          "lumezai.com",
+          "packshotr.com",
+          "prodshot.ai",
+          "synctually.com",
+          "catalogshot.app",
+          "nimzo.ai",
+          "cataproai.com",
+          "shopsnapai.com",
+          "miro.fashion",
+          "luminify.app",
+          "pixovo.io",
+          "angleforge.studio",
+          "pickyourapp.com",
+          "reddit.com",
+          "en.wikipedia.org",
+          "0e190a550a8c4c8c4b93-fcd009c875a5577fd4fe2f5b7e3bf4eb.ssl.cf2.rackcdn.com",
+          "arxiv.org",
+          "adroll.com",
+          "weshop.ai",
+          "minnesota.ai"
+        ],
+        "dominantSourceFormat": "marketplace_listing",
+        "missingOrWeakAssetType": "shopify_app_store_listing",
+        "targetCompetitor": "Botika",
+        "targetCompetitorAssetStatus": "missing",
+        "relatedAssets": [
+          {
+            "title": "Modelia Alternatives for Shopify Fashion Photos | TinyLemon",
+            "url": "https://tinylemon.xyz/blog/best-modelia-alternatives-for-shopify-fashion-product-photos",
+            "matchedCompetitors": [
+              "Modelia"
+            ]
+          }
+        ]
+      },
+      "recheck": {
+        "promptIds": [
+          "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget"
+        ],
+        "afterPublish": true,
+        "cadenceDays": 1
+      }
+    }
+  ]
+}

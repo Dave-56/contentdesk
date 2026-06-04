@@ -1,0 +1,139 @@
+{
+  "brand": {
+    "name": "Tiny Lemon",
+    "aliases": [
+      "TinyLemon"
+    ],
+    "domains": [
+      "tinylemon.xyz"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "competitors": [
+    {
+      "name": "Botika",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "Lalaland.ai",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "ZMO.ai",
+      "aliases": [],
+      "domains": []
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "unknown",
+      "notes": "Infer from website/search later; not confirmed from standard site crawl."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://www.tinylemon.xyz/",
+      "notes": "Homepage found during website profiling."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page found during standard site crawl."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No alternatives page found during standard site crawl."
+    },
+    {
+      "type": "blog_guide",
+      "status": "unknown",
+      "notes": "Blog coverage not confirmed."
+    },
+    {
+      "type": "docs_help",
+      "status": "unknown",
+      "notes": "Docs/help coverage not confirmed."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "Community mentions require separate search."
+    },
+    {
+      "type": "youtube_video",
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Review profiles require separate search."
+    },
+    {
+      "type": "case_study",
+      "status": "unknown",
+      "notes": "Case studies require separate search."
+    }
+  ],
+  "prompts": [
+    {
+      "id": "competitor-comparison-should-i-choose-tiny-lemon-or-lalaland-ai-for-a-shopify-apparel-catalog-refresh",
+      "group": "competitor_comparison",
+      "prompt": "Should I choose Tiny Lemon or Lalaland.ai for a Shopify apparel catalog refresh?"
+    },
+    {
+      "id": "competitor-comparison-which-is-better-for-a-small-shopify-clothing-brand-tiny-lemon-or-botika",
+      "group": "competitor_comparison",
+      "prompt": "Which is better for a small Shopify clothing brand: Tiny Lemon or Botika?"
+    },
+    {
+      "id": "high-intent-purchase-is-tiny-lemon-worth-trying-for-indie-fashion-brands-that-need-model-photos-fast",
+      "group": "high_intent_purchase",
+      "prompt": "Is Tiny Lemon worth trying for indie fashion brands that need model photos fast?"
+    },
+    {
+      "id": "high-intent-purchase-should-i-install-tiny-lemon-for-my-shopify-fashion-store-if-i-only-have-flat-lay-product-photos",
+      "group": "high_intent_purchase",
+      "prompt": "Should I install Tiny Lemon for my Shopify fashion store if I only have flat-lay product photos?"
+    },
+    {
+      "id": "category-search-what-ai-product-photography-apps-are-best-for-indie-fashion-brands-on-shopify",
+      "group": "category_search",
+      "prompt": "What AI product photography apps are best for indie fashion brands on Shopify?"
+    },
+    {
+      "id": "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget",
+      "group": "category_search",
+      "prompt": "What is the best AI product photography app for a Shopify fashion store with no shoot budget?"
+    },
+    {
+      "id": "high-intent-purchase-what-should-i-check-before-installing-an-ai-product-photography-app-on-shopify",
+      "group": "high_intent_purchase",
+      "prompt": "What should I check before installing an AI product photography app on Shopify?"
+    },
+    {
+      "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-studio-quality-product-photos-without-a-shoot-budget",
+      "group": "problem_aware",
+      "prompt": "How can indie fashion brands on Shopify get studio-quality product photos without a shoot budget?"
+    },
+    {
+      "id": "solution-aware-can-an-ai-product-photography-app-create-front-side-and-back-views-from-one-clothing-photo",
+      "group": "solution_aware",
+      "prompt": "Can an AI product photography app create front, side, and back views from one clothing photo?"
+    },
+    {
+      "id": "integration-use-case-can-i-publish-ai-generated-product-images-directly-to-shopify-products",
+      "group": "integration_use_case",
+      "prompt": "Can I publish AI-generated product images directly to Shopify products?"
+    }
+  ]
+}

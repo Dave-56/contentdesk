@@ -1,6 +1,6 @@
 ---
 title: NOW — Current Operating Truth
-updated: 2026-06-03
+updated: 2026-06-04
 type: living
 status: current
 read_before: [docs/MAP.md]
@@ -83,11 +83,27 @@ multi-provider runs spend API credits and should be intentional. See
 - Visibility foundation tracker: `docs/status/TASKLIST.md` has completed brand-neutral
   schemas, owned-site inventory, provider interface, OpenAI runner, Claude runner,
   cross-provider synthesis, recommender integration, and `visibility:run`.
-- Owned-site raw inventory: `npm run visibility:profile -- --url https://tinylemon.xyz --out data/tiny-lemon/visibility`
-  writes `owned-content-inventory.json`. Latest Tiny Lemon profile found 8 owned assets:
-  3 profile pages and 5 blog articles. `owned-content-inventory.json` is the exact owned
-  asset source of truth; `site-profile.json` stays broad brand/page context. No
-  classification/story layer yet.
+- Owned content inventory crawler: `npm run visibility:profile -- --url <url> --out <dir>`
+  writes `site-profile.json` and `owned-content-inventory.json`. It uses native fetch,
+  sitemap discovery, common owned-content paths, same-domain links, canonical dedupe,
+  crawl status fields, and inline AI understanding fields (`summary`, `primaryTopic`,
+  `secondaryTopics`, `contentRole`, `audience`, `keyClaims`) when AI Gateway env is
+  configured. CLI now supports `--max-pages`, `--max-depth`, `--timeout-ms`,
+  `--max-bytes`, and `--no-understanding`, with progress logs for crawl and understanding.
+  Tiny Lemon verification on 2026-06-03 found 10 pages, 10 crawled, 0 failed, and all 10
+  understanding complete; all 5 website guides were retrieved, with alternatives/comparison
+  pages classified separately from plain blog articles. DataJelly bounded verification
+  (`--max-pages 10`) on 2026-06-03 found 10 pages, 10 crawled, 0 failed, and all 10
+  understanding complete; `/faq` now classifies as `faq`, `/contact` as `other`.
+  `owned-content-inventory.json` is the exact owned asset source of truth;
+  `site-profile.json` stays broad brand/page context.
+- Owned-content crawler caveat: full unbounded runs can be slow on larger sites because
+  understanding is sequential. Use `--max-pages` while testing lead domains. Excerpts still
+  include repeated nav/footer boilerplate, so extraction cleanup is still needed before using
+  excerpt similarity as strong evidence.
+- Verification on 2026-06-04: `npm test -- src/lib/visibility/site-inventory.test.ts`
+  passed and `npm run typecheck` passed after adding owned-content crawler progress logs,
+  CLI crawl bounds, and path-first page-type classification.
 - Verification on 2026-06-02: `npm test -- src/lib/prompt-scan/provider.test.ts src/lib/visibility/synthesis.test.ts src/lib/visibility/recommender.test.ts`
   passed, `npm run typecheck` passed, and temp-file full/partial synthesis plus
   recommendation smokes passed.
@@ -146,8 +162,11 @@ multi-provider runs spend API credits and should be intentional. See
   the run. OpenAI web-search calls are materially slower than Perplexity and Anthropic.
 
 ## Blockers
-- Recommendation quality now depends on knowing owned content. Without blog/guide inventory,
-  the system can recommend creating pages the customer already has.
+- Owned-content extraction is still noisy: repeated nav/footer text appears in excerpts and
+  should be stripped before excerpt-level matching or duplicate/weak-page scoring.
+- Full-site owned-content profiling can still be slow because understanding calls run
+  sequentially; larger lead-domain runs should use `--max-pages` until concurrency/timeout
+  controls exist.
 - Prompt-set quality needs demand evidence. LLM-generated buyer prompts are plausible, but
   should be strengthened with SERP, autocomplete/PAA, competitor titles, forums/reviews, and
   Search Console when available.
@@ -156,11 +175,11 @@ multi-provider runs spend API credits and should be intentional. See
 - Provider failure handling is incomplete for Anthropic credit errors during visibility runs.
 
 ## Next 3 actions
-1. Build owned-content inventory crawler for blog/guides/docs/comparison pages and attach
-   page title, URL, H1, meta, summary, buyer question, topic, type, and freshness.
-2. Add buyer-question discovery and scoring from demand evidence: Google SERP,
+1. Add buyer-question discovery and scoring from demand evidence: Google SERP,
    autocomplete/PAA, competitor titles, forums/reviews, AI answers, and Search Console when
    available.
-3. Add recommendation gap classifier: missing page, weak existing page, off-site citation
+2. Add recommendation gap classifier: missing page, weak existing page, off-site citation
    gap, comparison gap, proof/case-study gap, and prompt-set gap, then output page-level work
    orders.
+3. Clean owned-content excerpts by stripping nav/footer boilerplate and add safer full-site
+   understanding controls for larger lead domains.

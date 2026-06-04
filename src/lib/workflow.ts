@@ -39,6 +39,7 @@ import {
   postManagerMessage,
   publishKitBlocks,
   topicPickerBlocks,
+  visibilityRecommendationBlocks,
 } from "@/lib/slack";
 import {
   getArticleMemoryForResearch,
@@ -57,6 +58,15 @@ import {
   qaRevisionInstructions,
   visualRevisionInstructions,
 } from "@/lib/editor/seo-qa";
+import {
+  buildResearchSourcesFromVisibilityRecommendation,
+  buildTopicBriefFromVisibilityRecommendation,
+  getLatestVisibilityRecommendationForSlack,
+  isVisibilityRecommendationStale,
+  reloadVisibilityRecommendationForSlack,
+  visibilityRecommendationForSlackSchema,
+  type VisibilityRecommendationForSlack,
+} from "@/lib/visibility/slack-adapter";
 
 const MAX_QA_REVISION_PASSES = 2;
 
@@ -67,6 +77,95 @@ export type ContentCyclePayload = {
   userId: string;
   commandText?: string;
 };
+
+export async function runVisibilityRecommendationKickoff(payload: ContentCyclePayload) {
+  const organization = await getOrCreateOrganization({
+    slackTeamId: payload.teamId,
+    name: payload.teamName,
+  });
+  const brand = await getPrimaryBrandForOrganization(organization.id);
+  const completeness = getBrandProfileCompleteness(brand?.profile);
+
+  if (!brand || !completeness.isComplete) {
+    await postManagerMessage({
+      channelId: payload.channelId,
+      text: `Before I can show visibility recommendations, I need the Brand Profile. Missing: ${completeness.requiredMissing.join(", ")}.`,
+    });
+
+    return {
+      cycleId: null,
+      recommendationArtifactId: null,
+      missingProfileFields: completeness.requiredMissing,
+    };
+  }
+
+  const recommendation = await getLatestVisibilityRecommendationForSlack({
+    brandProfile: brand.profile,
+  });
+
+  if (!recommendation) {
+    await postManagerMessage({
+      channelId: payload.channelId,
+      text: [
+        "No visibility recommendation is ready yet.",
+        "Run the visibility workflow, then try `/contentdesk` again:",
+        "`npm run visibility:profile -- --url <website> --out data/<brand>/visibility`",
+        "`npm run visibility:run -- --recommend`",
+      ].join("\n"),
+    });
+
+    return {
+      cycleId: null,
+      recommendationArtifactId: null,
+      noRecommendation: true,
+    };
+  }
+
+  const cycle = await createContentCycle({
+    organizationId: organization.id,
+    brandId: brand.id,
+    slackChannelId: payload.channelId,
+  });
+
+  await createArtifact({
+    organizationId: organization.id,
+    brandId: brand.id,
+    cycleId: cycle.id,
+    type: "BrandProfile",
+    status: "active",
+    payload: brand.profile,
+    createdByAgent: "Manager Agent",
+  });
+
+  const recommendationArtifact = await createArtifact({
+    organizationId: organization.id,
+    brandId: brand.id,
+    cycleId: cycle.id,
+    type: "VisibilityRecommendation",
+    status: recommendation.productionSupported
+      ? "awaiting_approval"
+      : "unsupported_task_type",
+    payload: recommendation,
+    createdByAgent: "Visibility Layer",
+  });
+
+  const message = await postManagerMessage({
+    channelId: payload.channelId,
+    text: `ContentDesk found a visibility-backed recommendation: ${recommendation.title}`,
+    blocks: visibilityRecommendationBlocks({
+      cycleId: cycle.id,
+      artifactId: recommendationArtifact.id,
+      recommendation,
+    }),
+  });
+  if (message.ts) await updateCycleThread(cycle.id, message.ts);
+
+  return {
+    cycleId: cycle.id,
+    recommendationArtifactId: recommendationArtifact.id,
+    recommendation,
+  };
+}
 
 export async function runContentCycleKickoff(payload: ContentCyclePayload) {
   const organization = await getOrCreateOrganization({
@@ -925,6 +1024,184 @@ export async function handleTopicApproval(input: {
   };
 }
 
+export async function handleVisibilityRecommendationApproval(input: {
+  cycleId: string;
+  artifactId: string;
+  runId: string;
+  recommendationId: string;
+  hash: string;
+  taskType: string;
+  channelId: string;
+  threadTs?: string;
+  slackUserId: string;
+  onApprovalCommitted?: (input: {
+    recommendation: VisibilityRecommendationForSlack;
+  }) => Promise<void>;
+}) {
+  const recommendationArtifact = await getArtifact<VisibilityRecommendationForSlack>(
+    input.artifactId,
+  );
+  if (!recommendationArtifact) throw new Error("Visibility recommendation artifact not found");
+
+  const renderedRecommendation = visibilityRecommendationForSlackSchema.parse(
+    recommendationArtifact.json_payload,
+  );
+
+  if (
+    renderedRecommendation.id !== input.recommendationId ||
+    renderedRecommendation.taskType !== input.taskType
+  ) {
+    return {
+      publishKitArtifactId: null,
+      stale: true,
+      alreadyApproved: false,
+      disabledTaskType: false,
+      writerFailed: false,
+    };
+  }
+
+  const currentRecommendation = await reloadVisibilityRecommendationForSlack(
+    renderedRecommendation,
+  ).catch((error: unknown) => {
+    console.warn(
+      "Visibility recommendation reload failed",
+      error instanceof Error ? error.message : String(error),
+    );
+    return null;
+  });
+
+  if (
+    isVisibilityRecommendationStale({
+      rendered: renderedRecommendation,
+      current: currentRecommendation,
+      actionHash: input.hash,
+      actionRunId: input.runId,
+    })
+  ) {
+    return {
+      publishKitArtifactId: null,
+      stale: true,
+      alreadyApproved: false,
+      disabledTaskType: false,
+      writerFailed: false,
+    };
+  }
+
+  const recommendation = currentRecommendation ?? renderedRecommendation;
+  if (!recommendation.productionSupported) {
+    return {
+      publishKitArtifactId: null,
+      stale: false,
+      alreadyApproved: false,
+      disabledTaskType: true,
+      writerFailed: false,
+    };
+  }
+
+  const didApprove = await setApprovedTopicIfAwaiting({
+    cycleId: input.cycleId,
+    artifactId: input.artifactId,
+  });
+
+  if (!didApprove) {
+    return {
+      publishKitArtifactId: null,
+      stale: false,
+      alreadyApproved: true,
+      disabledTaskType: false,
+      writerFailed: false,
+    };
+  }
+
+  await createApproval({
+    cycleId: input.cycleId,
+    artifactId: input.artifactId,
+    gate: "visibility_recommendation",
+    status: "approved",
+    slackUserId: input.slackUserId,
+  });
+
+  await input.onApprovalCommitted?.({ recommendation });
+
+  const brandProfileArtifact = await getLatestArtifactForCycle<BrandProfile>(
+    input.cycleId,
+    "BrandProfile",
+  );
+
+  if (!brandProfileArtifact) {
+    await updateCycleStatus(input.cycleId, "writer_failed");
+    await postManagerMessage({
+      channelId: input.channelId,
+      threadTs: input.threadTs,
+      text:
+        "Visibility recommendation approved, but SEO Writer could not start because this cycle is missing its Brand Profile artifact. Run `/contentdesk` again after fixing the missing artifact.",
+    });
+
+    return {
+      publishKitArtifactId: null,
+      stale: false,
+      alreadyApproved: false,
+      disabledTaskType: false,
+      writerFailed: true,
+    };
+  }
+
+  const topic = buildTopicBriefFromVisibilityRecommendation({
+    recommendation,
+    brandProfile: brandProfileArtifact.json_payload,
+  });
+  const researchSources = buildResearchSourcesFromVisibilityRecommendation({
+    recommendation,
+  });
+
+  await createArtifact({
+    organizationId: recommendationArtifact.organization_id,
+    brandId: recommendationArtifact.brand_id,
+    cycleId: input.cycleId,
+    type: "ResearchSource[]",
+    status: "active",
+    payload: researchSources,
+    createdByAgent: "Visibility Layer",
+  });
+  const approvedTopicArtifact = await createArtifact({
+    organizationId: recommendationArtifact.organization_id,
+    brandId: recommendationArtifact.brand_id,
+    cycleId: input.cycleId,
+    type: "ApprovedTopic",
+    status: "active",
+    payload: topic,
+    createdByAgent: "Manager Agent",
+  });
+  await markCycleTopicApproved({
+    cycleId: input.cycleId,
+    artifactId: approvedTopicArtifact.id,
+  });
+
+  await postManagerMessage({
+    channelId: input.channelId,
+    threadTs: input.threadTs,
+    text: `Visibility recommendation approved. Production runner is building: ${topic.workingTitle}`,
+  });
+
+  const pipelineResult = await runPublishKitPipelineFromApprovedTopic({
+    cycleId: input.cycleId,
+    channelId: input.channelId,
+    threadTs: input.threadTs,
+    organizationId: recommendationArtifact.organization_id,
+    brandId: recommendationArtifact.brand_id,
+    topic,
+    brandProfile: brandProfileArtifact.json_payload,
+    researchSources,
+    sourceMode: "visibility_recommendation",
+  });
+
+  return {
+    ...pipelineResult,
+    stale: false,
+    disabledTaskType: false,
+  };
+}
+
 async function runPublishKitPipelineFromApprovedTopic(input: {
   cycleId: string;
   channelId: string;
@@ -935,7 +1212,7 @@ async function runPublishKitPipelineFromApprovedTopic(input: {
   brandProfile: BrandProfile;
   researchSources: ResearchSource[];
   approvedTopicIndex?: number;
-  sourceMode: "topic_approval" | "direct_article";
+  sourceMode: "topic_approval" | "direct_article" | "visibility_recommendation";
 }) {
   if (input.researchSources.length === 0) {
     await updateCycleStatus(input.cycleId, "writer_failed");
@@ -960,6 +1237,8 @@ async function runPublishKitPipelineFromApprovedTopic(input: {
     text:
       input.sourceMode === "direct_article"
         ? "SEO Writer is drafting the requested article, metadata, FAQ, CTA, internal links, and social snippets."
+        : input.sourceMode === "visibility_recommendation"
+          ? "SEO Writer is drafting the visibility-backed asset, metadata, FAQ, CTA, internal links, and social snippets."
         : "SEO Writer is drafting the article, metadata, FAQ, CTA, internal links, and social snippets.",
   });
 
@@ -1323,13 +1602,19 @@ async function runPublishKitPipelineFromApprovedTopic(input: {
 }
 
 function publishKitReadyMessage(
-  sourceMode: "topic_approval" | "direct_article",
+  sourceMode: "topic_approval" | "direct_article" | "visibility_recommendation",
   usedFallback: boolean,
 ) {
   if (sourceMode === "direct_article") {
     return usedFallback
       ? "Requested article drafted. QA passed after fallback drafting, and the publish kit preview is ready for final approval."
       : "Requested article drafted. QA passed and the publish kit preview is ready for final approval.";
+  }
+
+  if (sourceMode === "visibility_recommendation") {
+    return usedFallback
+      ? "Visibility-backed asset drafted. QA passed after fallback drafting, and the publish kit preview is ready for final approval."
+      : "Visibility-backed asset drafted. QA passed and the publish kit preview is ready for final approval.";
   }
 
   return usedFallback

@@ -5,8 +5,13 @@ import type {
   PromptScanRecord,
   PromptScanRun,
   SourceFormat,
+  AnswerSignal,
 } from "@/lib/prompt-scan/schemas";
-import { promptScanRunSchema, providerSchema } from "@/lib/prompt-scan/schemas";
+import {
+  answerRecommendationSchema,
+  promptScanRunSchema,
+  providerSchema,
+} from "@/lib/prompt-scan/schemas";
 import { siteProfileSchema, type SiteProfile } from "@/lib/reddit-teardown/schemas";
 import {
   buyerPromptStrategyInputSchema,
@@ -45,7 +50,10 @@ export const visibilityRecommendationSchema = z.object({
     promptGroup: z.string().trim().min(1),
     brandMentioned: z.boolean(),
     brandCited: z.boolean(),
+    brandRecommendation: answerRecommendationSchema.default("absent"),
+    brandRank: z.number().int().min(1).nullable().default(null),
     competitorsMentioned: z.array(z.string().trim().min(1)),
+    competitorsRecommended: z.array(z.string().trim().min(1)).default([]),
     citedDomains: z.array(z.string().trim().min(1)),
     dominantSourceFormat: z.string().trim().min(1),
     missingOrWeakAssetType: z.string().trim().min(1).nullable(),
@@ -80,7 +88,12 @@ export const visibilityRecommendationsFileSchema = z.object({
     promptCount: z.number().int().min(0),
     brandMentionedCount: z.number().int().min(0),
     brandCitedCount: z.number().int().min(0),
+    brandRecommendedCount: z.number().int().min(0).default(0),
+    brandTopPickCount: z.number().int().min(0).default(0),
     competitorOnlyCount: z.number().int().min(0),
+    competitorRecommendedOnlyCount: z.number().int().min(0).default(0),
+    citedButNotRecommendedCount: z.number().int().min(0).default(0),
+    recommendedButNotCitedCount: z.number().int().min(0).default(0),
     averageVisibilityScore: z.number().min(0).max(100),
   }),
   recommendations: z.array(visibilityRecommendationSchema),
@@ -167,6 +180,7 @@ function buildSynthesisRecommendations(input: {
   }
 
   const candidates = input.synthesis.prompts
+    .filter((prompt) => prompt.recommendedGapType !== "no_gap")
     .map((prompt) => scoreSynthesisPrompt(prompt, input.strategy, input.ownedInventory))
     .filter((candidate) => candidate.confidence !== "low")
     .sort((a, b) => b.score - a.score);
@@ -204,8 +218,27 @@ function summaryFromSynthesis(synthesis: CrossProviderSynthesis) {
     brandCitedCount: synthesis.prompts.filter(
       (prompt) => prompt.brandCitedProviders.length > 0,
     ).length,
+    brandRecommendedCount: synthesis.prompts.filter(
+      (prompt) => prompt.brandRecommendedProviders.length > 0,
+    ).length,
+    brandTopPickCount: synthesis.prompts.filter(
+      (prompt) => prompt.brandTopPickProviders.length > 0,
+    ).length,
     competitorOnlyCount: synthesis.prompts.filter(
       (prompt) => prompt.competitorOnlyProviders.length > 0,
+    ).length,
+    competitorRecommendedOnlyCount: synthesis.prompts.filter(
+      (prompt) => prompt.competitorRecommendedOnlyProviders.length > 0,
+    ).length,
+    citedButNotRecommendedCount: synthesis.prompts.filter(
+      (prompt) =>
+        prompt.brandCitedProviders.length > 0 &&
+        prompt.brandRecommendedProviders.length === 0,
+    ).length,
+    recommendedButNotCitedCount: synthesis.prompts.filter(
+      (prompt) =>
+        prompt.brandRecommendedProviders.length > 0 &&
+        prompt.brandCitedProviders.length === 0,
     ).length,
     averageVisibilityScore: 0,
   };
@@ -228,9 +261,14 @@ function scoreSynthesisPrompt(
 
   let score = groupWeight(prompt.promptGroup as PromptGroup);
   if (prompt.recommendedGapType === "competitor_comparison_gap") score += 35;
+  if (prompt.recommendedGapType === "competitor_recommended_gap") score += 45;
+  if (prompt.recommendedGapType === "recommendation_gap") score += 30;
+  if (prompt.recommendedGapType === "citation_gap") score += 20;
   if (dominantSourceFormat === "comparison_page") score += 25;
   if (prompt.competitorOnlyProviders.length >= 2) score += 30;
+  if (prompt.competitorRecommendedOnlyProviders.length >= 1) score += 35;
   if (prompt.dominantCompetitors.length > 0) score += 15;
+  if (prompt.brandRecommendedProviders.length > 0) score -= 50;
   if (targetCoverage === "missing") score += 15;
   if (targetCoverage === "present") score -= 30;
   if (confidence === "high") score += 20;
@@ -296,7 +334,16 @@ function buildSynthesisRecommendation(input: {
       promptGroup: input.prompt.promptGroup,
       brandMentioned: input.prompt.brandMentionedProviders.length > 0,
       brandCited: input.prompt.brandCitedProviders.length > 0,
+      brandRecommendation: dominantBrandRecommendation(input.prompt.providerResults),
+      brandRank: bestBrandRank(input.prompt.providerResults),
       competitorsMentioned: input.prompt.dominantCompetitors,
+      competitorsRecommended: [
+        ...new Set(
+          input.prompt.providerResults.flatMap(
+            (result) => result.competitorsRecommended,
+          ),
+        ),
+      ],
       citedDomains,
       dominantSourceFormat,
       missingOrWeakAssetType: missingAsset?.type ?? null,
@@ -337,6 +384,14 @@ function scoreRecord(
   if (targetCoverage === "present") score -= 30;
   if (record.recommendationConfidence === "high") score += 10;
   if (record.recommendationConfidence === "medium") score += 5;
+  if (
+    record.answerSignal?.competitorSignals.some((competitor) =>
+      isRecommended(competitor.recommendation),
+    )
+  ) {
+    score += 35;
+  }
+  if (isRecommended(record.answerSignal?.brandRecommendation)) score -= 50;
 
   return { record, score };
 }
@@ -393,9 +448,15 @@ function buildRecommendation(input: {
       promptGroup: record.promptGroup,
       brandMentioned: record.visibilityScore.brandMentioned,
       brandCited: record.visibilityScore.brandCited,
+      brandRecommendation: record.answerSignal?.brandRecommendation ?? "absent",
+      brandRank: record.answerSignal?.brandRank ?? null,
       competitorsMentioned: record.visibilityScore.competitorsMentioned.map(
         (competitor) => competitor.name,
       ),
+      competitorsRecommended:
+        record.answerSignal?.competitorSignals
+          .filter((competitor) => isRecommended(competitor.recommendation))
+          .map((competitor) => competitor.name) ?? [],
       citedDomains: record.citedDomains,
       dominantSourceFormat,
       missingOrWeakAssetType: missingAsset?.type ?? null,
@@ -657,9 +718,14 @@ function whyForSynthesisPrompt(input: {
 }) {
   const why = [
     `${input.prompt.promptId} shows ${input.prompt.recommendedGapType.replaceAll("_", " ")} across providers.`,
-    `${input.brandName} is mentioned by ${input.prompt.brandMentionedProviders.length}/${input.prompt.providerResults.length} providers and cited by ${input.prompt.brandCitedProviders.length}/${input.prompt.providerResults.length}.`,
+    `${input.brandName} is mentioned by ${input.prompt.brandMentionedProviders.length}/${input.prompt.providerResults.length} providers, cited by ${input.prompt.brandCitedProviders.length}/${input.prompt.providerResults.length}, and recommended by ${input.prompt.brandRecommendedProviders.length}/${input.prompt.providerResults.length}.`,
   ];
 
+  if (input.prompt.competitorRecommendedOnlyProviders.length > 0) {
+    why.push(
+      `${input.prompt.competitorRecommendedOnlyProviders.length} providers recommend competitors without recommending ${input.brandName}.`,
+    );
+  }
   if (input.prompt.competitorOnlyProviders.length >= 2) {
     why.push(
       `${input.prompt.competitorOnlyProviders.length} providers show competitor-only answers.`,
@@ -680,6 +746,41 @@ function whyForSynthesisPrompt(input: {
   }
 
   return why;
+}
+
+function dominantBrandRecommendation(
+  providerResults: PromptSynthesis["providerResults"],
+): AnswerSignal["brandRecommendation"] {
+  const order: AnswerSignal["brandRecommendation"][] = [
+    "top_pick",
+    "recommended",
+    "qualified",
+    "not_recommended",
+    "neutral",
+    "absent",
+  ];
+
+  return (
+    order.find((recommendation) =>
+      providerResults.some((result) => result.brandRecommendation === recommendation),
+    ) ?? "absent"
+  );
+}
+
+function bestBrandRank(providerResults: PromptSynthesis["providerResults"]) {
+  const ranks = providerResults
+    .map((result) => result.brandRank)
+    .filter((rank): rank is number => typeof rank === "number");
+
+  return ranks.sort((left, right) => left - right)[0] ?? null;
+}
+
+function isRecommended(recommendation?: AnswerSignal["brandRecommendation"]) {
+  return (
+    recommendation === "recommended" ||
+    recommendation === "top_pick" ||
+    recommendation === "qualified"
+  );
 }
 
 function synthesisConfidence(prompt: PromptSynthesis): "high" | "medium" | "low" {

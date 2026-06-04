@@ -1,12 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { buildVisibilityRecommendations } from "@/lib/visibility/recommender";
+import { ownedContentInventorySchema } from "@/lib/visibility/site-inventory";
 import type { CrossProviderSynthesis } from "@/lib/visibility/synthesis";
 
 test("recommends Botika alternatives page from competitor comparison gap", () => {
   const recommendations = buildVisibilityRecommendations({
     generatedAt: new Date("2026-06-02T00:00:00.000Z"),
-    ownedInventory: {
+    ownedInventory: ownedContentInventorySchema.parse({
       brand: "Tiny Lemon",
       websiteUrl: "https://tinylemon.xyz/",
       generatedAt: "2026-06-02T00:00:00.000Z",
@@ -29,7 +30,7 @@ test("recommends Botika alternatives page from competitor comparison gap", () =>
           publishedAt: "2026-05-28",
         },
       ],
-    },
+    }),
     siteProfile: {
       websiteUrl: "https://tinylemon.xyz/",
       companyName: "Tiny Lemon",
@@ -118,7 +119,12 @@ test("recommends Botika alternatives page from competitor comparison gap", () =>
         promptCount: 1,
         brandMentionedCount: 0,
         brandCitedCount: 0,
+        brandRecommendedCount: 0,
+        brandTopPickCount: 0,
         competitorOnlyCount: 1,
+        competitorRecommendedOnlyCount: 0,
+        citedButNotRecommendedCount: 0,
+        recommendedButNotCitedCount: 0,
         averageVisibilityScore: 0,
       },
       records: [
@@ -199,6 +205,91 @@ test("recommender uses synthesis repeated provider gaps for high confidence", ()
   assert.match(top.why.join(" "), /2 providers show competitor-only answers/);
 });
 
+test("recommender skips synthesis prompts that already have no gap", () => {
+  const recommendations = buildVisibilityRecommendations({
+    generatedAt: new Date("2026-06-02T00:00:00.000Z"),
+    ownedInventory: ownedInventoryFixture(),
+    strategy: strategyFixture(),
+    synthesis: {
+      ...synthesisFixture(),
+      summary: {
+        promptCount: 2,
+        providerCount: 3,
+        failedProviderCount: 0,
+        repeatedGapCount: 1,
+        brandRecommendedCount: 1,
+        brandTopPickCount: 0,
+        competitorRecommendedOnlyCount: 0,
+        citedButNotRecommendedCount: 0,
+        recommendedButNotCitedCount: 0,
+      },
+      prompts: [
+        {
+          promptId: "competitor-botika-vs-tiny-lemon",
+          prompt: "Which is better for Shopify fashion brands: Tiny Lemon or Botika?",
+          promptGroup: "competitor_comparison",
+          brandMentionedProviders: ["perplexity", "openai"],
+          brandCitedProviders: ["openai"],
+          brandRecommendedProviders: ["perplexity", "openai"],
+          brandTopPickProviders: [],
+          competitorOnlyProviders: [],
+          competitorRecommendedOnlyProviders: [],
+          dominantCompetitors: ["Botika"],
+          dominantSourceFormats: ["comparison_page"],
+          recommendedGapType: "no_gap",
+          providerResults: [
+            providerResultFixture("perplexity", {
+              brandMentioned: true,
+              brandCited: false,
+              competitorOnly: false,
+              dominantSourceFormat: "comparison_page",
+            }),
+            providerResultFixture("openai", {
+              brandMentioned: true,
+              brandCited: true,
+              competitorOnly: false,
+              dominantSourceFormat: "comparison_page",
+            }),
+          ],
+        },
+        {
+          promptId: "category-best-ai-product-photography-apps",
+          prompt: "What AI product photography apps are best for Shopify fashion brands?",
+          promptGroup: "category_search",
+          brandMentionedProviders: [],
+          brandCitedProviders: [],
+          brandRecommendedProviders: [],
+          brandTopPickProviders: [],
+          competitorOnlyProviders: [],
+          competitorRecommendedOnlyProviders: [],
+          dominantCompetitors: [],
+          dominantSourceFormats: ["marketplace_listing"],
+          recommendedGapType: "marketplace_gap",
+          providerResults: [
+            providerResultFixture("perplexity", {
+              brandMentioned: false,
+              brandCited: false,
+              competitorOnly: false,
+              dominantSourceFormat: "marketplace_listing",
+            }),
+            providerResultFixture("openai", {
+              brandMentioned: false,
+              brandCited: false,
+              competitorOnly: false,
+              dominantSourceFormat: "marketplace_listing",
+            }),
+          ],
+        },
+      ],
+    },
+  });
+
+  const [top] = recommendations.recommendations;
+  assert.equal(top.targetPromptId, "category-best-ai-product-photography-apps");
+  assert.equal(top.taskType, "shopify_app_store_listing");
+  assert.match(top.why.join(" "), /marketplace gap/);
+});
+
 test("recommender emits no synthesis recommendations without owned inventory", () => {
   const recommendations = buildVisibilityRecommendations({
     generatedAt: new Date("2026-06-02T00:00:00.000Z"),
@@ -206,9 +297,13 @@ test("recommender emits no synthesis recommendations without owned inventory", (
       ...ownedInventoryFixture(),
       counts: {
         total: 0,
+        totalPages: 0,
+        successfulPages: 0,
+        failedPages: 0,
         siteProfilePages: 0,
         blogArticles: 0,
       },
+      pages: [],
       assets: [],
     },
     strategy: strategyFixture(),
@@ -220,7 +315,7 @@ test("recommender emits no synthesis recommendations without owned inventory", (
 });
 
 function ownedInventoryFixture() {
-  return {
+  return ownedContentInventorySchema.parse({
     brand: "Tiny Lemon",
     websiteUrl: "https://tinylemon.xyz/",
     generatedAt: "2026-06-02T00:00:00.000Z",
@@ -242,7 +337,7 @@ function ownedInventoryFixture() {
         publishedAt: "2026-05-28",
       },
     ],
-  };
+  });
 }
 
 function strategyFixture() {
@@ -317,6 +412,11 @@ function synthesisFixture(): CrossProviderSynthesis {
       providerCount: 3,
       failedProviderCount: 0,
       repeatedGapCount: 1,
+      brandRecommendedCount: 0,
+      brandTopPickCount: 0,
+      competitorRecommendedOnlyCount: 0,
+      citedButNotRecommendedCount: 1,
+      recommendedButNotCitedCount: 0,
     },
     prompts: [
       {
@@ -325,7 +425,10 @@ function synthesisFixture(): CrossProviderSynthesis {
         promptGroup: "competitor_comparison",
         brandMentionedProviders: ["anthropic"],
         brandCitedProviders: ["anthropic"],
+        brandRecommendedProviders: [],
+        brandTopPickProviders: [],
         competitorOnlyProviders: ["perplexity", "openai"],
+        competitorRecommendedOnlyProviders: [],
         dominantCompetitors: ["Botika"],
         dominantSourceFormats: ["comparison_page", "product_page"],
         recommendedGapType: "competitor_comparison_gap",
@@ -376,9 +479,13 @@ function providerResultFixture(
     citedDomains: owned ? ["tinylemon.xyz"] : ["wearview.co"],
     brandMentioned: input.brandMentioned,
     brandCited: input.brandCited,
+    brandRecommendation: input.brandMentioned ? "recommended" as const : "absent" as const,
+    brandRank: null,
     competitorOnly: input.competitorOnly,
+    competitorRecommendedOnly: false,
     competitorsMentioned: input.competitorOnly ? ["Botika"] : [],
     competitorsCited: [],
+    competitorsRecommended: [],
     sourceFormats: [input.dominantSourceFormat],
     dominantSourceFormat: input.dominantSourceFormat,
     recommendationConfidence: "medium" as const,

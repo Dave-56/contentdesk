@@ -1,6 +1,6 @@
 ---
 title: ContentDesk MVP Tasklist
-updated: 2026-06-03
+updated: 2026-06-04
 type: living
 status: current
 ---
@@ -138,8 +138,12 @@ Acceptance:
 - [ ] Add clearer prompt-infer failure output when AI classification fails.
 - [x] Store exact blog/article URLs from sitemap or blog index in `owned-content-inventory.json`.
 - [x] Use owned-site content inventory before recommending new owned assets.
-- [ ] Add owned-content inventory crawler for arbitrary lead domains: homepage, blog, guides, docs, comparisons, integrations, case studies, pricing, and FAQ.
+- [x] Add owned-content inventory crawler for arbitrary lead domains: homepage, blog, guides, docs, comparisons, integrations, case studies, pricing, and FAQ.
+- [x] Add `visibility:profile` crawl bounds and progress logs for larger lead-domain crawls.
+- [x] Add owned-content understanding layer with summary, topic, role, audience, and key claims.
 - [ ] Store owned-content page fields: URL, title, H1, meta description, summary, page type, topic, inferred buyer question, freshness, and matched prompts.
+- [ ] Strip repeated nav/footer boilerplate from owned-content excerpts before excerpt matching.
+- [ ] Add concurrency/timeout controls for full-site owned-content understanding runs.
 - [ ] Add buyer-question discovery from Google SERP, autocomplete/PAA, competitor titles, forums/reviews, AI answers, and Search Console when available.
 - [ ] Score buyer-question evidence by demand signal, pain signal, competitive signal, product fit, content gap, and AEO gap.
 - [ ] Add cited-source analysis that records which pages/models cited, which competitors were named, and why the source won.

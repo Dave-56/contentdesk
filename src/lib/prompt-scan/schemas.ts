@@ -54,6 +54,30 @@ export const sourceStrengthSchema = z.enum(["weak", "medium", "strong"]);
 
 export const recommendationConfidenceSchema = z.enum(["low", "medium", "high"]);
 
+export const brandPresenceSchema = z.enum(["absent", "mentioned"]);
+
+export const brandCitationTypeSchema = z.enum([
+  "owned",
+  "marketplace",
+  "third_party",
+]);
+
+export const answerRecommendationSchema = z.enum([
+  "absent",
+  "neutral",
+  "recommended",
+  "top_pick",
+  "qualified",
+  "not_recommended",
+]);
+
+export const answerSentimentSchema = z.enum([
+  "positive",
+  "neutral",
+  "negative",
+  "mixed",
+]);
+
 export const competitorSchema = z.object({
   name: text,
   aliases: z.array(text).default([]),
@@ -141,6 +165,35 @@ export const visibilityScoreSchema = z.object({
 
 export type VisibilityScore = z.infer<typeof visibilityScoreSchema>;
 
+export const competitorAnswerSignalSchema = z.object({
+  name: text,
+  mentioned: z.boolean(),
+  cited: z.boolean(),
+  recommendation: answerRecommendationSchema,
+  rank: z.number().int().min(1).nullable(),
+  sentiment: answerSentimentSchema,
+  quote: z.string().trim().nullable(),
+  confidence: recommendationConfidenceSchema,
+});
+
+export type CompetitorAnswerSignal = z.infer<
+  typeof competitorAnswerSignalSchema
+>;
+
+export const answerSignalSchema = z.object({
+  brandPresence: brandPresenceSchema,
+  brandCitations: z.array(brandCitationTypeSchema),
+  brandRecommendation: answerRecommendationSchema,
+  brandRank: z.number().int().min(1).nullable(),
+  recommendationPosition: mentionPositionSchema.exclude(["absent"]).nullable(),
+  sentiment: answerSentimentSchema,
+  quote: z.string().trim().nullable(),
+  confidence: recommendationConfidenceSchema,
+  competitorSignals: z.array(competitorAnswerSignalSchema),
+});
+
+export type AnswerSignal = z.infer<typeof answerSignalSchema>;
+
 export const promptScanRecordSchema = z.object({
   id: text,
   prompt: text,
@@ -152,6 +205,8 @@ export const promptScanRecordSchema = z.object({
   citedSources: z.array(citedSourceSchema),
   runDate: z.string().datetime(),
   visibilityScore: visibilityScoreSchema,
+  answerSignal: answerSignalSchema.optional(),
+  contentdeskNextAction: text.optional(),
   recommendedNextAction: text,
   recommendationConfidence: recommendationConfidenceSchema,
   recheckDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
@@ -173,7 +228,12 @@ export const promptScanRunSchema = z.object({
     promptCount: z.number().int().min(0),
     brandMentionedCount: z.number().int().min(0),
     brandCitedCount: z.number().int().min(0),
+    brandRecommendedCount: z.number().int().min(0).default(0),
+    brandTopPickCount: z.number().int().min(0).default(0),
     competitorOnlyCount: z.number().int().min(0),
+    competitorRecommendedOnlyCount: z.number().int().min(0).default(0),
+    citedButNotRecommendedCount: z.number().int().min(0).default(0),
+    recommendedButNotCitedCount: z.number().int().min(0).default(0),
     averageVisibilityScore: z.number().min(0).max(100),
   }),
 });

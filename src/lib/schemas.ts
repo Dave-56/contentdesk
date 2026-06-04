@@ -532,6 +532,15 @@ export const slackActionSchema = z.discriminatedUnion("action", [
   z.object({
     action: z.literal("edit_brand_profile"),
   }),
+  z.object({
+    action: z.literal("approve_visibility_recommendation"),
+    cycleId: z.string(),
+    artifactId: z.string(),
+    runId: z.string(),
+    recommendationId: z.string(),
+    hash: z.string(),
+    taskType: z.string(),
+  }),
 ]);
 
 export type SlackAction = z.infer<typeof slackActionSchema>;

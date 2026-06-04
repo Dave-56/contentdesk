@@ -78,6 +78,28 @@ test("records failed providers in partial synthesis", () => {
   assert.equal(synthesis.summary.failedProviderCount, 1);
 });
 
+test("citation without recommendation stays a recommendation gap", () => {
+  const openaiRun = runFixture("openai", {
+    answerText: "Tiny Lemon is mentioned in the category, but compare output quality first.",
+    citedUrls: ["https://tinylemon.xyz/"],
+    sourceFormat: "product_page",
+    brandMentioned: true,
+    brandCited: true,
+  });
+  openaiRun.records[0].promptGroup = "category_search";
+
+  const synthesis = buildCrossProviderSynthesis({
+    generatedAt: new Date("2026-06-02T00:00:00.000Z"),
+    runs: [openaiRun],
+  });
+
+  const [prompt] = synthesis.prompts;
+  assert.deepEqual(prompt.brandCitedProviders, ["openai"]);
+  assert.deepEqual(prompt.brandRecommendedProviders, []);
+  assert.equal(prompt.recommendedGapType, "recommendation_gap");
+  assert.equal(synthesis.summary.citedButNotRecommendedCount, 1);
+});
+
 test("rejects provider runs with different prompt ids", () => {
   const openaiRun = runFixture("openai", {
     answerText: "Different prompt.",
@@ -129,7 +151,12 @@ function runFixture(
       promptCount: 1,
       brandMentionedCount: brandMentioned ? 1 : 0,
       brandCitedCount: brandCited ? 1 : 0,
+      brandRecommendedCount: 0,
+      brandTopPickCount: 0,
       competitorOnlyCount: brandMentioned ? 0 : 1,
+      competitorRecommendedOnlyCount: 0,
+      citedButNotRecommendedCount: 0,
+      recommendedButNotCitedCount: 0,
       averageVisibilityScore: brandMentioned ? 70 : 0,
     },
     records: [

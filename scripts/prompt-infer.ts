@@ -14,6 +14,7 @@ export async function inferPrompts(input: {
     path.join("data", domainSlug(input.url), "visibility");
   const strategyPath = path.join(outputDir, "strategy.json");
   const siteProfilePath = path.join(outputDir, "site-profile.json");
+  const ownedInventoryPath = path.join(outputDir, "owned-content-inventory.json");
   const researchSourcesPath = path.join(outputDir, "research-sources.inferred.json");
 
   await mkdir(outputDir, { recursive: true });
@@ -26,12 +27,17 @@ export async function inferPrompts(input: {
     `${JSON.stringify(inferred.siteProfile, null, 2)}\n`,
   );
   await writeFile(
+    ownedInventoryPath,
+    `${JSON.stringify(inferred.ownedInventory, null, 2)}\n`,
+  );
+  await writeFile(
     researchSourcesPath,
     `${JSON.stringify(inferred.researchSources, null, 2)}\n`,
   );
 
   console.log(`[prompt:infer] wrote ${strategyPath}`);
   console.log(`[prompt:infer] wrote ${siteProfilePath}`);
+  console.log(`[prompt:infer] wrote ${ownedInventoryPath}`);
   console.log(`[prompt:infer] wrote ${researchSourcesPath}`);
   if (inferred.strategy.competitors.length === 0) {
     console.warn(
@@ -46,6 +52,7 @@ export async function inferPrompts(input: {
     ...inferred,
     strategyPath,
     siteProfilePath,
+    ownedInventoryPath,
     researchSourcesPath,
   };
 }

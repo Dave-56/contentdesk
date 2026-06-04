@@ -8,6 +8,7 @@ export type ArtifactType =
   | "ResearchSource[]"
   | "TopicBrief[]"
   | "RecommendationCard"
+  | "VisibilityRecommendation"
   | "ApprovedTopic"
   | "ArticleDraft"
   | "QAReport"

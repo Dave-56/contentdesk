@@ -1,0 +1,166 @@
+{
+  "brand": {
+    "name": "Tiny Lemon",
+    "aliases": [
+      "TinyLemon"
+    ],
+    "domains": [
+      "tinylemon.xyz"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "audience": "Indie fashion brands on Shopify",
+  "category": "AI product photography app",
+  "positioning": "Studio shots in 60 seconds without a shoot budget or photographer.",
+  "conversionGoal": "Install app",
+  "primaryUseCases": [
+    "Convert flat-lay photos into on-model product images",
+    "Generate short product videos for Shopify listings",
+    "Create front, side, and back views for apparel products",
+    "Produce lifestyle and detail shots without a photoshoot",
+    "Publish images directly to Shopify products"
+  ],
+  "market": "shopify_app",
+  "buyerLanguage": {
+    "buyerNoun": "indie fashion brands on Shopify",
+    "categoryNoun": "AI product photography app",
+    "productNoun": "Shopify app for AI model photos",
+    "useCaseNoun": "flat-lay to studio conversion",
+    "painNoun": "no shoot budget",
+    "conversionNoun": "install app",
+    "comparisonNoun": "product photoshoot alternatives"
+  },
+  "classificationWarnings": [],
+  "buyerJobs": [
+    {
+      "id": "solve-core-problem",
+      "group": "problem_aware",
+      "job": "Find a better way to handle no shoot budget.",
+      "pain": "no shoot budget",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "find-category-tools",
+      "group": "category_search",
+      "job": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
+      "pain": "finding AI product photography app options",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "understand-workflow",
+      "group": "solution_aware",
+      "job": "Understand whether AI product photography app can handle flat-lay to studio conversion.",
+      "pain": "understanding AI product photography app workflows",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "compare-alternatives",
+      "group": "competitor_comparison",
+      "job": "Compare known AI product photography app options and decide which one fits Indie fashion brands on Shopify.",
+      "pain": "comparing AI product photography app alternatives",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    },
+    {
+      "id": "prepare-workflow",
+      "group": "integration_use_case",
+      "job": "Prepare flat-lay to studio conversion for install app.",
+      "pain": "preparing flat-lay to studio conversion",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 3
+    },
+    {
+      "id": "choose-product",
+      "group": "high_intent_purchase",
+      "job": "Choose the AI product photography app to try or buy.",
+      "pain": "choosing the right AI product photography app",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Botika",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "Lalaland.ai",
+      "aliases": [],
+      "domains": []
+    },
+    {
+      "name": "ZMO.ai",
+      "aliases": [],
+      "domains": []
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "shopify_app_store_listing",
+      "status": "unknown",
+      "notes": "Infer from website/search later; not confirmed from standard site crawl."
+    },
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://www.tinylemon.xyz/",
+      "notes": "Homepage found during website profiling."
+    },
+    {
+      "type": "comparison_page",
+      "status": "missing",
+      "notes": "No canonical comparison page found during standard site crawl."
+    },
+    {
+      "type": "alternative_page",
+      "status": "missing",
+      "notes": "No alternatives page found during standard site crawl."
+    },
+    {
+      "type": "blog_guide",
+      "status": "unknown",
+      "notes": "Blog coverage not confirmed."
+    },
+    {
+      "type": "docs_help",
+      "status": "unknown",
+      "notes": "Docs/help coverage not confirmed."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "Community mentions require separate search."
+    },
+    {
+      "type": "youtube_video",
+      "status": "unknown",
+      "notes": "Video proof requires separate search."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Review profiles require separate search."
+    },
+    {
+      "type": "case_study",
+      "status": "unknown",
+      "notes": "Case studies require separate search."
+    }
+  ],
+  "portfolioSize": 10
+}

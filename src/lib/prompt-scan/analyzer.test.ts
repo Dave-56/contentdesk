@@ -63,6 +63,66 @@ test("prompt analysis scores brand visibility and competitor-only gaps", () => {
   assert.equal(record.recommendationConfidence, "high");
   assert.equal(record.recheckDate, "2026-06-02");
   assert.match(record.recommendedNextAction, /Shopify App Store listing/);
+  assert.match(record.contentdeskNextAction ?? "", /Shopify App Store listing/);
+  assert.equal(record.answerSignal?.brandPresence, "mentioned");
+  assert.equal(record.answerSignal?.brandRecommendation, "neutral");
+});
+
+test("answer signal separates recommendation variants from mentions and citations", () => {
+  const cases = [
+    {
+      answerText: "Tiny Lemon is best for Shopify brands that need model photos fast.",
+      expected: "top_pick",
+      sentiment: "positive",
+      rank: 1,
+    },
+    {
+      answerText: "Tiny Lemon is a strong option for flat-lay to on-model photos.",
+      expected: "recommended",
+      sentiment: "positive",
+      rank: null,
+    },
+    {
+      answerText: "Consider Tiny Lemon if you want a Shopify-native workflow.",
+      expected: "qualified",
+      sentiment: "mixed",
+      rank: null,
+    },
+    {
+      answerText: "Botika beats Tiny Lemon for enterprise model-library depth.",
+      expected: "not_recommended",
+      sentiment: "negative",
+      rank: null,
+    },
+    {
+      answerText: "Tiny Lemon is mentioned in this category, but evaluate output quality first.",
+      expected: "qualified",
+      sentiment: "mixed",
+      rank: null,
+    },
+  ] as const;
+
+  for (const item of cases) {
+    const record = analyzePromptResult({
+      config: configFixture(),
+      prompt: {
+        id: `case-${item.expected}`,
+        group: "category_search",
+        prompt: "Which AI model photo app should I use?",
+      },
+      result: {
+        answerText: item.answerText,
+        citedUrls: ["https://tinylemon.xyz/"],
+      },
+      runDate: new Date("2026-06-01T00:00:00.000Z"),
+    });
+
+    assert.equal(record.answerSignal?.brandRecommendation, item.expected);
+    assert.equal(record.answerSignal?.sentiment, item.sentiment);
+    assert.equal(record.answerSignal?.brandRank, item.rank);
+    assert.equal(record.answerSignal?.brandCitations.includes("owned"), true);
+    assert.equal(record.answerSignal?.quote, item.answerText);
+  }
 });
 
 test("prompt scan run summarizes the baseline across prompts", () => {
@@ -98,6 +158,8 @@ test("prompt scan run summarizes the baseline across prompts", () => {
   assert.equal(run.summary.promptCount, 2);
   assert.equal(run.summary.brandMentionedCount, 1);
   assert.equal(run.summary.brandCitedCount, 1);
+  assert.equal(run.summary.brandRecommendedCount, 0);
+  assert.equal(run.summary.citedButNotRecommendedCount, 1);
   assert.equal(run.summary.competitorOnlyCount, 1);
   assert.equal(run.recheckCadenceDays, 1);
 });

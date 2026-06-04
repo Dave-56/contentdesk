@@ -10,11 +10,13 @@ import {
   savePrimaryBrandProfile,
 } from "@/lib/repository";
 import {
+  handleVisibilityRecommendationApproval,
   handlePublishKitApproval,
   handlePublishKitRejection,
   handleTopicApproval,
   runDirectArticleRequest,
   runContentCycleKickoff,
+  runVisibilityRecommendationKickoff,
 } from "@/lib/workflow";
 import { runRedditTeardown } from "@/lib/reddit-teardown";
 import {
@@ -32,6 +34,7 @@ import {
   publishKitModal,
   topicPreviewModal,
   topicPickerBlocks,
+  visibilityRecommendationBlocks,
 } from "@/lib/slack";
 import {
   brandProfileSchema,
@@ -42,6 +45,7 @@ import {
   type PublishKit,
   type TopicBrief,
 } from "@/lib/schemas";
+import { getSlackDefaultMode } from "@/lib/visibility/slack-adapter";
 import type { contentCycle } from "@/trigger/content-cycle";
 
 const app = new App({
@@ -160,13 +164,27 @@ app.command("/contentdesk", async ({ ack, command, client }) => {
     return;
   }
 
-  if (process.env.CONTENTDESK_WORKFLOW_DRIVER === "trigger") {
+  const defaultMode = getSlackDefaultMode();
+
+  if (
+    process.env.CONTENTDESK_WORKFLOW_DRIVER === "trigger" &&
+    defaultMode === "topics"
+  ) {
     await tasks.trigger<typeof contentCycle>("content-cycle", payload);
     return;
   }
 
   if (parsedCommand.mode === "article") {
     await runDirectArticleRequest(payload, { idea: parsedCommand.idea });
+    return;
+  }
+
+  if (defaultMode === "visibility") {
+    await runVisibilityRecommendationKickoff(payload).catch(async (error: unknown) => {
+      await postCommandEphemeral(client, command, {
+        text: `I could not load the latest visibility recommendation: ${error instanceof Error ? error.message : String(error)}`,
+      });
+    });
     return;
   }
 
@@ -357,6 +375,93 @@ app.action("preview_topic", async ({ ack, action, body, client }) => {
 
 app.action("topic_already_approved", async ({ ack }) => {
   await ack();
+});
+
+app.action("approve_visibility_recommendation", async ({ ack, action, body, client }) => {
+  await ack();
+
+  if (!isButtonAction(action)) {
+    throw new Error("Expected a button action for visibility recommendation approval");
+  }
+
+  const parsedAction = slackActionSchema.parse(JSON.parse(action.value));
+  if (parsedAction.action !== "approve_visibility_recommendation") {
+    throw new Error("Unexpected action payload for visibility recommendation approval");
+  }
+
+  const channelId = getChannelId(body);
+  const slackUserId = body.user.id;
+  const messageTs = getMessageTs(body as { message?: { ts?: string } });
+
+  const approvalResult = await handleVisibilityRecommendationApproval({
+    cycleId: parsedAction.cycleId,
+    artifactId: parsedAction.artifactId,
+    runId: parsedAction.runId,
+    recommendationId: parsedAction.recommendationId,
+    hash: parsedAction.hash,
+    taskType: parsedAction.taskType,
+    channelId,
+    threadTs: messageTs,
+    slackUserId,
+    onApprovalCommitted: async ({ recommendation }) => {
+      if (messageTs) {
+        await client.chat.update({
+          channel: channelId,
+          ts: messageTs,
+          text: "ContentDesk visibility recommendation approved.",
+          blocks: visibilityRecommendationBlocks({
+            cycleId: parsedAction.cycleId,
+            artifactId: parsedAction.artifactId,
+            recommendation,
+            approved: true,
+          }) as never,
+        });
+      }
+    },
+  });
+
+  if (approvalResult.stale) {
+    await client.chat.postEphemeral({
+      channel: channelId,
+      user: slackUserId,
+      text: "This visibility recommendation changed since it was shown. Run `/contentdesk` again to refresh before approving.",
+    });
+    return;
+  }
+
+  if (approvalResult.disabledTaskType) {
+    await client.chat.postEphemeral({
+      channel: channelId,
+      user: slackUserId,
+      text: `ContentDesk cannot run ${parsedAction.taskType.replace(/_/g, " ")} recommendations yet. No content cycle was started.`,
+    });
+    return;
+  }
+
+  if (approvalResult.alreadyApproved) {
+    await client.chat.postEphemeral({
+      channel: channelId,
+      user: slackUserId,
+      text: "This visibility recommendation was already approved. I will not start a duplicate cycle.",
+    });
+    return;
+  }
+
+  if (approvalResult.writerFailed) {
+    await client.chat.postEphemeral({
+      channel: channelId,
+      user: slackUserId,
+      text: "Visibility recommendation approved, but SEO Writer could not start. I posted the blocker in the channel.",
+    });
+  }
+
+  if ("qaBlocked" in approvalResult && approvalResult.qaBlocked) {
+    await client.chat.postEphemeral({
+      channel: channelId,
+      user: slackUserId,
+      text: "Visibility recommendation approved, but Editor / SEO QA still found blockers after revision passes. I posted the blocker summary in the thread.",
+    });
+  }
 });
 
 app.view("review_publish_kit", async ({ ack, body }) => {

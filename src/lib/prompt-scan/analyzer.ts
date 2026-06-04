@@ -2,9 +2,11 @@ import {
   promptScanRecordSchema,
   promptScanRunSchema,
   type AssetInventoryItem,
+  type AnswerSignal,
   type CitationQuality,
   type CitedSource,
   type Competitor,
+  type CompetitorAnswerSignal,
   type CompetitorVisibility,
   type PromptScanConfig,
   type PromptScanRecord,
@@ -73,6 +75,13 @@ export function analyzePromptResult(input: {
   );
   const competitorsMentioned = competitorVisibility.filter((item) => item.mentioned);
   const competitorsCited = competitorVisibility.filter((item) => item.cited);
+  const answerSignal = analyzeAnswerSignal({
+    answerText: input.result.answerText,
+    brand: input.config.brand,
+    competitors: input.config.competitors,
+    citedSources,
+    competitorVisibility,
+  });
   const visibilityScore = {
     brandMentioned,
     brandCited,
@@ -104,6 +113,13 @@ export function analyzePromptResult(input: {
     citedSources,
     runDate: runDate.toISOString(),
     visibilityScore,
+    answerSignal,
+    contentdeskNextAction: recommendedNextAction({
+      brandName: input.config.brand.name,
+      citedSources,
+      visibilityScore,
+      assetInventory: input.config.assetInventory,
+    }),
     recommendedNextAction: recommendedNextAction({
       brandName: input.config.brand.name,
       citedSources,
@@ -207,6 +223,199 @@ function analyzeCompetitorVisibility(input: {
     cited: citationCount > 0,
     citationCount,
   };
+}
+
+function analyzeAnswerSignal(input: {
+  answerText: string;
+  brand: PromptScanConfig["brand"];
+  competitors: Competitor[];
+  citedSources: CitedSource[];
+  competitorVisibility: CompetitorVisibility[];
+}): AnswerSignal {
+  const brandAliases = [input.brand.name, ...input.brand.aliases];
+  const brandMentioned = hasAnyAlias(input.answerText, brandAliases);
+  const brandCitations = brandCitationTypes({
+    brand: input.brand,
+    citedSources: input.citedSources,
+  });
+  const brandRecommendation = classifyRecommendationForAliases({
+    answerText: input.answerText,
+    aliases: brandAliases,
+    competitorAliases: input.competitors.flatMap((competitor) => [
+      competitor.name,
+      ...competitor.aliases,
+    ]),
+  });
+  const brandQuote = evidenceQuote(input.answerText, brandAliases);
+  const brandRank = rankForRecommendation(brandRecommendation, brandQuote);
+  const competitorSignals = input.competitors.map((competitor) => {
+    const aliases = [competitor.name, ...competitor.aliases];
+    const visibility = input.competitorVisibility.find(
+      (item) => item.name === competitor.name,
+    );
+    const recommendation = classifyRecommendationForAliases({
+      answerText: input.answerText,
+      aliases,
+      competitorAliases: brandAliases,
+    });
+    const quote = evidenceQuote(input.answerText, aliases);
+
+    return {
+      name: competitor.name,
+      mentioned: visibility?.mentioned ?? false,
+      cited: visibility?.cited ?? false,
+      recommendation,
+      rank: rankForRecommendation(recommendation, quote),
+      sentiment: sentimentForRecommendation(recommendation),
+      quote,
+      confidence: confidenceForRecommendation(recommendation, visibility?.mentioned ?? false),
+    } satisfies CompetitorAnswerSignal;
+  });
+
+  return {
+    brandPresence: brandMentioned ? "mentioned" : "absent",
+    brandCitations,
+    brandRecommendation,
+    brandRank,
+    recommendationPosition:
+      brandMentioned && brandRecommendation !== "neutral"
+        ? nonAbsentMentionPosition(input.answerText, brandAliases)
+        : null,
+    sentiment: sentimentForRecommendation(brandRecommendation),
+    quote: brandQuote,
+    confidence: confidenceForRecommendation(brandRecommendation, brandMentioned),
+    competitorSignals,
+  };
+}
+
+function brandCitationTypes(input: {
+  brand: PromptScanConfig["brand"];
+  citedSources: CitedSource[];
+}) {
+  const citations = new Set<"owned" | "marketplace" | "third_party">();
+  const brandSlugs = [input.brand.name, ...input.brand.aliases].map(slugify);
+
+  for (const source of input.citedSources) {
+    if (input.brand.domains.some((domain) => source.domain.endsWith(domain))) {
+      citations.add("owned");
+      continue;
+    }
+
+    if (
+      source.domain === "apps.shopify.com" &&
+      brandSlugs.some((slug) => source.url.toLowerCase().includes(slug))
+    ) {
+      citations.add("marketplace");
+    }
+  }
+
+  return [...citations];
+}
+
+function classifyRecommendationForAliases(input: {
+  answerText: string;
+  aliases: string[];
+  competitorAliases: string[];
+}): AnswerSignal["brandRecommendation"] {
+  const quote = evidenceQuote(input.answerText, input.aliases);
+  if (!quote) return "absent";
+
+  const lowerQuote = quote.toLowerCase();
+  const aliasPattern = aliasRegexSource(input.aliases);
+  const competitorPattern = aliasRegexSource(input.competitorAliases);
+
+  if (
+    new RegExp(`\\b(best|top pick|winner|choose)\\b[^.\\n;:]{0,80}\\b${aliasPattern}\\b`, "i").test(quote) ||
+    new RegExp(`\\b${aliasPattern}\\b[^.\\n;:]{0,80}\\b(best|top pick|winner)\\b`, "i").test(quote)
+  ) {
+    return "top_pick";
+  }
+
+  if (
+    competitorPattern &&
+    new RegExp(`\\b${competitorPattern}\\b[^.\\n;:]{0,80}\\b(beats|better than|stronger than|wins over)\\b[^.\\n;:]{0,80}\\b${aliasPattern}\\b`, "i").test(quote)
+  ) {
+    return "not_recommended";
+  }
+
+  if (
+    new RegExp(`\\b${aliasPattern}\\b[^.\\n;:]{0,80}\\b(not recommended|not a fit|avoid|weak fit)\\b`, "i").test(quote) ||
+    new RegExp(`\\b(avoid|skip)\\b[^.\\n;:]{0,80}\\b${aliasPattern}\\b`, "i").test(quote)
+  ) {
+    return "not_recommended";
+  }
+
+  if (
+    new RegExp(`\\b(consider|choose|use|try)\\b[^.\\n;:]{0,80}\\b${aliasPattern}\\b\\s+if\\b`, "i").test(quote) ||
+    new RegExp(`\\b${aliasPattern}\\b[^.\\n;:]{0,80}\\b(if you|if your|but|however|watch.?outs?|caveat|depends)\\b`, "i").test(quote)
+  ) {
+    return "qualified";
+  }
+
+  if (
+    new RegExp(`\\b(recommend|recommended|worth trying|strong option|good option|good fit|makes more sense|choose|try|install)\\b[^.\\n;:]{0,100}\\b${aliasPattern}\\b`, "i").test(quote) ||
+    new RegExp(`\\b${aliasPattern}\\b[^.\\n;:]{0,100}\\b(recommended|worth trying|strong option|good option|good fit|makes more sense|is built for|is purpose-built)\\b`, "i").test(quote) ||
+    /^yes\b/i.test(lowerQuote)
+  ) {
+    return "recommended";
+  }
+
+  return "neutral";
+}
+
+function evidenceQuote(answerText: string, aliases: string[]) {
+  const sentences = answerText
+    .replace(/\r/g, "")
+    .split(/(?<=[.!?])\s+|\n+/)
+    .map((sentence) => sentence.replace(/^[-*]\s*/, "").trim())
+    .filter(Boolean);
+  const quote = sentences.find((sentence) => hasAnyAlias(sentence, aliases));
+  if (!quote) return null;
+
+  return quote.length <= 240 ? quote : `${quote.slice(0, 237).trim()}...`;
+}
+
+function rankForRecommendation(
+  recommendation: AnswerSignal["brandRecommendation"],
+  quote: string | null,
+) {
+  if (recommendation === "top_pick") return 1;
+  if (quote && /^\s*(?:1\.|#1\b)/.test(quote)) return 1;
+  return null;
+}
+
+function sentimentForRecommendation(
+  recommendation: AnswerSignal["brandRecommendation"],
+): AnswerSignal["sentiment"] {
+  if (recommendation === "not_recommended") return "negative";
+  if (recommendation === "qualified") return "mixed";
+  if (recommendation === "recommended" || recommendation === "top_pick") {
+    return "positive";
+  }
+  return "neutral";
+}
+
+function confidenceForRecommendation(
+  recommendation: AnswerSignal["brandRecommendation"],
+  mentioned: boolean,
+): "low" | "medium" | "high" {
+  if (recommendation === "absent") return "high";
+  if (recommendation === "neutral" && mentioned) return "medium";
+  return "high";
+}
+
+function aliasRegexSource(aliases: string[]) {
+  const source = aliases
+    .map((alias) => alias.trim())
+    .filter(Boolean)
+    .map((alias) => alias.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+    .join("|");
+
+  return source ? `(?:${source})` : "";
+}
+
+function slugify(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 }
 
 function recommendedNextAction(input: {
@@ -342,10 +551,34 @@ function summarizeRecords(records: PromptScanRecord[]) {
   const brandCitedCount = records.filter(
     (record) => record.visibilityScore.brandCited,
   ).length;
+  const brandRecommendedCount = records.filter((record) =>
+    isRecommended(record.answerSignal?.brandRecommendation),
+  ).length;
+  const brandTopPickCount = records.filter(
+    (record) => record.answerSignal?.brandRecommendation === "top_pick",
+  ).length;
   const competitorOnlyCount = records.filter(
     (record) =>
       !record.visibilityScore.brandMentioned &&
       record.visibilityScore.competitorsMentioned.length > 0,
+  ).length;
+  const competitorRecommendedOnlyCount = records.filter(
+    (record) =>
+      !isRecommended(record.answerSignal?.brandRecommendation) &&
+      (record.answerSignal?.competitorSignals.some((competitor) =>
+        isRecommended(competitor.recommendation),
+      ) ??
+        false),
+  ).length;
+  const citedButNotRecommendedCount = records.filter(
+    (record) =>
+      record.visibilityScore.brandCited &&
+      !isRecommended(record.answerSignal?.brandRecommendation),
+  ).length;
+  const recommendedButNotCitedCount = records.filter(
+    (record) =>
+      !record.visibilityScore.brandCited &&
+      isRecommended(record.answerSignal?.brandRecommendation),
   ).length;
   const averageVisibilityScore = promptCount
     ? Math.round(
@@ -358,9 +591,22 @@ function summarizeRecords(records: PromptScanRecord[]) {
     promptCount,
     brandMentionedCount,
     brandCitedCount,
+    brandRecommendedCount,
+    brandTopPickCount,
     competitorOnlyCount,
+    competitorRecommendedOnlyCount,
+    citedButNotRecommendedCount,
+    recommendedButNotCitedCount,
     averageVisibilityScore,
   };
+}
+
+function isRecommended(recommendation?: AnswerSignal["brandRecommendation"]) {
+  return (
+    recommendation === "recommended" ||
+    recommendation === "top_pick" ||
+    recommendation === "qualified"
+  );
 }
 
 function mentionPosition(answerText: string, aliases: string[]) {
@@ -375,6 +621,11 @@ function mentionPosition(answerText: string, aliases: string[]) {
   if (firstIndex <= (lower.length / 3) * 2) return "middle" as const;
 
   return "bottom" as const;
+}
+
+function nonAbsentMentionPosition(answerText: string, aliases: string[]) {
+  const position = mentionPosition(answerText, aliases);
+  return position === "absent" ? null : position;
 }
 
 function hasAnyAlias(text: string, aliases: string[]) {

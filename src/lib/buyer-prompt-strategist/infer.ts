@@ -1,6 +1,10 @@
 import type { SiteProfile } from "@/lib/reddit-teardown/schemas";
 import type { AssetInventoryItem, Competitor } from "@/lib/prompt-scan/schemas";
 import {
+  crawlOwnedSiteInventory,
+  type OwnedContentInventory,
+} from "@/lib/visibility/site-inventory";
+import {
   buyerPromptStrategyInputSchema,
   type BuyerPromptMarketClassification,
   type BuyerPromptStrategyInput,
@@ -15,6 +19,7 @@ import {
 export type InferredBuyerPromptStrategy = {
   strategy: BuyerPromptStrategyInput;
   siteProfile: SiteProfile;
+  ownedInventory: OwnedContentInventory;
   researchSources: ResearchSource[];
 };
 
@@ -25,6 +30,10 @@ export async function inferBuyerPromptStrategyFromWebsite(input: {
   const { siteProfile, businessRead, researchSources } =
     await profileBusinessForBuyerPrompts({ url: input.url });
   assertProfileEvidence(siteProfile);
+  const ownedInventory = await crawlOwnedSiteInventory({
+    url: siteProfile.websiteUrl,
+    brand: businessRead.brandName,
+  });
   const strategy = buildStrategyFromBusinessRead({
     siteProfile,
     businessRead,
@@ -34,6 +43,7 @@ export async function inferBuyerPromptStrategyFromWebsite(input: {
   return {
     strategy,
     siteProfile,
+    ownedInventory,
     researchSources,
   };
 }

@@ -5,6 +5,7 @@ import {
   type PromptScanRecord,
   type PromptScanRun,
   type PromptScanConfig,
+  type AnswerSignal,
   type SourceFormat,
 } from "@/lib/prompt-scan/schemas";
 
@@ -20,9 +21,20 @@ export const providerSynthesisResultSchema = z.object({
   citedDomains: z.array(z.string().trim().min(1)),
   brandMentioned: z.boolean(),
   brandCited: z.boolean(),
+  brandRecommendation: z.enum([
+    "absent",
+    "neutral",
+    "recommended",
+    "top_pick",
+    "qualified",
+    "not_recommended",
+  ]).default("absent"),
+  brandRank: z.number().int().min(1).nullable().default(null),
   competitorOnly: z.boolean(),
+  competitorRecommendedOnly: z.boolean().default(false),
   competitorsMentioned: z.array(z.string().trim().min(1)),
   competitorsCited: z.array(z.string().trim().min(1)),
+  competitorsRecommended: z.array(z.string().trim().min(1)).default([]),
   sourceFormats: z.array(z.string().trim().min(1)),
   dominantSourceFormat: z.string().trim().min(1),
   recommendationConfidence: z.enum(["low", "medium", "high"]),
@@ -35,7 +47,10 @@ export const promptSynthesisSchema = z.object({
   providerResults: z.array(providerSynthesisResultSchema).min(1),
   brandMentionedProviders: z.array(providerSchema),
   brandCitedProviders: z.array(providerSchema),
+  brandRecommendedProviders: z.array(providerSchema).default([]),
+  brandTopPickProviders: z.array(providerSchema).default([]),
   competitorOnlyProviders: z.array(providerSchema),
+  competitorRecommendedOnlyProviders: z.array(providerSchema).default([]),
   dominantCompetitors: z.array(z.string().trim().min(1)),
   dominantSourceFormats: z.array(z.string().trim().min(1)),
   recommendedGapType: z.string().trim().min(1),
@@ -55,9 +70,14 @@ export const crossProviderSynthesisSchema = z.object({
   summary: z.object({
     promptCount: z.number().int().min(0),
     providerCount: z.number().int().min(1),
-    failedProviderCount: z.number().int().min(0),
-    repeatedGapCount: z.number().int().min(0),
-  }),
+      failedProviderCount: z.number().int().min(0),
+      repeatedGapCount: z.number().int().min(0),
+      brandRecommendedCount: z.number().int().min(0).default(0),
+      brandTopPickCount: z.number().int().min(0).default(0),
+      competitorRecommendedOnlyCount: z.number().int().min(0).default(0),
+      citedButNotRecommendedCount: z.number().int().min(0).default(0),
+      recommendedButNotCitedCount: z.number().int().min(0).default(0),
+    }),
   prompts: z.array(promptSynthesisSchema),
 });
 
@@ -92,13 +112,23 @@ export function buildCrossProviderSynthesis(input: {
     const brandCitedProviders = providerResults
       .filter((result) => result.brandCited)
       .map((result) => result.provider);
+    const brandRecommendedProviders = providerResults
+      .filter((result) => isRecommended(result.brandRecommendation))
+      .map((result) => result.provider);
+    const brandTopPickProviders = providerResults
+      .filter((result) => result.brandRecommendation === "top_pick")
+      .map((result) => result.provider);
     const competitorOnlyProviders = providerResults
       .filter((result) => result.competitorOnly)
+      .map((result) => result.provider);
+    const competitorRecommendedOnlyProviders = providerResults
+      .filter((result) => result.competitorRecommendedOnly)
       .map((result) => result.provider);
     const dominantCompetitors = topValues(
       providerResults.flatMap((result) => [
         ...result.competitorsMentioned,
         ...result.competitorsCited,
+        ...result.competitorsRecommended,
       ]),
     );
     const dominantSourceFormats = topValues(
@@ -112,14 +142,19 @@ export function buildCrossProviderSynthesis(input: {
       providerResults,
       brandMentionedProviders,
       brandCitedProviders,
+      brandRecommendedProviders,
+      brandTopPickProviders,
       competitorOnlyProviders,
+      competitorRecommendedOnlyProviders,
       dominantCompetitors,
       dominantSourceFormats,
       recommendedGapType: recommendedGapType({
         record,
         competitorOnlyProviders,
+        competitorRecommendedOnlyProviders,
         brandMentionedProviders,
         brandCitedProviders,
+        brandRecommendedProviders,
         dominantSourceFormats,
       }),
     });
@@ -137,6 +172,25 @@ export function buildCrossProviderSynthesis(input: {
       failedProviderCount: input.providerErrors?.length ?? 0,
       repeatedGapCount: prompts.filter((prompt) => prompt.competitorOnlyProviders.length >= 2)
         .length,
+      brandRecommendedCount: prompts.filter(
+        (prompt) => prompt.brandRecommendedProviders.length > 0,
+      ).length,
+      brandTopPickCount: prompts.filter(
+        (prompt) => prompt.brandTopPickProviders.length > 0,
+      ).length,
+      competitorRecommendedOnlyCount: prompts.filter(
+        (prompt) => prompt.competitorRecommendedOnlyProviders.length > 0,
+      ).length,
+      citedButNotRecommendedCount: prompts.filter(
+        (prompt) =>
+          prompt.brandCitedProviders.length > 0 &&
+          prompt.brandRecommendedProviders.length === 0,
+      ).length,
+      recommendedButNotCitedCount: prompts.filter(
+        (prompt) =>
+          prompt.brandRecommendedProviders.length > 0 &&
+          prompt.brandCitedProviders.length === 0,
+      ).length,
     },
     prompts,
   });
@@ -170,6 +224,10 @@ function synthesizeProviderResult(record: PromptScanRecord) {
   const competitorsCited = record.visibilityScore.competitorsCited.map(
     (competitor) => competitor.name,
   );
+  const answerSignal = record.answerSignal ?? legacyAnswerSignal(record);
+  const competitorsRecommended = answerSignal.competitorSignals
+    .filter((competitor) => isRecommended(competitor.recommendation))
+    .map((competitor) => competitor.name);
 
   return providerSynthesisResultSchema.parse({
     provider: record.provider,
@@ -178,10 +236,15 @@ function synthesizeProviderResult(record: PromptScanRecord) {
     citedDomains: record.citedDomains,
     brandMentioned: record.visibilityScore.brandMentioned,
     brandCited: record.visibilityScore.brandCited,
+    brandRecommendation: answerSignal.brandRecommendation,
+    brandRank: answerSignal.brandRank,
     competitorOnly:
       !record.visibilityScore.brandMentioned && competitorsMentioned.length > 0,
+    competitorRecommendedOnly:
+      !isRecommended(answerSignal.brandRecommendation) && competitorsRecommended.length > 0,
     competitorsMentioned,
     competitorsCited,
+    competitorsRecommended,
     sourceFormats,
     dominantSourceFormat: dominant(sourceFormats),
     recommendationConfidence: record.recommendationConfidence,
@@ -191,21 +254,36 @@ function synthesizeProviderResult(record: PromptScanRecord) {
 function recommendedGapType(input: {
   record: PromptScanRecord;
   competitorOnlyProviders: string[];
+  competitorRecommendedOnlyProviders: string[];
   brandMentionedProviders: string[];
   brandCitedProviders: string[];
+  brandRecommendedProviders: string[];
   dominantSourceFormats: string[];
 }) {
   if (
-    input.brandMentionedProviders.length > 0 &&
-    input.brandCitedProviders.length > 0 &&
-    input.competitorOnlyProviders.length === 0
+    input.brandRecommendedProviders.length > 0 &&
+    input.competitorRecommendedOnlyProviders.length === 0
   ) {
     return "no_gap";
+  }
+  if (input.competitorRecommendedOnlyProviders.length > 0) {
+    return "competitor_recommended_gap";
   }
   if (input.record.promptGroup === "competitor_comparison") {
     return "competitor_comparison_gap";
   }
-
+  if (
+    input.brandCitedProviders.length > 0 &&
+    input.brandRecommendedProviders.length === 0
+  ) {
+    return "recommendation_gap";
+  }
+  if (
+    input.brandMentionedProviders.length > 0 &&
+    input.brandCitedProviders.length === 0
+  ) {
+    return "citation_gap";
+  }
   const dominantSourceFormat = input.dominantSourceFormats[0] as SourceFormat | undefined;
   if (dominantSourceFormat === "marketplace_listing") return "marketplace_gap";
   if (dominantSourceFormat === "reddit_thread") return "community_gap";
@@ -215,6 +293,40 @@ function recommendedGapType(input: {
   }
 
   return "manual_inspection_gap";
+}
+
+function legacyAnswerSignal(record: PromptScanRecord): AnswerSignal {
+  return {
+    brandPresence: record.visibilityScore.brandMentioned ? "mentioned" : "absent",
+    brandCitations: record.visibilityScore.brandCited ? ["owned"] : [],
+    brandRecommendation: record.visibilityScore.brandMentioned ? "neutral" : "absent",
+    brandRank: null,
+    recommendationPosition: null,
+    sentiment: "neutral",
+    quote: null,
+    confidence: "low",
+    competitorSignals: [
+      ...record.visibilityScore.competitorsMentioned,
+      ...record.visibilityScore.competitorsCited,
+    ].map((competitor) => ({
+      name: competitor.name,
+      mentioned: competitor.mentioned,
+      cited: competitor.cited,
+      recommendation: "neutral",
+      rank: null,
+      sentiment: "neutral",
+      quote: null,
+      confidence: "low",
+    })),
+  };
+}
+
+function isRecommended(recommendation: AnswerSignal["brandRecommendation"]) {
+  return (
+    recommendation === "recommended" ||
+    recommendation === "top_pick" ||
+    recommendation === "qualified"
+  );
 }
 
 function topValues<T extends string>(items: T[]) {
