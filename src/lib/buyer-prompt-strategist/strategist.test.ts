@@ -32,14 +32,18 @@ test("selects a balanced but commercially weighted prompt portfolio", async () =
     generatedAt: new Date("2026-06-01T00:00:00.000Z"),
     candidateGenerator: async () => llmCandidateFixtures(),
   });
-  const groups = groupCounts(portfolio.selectedPrompts.map((prompt) => prompt.group));
+  const intents = intentCounts(portfolio.selectedCandidates);
 
   assert.equal(portfolio.selectedPrompts.length, 10);
   assert.equal(portfolio.generatedAt, "2026-06-01T00:00:00.000Z");
-  assert.equal(groups.competitor_comparison, 3);
-  assert.equal(groups.high_intent_purchase, 2);
-  assert.equal(groups.problem_aware, 1);
-  assert.equal(groups.category_search, 2);
+  assert.ok((intents.neutral ?? 0) >= 5);
+  assert.ok((intents.competitor ?? 0) <= 3);
+  assert.ok((intents.brand ?? 0) <= 2);
+  assert.deepEqual(portfolio.selectedPrompts, portfolio.promptSets.discoveryBaseline.selectedPrompts);
+  assert.ok(
+    (intentCounts(portfolio.promptSets.brandEvaluation.selectedCandidates).brand ?? 0) >
+      (intents.brand ?? 0),
+  );
   assert.ok(
     portfolio.selectedCandidates.every(
       (candidate) =>
@@ -55,13 +59,12 @@ test("small portfolio keeps comparison and decision prompts overweighted", async
     strategy,
     candidateGenerator: async () => llmCandidateFixtures(),
   });
-  const groups = groupCounts(portfolio.selectedPrompts.map((prompt) => prompt.group));
+  const intents = intentCounts(portfolio.selectedCandidates);
 
   assert.equal(portfolio.selectedPrompts.length, 5);
-  assert.equal(groups.competitor_comparison, 2);
-  assert.equal(groups.high_intent_purchase, 1);
-  assert.equal(groups.problem_aware, 1);
-  assert.equal(groups.category_search, 1);
+  assert.ok((intents.neutral ?? 0) >= 3);
+  assert.ok((intents.competitor ?? 0) <= 1);
+  assert.ok((intents.brand ?? 0) <= 1);
 });
 
 test("SaaS portfolio uses buyerLanguage without Shopify leakage", async () => {
@@ -71,11 +74,12 @@ test("SaaS portfolio uses buyerLanguage without Shopify leakage", async () => {
     candidateGenerator: async () => saasCandidateFixtures(),
   });
   const promptText = portfolio.selectedPrompts.map((prompt) => prompt.prompt).join("\n");
-  const groups = groupCounts(portfolio.selectedPrompts.map((prompt) => prompt.group));
+  const intents = intentCounts(portfolio.selectedCandidates);
 
   assert.equal(portfolio.selectedPrompts.length, 10);
-  assert.equal(groups.competitor_comparison, 3);
-  assert.equal(groups.high_intent_purchase, 2);
+  assert.ok((intents.neutral ?? 0) >= 5);
+  assert.ok((intents.competitor ?? 0) <= 3);
+  assert.ok((intents.brand ?? 0) <= 2);
   assert.doesNotMatch(promptText, /shopify/i);
   assert.match(promptText, /customer onboarding checklist tool/i);
   assert.match(promptText, /launching customer onboarding flows/i);
@@ -83,15 +87,124 @@ test("SaaS portfolio uses buyerLanguage without Shopify leakage", async () => {
   assert.doesNotMatch(promptText, /with Configure|for launch a|prepare Configure/);
 });
 
-test("tiny lemon keeps Shopify-specific purchase prompt", async () => {
+test("strategy coverage problem prompts stay domain-specific for non-photo products", async () => {
+  const portfolio = await buildBuyerPromptPortfolio({
+    strategy: politicalTradingStrategyFixture({ portfolioSize: 5 }),
+    candidateGenerator: async () => [
+      candidate(
+        "problem_aware",
+        "awareness",
+        "How can traders and researchers get professional product photos without STOCK Act disclosure tracking?",
+        "buyer_job",
+      ),
+    ],
+  });
+  const promptText = portfolio.candidates.map((candidate) => candidate.prompt).join("\n");
+  const selectedText = portfolio.selectedPrompts.map((prompt) => prompt.prompt).join("\n");
+
+  assert.doesNotMatch(promptText, /product photos/i);
+  assert.doesNotMatch(selectedText, /product photos/i);
+  assert.match(promptText, /track STOCK Act disclosure/i);
+  assert.match(promptText, /manually checking filings/i);
+});
+
+test("strategy coverage avoids duplicate without phrasing in problem prompts", async () => {
+  const base = saasStrategyFixture();
+  const strategy = buyerPromptStrategyInputSchema.parse({
+    ...base,
+    buyerLanguage: {
+      ...base.buyerLanguage!,
+      painNoun: "scaling phone operations without adding headcount",
+    },
+    buyerJobs: base.buyerJobs.map((job, index) =>
+      index === 0
+        ? {
+          ...job,
+          pain: "scaling phone operations without adding headcount",
+        }
+        : job
+    ),
+  });
+  const portfolio = await buildBuyerPromptPortfolio({
+    strategy,
+    candidateGenerator: async () => [],
+  });
+  const promptText = portfolio.candidates.map((candidate) => candidate.prompt).join("\n");
+
+  assert.match(promptText, /scale phone operations without adding headcount/i);
+  assert.doesNotMatch(promptText, /without adding headcount without manual work/i);
+});
+
+test("baseline keeps Shopify-specific buyer prompts without brand-first wording", async () => {
   const portfolio = await buildBuyerPromptPortfolio({
     strategy: strategyFixture(),
     candidateGenerator: async () => llmCandidateFixtures(),
   });
   const promptText = portfolio.selectedPrompts.map((prompt) => prompt.prompt).join("\n");
 
-  assert.match(promptText, /Shopify app/i);
   assert.match(promptText, /Shopify fashion brands/i);
+  assert.doesNotMatch(promptText, /Tiny Lemon/i);
+});
+
+test("baseline excludes brand evaluation and direct comparison buckets", async () => {
+  const portfolio = await buildBuyerPromptPortfolio({
+    strategy: strategyFixture(),
+    candidateGenerator: async () => llmCandidateFixtures(),
+  });
+  const buckets = portfolio.selectedCandidates.map((candidate) => candidate.portfolioBucket);
+
+  assert.ok(!buckets.includes("brand_evaluation"));
+  assert.ok(!buckets.includes("direct_comparison"));
+  assert.ok(
+    portfolio.promptSets.brandEvaluation.selectedCandidates.some((candidate) =>
+      candidate.portfolioBucket === "brand_evaluation" ||
+      candidate.portfolioBucket === "direct_comparison"
+    ),
+  );
+});
+
+test("sanitizes comparison noun before building competitor alternatives", async () => {
+  const base = strategyFixture();
+  const portfolio = await buildBuyerPromptPortfolio({
+    strategy: strategyFixture({
+      buyerLanguage: {
+        ...base.buyerLanguage!,
+        comparisonNoun: "product photoshoot alternatives",
+      },
+    }),
+    candidateGenerator: async () => [],
+  });
+  const candidateText = portfolio.candidates.map((candidate) => candidate.prompt).join("\n");
+
+  assert.doesNotMatch(candidateText, /for product photoshoot alternatives/i);
+  assert.match(candidateText, /alternatives to Botika for AI on-model product photos/i);
+});
+
+test("baseline prefers competitor alternatives over competitor-vs-competitor prompts", async () => {
+  const portfolio = await buildBuyerPromptPortfolio({
+    strategy: strategyFixture({ portfolioSize: 5 }),
+    candidateGenerator: async () => [
+      candidate(
+        "competitor_comparison",
+        "evaluation",
+        "How does Botika compare with Modelia for Shopify fashion brands?",
+        "competitor",
+      ),
+      candidate(
+        "competitor_comparison",
+        "evaluation",
+        "What are the best Botika alternatives for AI model photos?",
+        "competitor",
+      ),
+      ...llmCandidateFixtures().filter((item) =>
+        item.group !== "competitor_comparison"
+      ),
+    ],
+  });
+  const selectedText = portfolio.selectedPrompts.map((item) => item.prompt).join("\n");
+
+  assert.match(selectedText, /alternatives to Botika/);
+  assert.doesNotMatch(selectedText, /Botika compare with Modelia/);
 });
 
 test("refuses to select prompts when strategy has manual_review warnings", async () => {
@@ -122,9 +235,10 @@ test("refuses to select prompts when strategy has manual_review warnings", async
   );
 });
 
-function groupCounts(groups: string[]) {
-  return groups.reduce<Record<string, number>>((counts, group) => {
-    counts[group] = (counts[group] ?? 0) + 1;
+function intentCounts(candidates: BuyerPromptCandidate[]) {
+  return candidates.reduce<Record<string, number>>((counts, candidate) => {
+    const intent = candidate.promptIntent ?? "neutral";
+    counts[intent] = (counts[intent] ?? 0) + 1;
     return counts;
   }, {});
 }
@@ -398,5 +512,112 @@ function saasStrategyFixture(): BuyerPromptStrategyInput {
         status: "unknown",
       },
     ],
+  });
+}
+
+function politicalTradingStrategyFixture(
+  overrides: Partial<BuyerPromptStrategyInput> = {},
+): BuyerPromptStrategyInput {
+  return buyerPromptStrategyInputSchema.parse({
+    brand: {
+      name: "Insider Alpha",
+      aliases: [],
+      domains: ["followtheinsider.com"],
+    },
+    provider: "perplexity",
+    defaultRecheckDays: 1,
+    experimentWindowDays: {
+      min: 30,
+      max: 60,
+    },
+    audience: "traders and researchers",
+    category: "congressional stock trade data platform",
+    positioning:
+      "Insider Alpha helps traders track congressional stock trades and STOCK Act disclosures.",
+    conversionGoal: "building a trading research workflow",
+    primaryUseCases: ["trade alerts and filer analysis"],
+    market: "saas",
+    buyerLanguage: {
+      buyerNoun: "traders and researchers",
+      categoryNoun: "congressional stock trade data platform",
+      productNoun: "political trading data tool",
+      useCaseNoun: "trade alerts and filer analysis",
+      painNoun: "STOCK Act disclosure tracking",
+      conversionNoun: "a trading research workflow",
+      comparisonNoun: "political trading data",
+    },
+    portfolioSize: 10,
+    buyerJobs: [
+      {
+        id: "track-disclosures",
+        group: "problem_aware",
+        job: "Track congressional trade disclosures.",
+        pain: "STOCK Act disclosure tracking",
+        commercialCloseness: 4,
+        productFit: 5,
+        assetOpportunity: 4,
+      },
+      {
+        id: "find-platforms",
+        group: "category_search",
+        job: "Find congressional trade data platforms.",
+        pain: "finding political trading data tools",
+        commercialCloseness: 4,
+        productFit: 5,
+        assetOpportunity: 4,
+      },
+      {
+        id: "understand-alerts",
+        group: "solution_aware",
+        job: "Understand trade alert workflows.",
+        pain: "getting real-time trade alerts",
+        commercialCloseness: 3,
+        productFit: 5,
+        assetOpportunity: 4,
+      },
+      {
+        id: "compare-platforms",
+        group: "competitor_comparison",
+        job: "Compare political trading data platforms.",
+        pain: "comparing political trading data tools",
+        commercialCloseness: 5,
+        productFit: 5,
+        assetOpportunity: 5,
+      },
+      {
+        id: "export-data",
+        group: "integration_use_case",
+        job: "Export data for research workflows.",
+        pain: "exporting congressional trade data",
+        commercialCloseness: 4,
+        productFit: 5,
+        assetOpportunity: 3,
+      },
+      {
+        id: "choose-platform",
+        group: "high_intent_purchase",
+        job: "Choose a political trading data platform.",
+        pain: "choosing a political trading data platform",
+        commercialCloseness: 5,
+        productFit: 5,
+        assetOpportunity: 5,
+      },
+    ],
+    competitors: [
+      { name: "Quiver Quantitative", aliases: ["Quiver"], domains: ["quiverquant.com"] },
+      { name: "Capitol Trades", aliases: [], domains: ["capitoltrades.com"] },
+      { name: "HouseStockWatch", aliases: [], domains: ["housestockwatcher.com"] },
+    ],
+    assetInventory: [
+      {
+        type: "comparison_page",
+        status: "missing",
+      },
+      {
+        type: "blog_guide",
+        status: "unknown",
+      },
+    ],
+    ...overrides,
   });
 }

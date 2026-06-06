@@ -1,0 +1,196 @@
+{
+  "brand": {
+    "name": "Retell AI",
+    "aliases": [
+      "Retell"
+    ],
+    "domains": [
+      "retellai.com"
+    ]
+  },
+  "provider": "perplexity",
+  "defaultRecheckDays": 1,
+  "experimentWindowDays": {
+    "min": 30,
+    "max": 60
+  },
+  "audience": "support, sales, operations, and contact center teams",
+  "category": "AI voice agent platform",
+  "positioning": "AI voice agent platform for building, deploying, and managing humanlike phone agents that automate calls at scale.",
+  "conversionGoal": "book a demo or start a free trial",
+  "primaryUseCases": [
+    "Automate inbound customer support calls",
+    "Qualify leads over the phone",
+    "Book appointments with AI phone agents",
+    "Transfer calls and update systems in real time",
+    "Run outbound batch calling campaigns",
+    "Monitor call quality and post-call analytics"
+  ],
+  "market": "saas",
+  "buyerLanguage": {
+    "buyerNoun": "support and sales teams",
+    "categoryNoun": "AI voice agent platform",
+    "productNoun": "AI phone agent platform",
+    "useCaseNoun": "call automation for support, sales, and appointment booking",
+    "painNoun": "scaling phone operations without adding headcount",
+    "conversionNoun": "book a demo or start a free trial",
+    "comparisonNoun": "AI voice agent platforms"
+  },
+  "classificationWarnings": [],
+  "buyerJobs": [
+    {
+      "id": "scale-phone-operations",
+      "group": "problem_aware",
+      "job": "Find a way to handle more customer calls without hiring more agents.",
+      "pain": "scaling phone operations without adding headcount",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "find-ai-voice-platforms",
+      "group": "category_search",
+      "job": "Discover AI voice agent platforms for automating business phone calls.",
+      "pain": "finding reliable AI voice agent platforms",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "understand-call-automation",
+      "group": "solution_aware",
+      "job": "Understand whether AI phone agents can handle realistic call workflows.",
+      "pain": "handling transfers, appointment booking, knowledge base answers, and edge cases",
+      "commercialCloseness": 3,
+      "productFit": 5,
+      "assetOpportunity": 4
+    },
+    {
+      "id": "compare-voice-ai-tools",
+      "group": "competitor_comparison",
+      "job": "Compare known AI voice agent platforms and choose which one fits the team.",
+      "pain": "comparing AI voice agent platform alternatives",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    },
+    {
+      "id": "connect-phone-stack",
+      "group": "integration_use_case",
+      "job": "Prepare an AI voice agent rollout with telephony, CRM, and workflow integrations.",
+      "pain": "connecting AI phone agents to existing phone systems and business tools",
+      "commercialCloseness": 4,
+      "productFit": 5,
+      "assetOpportunity": 3
+    },
+    {
+      "id": "choose-ai-phone-agent",
+      "group": "high_intent_purchase",
+      "job": "Choose an AI phone agent platform to try, demo, or buy.",
+      "pain": "choosing the right AI phone agent platform",
+      "commercialCloseness": 5,
+      "productFit": 5,
+      "assetOpportunity": 5
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Vapi",
+      "aliases": [],
+      "domains": [
+        "vapi.ai"
+      ]
+    },
+    {
+      "name": "Thoughtly",
+      "aliases": [],
+      "domains": [
+        "thoughtly.com"
+      ]
+    },
+    {
+      "name": "ElevenLabs",
+      "aliases": [
+        "ElevenLabs Conversational AI"
+      ],
+      "domains": [
+        "elevenlabs.io"
+      ]
+    },
+    {
+      "name": "Synthflow",
+      "aliases": [
+        "Synthflow AI"
+      ],
+      "domains": [
+        "synthflow.ai"
+      ]
+    },
+    {
+      "name": "Air AI",
+      "aliases": [
+        "Air.ai"
+      ],
+      "domains": [
+        "air.ai"
+      ]
+    },
+    {
+      "name": "Play AI",
+      "aliases": [
+        "PlayAI"
+      ],
+      "domains": [
+        "play.ai"
+      ]
+    }
+  ],
+  "assetInventory": [
+    {
+      "type": "homepage",
+      "status": "present",
+      "url": "https://www.retellai.com/",
+      "notes": "Homepage confirms AI voice agents for phone call automation."
+    },
+    {
+      "type": "comparison_page",
+      "status": "present",
+      "url": "https://www.retellai.com/comparisons/competitors-overview",
+      "notes": "Comparison overview names major competitors."
+    },
+    {
+      "type": "alternative_page",
+      "status": "present",
+      "url": "https://www.retellai.com/comparisons/competitors-overview",
+      "notes": "Comparison hub covers alternative/vendor evaluation."
+    },
+    {
+      "type": "blog_guide",
+      "status": "unknown",
+      "notes": "Blog coverage not reviewed in this test."
+    },
+    {
+      "type": "docs_help",
+      "status": "present",
+      "url": "https://docs.retellai.com/",
+      "notes": "Documentation linked from site navigation."
+    },
+    {
+      "type": "case_study",
+      "status": "present",
+      "url": "https://www.retellai.com/customer-stories",
+      "notes": "Customer stories linked from site navigation."
+    },
+    {
+      "type": "review_profile",
+      "status": "unknown",
+      "notes": "Review profiles require separate search."
+    },
+    {
+      "type": "reddit_community_mention",
+      "status": "unknown",
+      "notes": "Community mentions require separate search."
+    }
+  ],
+  "portfolioSize": 10
+}

@@ -193,6 +193,26 @@ export const promptQualityScoreSchema = z.object({
 
 export type PromptQualityScore = z.infer<typeof promptQualityScoreSchema>;
 
+export const promptPortfolioIntentSchema = z.enum([
+  "neutral",
+  "competitor",
+  "brand",
+]);
+
+export type PromptPortfolioIntent = z.infer<typeof promptPortfolioIntentSchema>;
+
+export const promptPortfolioBucketSchema = z.enum([
+  "neutral_discovery",
+  "category_best_tool",
+  "use_case_fit",
+  "competitor_alternative",
+  "implementation",
+  "brand_evaluation",
+  "direct_comparison",
+]);
+
+export type PromptPortfolioBucket = z.infer<typeof promptPortfolioBucketSchema>;
+
 export const buyerPromptCandidateSchema = z.object({
   id: text,
   group: promptGroupSchema,
@@ -200,6 +220,8 @@ export const buyerPromptCandidateSchema = z.object({
   prompt: text,
   buyerJob: text,
   source: z.enum(["buyer_job", "competitor", "purchase", "category"]),
+  promptIntent: promptPortfolioIntentSchema.optional(),
+  portfolioBucket: promptPortfolioBucketSchema.optional(),
   rawQuery: text.optional(),
   evidenceQuality: promptEvidenceQualitySchema.optional(),
   serpIntent: serpIntentSchema.optional(),
@@ -261,6 +283,14 @@ export type BuyerPromptDiscoveryFile = z.infer<
   typeof buyerPromptDiscoveryFileSchema
 >;
 
+export const buyerPromptPortfolioSetSchema = z.object({
+  id: z.enum(["discovery_baseline", "brand_evaluation"]),
+  label: text,
+  selectionRule: text,
+  selectedPrompts: z.array(promptInputSchema),
+  selectedCandidates: z.array(buyerPromptCandidateSchema),
+});
+
 export const buyerPromptPortfolioSchema = z.object({
   brand: text,
   generatedAt: z.string().datetime(),
@@ -268,6 +298,10 @@ export const buyerPromptPortfolioSchema = z.object({
   selectionRule: text,
   selectedPrompts: z.array(promptInputSchema),
   selectedCandidates: z.array(buyerPromptCandidateSchema),
+  promptSets: z.object({
+    discoveryBaseline: buyerPromptPortfolioSetSchema,
+    brandEvaluation: buyerPromptPortfolioSetSchema,
+  }),
   candidates: z.array(buyerPromptCandidateSchema),
 });
 

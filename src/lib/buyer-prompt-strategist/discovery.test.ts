@@ -2,9 +2,6 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
-  buildBuyerPromptPortfolio,
-} from "@/lib/buyer-prompt-strategist";
-import {
   buildSeedProbes,
   discoverBuyerPrompts,
 } from "@/lib/buyer-prompt-strategist/discovery";
@@ -60,38 +57,6 @@ test("discovers evidence-backed prompts from autocomplete suggestions", async ()
     discovery.candidates.every((candidate) =>
       candidate.demandEvidence.some((evidence) => evidence.sourceType === "autocomplete")
     ),
-  );
-});
-
-test("portfolio can select discovered prompts instead of LLM-only prompts", async () => {
-  const strategy = strategyFixture({ portfolioSize: 5 });
-  const discovery = await discoverBuyerPrompts({
-    strategy,
-    generatedAt: new Date("2026-06-03T12:00:00.000Z"),
-    fetchAutocomplete: async (query) => {
-      if (query.includes("best")) {
-        return [
-          "best ai model photo apps",
-          "best ai model photo app for shopify",
-        ];
-      }
-      if (query.includes("Botika")) return ["botika alternatives"];
-      if (query.includes("AI on-model")) return ["ai on model product photos app"];
-
-      return [];
-    },
-  });
-  const portfolio = await buildBuyerPromptPortfolio({
-    strategy,
-    generatedAt: new Date("2026-06-03T12:00:00.000Z"),
-    discoveredCandidates: discovery.candidates,
-  });
-
-  assert.ok(portfolio.selectedPrompts.length > 0);
-  assert.ok(portfolio.selectedCandidates.every((candidate) => candidate.demandEvidence));
-  assert.match(
-    portfolio.selectedCandidates.map((candidate) => candidate.rationale).join("\n"),
-    /Demand evidence: (medium|high)/,
   );
 });
 

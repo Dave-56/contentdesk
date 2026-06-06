@@ -1,140 +1,110 @@
 {
   "brand": "Tiny Lemon",
-  "generatedAt": "2026-06-03T23:38:35.249Z",
+  "generatedAt": "2026-06-06T02:48:12.665Z",
   "portfolioSize": 10,
-  "selectionRule": "Cover the journey, but overweight prompts closest to purchase, competitor comparison, and realistic asset opportunities.",
+  "selectionRule": "Discovery baseline: market demand questions by bucket; no brand evaluation or direct comparison prompts.",
   "selectedPrompts": [
     {
-      "id": "competitor-comparison-should-i-choose-tiny-lemon-or-lalaland-ai-for-a-shopify-apparel-catalog-refresh",
+      "id": "competitor-comparison-is-lalaland-ai-a-good-option-for-indie-fashion-brands-on-shopify",
       "group": "competitor_comparison",
-      "prompt": "Should I choose Tiny Lemon or Lalaland.ai for a Shopify apparel catalog refresh?"
+      "prompt": "Is Lalaland.ai a good option for indie fashion brands on Shopify?"
     },
     {
-      "id": "competitor-comparison-which-is-better-for-a-small-shopify-clothing-brand-tiny-lemon-or-botika",
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-botika-for-flat-lay-to-studio-conversion",
       "group": "competitor_comparison",
-      "prompt": "Which is better for a small Shopify clothing brand: Tiny Lemon or Botika?"
+      "prompt": "What are the best alternatives to Botika for flat-lay to studio conversion?"
     },
     {
-      "id": "high-intent-purchase-is-tiny-lemon-worth-trying-for-indie-fashion-brands-that-need-model-photos-fast",
-      "group": "high_intent_purchase",
-      "prompt": "Is Tiny Lemon worth trying for indie fashion brands that need model photos fast?"
-    },
-    {
-      "id": "high-intent-purchase-should-i-install-tiny-lemon-for-my-shopify-fashion-store-if-i-only-have-flat-lay-product-photos",
-      "group": "high_intent_purchase",
-      "prompt": "Should I install Tiny Lemon for my Shopify fashion store if I only have flat-lay product photos?"
-    },
-    {
-      "id": "category-search-what-ai-product-photography-apps-are-best-for-indie-fashion-brands-on-shopify",
+      "id": "category-search-what-is-the-best-ai-product-photography-app-for-indie-fashion-brands-on-shopify",
       "group": "category_search",
-      "prompt": "What AI product photography apps are best for indie fashion brands on Shopify?"
+      "prompt": "What is the best AI product photography app for indie fashion brands on Shopify?"
     },
     {
-      "id": "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget",
+      "id": "category-search-which-ai-product-photography-apps-help-indie-fashion-brands-on-shopify-with-flat-lay-to-studio-conversion",
       "group": "category_search",
-      "prompt": "What is the best AI product photography app for a Shopify fashion store with no shoot budget?"
+      "prompt": "Which AI product photography apps help indie fashion brands on Shopify with flat-lay to studio conversion?"
     },
     {
-      "id": "high-intent-purchase-what-should-i-check-before-installing-an-ai-product-photography-app-on-shopify",
+      "id": "high-intent-purchase-what-is-the-easiest-shopify-app-for-generating-ai-model-photos-and-short-product-videos",
       "group": "high_intent_purchase",
-      "prompt": "What should I check before installing an AI product photography app on Shopify?"
+      "prompt": "What is the easiest Shopify app for generating AI model photos and short product videos?"
     },
     {
-      "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-studio-quality-product-photos-without-a-shoot-budget",
+      "id": "category-search-which-ai-product-photography-apps-are-actually-good-for-apparel-brands-on-shopify",
+      "group": "category_search",
+      "prompt": "Which AI product photography apps are actually good for apparel brands on Shopify?"
+    },
+    {
+      "id": "problem-aware-how-can-an-indie-fashion-brand-on-shopify-get-better-apparel-product-photos-without-a-shoot-budget",
       "group": "problem_aware",
-      "prompt": "How can indie fashion brands on Shopify get studio-quality product photos without a shoot budget?"
+      "prompt": "How can an indie fashion brand on Shopify get better apparel product photos without a shoot budget?"
     },
     {
-      "id": "solution-aware-can-an-ai-product-photography-app-create-front-side-and-back-views-from-one-clothing-photo",
-      "group": "solution_aware",
-      "prompt": "Can an AI product photography app create front, side, and back views from one clothing photo?"
+      "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-professional-product-photos-without-a-shoot-budget",
+      "group": "problem_aware",
+      "prompt": "How can indie fashion brands on Shopify get professional product photos without a shoot budget?"
     },
     {
-      "id": "integration-use-case-can-i-publish-ai-generated-product-images-directly-to-shopify-products",
+      "id": "integration-use-case-how-should-indie-fashion-brands-on-shopify-use-flat-lay-to-studio-conversion-on-shopify-product-pages",
       "group": "integration_use_case",
-      "prompt": "Can I publish AI-generated product images directly to Shopify products?"
+      "prompt": "How should indie fashion brands on Shopify use flat-lay to studio conversion on Shopify product pages?"
+    },
+    {
+      "id": "solution-aware-how-do-ai-product-photography-apps-handle-flat-lay-to-studio-conversion",
+      "group": "solution_aware",
+      "prompt": "How do AI product photography apps handle flat-lay to studio conversion?"
     }
   ],
   "selectedCandidates": [
     {
-      "id": "competitor-comparison-should-i-choose-tiny-lemon-or-lalaland-ai-for-a-shopify-apparel-catalog-refresh",
-      "group": "competitor_comparison",
-      "journeyPhase": "decision",
-      "prompt": "Should I choose Tiny Lemon or Lalaland.ai for a Shopify apparel catalog refresh?",
-      "buyerJob": "Compare known AI product photography app options and decide which one fits Indie fashion brands on Shopify.",
-      "source": "competitor",
-      "score": {
-        "buyerIntent": 5,
-        "commercialCloseness": 5,
-        "icpFit": 3,
-        "productFit": 5,
-        "competitiveLikelihood": 5,
-        "assetOpportunity": 5
-      },
-      "totalScore": 28,
-      "rationale": "LLM rationale: Decision-stage comparison framed around a real ecommerce trigger: updating a catalog. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 5, asset opportunity 5."
-    },
-    {
-      "id": "competitor-comparison-which-is-better-for-a-small-shopify-clothing-brand-tiny-lemon-or-botika",
+      "id": "competitor-comparison-is-lalaland-ai-a-good-option-for-indie-fashion-brands-on-shopify",
       "group": "competitor_comparison",
       "journeyPhase": "evaluation",
-      "prompt": "Which is better for a small Shopify clothing brand: Tiny Lemon or Botika?",
+      "prompt": "Is Lalaland.ai a good option for indie fashion brands on Shopify?",
       "buyerJob": "Compare known AI product photography app options and decide which one fits Indie fashion brands on Shopify.",
       "source": "competitor",
-      "score": {
-        "buyerIntent": 5,
-        "commercialCloseness": 5,
-        "icpFit": 3,
-        "productFit": 5,
-        "competitiveLikelihood": 5,
-        "assetOpportunity": 5
-      },
-      "totalScore": 28,
-      "rationale": "LLM rationale: Adds realistic buyer framing for smaller brands instead of abstract product comparison. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 5, asset opportunity 5."
-    },
-    {
-      "id": "high-intent-purchase-is-tiny-lemon-worth-trying-for-indie-fashion-brands-that-need-model-photos-fast",
-      "group": "high_intent_purchase",
-      "journeyPhase": "decision",
-      "prompt": "Is Tiny Lemon worth trying for indie fashion brands that need model photos fast?",
-      "buyerJob": "Choose the AI product photography app to try or buy.",
-      "source": "purchase",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
       "score": {
         "buyerIntent": 5,
         "commercialCloseness": 5,
         "icpFit": 5,
         "productFit": 5,
-        "competitiveLikelihood": 2,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "LLM rationale: Ensures coverage for a credible competitor with a realistic buyer fit-check question. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-botika-for-flat-lay-to-studio-conversion",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the best alternatives to Botika for flat-lay to studio conversion?",
+      "buyerJob": "Strategy coverage: competitor alternative prompt.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
         "assetOpportunity": 5
       },
       "totalScore": 27,
-      "rationale": "LLM rationale: Reflects the positioning 'Studio shots in 60 seconds' without sounding like ad copy. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 5."
+      "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
     },
     {
-      "id": "high-intent-purchase-should-i-install-tiny-lemon-for-my-shopify-fashion-store-if-i-only-have-flat-lay-product-photos",
-      "group": "high_intent_purchase",
-      "journeyPhase": "decision",
-      "prompt": "Should I install Tiny Lemon for my Shopify fashion store if I only have flat-lay product photos?",
-      "buyerJob": "Choose the AI product photography app to try or buy.",
-      "source": "purchase",
-      "score": {
-        "buyerIntent": 5,
-        "commercialCloseness": 5,
-        "icpFit": 4,
-        "productFit": 5,
-        "competitiveLikelihood": 2,
-        "assetOpportunity": 5
-      },
-      "totalScore": 26,
-      "rationale": "LLM rationale: Strong decision-stage install intent tied to the exact starting input the product supports. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 5."
-    },
-    {
-      "id": "category-search-what-ai-product-photography-apps-are-best-for-indie-fashion-brands-on-shopify",
+      "id": "category-search-what-is-the-best-ai-product-photography-app-for-indie-fashion-brands-on-shopify",
       "group": "category_search",
       "journeyPhase": "consideration",
-      "prompt": "What AI product photography apps are best for indie fashion brands on Shopify?",
+      "prompt": "What is the best AI product photography app for indie fashion brands on Shopify?",
       "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
       "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
       "score": {
         "buyerIntent": 4,
         "commercialCloseness": 4,
@@ -144,33 +114,37 @@
         "assetOpportunity": 4
       },
       "totalScore": 26,
-      "rationale": "LLM rationale: High-fit category discovery prompt using exact ICP language and category noun from the strategy. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+      "rationale": "LLM rationale: High-commercial-intent category search using the ICP wording from the strategy. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
     },
     {
-      "id": "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget",
+      "id": "category-search-which-ai-product-photography-apps-help-indie-fashion-brands-on-shopify-with-flat-lay-to-studio-conversion",
       "group": "category_search",
-      "journeyPhase": "evaluation",
-      "prompt": "What is the best AI product photography app for a Shopify fashion store with no shoot budget?",
-      "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
+      "journeyPhase": "consideration",
+      "prompt": "Which AI product photography apps help indie fashion brands on Shopify with flat-lay to studio conversion?",
+      "buyerJob": "Strategy coverage: neutral category prompt.",
       "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
       "score": {
         "buyerIntent": 4,
         "commercialCloseness": 4,
-        "icpFit": 4,
+        "icpFit": 5,
         "productFit": 5,
         "competitiveLikelihood": 4,
         "assetOpportunity": 4
       },
-      "totalScore": 25,
-      "rationale": "LLM rationale: Keeps the category-level framing but adds the central pain point to sharpen buyer intent. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+      "totalScore": 26,
+      "rationale": "LLM rationale: Strategy coverage: neutral category prompt. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
     },
     {
-      "id": "high-intent-purchase-what-should-i-check-before-installing-an-ai-product-photography-app-on-shopify",
+      "id": "high-intent-purchase-what-is-the-easiest-shopify-app-for-generating-ai-model-photos-and-short-product-videos",
       "group": "high_intent_purchase",
       "journeyPhase": "decision",
-      "prompt": "What should I check before installing an AI product photography app on Shopify?",
+      "prompt": "What is the easiest Shopify app for generating AI model photos and short product videos?",
       "buyerJob": "Choose the AI product photography app to try or buy.",
       "source": "purchase",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
       "score": {
         "buyerIntent": 5,
         "commercialCloseness": 5,
@@ -180,15 +154,37 @@
         "assetOpportunity": 5
       },
       "totalScore": 25,
-      "rationale": "LLM rationale: A common bottom-funnel question that can surface selection criteria and decision friction. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 5."
+      "rationale": "LLM rationale: Combines two primary use cases and adds practical purchase criteria around ease of use. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 5."
     },
     {
-      "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-studio-quality-product-photos-without-a-shoot-budget",
+      "id": "category-search-which-ai-product-photography-apps-are-actually-good-for-apparel-brands-on-shopify",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "Which AI product photography apps are actually good for apparel brands on Shopify?",
+      "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 25,
+      "rationale": "LLM rationale: Evaluation-stage version of category search with stronger quality and fit intent. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-how-can-an-indie-fashion-brand-on-shopify-get-better-apparel-product-photos-without-a-shoot-budget",
       "group": "problem_aware",
       "journeyPhase": "awareness",
-      "prompt": "How can indie fashion brands on Shopify get studio-quality product photos without a shoot budget?",
+      "prompt": "How can an indie fashion brand on Shopify get better apparel product photos without a shoot budget?",
       "buyerJob": "Find a better way to handle no shoot budget.",
       "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
       "score": {
         "buyerIntent": 3,
         "commercialCloseness": 3,
@@ -198,243 +194,949 @@
         "assetOpportunity": 4
       },
       "totalScore": 22,
-      "rationale": "LLM rationale: Uses the ICP phrase 'indie fashion brands on Shopify' and the pain 'no shoot budget' in a natural top-of-funnel question. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
+      "rationale": "LLM rationale: Uses the ICP's exact pain language around no shoot budget and frames a natural early-stage discovery question. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
     },
     {
-      "id": "solution-aware-can-an-ai-product-photography-app-create-front-side-and-back-views-from-one-clothing-photo",
+      "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-professional-product-photos-without-a-shoot-budget",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "How can indie fashion brands on Shopify get professional product photos without a shoot budget?",
+      "buyerJob": "Strategy coverage: core pain prompt.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 3,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Strategy coverage: core pain prompt. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-how-should-indie-fashion-brands-on-shopify-use-flat-lay-to-studio-conversion-on-shopify-product-pages",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "How should indie fashion brands on Shopify use flat-lay to studio conversion on Shopify product pages?",
+      "buyerJob": "Strategy coverage: integration prompt.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "implementation",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 3
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Strategy coverage: integration prompt. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 3."
+    },
+    {
+      "id": "solution-aware-how-do-ai-product-photography-apps-handle-flat-lay-to-studio-conversion",
       "group": "solution_aware",
       "journeyPhase": "consideration",
-      "prompt": "Can an AI product photography app create front, side, and back views from one clothing photo?",
-      "buyerJob": "Understand whether AI product photography app can handle flat-lay to studio conversion.",
+      "prompt": "How do AI product photography apps handle flat-lay to studio conversion?",
+      "buyerJob": "Strategy coverage: workflow understanding prompt.",
       "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
       "score": {
         "buyerIntent": 4,
         "commercialCloseness": 3,
         "icpFit": 2,
         "productFit": 5,
-        "competitiveLikelihood": 2,
-        "assetOpportunity": 4
-      },
-      "totalScore": 20,
-      "rationale": "LLM rationale: Aligned to a stated primary use case and phrased as a practical pre-evaluation buyer question. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
-    },
-    {
-      "id": "integration-use-case-can-i-publish-ai-generated-product-images-directly-to-shopify-products",
-      "group": "integration_use_case",
-      "journeyPhase": "consideration",
-      "prompt": "Can I publish AI-generated product images directly to Shopify products?",
-      "buyerJob": "Prepare flat-lay to studio conversion for install app.",
-      "source": "buyer_job",
-      "score": {
-        "buyerIntent": 3,
-        "commercialCloseness": 4,
-        "icpFit": 3,
-        "productFit": 5,
-        "competitiveLikelihood": 2,
-        "assetOpportunity": 3
-      },
-      "totalScore": 20,
-      "rationale": "LLM rationale: Tied directly to the primary use case of publishing images to Shopify products. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 3."
-    }
-  ],
-  "candidates": [
-    {
-      "id": "competitor-comparison-should-i-choose-tiny-lemon-or-lalaland-ai-for-a-shopify-apparel-catalog-refresh",
-      "group": "competitor_comparison",
-      "journeyPhase": "decision",
-      "prompt": "Should I choose Tiny Lemon or Lalaland.ai for a Shopify apparel catalog refresh?",
-      "buyerJob": "Compare known AI product photography app options and decide which one fits Indie fashion brands on Shopify.",
-      "source": "competitor",
-      "score": {
-        "buyerIntent": 5,
-        "commercialCloseness": 5,
-        "icpFit": 3,
-        "productFit": 5,
-        "competitiveLikelihood": 5,
-        "assetOpportunity": 5
-      },
-      "totalScore": 28,
-      "rationale": "LLM rationale: Decision-stage comparison framed around a real ecommerce trigger: updating a catalog. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 5, asset opportunity 5."
-    },
-    {
-      "id": "competitor-comparison-which-is-better-for-a-small-shopify-clothing-brand-tiny-lemon-or-botika",
-      "group": "competitor_comparison",
-      "journeyPhase": "evaluation",
-      "prompt": "Which is better for a small Shopify clothing brand: Tiny Lemon or Botika?",
-      "buyerJob": "Compare known AI product photography app options and decide which one fits Indie fashion brands on Shopify.",
-      "source": "competitor",
-      "score": {
-        "buyerIntent": 5,
-        "commercialCloseness": 5,
-        "icpFit": 3,
-        "productFit": 5,
-        "competitiveLikelihood": 5,
-        "assetOpportunity": 5
-      },
-      "totalScore": 28,
-      "rationale": "LLM rationale: Adds realistic buyer framing for smaller brands instead of abstract product comparison. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 5, asset opportunity 5."
-    },
-    {
-      "id": "high-intent-purchase-is-tiny-lemon-worth-trying-for-indie-fashion-brands-that-need-model-photos-fast",
-      "group": "high_intent_purchase",
-      "journeyPhase": "decision",
-      "prompt": "Is Tiny Lemon worth trying for indie fashion brands that need model photos fast?",
-      "buyerJob": "Choose the AI product photography app to try or buy.",
-      "source": "purchase",
-      "score": {
-        "buyerIntent": 5,
-        "commercialCloseness": 5,
-        "icpFit": 5,
-        "productFit": 5,
-        "competitiveLikelihood": 2,
-        "assetOpportunity": 5
-      },
-      "totalScore": 27,
-      "rationale": "LLM rationale: Reflects the positioning 'Studio shots in 60 seconds' without sounding like ad copy. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 5."
-    },
-    {
-      "id": "high-intent-purchase-should-i-install-tiny-lemon-for-my-shopify-fashion-store-if-i-only-have-flat-lay-product-photos",
-      "group": "high_intent_purchase",
-      "journeyPhase": "decision",
-      "prompt": "Should I install Tiny Lemon for my Shopify fashion store if I only have flat-lay product photos?",
-      "buyerJob": "Choose the AI product photography app to try or buy.",
-      "source": "purchase",
-      "score": {
-        "buyerIntent": 5,
-        "commercialCloseness": 5,
-        "icpFit": 4,
-        "productFit": 5,
-        "competitiveLikelihood": 2,
-        "assetOpportunity": 5
-      },
-      "totalScore": 26,
-      "rationale": "LLM rationale: Strong decision-stage install intent tied to the exact starting input the product supports. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 5."
-    },
-    {
-      "id": "category-search-what-ai-product-photography-apps-are-best-for-indie-fashion-brands-on-shopify",
-      "group": "category_search",
-      "journeyPhase": "consideration",
-      "prompt": "What AI product photography apps are best for indie fashion brands on Shopify?",
-      "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
-      "source": "category",
-      "score": {
-        "buyerIntent": 4,
-        "commercialCloseness": 4,
-        "icpFit": 5,
-        "productFit": 5,
-        "competitiveLikelihood": 4,
-        "assetOpportunity": 4
-      },
-      "totalScore": 26,
-      "rationale": "LLM rationale: High-fit category discovery prompt using exact ICP language and category noun from the strategy. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
-    },
-    {
-      "id": "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget",
-      "group": "category_search",
-      "journeyPhase": "evaluation",
-      "prompt": "What is the best AI product photography app for a Shopify fashion store with no shoot budget?",
-      "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
-      "source": "category",
-      "score": {
-        "buyerIntent": 4,
-        "commercialCloseness": 4,
-        "icpFit": 4,
-        "productFit": 5,
-        "competitiveLikelihood": 4,
-        "assetOpportunity": 4
-      },
-      "totalScore": 25,
-      "rationale": "LLM rationale: Keeps the category-level framing but adds the central pain point to sharpen buyer intent. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
-    },
-    {
-      "id": "high-intent-purchase-what-should-i-check-before-installing-an-ai-product-photography-app-on-shopify",
-      "group": "high_intent_purchase",
-      "journeyPhase": "decision",
-      "prompt": "What should I check before installing an AI product photography app on Shopify?",
-      "buyerJob": "Choose the AI product photography app to try or buy.",
-      "source": "purchase",
-      "score": {
-        "buyerIntent": 5,
-        "commercialCloseness": 5,
-        "icpFit": 3,
-        "productFit": 5,
-        "competitiveLikelihood": 2,
-        "assetOpportunity": 5
-      },
-      "totalScore": 25,
-      "rationale": "LLM rationale: A common bottom-funnel question that can surface selection criteria and decision friction. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 5."
-    },
-    {
-      "id": "category-search-which-ai-product-photography-app-is-best-for-turning-flat-lays-into-on-model-photos-for-shopify",
-      "group": "category_search",
-      "journeyPhase": "evaluation",
-      "prompt": "Which AI product photography app is best for turning flat-lays into on-model photos for Shopify?",
-      "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
-      "source": "category",
-      "score": {
-        "buyerIntent": 4,
-        "commercialCloseness": 4,
-        "icpFit": 3,
-        "productFit": 5,
-        "competitiveLikelihood": 4,
-        "assetOpportunity": 4
-      },
-      "totalScore": 24,
-      "rationale": "LLM rationale: Evaluation-stage category prompt with strong commercial intent around the core use case. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 4, asset opportunity 4."
-    },
-    {
-      "id": "category-search-is-there-a-shopify-app-for-ai-model-photos-that-works-well-for-apparel-brands",
-      "group": "category_search",
-      "journeyPhase": "consideration",
-      "prompt": "Is there a Shopify app for AI model photos that works well for apparel brands?",
-      "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
-      "source": "category",
-      "score": {
-        "buyerIntent": 4,
-        "commercialCloseness": 4,
-        "icpFit": 4,
-        "productFit": 5,
-        "competitiveLikelihood": 2,
-        "assetOpportunity": 4
-      },
-      "totalScore": 23,
-      "rationale": "LLM rationale: Uses buyerLanguage productNoun in a conversational way and keeps the question platform-specific. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 4."
-    },
-    {
-      "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-studio-quality-product-photos-without-a-shoot-budget",
-      "group": "problem_aware",
-      "journeyPhase": "awareness",
-      "prompt": "How can indie fashion brands on Shopify get studio-quality product photos without a shoot budget?",
-      "buyerJob": "Find a better way to handle no shoot budget.",
-      "source": "buyer_job",
-      "score": {
-        "buyerIntent": 3,
-        "commercialCloseness": 3,
-        "icpFit": 5,
-        "productFit": 5,
-        "competitiveLikelihood": 2,
-        "assetOpportunity": 4
-      },
-      "totalScore": 22,
-      "rationale": "LLM rationale: Uses the ICP phrase 'indie fashion brands on Shopify' and the pain 'no shoot budget' in a natural top-of-funnel question. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
-    },
-    {
-      "id": "problem-aware-what-are-the-best-product-photoshoot-alternatives-for-a-small-shopify-clothing-brand",
-      "group": "problem_aware",
-      "journeyPhase": "awareness",
-      "prompt": "What are the best product photoshoot alternatives for a small Shopify clothing brand?",
-      "buyerJob": "Find a better way to handle no shoot budget.",
-      "source": "category",
-      "score": {
-        "buyerIntent": 2,
-        "commercialCloseness": 3,
-        "icpFit": 3,
-        "productFit": 5,
-        "competitiveLikelihood": 4,
+        "competitiveLikelihood": 3,
         "assetOpportunity": 4
       },
       "totalScore": 21,
-      "rationale": "LLM rationale: Reflects buyerLanguage comparisonNoun 'product photoshoot alternatives' and fits realistic discovery behavior. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 4, asset opportunity 4."
+      "rationale": "LLM rationale: Strategy coverage: workflow understanding prompt. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 3, asset opportunity 4."
+    }
+  ],
+  "promptSets": {
+    "discoveryBaseline": {
+      "id": "discovery_baseline",
+      "label": "Discovery baseline",
+      "selectionRule": "Discovery baseline: market demand questions by bucket; no brand evaluation or direct comparison prompts.",
+      "selectedPrompts": [
+        {
+          "id": "competitor-comparison-is-lalaland-ai-a-good-option-for-indie-fashion-brands-on-shopify",
+          "group": "competitor_comparison",
+          "prompt": "Is Lalaland.ai a good option for indie fashion brands on Shopify?"
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-botika-for-flat-lay-to-studio-conversion",
+          "group": "competitor_comparison",
+          "prompt": "What are the best alternatives to Botika for flat-lay to studio conversion?"
+        },
+        {
+          "id": "category-search-what-is-the-best-ai-product-photography-app-for-indie-fashion-brands-on-shopify",
+          "group": "category_search",
+          "prompt": "What is the best AI product photography app for indie fashion brands on Shopify?"
+        },
+        {
+          "id": "category-search-which-ai-product-photography-apps-help-indie-fashion-brands-on-shopify-with-flat-lay-to-studio-conversion",
+          "group": "category_search",
+          "prompt": "Which AI product photography apps help indie fashion brands on Shopify with flat-lay to studio conversion?"
+        },
+        {
+          "id": "high-intent-purchase-what-is-the-easiest-shopify-app-for-generating-ai-model-photos-and-short-product-videos",
+          "group": "high_intent_purchase",
+          "prompt": "What is the easiest Shopify app for generating AI model photos and short product videos?"
+        },
+        {
+          "id": "category-search-which-ai-product-photography-apps-are-actually-good-for-apparel-brands-on-shopify",
+          "group": "category_search",
+          "prompt": "Which AI product photography apps are actually good for apparel brands on Shopify?"
+        },
+        {
+          "id": "problem-aware-how-can-an-indie-fashion-brand-on-shopify-get-better-apparel-product-photos-without-a-shoot-budget",
+          "group": "problem_aware",
+          "prompt": "How can an indie fashion brand on Shopify get better apparel product photos without a shoot budget?"
+        },
+        {
+          "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-professional-product-photos-without-a-shoot-budget",
+          "group": "problem_aware",
+          "prompt": "How can indie fashion brands on Shopify get professional product photos without a shoot budget?"
+        },
+        {
+          "id": "integration-use-case-how-should-indie-fashion-brands-on-shopify-use-flat-lay-to-studio-conversion-on-shopify-product-pages",
+          "group": "integration_use_case",
+          "prompt": "How should indie fashion brands on Shopify use flat-lay to studio conversion on Shopify product pages?"
+        },
+        {
+          "id": "solution-aware-how-do-ai-product-photography-apps-handle-flat-lay-to-studio-conversion",
+          "group": "solution_aware",
+          "prompt": "How do AI product photography apps handle flat-lay to studio conversion?"
+        }
+      ],
+      "selectedCandidates": [
+        {
+          "id": "competitor-comparison-is-lalaland-ai-a-good-option-for-indie-fashion-brands-on-shopify",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "Is Lalaland.ai a good option for indie fashion brands on Shopify?",
+          "buyerJob": "Compare known AI product photography app options and decide which one fits Indie fashion brands on Shopify.",
+          "source": "competitor",
+          "promptIntent": "competitor",
+          "portfolioBucket": "competitor_alternative",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 30,
+          "rationale": "LLM rationale: Ensures coverage for a credible competitor with a realistic buyer fit-check question. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-botika-for-flat-lay-to-studio-conversion",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "What are the best alternatives to Botika for flat-lay to studio conversion?",
+          "buyerJob": "Strategy coverage: competitor alternative prompt.",
+          "source": "competitor",
+          "promptIntent": "competitor",
+          "portfolioBucket": "competitor_alternative",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "category-search-what-is-the-best-ai-product-photography-app-for-indie-fashion-brands-on-shopify",
+          "group": "category_search",
+          "journeyPhase": "consideration",
+          "prompt": "What is the best AI product photography app for indie fashion brands on Shopify?",
+          "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
+          "source": "category",
+          "promptIntent": "neutral",
+          "portfolioBucket": "category_best_tool",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 4,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 4,
+            "assetOpportunity": 4
+          },
+          "totalScore": 26,
+          "rationale": "LLM rationale: High-commercial-intent category search using the ICP wording from the strategy. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+        },
+        {
+          "id": "category-search-which-ai-product-photography-apps-help-indie-fashion-brands-on-shopify-with-flat-lay-to-studio-conversion",
+          "group": "category_search",
+          "journeyPhase": "consideration",
+          "prompt": "Which AI product photography apps help indie fashion brands on Shopify with flat-lay to studio conversion?",
+          "buyerJob": "Strategy coverage: neutral category prompt.",
+          "source": "category",
+          "promptIntent": "neutral",
+          "portfolioBucket": "category_best_tool",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 4,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 4,
+            "assetOpportunity": 4
+          },
+          "totalScore": 26,
+          "rationale": "LLM rationale: Strategy coverage: neutral category prompt. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+        },
+        {
+          "id": "high-intent-purchase-what-is-the-easiest-shopify-app-for-generating-ai-model-photos-and-short-product-videos",
+          "group": "high_intent_purchase",
+          "journeyPhase": "decision",
+          "prompt": "What is the easiest Shopify app for generating AI model photos and short product videos?",
+          "buyerJob": "Choose the AI product photography app to try or buy.",
+          "source": "purchase",
+          "promptIntent": "neutral",
+          "portfolioBucket": "use_case_fit",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 3,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 5
+          },
+          "totalScore": 25,
+          "rationale": "LLM rationale: Combines two primary use cases and adds practical purchase criteria around ease of use. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 5."
+        },
+        {
+          "id": "category-search-which-ai-product-photography-apps-are-actually-good-for-apparel-brands-on-shopify",
+          "group": "category_search",
+          "journeyPhase": "evaluation",
+          "prompt": "Which AI product photography apps are actually good for apparel brands on Shopify?",
+          "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
+          "source": "category",
+          "promptIntent": "neutral",
+          "portfolioBucket": "category_best_tool",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 4,
+            "icpFit": 4,
+            "productFit": 5,
+            "competitiveLikelihood": 4,
+            "assetOpportunity": 4
+          },
+          "totalScore": 25,
+          "rationale": "LLM rationale: Evaluation-stage version of category search with stronger quality and fit intent. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+        },
+        {
+          "id": "problem-aware-how-can-an-indie-fashion-brand-on-shopify-get-better-apparel-product-photos-without-a-shoot-budget",
+          "group": "problem_aware",
+          "journeyPhase": "awareness",
+          "prompt": "How can an indie fashion brand on Shopify get better apparel product photos without a shoot budget?",
+          "buyerJob": "Find a better way to handle no shoot budget.",
+          "source": "buyer_job",
+          "promptIntent": "neutral",
+          "portfolioBucket": "neutral_discovery",
+          "score": {
+            "buyerIntent": 3,
+            "commercialCloseness": 3,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 4
+          },
+          "totalScore": 22,
+          "rationale": "LLM rationale: Uses the ICP's exact pain language around no shoot budget and frames a natural early-stage discovery question. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
+        },
+        {
+          "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-professional-product-photos-without-a-shoot-budget",
+          "group": "problem_aware",
+          "journeyPhase": "awareness",
+          "prompt": "How can indie fashion brands on Shopify get professional product photos without a shoot budget?",
+          "buyerJob": "Strategy coverage: core pain prompt.",
+          "source": "buyer_job",
+          "promptIntent": "neutral",
+          "portfolioBucket": "neutral_discovery",
+          "score": {
+            "buyerIntent": 3,
+            "commercialCloseness": 3,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 4
+          },
+          "totalScore": 22,
+          "rationale": "LLM rationale: Strategy coverage: core pain prompt. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
+        },
+        {
+          "id": "integration-use-case-how-should-indie-fashion-brands-on-shopify-use-flat-lay-to-studio-conversion-on-shopify-product-pages",
+          "group": "integration_use_case",
+          "journeyPhase": "consideration",
+          "prompt": "How should indie fashion brands on Shopify use flat-lay to studio conversion on Shopify product pages?",
+          "buyerJob": "Strategy coverage: integration prompt.",
+          "source": "buyer_job",
+          "promptIntent": "neutral",
+          "portfolioBucket": "implementation",
+          "score": {
+            "buyerIntent": 3,
+            "commercialCloseness": 4,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 3
+          },
+          "totalScore": 22,
+          "rationale": "LLM rationale: Strategy coverage: integration prompt. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 3."
+        },
+        {
+          "id": "solution-aware-how-do-ai-product-photography-apps-handle-flat-lay-to-studio-conversion",
+          "group": "solution_aware",
+          "journeyPhase": "consideration",
+          "prompt": "How do AI product photography apps handle flat-lay to studio conversion?",
+          "buyerJob": "Strategy coverage: workflow understanding prompt.",
+          "source": "buyer_job",
+          "promptIntent": "neutral",
+          "portfolioBucket": "use_case_fit",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 3,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 3,
+            "assetOpportunity": 4
+          },
+          "totalScore": 21,
+          "rationale": "LLM rationale: Strategy coverage: workflow understanding prompt. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 3, asset opportunity 4."
+        }
+      ]
+    },
+    "brandEvaluation": {
+      "id": "brand_evaluation",
+      "label": "Brand/evaluation",
+      "selectionRule": "Brand/evaluation: brand-fit and competitor comparison prompts for later trust and decision scans.",
+      "selectedPrompts": [
+        {
+          "id": "competitor-comparison-is-lalaland-ai-a-good-option-for-indie-fashion-brands-on-shopify",
+          "group": "competitor_comparison",
+          "prompt": "Is Lalaland.ai a good option for indie fashion brands on Shopify?"
+        },
+        {
+          "id": "high-intent-purchase-is-tiny-lemon-a-good-fit-for-indie-fashion-brands-on-shopify-that-need-flat-lay-to-studio-conversion",
+          "group": "high_intent_purchase",
+          "prompt": "Is Tiny Lemon a good fit for indie fashion brands on Shopify that need flat-lay to studio conversion?"
+        },
+        {
+          "id": "high-intent-purchase-is-tiny-lemon-worth-installing-for-an-indie-fashion-brand-on-shopify",
+          "group": "high_intent_purchase",
+          "prompt": "Is Tiny Lemon worth installing for an indie fashion brand on Shopify?"
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-botika-for-flat-lay-to-studio-conversion",
+          "group": "competitor_comparison",
+          "prompt": "What are the best alternatives to Botika for flat-lay to studio conversion?"
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-lalaland-ai-for-flat-lay-to-studio-conversion",
+          "group": "competitor_comparison",
+          "prompt": "What are the best alternatives to Lalaland.ai for flat-lay to studio conversion?"
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-zmo-ai-for-flat-lay-to-studio-conversion",
+          "group": "competitor_comparison",
+          "prompt": "What are the best alternatives to ZMO.ai for flat-lay to studio conversion?"
+        },
+        {
+          "id": "category-search-what-is-the-best-ai-product-photography-app-for-indie-fashion-brands-on-shopify",
+          "group": "category_search",
+          "prompt": "What is the best AI product photography app for indie fashion brands on Shopify?"
+        },
+        {
+          "id": "category-search-which-ai-product-photography-apps-help-indie-fashion-brands-on-shopify-with-flat-lay-to-studio-conversion",
+          "group": "category_search",
+          "prompt": "Which AI product photography apps help indie fashion brands on Shopify with flat-lay to studio conversion?"
+        },
+        {
+          "id": "high-intent-purchase-how-quickly-can-i-get-studio-style-apparel-photos-with-tiny-lemon",
+          "group": "high_intent_purchase",
+          "prompt": "How quickly can I get studio-style apparel photos with Tiny Lemon?"
+        },
+        {
+          "id": "solution-aware-how-do-ai-product-photography-apps-handle-flat-lay-to-studio-conversion",
+          "group": "solution_aware",
+          "prompt": "How do AI product photography apps handle flat-lay to studio conversion?"
+        }
+      ],
+      "selectedCandidates": [
+        {
+          "id": "competitor-comparison-is-lalaland-ai-a-good-option-for-indie-fashion-brands-on-shopify",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "Is Lalaland.ai a good option for indie fashion brands on Shopify?",
+          "buyerJob": "Compare known AI product photography app options and decide which one fits Indie fashion brands on Shopify.",
+          "source": "competitor",
+          "promptIntent": "competitor",
+          "portfolioBucket": "competitor_alternative",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 30,
+          "rationale": "LLM rationale: Ensures coverage for a credible competitor with a realistic buyer fit-check question. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "high-intent-purchase-is-tiny-lemon-a-good-fit-for-indie-fashion-brands-on-shopify-that-need-flat-lay-to-studio-conversion",
+          "group": "high_intent_purchase",
+          "journeyPhase": "decision",
+          "prompt": "Is Tiny Lemon a good fit for indie fashion brands on Shopify that need flat-lay to studio conversion?",
+          "buyerJob": "Strategy coverage: brand-fit prompt.",
+          "source": "purchase",
+          "promptIntent": "brand",
+          "portfolioBucket": "brand_evaluation",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: brand-fit prompt. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 5."
+        },
+        {
+          "id": "high-intent-purchase-is-tiny-lemon-worth-installing-for-an-indie-fashion-brand-on-shopify",
+          "group": "high_intent_purchase",
+          "journeyPhase": "decision",
+          "prompt": "Is Tiny Lemon worth installing for an indie fashion brand on Shopify?",
+          "buyerJob": "Choose the AI product photography app to try or buy.",
+          "source": "purchase",
+          "promptIntent": "brand",
+          "portfolioBucket": "brand_evaluation",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Brand-specific fit-check is allowed and strongly aligned to the install conversion goal. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 5."
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-botika-for-flat-lay-to-studio-conversion",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "What are the best alternatives to Botika for flat-lay to studio conversion?",
+          "buyerJob": "Strategy coverage: competitor alternative prompt.",
+          "source": "competitor",
+          "promptIntent": "competitor",
+          "portfolioBucket": "competitor_alternative",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-lalaland-ai-for-flat-lay-to-studio-conversion",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "What are the best alternatives to Lalaland.ai for flat-lay to studio conversion?",
+          "buyerJob": "Strategy coverage: competitor alternative prompt.",
+          "source": "competitor",
+          "promptIntent": "competitor",
+          "portfolioBucket": "competitor_alternative",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-zmo-ai-for-flat-lay-to-studio-conversion",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "What are the best alternatives to ZMO.ai for flat-lay to studio conversion?",
+          "buyerJob": "Strategy coverage: competitor alternative prompt.",
+          "source": "competitor",
+          "promptIntent": "competitor",
+          "portfolioBucket": "competitor_alternative",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "category-search-what-is-the-best-ai-product-photography-app-for-indie-fashion-brands-on-shopify",
+          "group": "category_search",
+          "journeyPhase": "consideration",
+          "prompt": "What is the best AI product photography app for indie fashion brands on Shopify?",
+          "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
+          "source": "category",
+          "promptIntent": "neutral",
+          "portfolioBucket": "category_best_tool",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 4,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 4,
+            "assetOpportunity": 4
+          },
+          "totalScore": 26,
+          "rationale": "LLM rationale: High-commercial-intent category search using the ICP wording from the strategy. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+        },
+        {
+          "id": "category-search-which-ai-product-photography-apps-help-indie-fashion-brands-on-shopify-with-flat-lay-to-studio-conversion",
+          "group": "category_search",
+          "journeyPhase": "consideration",
+          "prompt": "Which AI product photography apps help indie fashion brands on Shopify with flat-lay to studio conversion?",
+          "buyerJob": "Strategy coverage: neutral category prompt.",
+          "source": "category",
+          "promptIntent": "neutral",
+          "portfolioBucket": "category_best_tool",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 4,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 4,
+            "assetOpportunity": 4
+          },
+          "totalScore": 26,
+          "rationale": "LLM rationale: Strategy coverage: neutral category prompt. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+        },
+        {
+          "id": "high-intent-purchase-how-quickly-can-i-get-studio-style-apparel-photos-with-tiny-lemon",
+          "group": "high_intent_purchase",
+          "journeyPhase": "decision",
+          "prompt": "How quickly can I get studio-style apparel photos with Tiny Lemon?",
+          "buyerJob": "Choose the AI product photography app to try or buy.",
+          "source": "purchase",
+          "promptIntent": "brand",
+          "portfolioBucket": "brand_evaluation",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 5
+          },
+          "totalScore": 24,
+          "rationale": "LLM rationale: Uses the brand's core positioning around fast studio shots in a realistic pre-install question. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 5."
+        },
+        {
+          "id": "solution-aware-how-do-ai-product-photography-apps-handle-flat-lay-to-studio-conversion",
+          "group": "solution_aware",
+          "journeyPhase": "consideration",
+          "prompt": "How do AI product photography apps handle flat-lay to studio conversion?",
+          "buyerJob": "Strategy coverage: workflow understanding prompt.",
+          "source": "buyer_job",
+          "promptIntent": "neutral",
+          "portfolioBucket": "use_case_fit",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 3,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 3,
+            "assetOpportunity": 4
+          },
+          "totalScore": 21,
+          "rationale": "LLM rationale: Strategy coverage: workflow understanding prompt. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 3, asset opportunity 4."
+        }
+      ]
+    }
+  },
+  "candidates": [
+    {
+      "id": "competitor-comparison-is-lalaland-ai-a-good-option-for-indie-fashion-brands-on-shopify",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "Is Lalaland.ai a good option for indie fashion brands on Shopify?",
+      "buyerJob": "Compare known AI product photography app options and decide which one fits Indie fashion brands on Shopify.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 30,
+      "rationale": "LLM rationale: Ensures coverage for a credible competitor with a realistic buyer fit-check question. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-is-tiny-lemon-a-good-fit-for-indie-fashion-brands-on-shopify-that-need-flat-lay-to-studio-conversion",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Is Tiny Lemon a good fit for indie fashion brands on Shopify that need flat-lay to studio conversion?",
+      "buyerJob": "Strategy coverage: brand-fit prompt.",
+      "source": "purchase",
+      "promptIntent": "brand",
+      "portfolioBucket": "brand_evaluation",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: brand-fit prompt. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-is-tiny-lemon-worth-installing-for-an-indie-fashion-brand-on-shopify",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Is Tiny Lemon worth installing for an indie fashion brand on Shopify?",
+      "buyerJob": "Choose the AI product photography app to try or buy.",
+      "source": "purchase",
+      "promptIntent": "brand",
+      "portfolioBucket": "brand_evaluation",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Brand-specific fit-check is allowed and strongly aligned to the install conversion goal. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-botika-for-flat-lay-to-studio-conversion",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the best alternatives to Botika for flat-lay to studio conversion?",
+      "buyerJob": "Strategy coverage: competitor alternative prompt.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-lalaland-ai-for-flat-lay-to-studio-conversion",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the best alternatives to Lalaland.ai for flat-lay to studio conversion?",
+      "buyerJob": "Strategy coverage: competitor alternative prompt.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-zmo-ai-for-flat-lay-to-studio-conversion",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the best alternatives to ZMO.ai for flat-lay to studio conversion?",
+      "buyerJob": "Strategy coverage: competitor alternative prompt.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-which-ai-product-photography-app-should-i-install-first-for-a-shopify-clothing-brand",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Which AI product photography app should I install first for a Shopify clothing brand?",
+      "buyerJob": "Choose the AI product photography app to try or buy.",
+      "source": "purchase",
+      "promptIntent": "neutral",
+      "portfolioBucket": "implementation",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strong decision-stage install intent aligned to the stated conversion goal. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "category-search-what-is-the-best-ai-product-photography-app-for-indie-fashion-brands-on-shopify",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "What is the best AI product photography app for indie fashion brands on Shopify?",
+      "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: High-commercial-intent category search using the ICP wording from the strategy. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-which-ai-product-photography-apps-help-indie-fashion-brands-on-shopify-with-flat-lay-to-studio-conversion",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "Which AI product photography apps help indie fashion brands on Shopify with flat-lay to studio conversion?",
+      "buyerJob": "Strategy coverage: neutral category prompt.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Strategy coverage: neutral category prompt. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "high-intent-purchase-what-is-the-easiest-shopify-app-for-generating-ai-model-photos-and-short-product-videos",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "What is the easiest Shopify app for generating AI model photos and short product videos?",
+      "buyerJob": "Choose the AI product photography app to try or buy.",
+      "source": "purchase",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 25,
+      "rationale": "LLM rationale: Combines two primary use cases and adds practical purchase criteria around ease of use. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "category-search-which-ai-product-photography-apps-are-actually-good-for-apparel-brands-on-shopify",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "Which AI product photography apps are actually good for apparel brands on Shopify?",
+      "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 25,
+      "rationale": "LLM rationale: Evaluation-stage version of category search with stronger quality and fit intent. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "high-intent-purchase-how-quickly-can-i-get-studio-style-apparel-photos-with-tiny-lemon",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "How quickly can I get studio-style apparel photos with Tiny Lemon?",
+      "buyerJob": "Choose the AI product photography app to try or buy.",
+      "source": "purchase",
+      "promptIntent": "brand",
+      "portfolioBucket": "brand_evaluation",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 24,
+      "rationale": "LLM rationale: Uses the brand's core positioning around fast studio shots in a realistic pre-install question. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "category-search-are-there-shopify-apps-that-can-create-ai-model-photos-from-flat-lay-apparel-images",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "Are there Shopify apps that can create AI model photos from flat-lay apparel images?",
+      "buyerJob": "Discover which AI product photography app options exist for Indie fashion brands on Shopify.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 3,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "LLM rationale: Natural category validation question tied to the main flat-lay to studio conversion workflow. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 3, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-how-can-an-indie-fashion-brand-on-shopify-get-better-apparel-product-photos-without-a-shoot-budget",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "How can an indie fashion brand on Shopify get better apparel product photos without a shoot budget?",
+      "buyerJob": "Find a better way to handle no shoot budget.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 3,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Uses the ICP's exact pain language around no shoot budget and frames a natural early-stage discovery question. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-professional-product-photos-without-a-shoot-budget",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "How can indie fashion brands on Shopify get professional product photos without a shoot budget?",
+      "buyerJob": "Strategy coverage: core pain prompt.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 3,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Strategy coverage: core pain prompt. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-how-should-indie-fashion-brands-on-shopify-use-flat-lay-to-studio-conversion-on-shopify-product-pages",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "How should indie fashion brands on Shopify use flat-lay to studio conversion on Shopify product pages?",
+      "buyerJob": "Strategy coverage: integration prompt.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "implementation",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 3
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Strategy coverage: integration prompt. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 3."
+    },
+    {
+      "id": "category-search-what-should-i-compare-when-choosing-a-shopify-app-for-ai-model-photos",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "What should I compare when choosing a Shopify app for AI model photos?",
+      "buyerJob": "Choose the AI product photography app to try or buy.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Helpful mid-to-late funnel prompt that answer engines can satisfy with criteria and brand options. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "solution-aware-how-do-ai-product-photography-apps-handle-flat-lay-to-studio-conversion",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "How do AI product photography apps handle flat-lay to studio conversion?",
+      "buyerJob": "Strategy coverage: workflow understanding prompt.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 3,
+        "assetOpportunity": 4
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Strategy coverage: workflow understanding prompt. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 3, asset opportunity 4."
     },
     {
       "id": "solution-aware-can-an-ai-product-photography-app-create-front-side-and-back-views-from-one-clothing-photo",
@@ -443,6 +1145,8 @@
       "prompt": "Can an AI product photography app create front, side, and back views from one clothing photo?",
       "buyerJob": "Understand whether AI product photography app can handle flat-lay to studio conversion.",
       "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
       "score": {
         "buyerIntent": 4,
         "commercialCloseness": 3,
@@ -452,7 +1156,7 @@
         "assetOpportunity": 4
       },
       "totalScore": 20,
-      "rationale": "LLM rationale: Aligned to a stated primary use case and phrased as a practical pre-evaluation buyer question. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+      "rationale": "LLM rationale: Anchored in a concrete apparel merchandising need from the primary use cases. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
     },
     {
       "id": "integration-use-case-can-i-publish-ai-generated-product-images-directly-to-shopify-products",
@@ -461,6 +1165,8 @@
       "prompt": "Can I publish AI-generated product images directly to Shopify products?",
       "buyerJob": "Prepare flat-lay to studio conversion for install app.",
       "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "implementation",
       "score": {
         "buyerIntent": 3,
         "commercialCloseness": 4,
@@ -470,15 +1176,37 @@
         "assetOpportunity": 3
       },
       "totalScore": 20,
-      "rationale": "LLM rationale: Tied directly to the primary use case of publishing images to Shopify products. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 3."
+      "rationale": "LLM rationale: Captures practical install-related workflow intent without naming the brand. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 3."
     },
     {
-      "id": "integration-use-case-what-do-i-need-to-prepare-before-using-a-shopify-app-for-ai-model-photos-on-my-catalog",
+      "id": "solution-aware-how-does-flat-lay-to-studio-conversion-work-for-clothing-products",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "How does flat-lay to studio conversion work for clothing products?",
+      "buyerJob": "Understand whether AI product photography app can handle flat-lay to studio conversion.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Education-oriented question that fits a buyer who knows the solution category but needs workflow clarity. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-what-should-i-prepare-before-using-a-shopify-app-for-ai-model-photos",
       "group": "integration_use_case",
       "journeyPhase": "consideration",
-      "prompt": "What do I need to prepare before using a Shopify app for AI model photos on my catalog?",
+      "prompt": "What should I prepare before using a Shopify app for AI model photos?",
       "buyerJob": "Prepare flat-lay to studio conversion for install app.",
       "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "implementation",
       "score": {
         "buyerIntent": 3,
         "commercialCloseness": 4,
@@ -488,7 +1216,7 @@
         "assetOpportunity": 3
       },
       "totalScore": 20,
-      "rationale": "LLM rationale: Captures practical setup concerns buyers have before installation. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 3."
+      "rationale": "LLM rationale: Strong pre-install workflow question that fits consideration-stage buyers. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 3."
     },
     {
       "id": "problem-aware-can-i-turn-flat-lay-clothing-photos-into-model-shots-without-hiring-a-photographer",
@@ -497,6 +1225,8 @@
       "prompt": "Can I turn flat-lay clothing photos into model shots without hiring a photographer?",
       "buyerJob": "Find a better way to handle no shoot budget.",
       "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
       "score": {
         "buyerIntent": 2,
         "commercialCloseness": 3,
@@ -506,7 +1236,7 @@
         "assetOpportunity": 4
       },
       "totalScore": 18,
-      "rationale": "LLM rationale: Directly mirrors the primary use case while staying natural and problem-led. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+      "rationale": "LLM rationale: Directly reflects the core use case and pain in plain buyer language. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
     }
   ]
 }

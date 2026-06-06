@@ -1,6 +1,6 @@
 ---
 title: NOW — Current Operating Truth
-updated: 2026-06-04
+updated: 2026-06-05
 type: living
 status: current
 read_before: [docs/MAP.md]
@@ -85,9 +85,10 @@ multi-provider runs spend API credits and should be intentional. See
 - Visibility recommendations: `npm run visibility:recommend` writes
   `data/tiny-lemon/visibility/recommendations.json` from `strategy.json`,
   `owned-content-inventory.json`, and either a single run or `--summary` synthesis file.
-  Current top action is **Build Botika alternatives page** because the Botika prompt cites
-  comparison pages, Tiny Lemon is absent, no Botika-specific owned page was found, and the
-  existing Modelia alternatives asset can be reused as the pattern.
+  Current `data/tinylemon-xyz/visibility/recommendations.json` top action is **Build
+  Lalaland.ai alternatives page** because Lalaland.ai is recommended while Tiny Lemon stays
+  neutral, no Lalaland.ai-specific owned page was found, and the existing Modelia
+  alternatives asset can be reused as the pattern.
 - Visibility foundation tracker: `docs/status/TASKLIST.md` has completed brand-neutral
   schemas, owned-site inventory, provider interface, OpenAI runner, Claude runner,
   cross-provider synthesis, recommender integration, and `visibility:run`.
@@ -156,6 +157,12 @@ multi-provider runs spend API credits and should be intentional. See
   AI citation sources churn while answer meaning stays stable. Product implication: track
   owned content, off-site inclusion, listicle/review opportunities, YouTube/video assets,
   retrieved-vs-cited states, and re-test trends over time.
+- HubSpot AEO / Reddit product read on 2026-06-05: Reddit/community recommendations need a
+  promotability gate separate from citation presence. A cited Reddit thread is only useful
+  for Tiny Lemon visibility when the thread pain maps to Shopify apparel/product-media work
+  and a helpful comment can naturally disclose and mention Tiny Lemon. Promo-sensitive,
+  founder-feedback, generic advice, and unrelated ecommerce threads should be marked weak,
+  no-promo, or skip unless the goal is community reputation rather than brand visibility.
 - Visibility run caveat on 2026-06-03: Anthropic prompt scans can fail because account
   credit is too low, but current output can still record a 0/10 provider run. Fix needed:
   prompt-level provider failures should mark the provider/run invalid or partial, not look
@@ -191,6 +198,10 @@ multi-provider runs spend API credits and should be intentional. See
   Search Console when available.
 - AEO opportunity quality needs off-site evidence too. Some wins require getting included on
   third-party listicles/reviews/directories or creating video proof, not updating owned pages.
+- Reddit/community opportunity quality needs thread-level promotability scoring. Current
+  recommendation logic can infer `community_answer` from `reddit_thread` source format, but
+  it does not yet preserve enough exact thread context or score natural brand-mention fit,
+  promo risk, suggested angle, or CTA strength.
 - Provider failure handling is incomplete for Anthropic credit errors during visibility runs.
 - Slack visibility production runner currently supports page/guide-like tasks only:
   `alternative_page`, `comparison_page`, and `guide`. Recommendations such as
@@ -201,8 +212,9 @@ multi-provider runs spend API credits and should be intentional. See
 1. Add production paths for non-article visibility tasks, starting with
    `shopify_app_store_listing` fix kits because the current Tiny Lemon recommendation can
    surface that task type.
-2. Add buyer-question discovery and scoring from demand evidence: Google SERP,
+2. Add community-answer promotability scoring for Reddit/forum opportunities: strong,
+   medium, weak, no-fit; include whether Tiny Lemon should be mentioned, promo risk,
+   suggested angle, CTA strength, and draft reply.
+3. Add buyer-question discovery and scoring from demand evidence: Google SERP,
    autocomplete/PAA, competitor titles, forums/reviews, AI answers, and Search Console when
    available.
-3. Clean owned-content excerpts by stripping nav/footer boilerplate and add safer full-site
-   understanding controls for larger lead domains.

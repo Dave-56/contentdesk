@@ -86,54 +86,54 @@
   ],
   "prompts": [
     {
-      "id": "competitor-comparison-should-i-choose-tiny-lemon-or-lalaland-ai-for-a-shopify-apparel-catalog-refresh",
+      "id": "competitor-comparison-is-lalaland-ai-a-good-option-for-indie-fashion-brands-on-shopify",
       "group": "competitor_comparison",
-      "prompt": "Should I choose Tiny Lemon or Lalaland.ai for a Shopify apparel catalog refresh?"
+      "prompt": "Is Lalaland.ai a good option for indie fashion brands on Shopify?"
     },
     {
-      "id": "competitor-comparison-which-is-better-for-a-small-shopify-clothing-brand-tiny-lemon-or-botika",
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-botika-for-flat-lay-to-studio-conversion",
       "group": "competitor_comparison",
-      "prompt": "Which is better for a small Shopify clothing brand: Tiny Lemon or Botika?"
+      "prompt": "What are the best alternatives to Botika for flat-lay to studio conversion?"
     },
     {
-      "id": "high-intent-purchase-is-tiny-lemon-worth-trying-for-indie-fashion-brands-that-need-model-photos-fast",
-      "group": "high_intent_purchase",
-      "prompt": "Is Tiny Lemon worth trying for indie fashion brands that need model photos fast?"
-    },
-    {
-      "id": "high-intent-purchase-should-i-install-tiny-lemon-for-my-shopify-fashion-store-if-i-only-have-flat-lay-product-photos",
-      "group": "high_intent_purchase",
-      "prompt": "Should I install Tiny Lemon for my Shopify fashion store if I only have flat-lay product photos?"
-    },
-    {
-      "id": "category-search-what-ai-product-photography-apps-are-best-for-indie-fashion-brands-on-shopify",
+      "id": "category-search-what-is-the-best-ai-product-photography-app-for-indie-fashion-brands-on-shopify",
       "group": "category_search",
-      "prompt": "What AI product photography apps are best for indie fashion brands on Shopify?"
+      "prompt": "What is the best AI product photography app for indie fashion brands on Shopify?"
     },
     {
-      "id": "category-search-what-is-the-best-ai-product-photography-app-for-a-shopify-fashion-store-with-no-shoot-budget",
+      "id": "category-search-which-ai-product-photography-apps-help-indie-fashion-brands-on-shopify-with-flat-lay-to-studio-conversion",
       "group": "category_search",
-      "prompt": "What is the best AI product photography app for a Shopify fashion store with no shoot budget?"
+      "prompt": "Which AI product photography apps help indie fashion brands on Shopify with flat-lay to studio conversion?"
     },
     {
-      "id": "high-intent-purchase-what-should-i-check-before-installing-an-ai-product-photography-app-on-shopify",
+      "id": "high-intent-purchase-what-is-the-easiest-shopify-app-for-generating-ai-model-photos-and-short-product-videos",
       "group": "high_intent_purchase",
-      "prompt": "What should I check before installing an AI product photography app on Shopify?"
+      "prompt": "What is the easiest Shopify app for generating AI model photos and short product videos?"
     },
     {
-      "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-studio-quality-product-photos-without-a-shoot-budget",
+      "id": "category-search-which-ai-product-photography-apps-are-actually-good-for-apparel-brands-on-shopify",
+      "group": "category_search",
+      "prompt": "Which AI product photography apps are actually good for apparel brands on Shopify?"
+    },
+    {
+      "id": "problem-aware-how-can-an-indie-fashion-brand-on-shopify-get-better-apparel-product-photos-without-a-shoot-budget",
       "group": "problem_aware",
-      "prompt": "How can indie fashion brands on Shopify get studio-quality product photos without a shoot budget?"
+      "prompt": "How can an indie fashion brand on Shopify get better apparel product photos without a shoot budget?"
     },
     {
-      "id": "solution-aware-can-an-ai-product-photography-app-create-front-side-and-back-views-from-one-clothing-photo",
-      "group": "solution_aware",
-      "prompt": "Can an AI product photography app create front, side, and back views from one clothing photo?"
+      "id": "problem-aware-how-can-indie-fashion-brands-on-shopify-get-professional-product-photos-without-a-shoot-budget",
+      "group": "problem_aware",
+      "prompt": "How can indie fashion brands on Shopify get professional product photos without a shoot budget?"
     },
     {
-      "id": "integration-use-case-can-i-publish-ai-generated-product-images-directly-to-shopify-products",
+      "id": "integration-use-case-how-should-indie-fashion-brands-on-shopify-use-flat-lay-to-studio-conversion-on-shopify-product-pages",
       "group": "integration_use_case",
-      "prompt": "Can I publish AI-generated product images directly to Shopify products?"
+      "prompt": "How should indie fashion brands on Shopify use flat-lay to studio conversion on Shopify product pages?"
+    },
+    {
+      "id": "solution-aware-how-do-ai-product-photography-apps-handle-flat-lay-to-studio-conversion",
+      "group": "solution_aware",
+      "prompt": "How do AI product photography apps handle flat-lay to studio conversion?"
     }
   ]
 }

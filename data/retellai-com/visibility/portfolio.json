@@ -1,0 +1,1322 @@
+{
+  "brand": "Retell AI",
+  "generatedAt": "2026-06-06T22:02:42.688Z",
+  "portfolioSize": 10,
+  "selectionRule": "Discovery baseline: market demand questions by bucket; no brand evaluation or direct comparison prompts.",
+  "selectedPrompts": [
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-elevenlabs-for-ai-voice-agent-platforms",
+      "group": "competitor_comparison",
+      "prompt": "What are the best alternatives to ElevenLabs for AI voice agent platforms?"
+    },
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-synthflow-for-ai-voice-agent-platforms",
+      "group": "competitor_comparison",
+      "prompt": "What are the best alternatives to Synthflow for AI voice agent platforms?"
+    },
+    {
+      "id": "high-intent-purchase-which-ai-voice-agent-platform-should-i-demo-first-for-inbound-support-and-appointment-booking",
+      "group": "high_intent_purchase",
+      "prompt": "Which AI voice agent platform should I demo first for inbound support and appointment booking?"
+    },
+    {
+      "id": "category-search-which-ai-voice-agent-platforms-help-support-and-sales-teams-with-call-automation-for-support-sales-and-appointment-booking",
+      "group": "category_search",
+      "prompt": "Which AI voice agent platforms help support and sales teams with call automation for support, sales, and appointment booking?"
+    },
+    {
+      "id": "category-search-which-ai-phone-agent-platforms-are-best-for-support-sales-and-appointment-booking",
+      "group": "category_search",
+      "prompt": "Which AI phone agent platforms are best for support, sales, and appointment booking?"
+    },
+    {
+      "id": "solution-aware-how-do-ai-voice-agent-platforms-handle-call-automation-for-support-sales-and-appointment-booking",
+      "group": "solution_aware",
+      "prompt": "How do AI voice agent platforms handle call automation for support, sales, and appointment booking?"
+    },
+    {
+      "id": "integration-use-case-what-should-a-contact-center-team-look-for-when-rolling-out-an-ai-voice-agent-platform",
+      "group": "integration_use_case",
+      "prompt": "What should a contact center team look for when rolling out an AI voice agent platform?"
+    },
+    {
+      "id": "problem-aware-how-can-support-and-sales-teams-handle-more-phone-calls-without-adding-headcount",
+      "group": "problem_aware",
+      "prompt": "How can support and sales teams handle more phone calls without adding headcount?"
+    },
+    {
+      "id": "problem-aware-how-can-support-and-sales-teams-scale-phone-operations-without-adding-headcount",
+      "group": "problem_aware",
+      "prompt": "How can support and sales teams scale phone operations without adding headcount?"
+    },
+    {
+      "id": "problem-aware-can-ai-phone-agents-reduce-call-volume-for-support-teams-without-hurting-customer-experience",
+      "group": "problem_aware",
+      "prompt": "Can AI phone agents reduce call volume for support teams without hurting customer experience?"
+    }
+  ],
+  "selectedCandidates": [
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-elevenlabs-for-ai-voice-agent-platforms",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the best alternatives to ElevenLabs for AI voice agent platforms?",
+      "buyerJob": "Strategy coverage: competitor alternative prompt.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-synthflow-for-ai-voice-agent-platforms",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the best alternatives to Synthflow for AI voice agent platforms?",
+      "buyerJob": "Strategy coverage: competitor alternative prompt.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-which-ai-voice-agent-platform-should-i-demo-first-for-inbound-support-and-appointment-booking",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Which AI voice agent platform should I demo first for inbound support and appointment booking?",
+      "buyerJob": "Choose an AI phone agent platform to try, demo, or buy.",
+      "source": "purchase",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Strong decision-stage prompt aligned to the conversion goal of booking a demo. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "category-search-which-ai-voice-agent-platforms-help-support-and-sales-teams-with-call-automation-for-support-sales-and-appointment-booking",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "Which AI voice agent platforms help support and sales teams with call automation for support, sales, and appointment booking?",
+      "buyerJob": "Strategy coverage: neutral category prompt.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Strategy coverage: neutral category prompt. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-which-ai-phone-agent-platforms-are-best-for-support-sales-and-appointment-booking",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "Which AI phone agent platforms are best for support, sales, and appointment booking?",
+      "buyerJob": "Discover AI voice agent platforms for automating business phone calls.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 25,
+      "rationale": "LLM rationale: Directly reflects the buyerLanguage useCaseNoun and primary use cases. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "solution-aware-how-do-ai-voice-agent-platforms-handle-call-automation-for-support-sales-and-appointment-booking",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "How do AI voice agent platforms handle call automation for support, sales, and appointment booking?",
+      "buyerJob": "Strategy coverage: workflow understanding prompt.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Strategy coverage: workflow understanding prompt. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-what-should-a-contact-center-team-look-for-when-rolling-out-an-ai-voice-agent-platform",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "What should a contact center team look for when rolling out an AI voice agent platform?",
+      "buyerJob": "Prepare an AI voice agent rollout with telephony, CRM, and workflow integrations.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "implementation",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 3
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Targets contact center teams specifically and keeps the prompt neutral and practical. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 3."
+    },
+    {
+      "id": "problem-aware-how-can-support-and-sales-teams-handle-more-phone-calls-without-adding-headcount",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "How can support and sales teams handle more phone calls without adding headcount?",
+      "buyerJob": "Find a way to handle more customer calls without hiring more agents.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 3,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Uses the ICP's core pain language around scaling phone operations without adding headcount. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-how-can-support-and-sales-teams-scale-phone-operations-without-adding-headcount",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "How can support and sales teams scale phone operations without adding headcount?",
+      "buyerJob": "Strategy coverage: core pain prompt.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 3,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Strategy coverage: core pain prompt. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-can-ai-phone-agents-reduce-call-volume-for-support-teams-without-hurting-customer-experience",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "Can AI phone agents reduce call volume for support teams without hurting customer experience?",
+      "buyerJob": "Find a way to handle more customer calls without hiring more agents.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 19,
+      "rationale": "LLM rationale: Frames adoption around a common operational concern: efficiency versus customer experience. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+    }
+  ],
+  "promptSets": {
+    "discoveryBaseline": {
+      "id": "discovery_baseline",
+      "label": "Discovery baseline",
+      "selectionRule": "Discovery baseline: market demand questions by bucket; no brand evaluation or direct comparison prompts.",
+      "selectedPrompts": [
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-elevenlabs-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "prompt": "What are the best alternatives to ElevenLabs for AI voice agent platforms?"
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-synthflow-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "prompt": "What are the best alternatives to Synthflow for AI voice agent platforms?"
+        },
+        {
+          "id": "high-intent-purchase-which-ai-voice-agent-platform-should-i-demo-first-for-inbound-support-and-appointment-booking",
+          "group": "high_intent_purchase",
+          "prompt": "Which AI voice agent platform should I demo first for inbound support and appointment booking?"
+        },
+        {
+          "id": "category-search-which-ai-voice-agent-platforms-help-support-and-sales-teams-with-call-automation-for-support-sales-and-appointment-booking",
+          "group": "category_search",
+          "prompt": "Which AI voice agent platforms help support and sales teams with call automation for support, sales, and appointment booking?"
+        },
+        {
+          "id": "category-search-which-ai-phone-agent-platforms-are-best-for-support-sales-and-appointment-booking",
+          "group": "category_search",
+          "prompt": "Which AI phone agent platforms are best for support, sales, and appointment booking?"
+        },
+        {
+          "id": "solution-aware-how-do-ai-voice-agent-platforms-handle-call-automation-for-support-sales-and-appointment-booking",
+          "group": "solution_aware",
+          "prompt": "How do AI voice agent platforms handle call automation for support, sales, and appointment booking?"
+        },
+        {
+          "id": "integration-use-case-what-should-a-contact-center-team-look-for-when-rolling-out-an-ai-voice-agent-platform",
+          "group": "integration_use_case",
+          "prompt": "What should a contact center team look for when rolling out an AI voice agent platform?"
+        },
+        {
+          "id": "problem-aware-how-can-support-and-sales-teams-handle-more-phone-calls-without-adding-headcount",
+          "group": "problem_aware",
+          "prompt": "How can support and sales teams handle more phone calls without adding headcount?"
+        },
+        {
+          "id": "problem-aware-how-can-support-and-sales-teams-scale-phone-operations-without-adding-headcount",
+          "group": "problem_aware",
+          "prompt": "How can support and sales teams scale phone operations without adding headcount?"
+        },
+        {
+          "id": "problem-aware-can-ai-phone-agents-reduce-call-volume-for-support-teams-without-hurting-customer-experience",
+          "group": "problem_aware",
+          "prompt": "Can AI phone agents reduce call volume for support teams without hurting customer experience?"
+        }
+      ],
+      "selectedCandidates": [
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-elevenlabs-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "What are the best alternatives to ElevenLabs for AI voice agent platforms?",
+          "buyerJob": "Strategy coverage: competitor alternative prompt.",
+          "source": "competitor",
+          "promptIntent": "competitor",
+          "portfolioBucket": "competitor_alternative",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-synthflow-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "What are the best alternatives to Synthflow for AI voice agent platforms?",
+          "buyerJob": "Strategy coverage: competitor alternative prompt.",
+          "source": "competitor",
+          "promptIntent": "competitor",
+          "portfolioBucket": "competitor_alternative",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "high-intent-purchase-which-ai-voice-agent-platform-should-i-demo-first-for-inbound-support-and-appointment-booking",
+          "group": "high_intent_purchase",
+          "journeyPhase": "decision",
+          "prompt": "Which AI voice agent platform should I demo first for inbound support and appointment booking?",
+          "buyerJob": "Choose an AI phone agent platform to try, demo, or buy.",
+          "source": "purchase",
+          "promptIntent": "neutral",
+          "portfolioBucket": "use_case_fit",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 4,
+            "assetOpportunity": 5
+          },
+          "totalScore": 26,
+          "rationale": "LLM rationale: Strong decision-stage prompt aligned to the conversion goal of booking a demo. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 5."
+        },
+        {
+          "id": "category-search-which-ai-voice-agent-platforms-help-support-and-sales-teams-with-call-automation-for-support-sales-and-appointment-booking",
+          "group": "category_search",
+          "journeyPhase": "consideration",
+          "prompt": "Which AI voice agent platforms help support and sales teams with call automation for support, sales, and appointment booking?",
+          "buyerJob": "Strategy coverage: neutral category prompt.",
+          "source": "category",
+          "promptIntent": "neutral",
+          "portfolioBucket": "category_best_tool",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 4,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 4,
+            "assetOpportunity": 4
+          },
+          "totalScore": 26,
+          "rationale": "LLM rationale: Strategy coverage: neutral category prompt. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+        },
+        {
+          "id": "category-search-which-ai-phone-agent-platforms-are-best-for-support-sales-and-appointment-booking",
+          "group": "category_search",
+          "journeyPhase": "consideration",
+          "prompt": "Which AI phone agent platforms are best for support, sales, and appointment booking?",
+          "buyerJob": "Discover AI voice agent platforms for automating business phone calls.",
+          "source": "category",
+          "promptIntent": "neutral",
+          "portfolioBucket": "category_best_tool",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 4,
+            "icpFit": 4,
+            "productFit": 5,
+            "competitiveLikelihood": 4,
+            "assetOpportunity": 4
+          },
+          "totalScore": 25,
+          "rationale": "LLM rationale: Directly reflects the buyerLanguage useCaseNoun and primary use cases. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+        },
+        {
+          "id": "solution-aware-how-do-ai-voice-agent-platforms-handle-call-automation-for-support-sales-and-appointment-booking",
+          "group": "solution_aware",
+          "journeyPhase": "consideration",
+          "prompt": "How do AI voice agent platforms handle call automation for support, sales, and appointment booking?",
+          "buyerJob": "Strategy coverage: workflow understanding prompt.",
+          "source": "buyer_job",
+          "promptIntent": "neutral",
+          "portfolioBucket": "use_case_fit",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 3,
+            "icpFit": 4,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 4
+          },
+          "totalScore": 22,
+          "rationale": "LLM rationale: Strategy coverage: workflow understanding prompt. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 4."
+        },
+        {
+          "id": "integration-use-case-what-should-a-contact-center-team-look-for-when-rolling-out-an-ai-voice-agent-platform",
+          "group": "integration_use_case",
+          "journeyPhase": "consideration",
+          "prompt": "What should a contact center team look for when rolling out an AI voice agent platform?",
+          "buyerJob": "Prepare an AI voice agent rollout with telephony, CRM, and workflow integrations.",
+          "source": "buyer_job",
+          "promptIntent": "neutral",
+          "portfolioBucket": "implementation",
+          "score": {
+            "buyerIntent": 3,
+            "commercialCloseness": 4,
+            "icpFit": 4,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 3
+          },
+          "totalScore": 21,
+          "rationale": "LLM rationale: Targets contact center teams specifically and keeps the prompt neutral and practical. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 3."
+        },
+        {
+          "id": "problem-aware-how-can-support-and-sales-teams-handle-more-phone-calls-without-adding-headcount",
+          "group": "problem_aware",
+          "journeyPhase": "awareness",
+          "prompt": "How can support and sales teams handle more phone calls without adding headcount?",
+          "buyerJob": "Find a way to handle more customer calls without hiring more agents.",
+          "source": "buyer_job",
+          "promptIntent": "neutral",
+          "portfolioBucket": "neutral_discovery",
+          "score": {
+            "buyerIntent": 3,
+            "commercialCloseness": 3,
+            "icpFit": 3,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 4
+          },
+          "totalScore": 20,
+          "rationale": "LLM rationale: Uses the ICP's core pain language around scaling phone operations without adding headcount. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+        },
+        {
+          "id": "problem-aware-how-can-support-and-sales-teams-scale-phone-operations-without-adding-headcount",
+          "group": "problem_aware",
+          "journeyPhase": "awareness",
+          "prompt": "How can support and sales teams scale phone operations without adding headcount?",
+          "buyerJob": "Strategy coverage: core pain prompt.",
+          "source": "buyer_job",
+          "promptIntent": "neutral",
+          "portfolioBucket": "neutral_discovery",
+          "score": {
+            "buyerIntent": 3,
+            "commercialCloseness": 3,
+            "icpFit": 3,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 4
+          },
+          "totalScore": 20,
+          "rationale": "LLM rationale: Strategy coverage: core pain prompt. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+        },
+        {
+          "id": "problem-aware-can-ai-phone-agents-reduce-call-volume-for-support-teams-without-hurting-customer-experience",
+          "group": "problem_aware",
+          "journeyPhase": "awareness",
+          "prompt": "Can AI phone agents reduce call volume for support teams without hurting customer experience?",
+          "buyerJob": "Find a way to handle more customer calls without hiring more agents.",
+          "source": "buyer_job",
+          "promptIntent": "neutral",
+          "portfolioBucket": "neutral_discovery",
+          "score": {
+            "buyerIntent": 2,
+            "commercialCloseness": 3,
+            "icpFit": 3,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 4
+          },
+          "totalScore": 19,
+          "rationale": "LLM rationale: Frames adoption around a common operational concern: efficiency versus customer experience. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+        }
+      ]
+    },
+    "brandEvaluation": {
+      "id": "brand_evaluation",
+      "label": "Brand/evaluation",
+      "selectionRule": "Brand/evaluation: brand-fit and competitor comparison prompts for later trust and decision scans.",
+      "selectedPrompts": [
+        {
+          "id": "competitor-comparison-how-does-retell-ai-compare-with-elevenlabs-conversational-ai-for-phone-based-voice-agents",
+          "group": "competitor_comparison",
+          "prompt": "How does Retell AI compare with ElevenLabs Conversational AI for phone-based voice agents?"
+        },
+        {
+          "id": "competitor-comparison-how-does-retell-ai-compare-with-vapi-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "prompt": "How does Retell AI compare with Vapi for AI voice agent platforms?"
+        },
+        {
+          "id": "high-intent-purchase-is-retell-ai-a-good-fit-for-support-and-sales-teams-that-need-call-automation-for-support-sales-and-appointment-booking",
+          "group": "high_intent_purchase",
+          "prompt": "Is Retell AI a good fit for support and sales teams that need call automation for support, sales, and appointment booking?"
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-elevenlabs-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "prompt": "What are the best alternatives to ElevenLabs for AI voice agent platforms?"
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-synthflow-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "prompt": "What are the best alternatives to Synthflow for AI voice agent platforms?"
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-thoughtly-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "prompt": "What are the best alternatives to Thoughtly for AI voice agent platforms?"
+        },
+        {
+          "id": "competitor-comparison-which-is-easier-to-launch-for-a-support-team-retell-ai-or-vapi",
+          "group": "competitor_comparison",
+          "prompt": "Which is easier to launch for a support team, Retell AI or Vapi?"
+        },
+        {
+          "id": "category-search-which-ai-voice-agent-platforms-help-support-and-sales-teams-with-call-automation-for-support-sales-and-appointment-booking",
+          "group": "category_search",
+          "prompt": "Which AI voice agent platforms help support and sales teams with call automation for support, sales, and appointment booking?"
+        },
+        {
+          "id": "high-intent-purchase-is-retell-ai-a-good-fit-for-automating-customer-support-calls-and-lead-qualification",
+          "group": "high_intent_purchase",
+          "prompt": "Is Retell AI a good fit for automating customer support calls and lead qualification?"
+        },
+        {
+          "id": "solution-aware-how-do-ai-voice-agent-platforms-handle-call-automation-for-support-sales-and-appointment-booking",
+          "group": "solution_aware",
+          "prompt": "How do AI voice agent platforms handle call automation for support, sales, and appointment booking?"
+        }
+      ],
+      "selectedCandidates": [
+        {
+          "id": "competitor-comparison-how-does-retell-ai-compare-with-elevenlabs-conversational-ai-for-phone-based-voice-agents",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "How does Retell AI compare with ElevenLabs Conversational AI for phone-based voice agents?",
+          "buyerJob": "Compare known AI voice agent platforms and choose which one fits the team.",
+          "source": "competitor",
+          "promptIntent": "brand",
+          "portfolioBucket": "direct_comparison",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Includes a credible competitor and clarifies the comparison around phone-based agents specifically. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "competitor-comparison-how-does-retell-ai-compare-with-vapi-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "How does Retell AI compare with Vapi for AI voice agent platforms?",
+          "buyerJob": "Strategy coverage: brand comparison prompt.",
+          "source": "competitor",
+          "promptIntent": "brand",
+          "portfolioBucket": "direct_comparison",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: brand comparison prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "high-intent-purchase-is-retell-ai-a-good-fit-for-support-and-sales-teams-that-need-call-automation-for-support-sales-and-appointment-booking",
+          "group": "high_intent_purchase",
+          "journeyPhase": "decision",
+          "prompt": "Is Retell AI a good fit for support and sales teams that need call automation for support, sales, and appointment booking?",
+          "buyerJob": "Strategy coverage: brand-fit prompt.",
+          "source": "purchase",
+          "promptIntent": "brand",
+          "portfolioBucket": "brand_evaluation",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: brand-fit prompt. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 5."
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-elevenlabs-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "What are the best alternatives to ElevenLabs for AI voice agent platforms?",
+          "buyerJob": "Strategy coverage: competitor alternative prompt.",
+          "source": "competitor",
+          "promptIntent": "competitor",
+          "portfolioBucket": "competitor_alternative",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-synthflow-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "What are the best alternatives to Synthflow for AI voice agent platforms?",
+          "buyerJob": "Strategy coverage: competitor alternative prompt.",
+          "source": "competitor",
+          "promptIntent": "competitor",
+          "portfolioBucket": "competitor_alternative",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "competitor-comparison-what-are-the-best-alternatives-to-thoughtly-for-ai-voice-agent-platforms",
+          "group": "competitor_comparison",
+          "journeyPhase": "evaluation",
+          "prompt": "What are the best alternatives to Thoughtly for AI voice agent platforms?",
+          "buyerJob": "Strategy coverage: competitor alternative prompt.",
+          "source": "competitor",
+          "promptIntent": "competitor",
+          "portfolioBucket": "competitor_alternative",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "competitor-comparison-which-is-easier-to-launch-for-a-support-team-retell-ai-or-vapi",
+          "group": "competitor_comparison",
+          "journeyPhase": "decision",
+          "prompt": "Which is easier to launch for a support team, Retell AI or Vapi?",
+          "buyerJob": "Choose an AI phone agent platform to try, demo, or buy.",
+          "source": "competitor",
+          "promptIntent": "brand",
+          "portfolioBucket": "direct_comparison",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 5,
+            "assetOpportunity": 5
+          },
+          "totalScore": 27,
+          "rationale": "LLM rationale: Decision-stage framing emphasizes speed to deploy, a common purchase trigger. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+        },
+        {
+          "id": "category-search-which-ai-voice-agent-platforms-help-support-and-sales-teams-with-call-automation-for-support-sales-and-appointment-booking",
+          "group": "category_search",
+          "journeyPhase": "consideration",
+          "prompt": "Which AI voice agent platforms help support and sales teams with call automation for support, sales, and appointment booking?",
+          "buyerJob": "Strategy coverage: neutral category prompt.",
+          "source": "category",
+          "promptIntent": "neutral",
+          "portfolioBucket": "category_best_tool",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 4,
+            "icpFit": 5,
+            "productFit": 5,
+            "competitiveLikelihood": 4,
+            "assetOpportunity": 4
+          },
+          "totalScore": 26,
+          "rationale": "LLM rationale: Strategy coverage: neutral category prompt. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+        },
+        {
+          "id": "high-intent-purchase-is-retell-ai-a-good-fit-for-automating-customer-support-calls-and-lead-qualification",
+          "group": "high_intent_purchase",
+          "journeyPhase": "decision",
+          "prompt": "Is Retell AI a good fit for automating customer support calls and lead qualification?",
+          "buyerJob": "Choose an AI phone agent platform to try, demo, or buy.",
+          "source": "purchase",
+          "promptIntent": "brand",
+          "portfolioBucket": "brand_evaluation",
+          "score": {
+            "buyerIntent": 5,
+            "commercialCloseness": 5,
+            "icpFit": 2,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 5
+          },
+          "totalScore": 24,
+          "rationale": "LLM rationale: Allowed brand-specific fit check tied to explicit use cases in the strategy. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 5."
+        },
+        {
+          "id": "solution-aware-how-do-ai-voice-agent-platforms-handle-call-automation-for-support-sales-and-appointment-booking",
+          "group": "solution_aware",
+          "journeyPhase": "consideration",
+          "prompt": "How do AI voice agent platforms handle call automation for support, sales, and appointment booking?",
+          "buyerJob": "Strategy coverage: workflow understanding prompt.",
+          "source": "buyer_job",
+          "promptIntent": "neutral",
+          "portfolioBucket": "use_case_fit",
+          "score": {
+            "buyerIntent": 4,
+            "commercialCloseness": 3,
+            "icpFit": 4,
+            "productFit": 5,
+            "competitiveLikelihood": 2,
+            "assetOpportunity": 4
+          },
+          "totalScore": 22,
+          "rationale": "LLM rationale: Strategy coverage: workflow understanding prompt. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 4."
+        }
+      ]
+    }
+  },
+  "candidates": [
+    {
+      "id": "competitor-comparison-how-does-retell-ai-compare-with-elevenlabs-conversational-ai-for-phone-based-voice-agents",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "How does Retell AI compare with ElevenLabs Conversational AI for phone-based voice agents?",
+      "buyerJob": "Compare known AI voice agent platforms and choose which one fits the team.",
+      "source": "competitor",
+      "promptIntent": "brand",
+      "portfolioBucket": "direct_comparison",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Includes a credible competitor and clarifies the comparison around phone-based agents specifically. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-how-does-retell-ai-compare-with-vapi-for-ai-voice-agent-platforms",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "How does Retell AI compare with Vapi for AI voice agent platforms?",
+      "buyerJob": "Strategy coverage: brand comparison prompt.",
+      "source": "competitor",
+      "promptIntent": "brand",
+      "portfolioBucket": "direct_comparison",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: brand comparison prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-is-retell-ai-a-good-fit-for-support-and-sales-teams-that-need-call-automation-for-support-sales-and-appointment-booking",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Is Retell AI a good fit for support and sales teams that need call automation for support, sales, and appointment booking?",
+      "buyerJob": "Strategy coverage: brand-fit prompt.",
+      "source": "purchase",
+      "promptIntent": "brand",
+      "portfolioBucket": "brand_evaluation",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: brand-fit prompt. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 5, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-elevenlabs-for-ai-voice-agent-platforms",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the best alternatives to ElevenLabs for AI voice agent platforms?",
+      "buyerJob": "Strategy coverage: competitor alternative prompt.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-synthflow-for-ai-voice-agent-platforms",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the best alternatives to Synthflow for AI voice agent platforms?",
+      "buyerJob": "Strategy coverage: competitor alternative prompt.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-thoughtly-for-ai-voice-agent-platforms",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the best alternatives to Thoughtly for AI voice agent platforms?",
+      "buyerJob": "Strategy coverage: competitor alternative prompt.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-vapi-for-ai-phone-agents",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the best alternatives to Vapi for AI phone agents?",
+      "buyerJob": "Compare known AI voice agent platforms and choose which one fits the team.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Captures competitor-led discovery behavior and expands beyond brand-first search. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-what-are-the-best-alternatives-to-vapi-for-ai-voice-agent-platforms",
+      "group": "competitor_comparison",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the best alternatives to Vapi for AI voice agent platforms?",
+      "buyerJob": "Strategy coverage: competitor alternative prompt.",
+      "source": "competitor",
+      "promptIntent": "competitor",
+      "portfolioBucket": "competitor_alternative",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Strategy coverage: competitor alternative prompt. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "competitor-comparison-which-is-easier-to-launch-for-a-support-team-retell-ai-or-vapi",
+      "group": "competitor_comparison",
+      "journeyPhase": "decision",
+      "prompt": "Which is easier to launch for a support team, Retell AI or Vapi?",
+      "buyerJob": "Choose an AI phone agent platform to try, demo, or buy.",
+      "source": "competitor",
+      "promptIntent": "brand",
+      "portfolioBucket": "direct_comparison",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 5,
+        "assetOpportunity": 5
+      },
+      "totalScore": 27,
+      "rationale": "LLM rationale: Decision-stage framing emphasizes speed to deploy, a common purchase trigger. Selected candidate for competitor_comparison. It tests a competitor-shaped evaluation gap. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 5, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-which-ai-voice-agent-platform-should-i-demo-first-for-inbound-support-and-appointment-booking",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Which AI voice agent platform should I demo first for inbound support and appointment booking?",
+      "buyerJob": "Choose an AI phone agent platform to try, demo, or buy.",
+      "source": "purchase",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 5
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Strong decision-stage prompt aligned to the conversion goal of booking a demo. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 5."
+    },
+    {
+      "id": "category-search-which-ai-voice-agent-platforms-help-support-and-sales-teams-with-call-automation-for-support-sales-and-appointment-booking",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "Which AI voice agent platforms help support and sales teams with call automation for support, sales, and appointment booking?",
+      "buyerJob": "Strategy coverage: neutral category prompt.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 5,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 26,
+      "rationale": "LLM rationale: Strategy coverage: neutral category prompt. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 5, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "high-intent-purchase-how-do-i-choose-the-right-ai-phone-agent-platform-for-support-and-sales-teams",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "How do I choose the right AI phone agent platform for support and sales teams?",
+      "buyerJob": "Choose an AI phone agent platform to try, demo, or buy.",
+      "source": "purchase",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 25,
+      "rationale": "LLM rationale: Uses ICP language and sits squarely at the purchase-decision stage. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "category-search-which-ai-phone-agent-platforms-are-best-for-support-sales-and-appointment-booking",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "Which AI phone agent platforms are best for support, sales, and appointment booking?",
+      "buyerJob": "Discover AI voice agent platforms for automating business phone calls.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 25,
+      "rationale": "LLM rationale: Directly reflects the buyerLanguage useCaseNoun and primary use cases. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "high-intent-purchase-is-retell-ai-a-good-fit-for-automating-customer-support-calls-and-lead-qualification",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "Is Retell AI a good fit for automating customer support calls and lead qualification?",
+      "buyerJob": "Choose an AI phone agent platform to try, demo, or buy.",
+      "source": "purchase",
+      "promptIntent": "brand",
+      "portfolioBucket": "brand_evaluation",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 24,
+      "rationale": "LLM rationale: Allowed brand-specific fit check tied to explicit use cases in the strategy. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "high-intent-purchase-what-should-i-compare-before-starting-a-free-trial-of-an-ai-phone-agent-platform",
+      "group": "high_intent_purchase",
+      "journeyPhase": "decision",
+      "prompt": "What should I compare before starting a free trial of an AI phone agent platform?",
+      "buyerJob": "Choose an AI phone agent platform to try, demo, or buy.",
+      "source": "purchase",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
+      "score": {
+        "buyerIntent": 5,
+        "commercialCloseness": 5,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 5
+      },
+      "totalScore": 24,
+      "rationale": "LLM rationale: Directly tied to the conversion action and realistic for answer-engine behavior. Selected candidate for high_intent_purchase. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 5, commercial closeness 5, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 5."
+    },
+    {
+      "id": "category-search-what-are-the-best-ai-voice-agent-platforms-for-automating-business-phone-calls",
+      "group": "category_search",
+      "journeyPhase": "consideration",
+      "prompt": "What are the best AI voice agent platforms for automating business phone calls?",
+      "buyerJob": "Discover AI voice agent platforms for automating business phone calls.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "LLM rationale: High-relevance category search prompt using the exact category language from strategy. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "category-search-which-ai-voice-agent-platforms-are-most-reliable-for-inbound-support-and-outbound-calling",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "Which AI voice agent platforms are most reliable for inbound support and outbound calling?",
+      "buyerJob": "Discover AI voice agent platforms for automating business phone calls.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 23,
+      "rationale": "LLM rationale: Moves from generic discovery to shortlist evaluation with reliability as a decision factor. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "solution-aware-how-do-ai-voice-agent-platforms-handle-call-automation-for-support-sales-and-appointment-booking",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "How do AI voice agent platforms handle call automation for support, sales, and appointment booking?",
+      "buyerJob": "Strategy coverage: workflow understanding prompt.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 22,
+      "rationale": "LLM rationale: Strategy coverage: workflow understanding prompt. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "category-search-what-are-the-top-ai-voice-agent-platforms-for-scaling-phone-operations-without-adding-headcount",
+      "group": "category_search",
+      "journeyPhase": "evaluation",
+      "prompt": "What are the top AI voice agent platforms for scaling phone operations without adding headcount?",
+      "buyerJob": "Choose an AI phone agent platform to try, demo, or buy.",
+      "source": "category",
+      "promptIntent": "neutral",
+      "portfolioBucket": "category_best_tool",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Strong commercial framing tied to the core operational pain in the strategy. Selected candidate for category_search. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-what-should-a-contact-center-team-look-for-when-rolling-out-an-ai-voice-agent-platform",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "What should a contact center team look for when rolling out an AI voice agent platform?",
+      "buyerJob": "Prepare an AI voice agent rollout with telephony, CRM, and workflow integrations.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "implementation",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 4,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 3
+      },
+      "totalScore": 21,
+      "rationale": "LLM rationale: Targets contact center teams specifically and keeps the prompt neutral and practical. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 4, product fit 5, competitive likelihood 2, asset opportunity 3."
+    },
+    {
+      "id": "solution-aware-can-an-ai-phone-agent-handle-call-transfers-appointment-booking-and-real-time-system-updates",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "Can an AI phone agent handle call transfers, appointment booking, and real-time system updates?",
+      "buyerJob": "Understand whether AI phone agents can handle realistic call workflows.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Maps to specific workflow complexity concerns named in buyer jobs and use cases. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-how-can-support-and-sales-teams-handle-more-phone-calls-without-adding-headcount",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "How can support and sales teams handle more phone calls without adding headcount?",
+      "buyerJob": "Find a way to handle more customer calls without hiring more agents.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 3,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Uses the ICP's core pain language around scaling phone operations without adding headcount. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-how-can-support-and-sales-teams-scale-phone-operations-without-adding-headcount",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "How can support and sales teams scale phone operations without adding headcount?",
+      "buyerJob": "Strategy coverage: core pain prompt.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 3,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Strategy coverage: core pain prompt. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "integration-use-case-how-do-ai-phone-agent-platforms-integrate-with-telephony-systems-crms-and-workflow-tools",
+      "group": "integration_use_case",
+      "journeyPhase": "consideration",
+      "prompt": "How do AI phone agent platforms integrate with telephony systems, CRMs, and workflow tools?",
+      "buyerJob": "Prepare an AI voice agent rollout with telephony, CRM, and workflow integrations.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "implementation",
+      "score": {
+        "buyerIntent": 3,
+        "commercialCloseness": 4,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 3,
+        "assetOpportunity": 3
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Uses integration language from the buyer job and fits rollout planning behavior. Selected candidate for integration_use_case. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 3, commercial closeness 4, ICP fit 2, product fit 5, competitive likelihood 3, asset opportunity 3."
+    },
+    {
+      "id": "solution-aware-how-do-ai-voice-agents-handle-edge-cases-in-customer-support-and-sales-calls",
+      "group": "solution_aware",
+      "journeyPhase": "consideration",
+      "prompt": "How do AI voice agents handle edge cases in customer support and sales calls?",
+      "buyerJob": "Understand whether AI phone agents can handle realistic call workflows.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "use_case_fit",
+      "score": {
+        "buyerIntent": 4,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Reflects realistic due diligence about call quality and edge-case handling. Selected candidate for solution_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 4, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 2, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-what-is-the-best-way-to-automate-customer-support-calls-for-a-growing-team",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "What is the best way to automate customer support calls for a growing team?",
+      "buyerJob": "Find a way to handle more customer calls without hiring more agents.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 2,
+        "productFit": 5,
+        "competitiveLikelihood": 4,
+        "assetOpportunity": 4
+      },
+      "totalScore": 20,
+      "rationale": "LLM rationale: Natural early-stage question tied to inbound support automation use case. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 2, product fit 5, competitive likelihood 4, asset opportunity 4."
+    },
+    {
+      "id": "problem-aware-can-ai-phone-agents-reduce-call-volume-for-support-teams-without-hurting-customer-experience",
+      "group": "problem_aware",
+      "journeyPhase": "awareness",
+      "prompt": "Can AI phone agents reduce call volume for support teams without hurting customer experience?",
+      "buyerJob": "Find a way to handle more customer calls without hiring more agents.",
+      "source": "buyer_job",
+      "promptIntent": "neutral",
+      "portfolioBucket": "neutral_discovery",
+      "score": {
+        "buyerIntent": 2,
+        "commercialCloseness": 3,
+        "icpFit": 3,
+        "productFit": 5,
+        "competitiveLikelihood": 2,
+        "assetOpportunity": 4
+      },
+      "totalScore": 19,
+      "rationale": "LLM rationale: Frames adoption around a common operational concern: efficiency versus customer experience. Selected candidate for problem_aware. It maps to a buyer job and can be rechecked after an asset is shipped. Scores: buyer intent 2, commercial closeness 3, ICP fit 3, product fit 5, competitive likelihood 2, asset opportunity 4."
+    }
+  ]
+}

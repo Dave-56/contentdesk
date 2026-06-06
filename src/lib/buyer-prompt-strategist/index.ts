@@ -6,24 +6,77 @@ import {
   llmBuyerPromptCandidateSchema,
   type BuyerPromptCandidate,
   type BuyerPromptPortfolio,
-  type DiscoveredBuyerPromptCandidate,
   type LlmBuyerPromptCandidate,
+  type PromptPortfolioBucket,
+  type PromptPortfolioIntent,
   type BuyerPromptStrategyInput,
   type PromptQualityScore,
 } from "@/lib/buyer-prompt-strategist/schemas";
 import type { PromptGroup, PromptInput } from "@/lib/prompt-scan/schemas";
 
 const DEFAULT_SELECTION_RULE =
-  "Cover the journey, but overweight prompts closest to purchase, competitor comparison, and realistic asset opportunities.";
+  "Discovery baseline: market demand questions by bucket; no brand evaluation or direct comparison prompts.";
 
-const GROUP_TARGETS_10: Record<PromptGroup, number> = {
-  problem_aware: 1,
-  category_search: 2,
-  solution_aware: 1,
-  integration_use_case: 1,
-  competitor_comparison: 3,
-  high_intent_purchase: 2,
-};
+const BRAND_EVALUATION_SELECTION_RULE =
+  "Brand/evaluation: brand-fit and competitor comparison prompts for later trust and decision scans.";
+
+const MIN_SELECTABLE_JOB_FIT = 13;
+
+const DISCOVERY_BUCKET_TARGETS = {
+  neutral_discovery: 3,
+  category_best_tool: 2,
+  use_case_fit: 2,
+  competitor_alternative: 2,
+  implementation: 1,
+  brand_evaluation: 0,
+  direct_comparison: 0,
+} satisfies Record<PromptPortfolioBucket, number>;
+
+const DISCOVERY_BUCKET_CAPS = {
+  neutral_discovery: 10,
+  category_best_tool: 10,
+  use_case_fit: 10,
+  competitor_alternative: 3,
+  implementation: 3,
+  brand_evaluation: 0,
+  direct_comparison: 0,
+} satisfies Record<PromptPortfolioBucket, number>;
+
+const BRAND_EVALUATION_BUCKET_TARGETS = {
+  neutral_discovery: 0,
+  category_best_tool: 1,
+  use_case_fit: 1,
+  competitor_alternative: 3,
+  implementation: 0,
+  brand_evaluation: 3,
+  direct_comparison: 2,
+} satisfies Record<PromptPortfolioBucket, number>;
+
+const BRAND_EVALUATION_BUCKET_CAPS = {
+  neutral_discovery: 1,
+  category_best_tool: 2,
+  use_case_fit: 2,
+  competitor_alternative: 10,
+  implementation: 1,
+  brand_evaluation: 10,
+  direct_comparison: 10,
+} satisfies Record<PromptPortfolioBucket, number>;
+
+const DISCOVERY_BUCKET_ORDER: PromptPortfolioBucket[] = [
+  "neutral_discovery",
+  "category_best_tool",
+  "use_case_fit",
+  "competitor_alternative",
+  "implementation",
+];
+
+const BRAND_EVALUATION_BUCKET_ORDER: PromptPortfolioBucket[] = [
+  "brand_evaluation",
+  "direct_comparison",
+  "competitor_alternative",
+  "category_best_tool",
+  "use_case_fit",
+];
 
 type BuyerPromptCandidateDraft =
   Omit<BuyerPromptCandidate, "score" | "totalScore" | "rationale"> & {
@@ -54,7 +107,6 @@ export function buildBuyerPromptPortfolio(input: {
   strategy: BuyerPromptStrategyInput;
   generatedAt?: Date;
   allowManualReview?: boolean;
-  discoveredCandidates?: DiscoveredBuyerPromptCandidate[];
   candidateGenerator?: BuyerPromptCandidateGenerator;
 }): Promise<BuyerPromptPortfolio> {
   return buildBuyerPromptPortfolioAsync(input);
@@ -64,7 +116,6 @@ export async function buildBuyerPromptPortfolioAsync(input: {
   strategy: BuyerPromptStrategyInput;
   generatedAt?: Date;
   allowManualReview?: boolean;
-  discoveredCandidates?: DiscoveredBuyerPromptCandidate[];
   candidateGenerator?: BuyerPromptCandidateGenerator;
 }) {
   if (!input.allowManualReview) {
@@ -75,18 +126,22 @@ export async function buildBuyerPromptPortfolioAsync(input: {
   }
 
   const generatedAt = input.generatedAt ?? new Date();
-  const candidateGenerator =
-    input.candidateGenerator ??
-    (input.discoveredCandidates
-      ? async () => discoveredCandidateDrafts(input.discoveredCandidates ?? [])
-      : generateBuyerPromptCandidates);
-  const candidates = (await candidateGenerator(input.strategy))
+  const candidateGenerator = input.candidateGenerator ?? generateBuyerPromptCandidates;
+  const generatedCandidates = ensureStrategyCoverage(
+    dedupeCandidates(await candidateGenerator(input.strategy)),
+    input.strategy,
+  ).filter((candidate) =>
+    promptQualityIssues(candidate.prompt, input.strategy).length === 0
+  );
+  const candidates = dedupeCandidates(generatedCandidates)
     .map((candidate) => scoreCandidate(candidate, input.strategy))
     .sort(sortCandidates);
-  const selectedCandidates = selectPromptPortfolio({
+  const promptSets = buildPromptSets({
     candidates,
+    strategy: input.strategy,
     portfolioSize: input.strategy.portfolioSize,
   });
+  const selectedCandidates = promptSets.discoveryBaseline.selectedCandidates;
   const selectedPrompts = selectedCandidates.map<PromptInput>((candidate) => ({
     id: candidate.id,
     group: candidate.group,
@@ -100,6 +155,7 @@ export async function buildBuyerPromptPortfolioAsync(input: {
     selectionRule: DEFAULT_SELECTION_RULE,
     selectedPrompts,
     selectedCandidates,
+    promptSets,
     candidates,
   });
 }
@@ -120,7 +176,7 @@ export async function generateBuyerPromptCandidates(
 
   const candidates = output.candidates.map(candidateFromLlm);
 
-  return dedupeCandidates(candidates).filter((candidate) =>
+  return dedupeCandidates(candidates.map(normalizeCandidatePrompt)).filter((candidate) =>
     promptQualityIssues(candidate.prompt, strategy).length === 0
   );
 }
@@ -146,6 +202,11 @@ function buyerPromptCandidatePrompt(strategy: BuyerPromptStrategyInput) {
     "- Use ICP language from buyerLanguage and buyerJobs.",
     "- Prompts must be realistic questions a buyer would ask ChatGPT, Perplexity, Google AI, or Claude.",
     "- Avoid formulaic noun stuffing.",
+    "- Generate mostly neutral buyer prompts that do not mention the brand.",
+    "- Brand-name prompts are allowed only for explicit fit, install, or comparison checks.",
+    "- Competitor prompts should include alternatives/comparisons buyers might ask before knowing the brand.",
+    "- Include at least one competitor prompt for each credible competitor, up to 4 competitors.",
+    "- Target mix in candidates: 12-15 neutral, 4-6 competitor/comparison, 2-4 brand-specific.",
     "",
     "Prompt group mapping:",
     "- awareness: problem_aware",
@@ -172,6 +233,236 @@ function candidateFromLlm(candidate: LlmBuyerPromptCandidate): BuyerPromptCandid
   };
 }
 
+function normalizeCandidatePrompt(
+  candidate: BuyerPromptCandidateDraft,
+): BuyerPromptCandidateDraft {
+  const prompt = candidate.prompt
+    .replace(/\bappss\b/gi, "apps")
+    .replace(/\btoolss\b/gi, "tools")
+    .replace(/\bgeneratorss\b/gi, "generators")
+    .replace(/\bplatformss\b/gi, "platforms");
+  if (prompt === candidate.prompt) return candidate;
+
+  return {
+    ...candidate,
+    id: slug(`${candidate.group} ${prompt}`),
+    prompt,
+  };
+}
+
+function ensureStrategyCoverage(
+  candidates: BuyerPromptCandidateDraft[],
+  strategy: BuyerPromptStrategyInput,
+) {
+  return [
+    ...candidates,
+    ...strategyLedCoverageCandidates(strategy),
+  ].map(normalizeCandidatePrompt);
+}
+
+function strategyLedCoverageCandidates(
+  strategy: BuyerPromptStrategyInput,
+): BuyerPromptCandidateDraft[] {
+  const buyer = strategy.buyerLanguage?.buyerNoun ?? strategy.audience;
+  const category = pluralizePromptNoun(
+    strategy.buyerLanguage?.categoryNoun ?? strategy.category,
+  );
+  const useCase =
+    strategy.buyerLanguage?.useCaseNoun ??
+    strategy.primaryUseCases[0] ??
+    strategy.category;
+  const pain = strategy.buyerLanguage?.painNoun ?? strategy.buyerJobs[0]?.pain;
+  const comparison = comparisonTopic(strategy);
+  const competitorNames = strategy.competitors.slice(0, 4).map((item) => item.name);
+  const prompts: BuyerPromptCandidateDraft[] = [
+    strategyCandidate(
+      "problem_aware",
+      "awareness",
+      problemPromptForStrategy({ buyer, pain, category, useCase, strategy }),
+      "buyer_job",
+      "Strategy coverage: core pain prompt.",
+    ),
+    strategyCandidate(
+      "category_search",
+      "consideration",
+      `Which ${category} help ${buyer} with ${useCase}?`,
+      "category",
+      "Strategy coverage: neutral category prompt.",
+    ),
+    strategyCandidate(
+      "solution_aware",
+      "consideration",
+      `How do ${category} handle ${useCase}?`,
+      "buyer_job",
+      "Strategy coverage: workflow understanding prompt.",
+    ),
+    strategyCandidate(
+      "integration_use_case",
+      "consideration",
+      `How should ${buyer} use ${useCase} on Shopify product pages?`,
+      "buyer_job",
+      "Strategy coverage: integration prompt.",
+    ),
+  ];
+
+  for (const competitor of competitorNames) {
+    prompts.push(
+      strategyCandidate(
+        "competitor_comparison",
+        "evaluation",
+        `What are the best alternatives to ${competitor} for ${comparison}?`,
+        "competitor",
+        "Strategy coverage: competitor alternative prompt.",
+      ),
+    );
+  }
+
+  if (competitorNames[0]) {
+    prompts.push(
+      strategyCandidate(
+        "competitor_comparison",
+        "evaluation",
+        `How does ${strategy.brand.name} compare with ${competitorNames[0]} for ${comparison}?`,
+        "competitor",
+        "Strategy coverage: brand comparison prompt.",
+      ),
+    );
+  }
+
+  prompts.push(
+    strategyCandidate(
+      "high_intent_purchase",
+      "decision",
+      `Is ${strategy.brand.name} a good fit for ${buyer} that need ${useCase}?`,
+      "purchase",
+      "Strategy coverage: brand-fit prompt.",
+    ),
+  );
+
+  return prompts.filter((candidate) =>
+    promptQualityIssues(candidate.prompt, strategy).length === 0
+  );
+}
+
+function problemPromptForStrategy(input: {
+  buyer: string;
+  pain: string | undefined;
+  category: string;
+  useCase: string;
+  strategy: BuyerPromptStrategyInput;
+}) {
+  const pain =
+    input.pain ??
+    input.strategy.buyerJobs[0]?.pain ??
+    input.useCase ??
+    input.category;
+  const domainText = [
+    input.category,
+    input.useCase,
+    pain,
+    input.buyer,
+    ...input.strategy.primaryUseCases,
+  ].join(" ").toLowerCase();
+
+  if (isPhotoStrategyText(domainText)) {
+    return `How can ${input.buyer} get professional product photos without ${formatPainAsConstraint(pain)}?`;
+  }
+
+  if (/\b(stock act|disclosure|disclosures|filing|filings|trade|trades|tracking|alerts?)\b/.test(domainText)) {
+    const trackingObject = pain.replace(/\btracking\b/gi, "").replace(/\s+/g, " ").trim();
+    return `How can ${input.buyer} track ${trackingObject || pain} without manually checking filings every day?`;
+  }
+
+  if (/\bwithout\b/i.test(pain)) {
+    return `How can ${input.buyer} ${formatPainAsTask(pain)}?`;
+  }
+
+  return `How can ${input.buyer} solve ${pain} without manual work?`;
+}
+
+function strategyCandidate(
+  group: BuyerPromptCandidateDraft["group"],
+  journeyPhase: BuyerPromptCandidateDraft["journeyPhase"],
+  prompt: string,
+  source: BuyerPromptCandidateDraft["source"],
+  llmRationale: string,
+): BuyerPromptCandidateDraft {
+  return {
+    id: slug(`${group} ${prompt}`),
+    group,
+    journeyPhase,
+    prompt,
+    buyerJob: llmRationale,
+    source,
+    llmRationale,
+  };
+}
+
+function pluralizePromptNoun(value: string) {
+  if (/\b(apps|tools|generators|platforms)\b/i.test(value)) return value;
+  if (/\b(app|tool|generator|platform)\b/i.test(value)) {
+    return value.replace(/\b(app|tool|generator|platform)\b/gi, (match) => {
+      const lower = match.toLowerCase();
+      if (lower === "app") return "apps";
+      if (lower === "tool") return "tools";
+      if (lower === "generator") return "generators";
+      return "platforms";
+    });
+  }
+
+  return value;
+}
+
+function formatPainAsConstraint(value: string | undefined) {
+  if (!value) return "a traditional photoshoot";
+  return value.replace(/^no\s+/i, "a ");
+}
+
+function formatPainAsTask(value: string) {
+  return value
+    .replace(/^automating\b/i, "automate")
+    .replace(/^choosing\b/i, "choose")
+    .replace(/^comparing\b/i, "compare")
+    .replace(/^connecting\b/i, "connect")
+    .replace(/^finding\b/i, "find")
+    .replace(/^getting\b/i, "get")
+    .replace(/^handling\b/i, "handle")
+    .replace(/^managing\b/i, "manage")
+    .replace(/^preparing\b/i, "prepare")
+    .replace(/^scaling\b/i, "scale")
+    .replace(/^understanding\b/i, "understand");
+}
+
+function comparisonTopic(strategy: BuyerPromptStrategyInput) {
+  const candidates = [
+    strategy.buyerLanguage?.comparisonNoun,
+    strategy.buyerLanguage?.useCaseNoun,
+    strategy.buyerLanguage?.productNoun,
+    strategy.category,
+    ...strategy.primaryUseCases,
+  ].filter((value): value is string => Boolean(value));
+  const clean = candidates
+    .map(sanitizeComparisonTopic)
+    .find((value) => value.length > 0);
+
+  return clean ?? strategy.category;
+}
+
+function sanitizeComparisonTopic(value: string) {
+  const normalized = value
+    .replace(/\b(product\s+)?photoshoot alternatives?\b/gi, "")
+    .replace(/\balternatives?\b/gi, "")
+    .replace(/\bvs\.?\b/gi, "")
+    .replace(/\bcompare(?:d|s|ing)?\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!normalized) return "";
+  if (/^(for|to|with)\b/i.test(normalized)) return "";
+
+  return normalized;
+}
+
 function promptQualityIssues(prompt: string, strategy: BuyerPromptStrategyInput) {
   const issues: string[] = [];
   if (!prompt.endsWith("?")) issues.push("Prompt must be a question.");
@@ -188,11 +479,41 @@ function promptQualityIssues(prompt: string, strategy: BuyerPromptStrategyInput)
   if (/\bfor\s+(record|install|choose|upgrade|create)\b/i.test(prompt)) {
     issues.push("Prompt contains an ungrammatical verb phrase.");
   }
+  if (/\bfor\s+[^?]*\balternatives?\b/i.test(prompt)) {
+    issues.push("Prompt uses alternatives as the comparison topic.");
+  }
+  if (/\bproduct photoshoot alternatives?\b/i.test(prompt)) {
+    issues.push("Prompt uses awkward product photoshoot alternatives wording.");
+  }
+  if (!isPhotoStrategy(strategy) && /\b(product photos?|photoshoot|model photos?)\b/i.test(prompt)) {
+    issues.push("Prompt uses product-photo wording for a non-photo strategy.");
+  }
   if (/\bteams\s+recording\b/i.test(prompt)) {
     issues.push("Prompt contains clause-like audience wording.");
   }
 
   return issues;
+}
+
+function isPhotoStrategy(strategy: BuyerPromptStrategyInput) {
+  return isPhotoStrategyText([
+    strategy.audience,
+    strategy.category,
+    strategy.positioning,
+    strategy.conversionGoal,
+    strategy.buyerLanguage?.buyerNoun,
+    strategy.buyerLanguage?.categoryNoun,
+    strategy.buyerLanguage?.productNoun,
+    strategy.buyerLanguage?.useCaseNoun,
+    strategy.buyerLanguage?.painNoun,
+    strategy.buyerLanguage?.comparisonNoun,
+    ...strategy.primaryUseCases,
+    ...strategy.buyerJobs.map((job) => `${job.job} ${job.pain}`),
+  ].filter(Boolean).join(" ").toLowerCase());
+}
+
+function isPhotoStrategyText(value: string) {
+  return /\b(photo|photos|image|images|model|models|fashion|apparel|shoot|product page)\b/.test(value);
 }
 
 function scoreCandidate(
@@ -208,53 +529,296 @@ function scoreCandidate(
     competitiveLikelihood: competitiveLikelihoodScore(candidate),
     assetOpportunity: job?.assetOpportunity ?? assetOpportunityScore(candidate.group, strategy),
   };
+  applyPromptQualityPolicy(score, candidate, strategy);
   const totalScore = Object.values(score).reduce((sum, value) => sum + value, 0);
 
   return buyerPromptCandidateSchema.parse({
     ...candidate,
+    promptIntent: candidate.promptIntent ?? classifyPromptIntent(candidate, strategy),
+    portfolioBucket: candidate.portfolioBucket ?? classifyPortfolioBucket(candidate, strategy),
     score,
     totalScore,
     rationale: rationaleForCandidate(candidate, score),
   });
 }
 
-function selectPromptPortfolio(input: {
+function buildPromptSets(input: {
   candidates: BuyerPromptCandidate[];
+  strategy: BuyerPromptStrategyInput;
   portfolioSize: number;
 }) {
-  const targets = scaledTargets(input.portfolioSize);
-  const selected: BuyerPromptCandidate[] = [];
+  const discoveryBaseline = buildPortfolioSet({
+    id: "discovery_baseline",
+    label: "Discovery baseline",
+    selectionRule: DEFAULT_SELECTION_RULE,
+    candidates: input.candidates,
+    strategy: input.strategy,
+    portfolioSize: input.portfolioSize,
+    bucketTargets: scaleBucketTargets(DISCOVERY_BUCKET_TARGETS, input.portfolioSize),
+    bucketCaps: scaleBucketTargets(DISCOVERY_BUCKET_CAPS, input.portfolioSize),
+    bucketOrder: DISCOVERY_BUCKET_ORDER,
+  });
+  const brandEvaluation = buildPortfolioSet({
+    id: "brand_evaluation",
+    label: "Brand/evaluation",
+    selectionRule: BRAND_EVALUATION_SELECTION_RULE,
+    candidates: input.candidates,
+    strategy: input.strategy,
+    portfolioSize: input.portfolioSize,
+    bucketTargets: scaleBucketTargets(BRAND_EVALUATION_BUCKET_TARGETS, input.portfolioSize),
+    bucketCaps: scaleBucketTargets(BRAND_EVALUATION_BUCKET_CAPS, input.portfolioSize),
+    bucketOrder: BRAND_EVALUATION_BUCKET_ORDER,
+  });
 
-  for (const group of Object.keys(targets) as PromptGroup[]) {
-    selected.push(
-      ...input.candidates
-        .filter((candidate) => candidate.group === group)
-        .slice(0, targets[group]),
-    );
-  }
-
-  for (const candidate of input.candidates) {
-    if (selected.length >= input.portfolioSize) break;
-    if (selected.some((item) => item.id === candidate.id)) continue;
-    selected.push(candidate);
-  }
-
-  return selected.sort(sortCandidates);
+  return { discoveryBaseline, brandEvaluation };
 }
 
-function scaledTargets(portfolioSize: number): Record<PromptGroup, number> {
-  if (portfolioSize <= 5) {
-    return {
-      problem_aware: 1,
-      category_search: 1,
-      solution_aware: 0,
-      integration_use_case: 0,
-      competitor_comparison: 2,
-      high_intent_purchase: 1,
-    };
+function buildPortfolioSet(input: {
+  id: "discovery_baseline" | "brand_evaluation";
+  label: string;
+  selectionRule: string;
+  candidates: BuyerPromptCandidate[];
+  strategy: BuyerPromptStrategyInput;
+  portfolioSize: number;
+  bucketTargets: Record<PromptPortfolioBucket, number>;
+  bucketCaps: Record<PromptPortfolioBucket, number>;
+  bucketOrder: PromptPortfolioBucket[];
+}) {
+  const selected: BuyerPromptCandidate[] = [];
+  const selectableCandidates = input.candidates.filter((candidate) =>
+    hasSelectableJobFit(candidate, input.strategy)
+  );
+
+  for (const bucket of input.bucketOrder) {
+    selectByBucket({
+      candidates: selectableCandidates,
+      selected,
+      bucket,
+      target: input.bucketTargets[bucket],
+      cap: input.bucketCaps[bucket],
+    });
   }
 
-  return GROUP_TARGETS_10;
+  for (const bucket of input.bucketOrder) {
+    fillByBucket({
+      candidates: selectableCandidates,
+      selected,
+      bucket,
+      portfolioSize: input.portfolioSize,
+      cap: input.bucketCaps[bucket],
+    });
+  }
+
+  const selectedCandidates = selected.sort(sortCandidates);
+
+  return {
+    id: input.id,
+    label: input.label,
+    selectionRule: input.selectionRule,
+    selectedPrompts: selectedCandidates.map<PromptInput>((candidate) => ({
+      id: candidate.id,
+      group: candidate.group,
+      prompt: candidate.prompt,
+    })),
+    selectedCandidates,
+  };
+}
+
+function selectByBucket(input: {
+  candidates: BuyerPromptCandidate[];
+  selected: BuyerPromptCandidate[];
+  bucket: PromptPortfolioBucket;
+  target: number;
+  cap: number;
+}) {
+  for (const group of preferredGroupsForBucket(input.bucket)) {
+    if (bucketCount(input.selected, input.bucket) >= input.target) break;
+    const candidate = input.candidates.find((item) =>
+      item.portfolioBucket === input.bucket &&
+      item.group === group &&
+      !hasSelected(input.selected, item) &&
+      bucketCount(input.selected, input.bucket) < input.cap
+    );
+    if (candidate) input.selected.push(candidate);
+  }
+
+  fillByBucket({
+    candidates: input.candidates,
+    selected: input.selected,
+    bucket: input.bucket,
+    portfolioSize: input.selected.length + Math.max(
+      0,
+      input.target - bucketCount(input.selected, input.bucket),
+    ),
+    cap: input.cap,
+  });
+}
+
+function fillByBucket(input: {
+  candidates: BuyerPromptCandidate[];
+  selected: BuyerPromptCandidate[];
+  bucket: PromptPortfolioBucket;
+  portfolioSize: number;
+  cap: number;
+}) {
+  for (const candidate of input.candidates) {
+    if (input.selected.length >= input.portfolioSize) break;
+    if (candidate.portfolioBucket !== input.bucket) continue;
+    if (bucketCount(input.selected, input.bucket) >= input.cap) break;
+    if (hasSelected(input.selected, candidate)) continue;
+    input.selected.push(candidate);
+  }
+}
+
+function preferredGroupsForBucket(bucket: PromptPortfolioBucket) {
+  if (bucket === "neutral_discovery") {
+    return ["problem_aware", "category_search"] satisfies PromptGroup[];
+  }
+  if (bucket === "category_best_tool") {
+    return ["category_search", "high_intent_purchase"] satisfies PromptGroup[];
+  }
+  if (bucket === "use_case_fit") {
+    return ["solution_aware", "category_search", "high_intent_purchase"] satisfies PromptGroup[];
+  }
+  if (bucket === "competitor_alternative") {
+    return ["competitor_comparison", "category_search"] satisfies PromptGroup[];
+  }
+  if (bucket === "implementation") {
+    return ["integration_use_case", "solution_aware"] satisfies PromptGroup[];
+  }
+  if (bucket === "brand_evaluation") {
+    return ["high_intent_purchase", "category_search"] satisfies PromptGroup[];
+  }
+  return ["competitor_comparison", "high_intent_purchase"] satisfies PromptGroup[];
+}
+
+function bucketCount(candidates: BuyerPromptCandidate[], bucket: PromptPortfolioBucket) {
+  return candidates.filter((candidate) => candidate.portfolioBucket === bucket).length;
+}
+
+function hasSelected(candidates: BuyerPromptCandidate[], candidate: BuyerPromptCandidate) {
+  return candidates.some((item) => item.id === candidate.id);
+}
+
+function scaleBucketTargets(
+  targets: Record<PromptPortfolioBucket, number>,
+  portfolioSize: number,
+) {
+  if (portfolioSize === 10) return targets;
+
+  const scale = portfolioSize / 10;
+  const scaled = Object.fromEntries(
+    PORTFOLIO_BUCKETS.map((bucket) => [
+      bucket,
+      Math.floor(targets[bucket] * scale),
+    ]),
+  ) as Record<PromptPortfolioBucket, number>;
+  for (const bucket of PORTFOLIO_BUCKETS) {
+    if (targets[bucket] > 0 && scaled[bucket] === 0) scaled[bucket] = 1;
+  }
+  while (Object.values(scaled).reduce((sum, value) => sum + value, 0) > portfolioSize) {
+    const bucket = [...PORTFOLIO_BUCKETS]
+      .sort((left, right) => scaled[right] - scaled[left])[0];
+    scaled[bucket] -= 1;
+  }
+  while (Object.values(scaled).reduce((sum, value) => sum + value, 0) < portfolioSize) {
+    const bucket = [...PORTFOLIO_BUCKETS]
+      .filter((item) => targets[item] > 0)
+      .sort((left, right) => targets[right] - targets[left])[0];
+    if (!bucket) break;
+    scaled[bucket] += 1;
+  }
+
+  return scaled;
+}
+
+function classifyPromptIntent(
+  candidate: Pick<BuyerPromptCandidateDraft, "prompt" | "group" | "source">,
+  strategy: BuyerPromptStrategyInput,
+): PromptPortfolioIntent {
+  const prompt = normalizeSearchText(candidate.prompt);
+  const brandTerms = [strategy.brand.name, ...strategy.brand.aliases]
+    .map(normalizeSearchText)
+    .filter(Boolean);
+  if (brandTerms.some((term) => prompt.includes(term))) return "brand";
+
+  const competitorTerms = strategy.competitors
+    .flatMap((competitor) => [competitor.name, ...competitor.aliases])
+    .map(normalizeSearchText)
+    .filter(Boolean);
+  if (
+    candidate.group === "competitor_comparison" ||
+    candidate.source === "competitor" ||
+    competitorTerms.some((term) => prompt.includes(term))
+  ) {
+    return "competitor";
+  }
+
+  return "neutral";
+}
+
+function classifyPortfolioBucket(
+  candidate: Pick<BuyerPromptCandidateDraft, "prompt" | "group" | "source">,
+  strategy: BuyerPromptStrategyInput,
+): PromptPortfolioBucket {
+  const prompt = normalizeSearchText(candidate.prompt);
+  const brandMentioned = [strategy.brand.name, ...strategy.brand.aliases]
+    .map(normalizeSearchText)
+    .filter(Boolean)
+    .some((brand) => prompt.includes(brand));
+  const competitorCount = matchedCompetitors(prompt, strategy).length;
+
+  if (isDirectComparisonPrompt(prompt, brandMentioned, competitorCount)) {
+    return "direct_comparison";
+  }
+  if (brandMentioned) return "brand_evaluation";
+  if (competitorCount > 0 || candidate.group === "competitor_comparison") {
+    return "competitor_alternative";
+  }
+  if (candidate.group === "problem_aware") return "neutral_discovery";
+  if (candidate.group === "integration_use_case" || /\b(publish|install|setup|prepare|shopify product pages?)\b/.test(prompt)) {
+    return "implementation";
+  }
+  if (candidate.group === "category_search") return "category_best_tool";
+  if (candidate.group === "solution_aware" || hasUseCaseLanguage(prompt, strategy)) {
+    return "use_case_fit";
+  }
+  if (
+    candidate.group === "high_intent_purchase" ||
+    /\b(best|which|app|apps|tool|tools|software|platform)\b/.test(prompt)
+  ) {
+    return "category_best_tool";
+  }
+
+  return "neutral_discovery";
+}
+
+function isDirectComparisonPrompt(
+  normalizedPrompt: string,
+  brandMentioned: boolean,
+  competitorCount: number,
+) {
+  if (competitorCount >= 2) return true;
+  if (brandMentioned && competitorCount >= 1) return true;
+
+  return competitorCount >= 1 &&
+    /\b(compare|compares|compared|comparison|vs|versus|better than|better for)\b/.test(
+      normalizedPrompt,
+    );
+}
+
+function hasUseCaseLanguage(
+  normalizedPrompt: string,
+  strategy: BuyerPromptStrategyInput,
+) {
+  const useCaseTerms = [
+    strategy.buyerLanguage?.useCaseNoun,
+    ...strategy.primaryUseCases,
+  ]
+    .filter((value): value is string => Boolean(value))
+    .flatMap((value) => [...tokenSet(value)]);
+
+  return useCaseTerms.some((term) => normalizedPrompt.includes(term));
 }
 
 function buyerIntentScore(candidate: Pick<BuyerPromptCandidate, "group" | "prompt">) {
@@ -310,6 +874,18 @@ function competitiveLikelihoodScore(candidate: Pick<BuyerPromptCandidate, "group
   return 2;
 }
 
+function applyPromptQualityPolicy(
+  score: PromptQualityScore,
+  candidate: BuyerPromptCandidateDraft,
+  strategy: BuyerPromptStrategyInput,
+) {
+  if (isCompetitorVsCompetitorPrompt(candidate.prompt, strategy)) {
+    score.icpFit = Math.max(1, score.icpFit - 1);
+    score.productFit = Math.max(1, score.productFit - 2);
+    score.assetOpportunity = Math.max(1, score.assetOpportunity - 1);
+  }
+}
+
 function assetOpportunityScore(
   group: PromptGroup,
   strategy: BuyerPromptStrategyInput,
@@ -340,18 +916,12 @@ function assetOpportunityScore(
 function rationaleForCandidate(
   candidate: Pick<
     BuyerPromptCandidateDraft,
-    "group" | "source" | "llmRationale" | "evidenceQuality" | "demandEvidence"
+    "group" | "source" | "llmRationale"
   >,
   score: PromptQualityScore,
 ) {
   return [
     candidate.llmRationale ? `LLM rationale: ${candidate.llmRationale}` : "",
-    candidate.evidenceQuality
-      ? `Demand evidence: ${candidate.evidenceQuality}; ${(candidate.demandEvidence ?? [])
-        .map((item) => `${item.sourceType} "${item.evidenceText}"`)
-        .slice(0, 3)
-        .join("; ")}.`
-      : "",
     `Selected candidate for ${candidate.group}.`,
     candidate.source === "competitor"
       ? "It tests a competitor-shaped evaluation gap."
@@ -382,40 +952,72 @@ function hasUnknownOrMissingAsset(
 
 function sortCandidates(left: BuyerPromptCandidate, right: BuyerPromptCandidate) {
   if (right.totalScore !== left.totalScore) return right.totalScore - left.totalScore;
-  const evidenceDelta = evidenceRank(right.evidenceQuality) - evidenceRank(left.evidenceQuality);
-  if (evidenceDelta !== 0) return evidenceDelta;
   return left.prompt.localeCompare(right.prompt);
 }
 
-function discoveredCandidateDrafts(
-  candidates: DiscoveredBuyerPromptCandidate[],
-): BuyerPromptCandidateDraft[] {
-  return candidates
-    .filter((candidate) =>
-      candidate.evidenceQuality === "medium" || candidate.evidenceQuality === "high"
-    )
-    .map((candidate) => ({
-      id: candidate.id,
-      group: candidate.group,
-      journeyPhase: candidate.journeyPhase,
-      prompt: candidate.prompt,
-      buyerJob: candidate.buyerJob,
-      source: candidate.source,
-      rawQuery: candidate.rawQuery,
-      evidenceQuality: candidate.evidenceQuality,
-      serpIntent: candidate.serpIntent,
-      intentMatch: candidate.intentMatch,
-      demandEvidence: candidate.demandEvidence,
-      llmRationale: `Normalized from evidence-backed query: ${candidate.rawQuery}`,
-    }));
+function hasSelectableJobFit(
+  candidate: BuyerPromptCandidate,
+  strategy: BuyerPromptStrategyInput,
+) {
+  if (jobFitScore(candidate.score) < MIN_SELECTABLE_JOB_FIT) return false;
+  if (candidate.promptIntent === "brand" || candidate.promptIntent === "competitor") {
+    return true;
+  }
+
+  return productFitScore(candidate.prompt, strategy) >= 2;
 }
 
-function evidenceRank(quality: BuyerPromptCandidate["evidenceQuality"]) {
-  if (quality === "high") return 3;
-  if (quality === "medium") return 2;
-  if (quality === "low") return 1;
+function jobFitScore(score: PromptQualityScore) {
+  return score.buyerIntent + score.commercialCloseness + score.icpFit + score.productFit;
+}
 
-  return 0;
+function matchedCompetitors(text: string, strategy: BuyerPromptStrategyInput) {
+  return strategy.competitors.flatMap((competitor) => {
+    const names = [competitor.name, ...competitor.aliases]
+      .map(normalizeSearchText)
+      .filter(Boolean);
+    return names.some((name) => text.includes(name))
+      ? [normalizeSearchText(competitor.name)]
+      : [];
+  });
+}
+
+function isCompetitorVsCompetitorPrompt(prompt: string, strategy: BuyerPromptStrategyInput) {
+  const text = normalizeSearchText(prompt);
+  const competitorCount = matchedCompetitors(text, strategy).length;
+  const brandMentioned = [strategy.brand.name, ...strategy.brand.aliases]
+    .map(normalizeSearchText)
+    .some((brand) => brand && text.includes(brand));
+
+  return competitorCount >= 2 && !brandMentioned;
+}
+
+function tokenSet(value: string) {
+  return new Set(
+    normalizeSearchText(value)
+      .split(" ")
+      .map(normalizeToken)
+      .filter((term) => term.length >= 4 && !STOP_WORDS.has(term)),
+  );
+}
+
+function normalizeSearchText(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/\bphotography\b/g, "photo")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function normalizeToken(value: string) {
+  return value
+    .replace(/ies$/g, "y")
+    .replace(
+      /(apps|tools|photos|images|models|brands)$/g,
+      (match) => match.slice(0, -1),
+    )
+    .replace(/s$/g, "");
 }
 
 function dedupeCandidates<T extends { prompt: string }>(candidates: T[]) {
@@ -427,6 +1029,40 @@ function dedupeCandidates<T extends { prompt: string }>(candidates: T[]) {
     return true;
   });
 }
+
+const STOP_WORDS = new Set([
+  "about",
+  "after",
+  "best",
+  "choose",
+  "create",
+  "does",
+  "from",
+  "good",
+  "handle",
+  "help",
+  "into",
+  "should",
+  "that",
+  "their",
+  "them",
+  "turn",
+  "what",
+  "when",
+  "which",
+  "with",
+  "without",
+]);
+
+const PORTFOLIO_BUCKETS: PromptPortfolioBucket[] = [
+  "neutral_discovery",
+  "category_best_tool",
+  "use_case_fit",
+  "competitor_alternative",
+  "implementation",
+  "brand_evaluation",
+  "direct_comparison",
+];
 
 function slug(value: string) {
   return value

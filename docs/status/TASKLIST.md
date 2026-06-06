@@ -1,6 +1,6 @@
 ---
 title: ContentDesk MVP Tasklist
-updated: 2026-06-04
+updated: 2026-06-05
 type: living
 status: current
 ---
@@ -161,6 +161,9 @@ Acceptance:
 - [ ] De-prioritize schema/meta-tag-only AEO recommendations unless tied to a concrete crawl/indexing issue.
 - [ ] Track repeated scan trends and semantic answer stability so citation churn does not trigger noisy recommendations.
 - [ ] Generate page-level work orders: exact page to create/update, H2s to add, examples/proof to include, competitor comparisons to cover, and prompts to re-run.
+- [ ] Preserve exact Reddit/forum thread URL, title, subreddit/community, recency, activity, and cited-comment context in visibility recommendation evidence.
+- [ ] Add community-answer promotability scoring: strong, medium, weak, no-fit; whether to mention the brand; promo risk; suggested angle; CTA strength; skip reason.
+- [ ] Add community reply drafts that disclose affiliation, help first, and mention Tiny Lemon only when the product fit is natural.
 - [ ] Add `shopify_app_store_listing` fix-kit production runner for Slack visibility approvals.
 - [ ] Add `community_answer` and `manual_inspection` production paths for Slack visibility approvals.
 - [ ] Mark provider runs invalid/partial when prompt-level API failures dominate, especially Anthropic low-credit errors.
