@@ -20,6 +20,10 @@ export async function runOpenAiPrompt(input: {
     },
     body: JSON.stringify({
       model: input.model ?? "gpt-5",
+      // Low reasoning effort roughly halves latency (~54s -> ~23s) for grounded
+      // buyer-research answers, keeping runs well under the scan timeout.
+      // (web_search is incompatible with reasoning effort "minimal".)
+      reasoning: { effort: "low" },
       instructions: systemPrompt,
       tools: [{ type: "web_search" }],
       tool_choice: "auto",
