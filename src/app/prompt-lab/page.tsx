@@ -397,6 +397,7 @@ function errorEngine(engine: EngineResult, message: string): EngineResult {
             <div className="ai-prompt-list">
               {questions.map((question) => {
                 const coverage = getCoverage(question);
+                const hasRun = getHasRun(question);
                 const response = getAgentResponse(question);
                 return (
                   <div
@@ -419,8 +420,14 @@ function errorEngine(engine: EngineResult, message: string): EngineResult {
                       <strong>{question.question}</strong>
                       <small>{question.stage}</small>
                     </button>
-                    <span className={`ai-prompt-result ${coverage > 0 ? "has-mention" : ""}`}>
-                      {coverage > 0 ? `${coverage}/${wiredEngineNames.length}` : "Gap"}
+                    <span
+                      className={`ai-prompt-result ${coverage > 0 ? "has-mention" : hasRun ? "is-gap" : ""}`}
+                    >
+                      {coverage > 0
+                        ? `${coverage}/${wiredEngineNames.length}`
+                        : hasRun
+                          ? "Gap"
+                          : "Not tested"}
                     </span>
                     <span className={`ai-agent-state ${response.state}`}>{response.label}</span>
                   </div>
@@ -481,12 +488,16 @@ function getCoverage(question: TestQuestion) {
   return wiredEngineNames.filter((engine) => question.engines[engine].status === "mentioned").length;
 }
 
+function getHasRun(question: TestQuestion) {
+  return wiredEngineNames.some((engine) =>
+    ["mentioned", "missing", "error"].includes(question.engines[engine].status),
+  );
+}
+
 function getAgentResponse(question: TestQuestion): AgentResponse {
   const coverage = getCoverage(question);
   const hasRunningEngine = wiredEngineNames.some((engine) => question.engines[engine].status === "running");
-  const hasRun = wiredEngineNames.some((engine) =>
-    ["mentioned", "missing", "error"].includes(question.engines[engine].status),
-  );
+  const hasRun = getHasRun(question);
   const normalized = question.question.toLowerCase();
 
   if (hasRunningEngine) {
@@ -532,7 +543,7 @@ function getAgentResponse(question: TestQuestion): AgentResponse {
   if (!hasRun) {
     return {
       state: "deciding",
-      label: "Waiting",
+      label: "Needs test",
       title: "Test prompt to get agent response",
       summary: "ContentDesk needs current engine answers before it can prepare the right fix.",
       artifactLabel: "No artifact yet",
