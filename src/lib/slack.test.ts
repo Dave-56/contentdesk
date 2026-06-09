@@ -63,6 +63,15 @@ test("contentdesk teardown command rejects obviously invalid URL input", () => {
   });
 });
 
+test("contentdesk reddit scout command supports manual now syntax", () => {
+  assert.deepEqual(parseContentDeskCommand("reddit-scout"), {
+    mode: "reddit-scout-now",
+  });
+  assert.deepEqual(parseContentDeskCommand("reddit-scout now"), {
+    mode: "reddit-scout-now",
+  });
+});
+
 test("brand profile modal preserves a pending article request", () => {
   const modal = brandProfileModal({
     mode: "create",

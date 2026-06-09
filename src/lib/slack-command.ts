@@ -4,7 +4,8 @@ export type ContentDeskCommand =
   | { mode: "setup" }
   | { mode: "edit-profile" }
   | { mode: "article"; idea: string }
-  | { mode: "reddit-teardown"; websiteUrl: string };
+  | { mode: "reddit-teardown"; websiteUrl: string }
+  | { mode: "reddit-scout-now" };
 
 export function parseContentDeskCommand(text: string): ContentDeskCommand {
   const trimmed = text.trim();
@@ -14,6 +15,9 @@ export function parseContentDeskCommand(text: string): ContentDeskCommand {
   if (normalized === "profile") return { mode: "profile" };
   if (normalized === "setup") return { mode: "setup" };
   if (normalized === "edit-profile") return { mode: "edit-profile" };
+  if (normalized === "reddit-scout" || normalized === "reddit-scout now") {
+    return { mode: "reddit-scout-now" };
+  }
 
   const teardownMatch = /^(?:reddit-teardown|teardown)(?::|\s+)([\s\S]*)$/i.exec(trimmed);
   if (teardownMatch) {

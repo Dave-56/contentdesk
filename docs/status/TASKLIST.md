@@ -1,6 +1,6 @@
 ---
 title: ContentDesk MVP Tasklist
-updated: 2026-06-08
+updated: 2026-06-09
 type: living
 status: current
 ---
@@ -170,6 +170,21 @@ Acceptance:
 - [ ] V2: Add Shopify app entity profile before strategy generation.
 - [ ] V2: Add Shopify asset audit for homepage, App Store listing, docs, blog, alternatives pages, demos, reviews, and community mentions.
 - [ ] V2: Feed asset audit into `strategy.json` instead of using guessed `assetInventory`.
+
+## Phase: Tiny Lemon Reddit Radar
+
+- [x] Add Reddit RSS scout for Tiny Lemon-relevant Shopify/apparel/product-photo posts.
+- [x] Add deterministic keyword/mute prefilter before AI classification.
+- [x] Add AI/deterministic opportunity classification with fit, promo risk, suggested angle, and draft reply.
+- [x] Persist Reddit opportunities and mutes in Postgres.
+- [x] Surface strong/medium Reddit opportunity cards in Slack.
+- [x] Add Slack actions to mark Reddit opportunities replied or skipped.
+- [x] Add production scheduled Trigger task `reddit-opportunity-scout`.
+- [x] Add manual Slack command `/contentdesk reddit-scout now`.
+- [ ] Add manual run completion summary back to Slack.
+- [ ] Add Reddit opportunities dashboard with status, fit, subreddit filters, and draft reply view.
+- [ ] Add mute management UI for keywords and subreddits.
+- [ ] Add operator allowlist or channel guard for manual Reddit Radar runs if Slack noise/token cost grows.
 
 ### P0: Ahrefs Topic Evidence
 

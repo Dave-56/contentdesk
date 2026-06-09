@@ -51,6 +51,7 @@ import {
 } from "@/lib/schemas";
 import { getSlackDefaultMode } from "@/lib/visibility/slack-adapter";
 import type { contentCycle } from "@/trigger/content-cycle";
+import type { redditOpportunityScoutNow } from "@/trigger/reddit-opportunity-scout";
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -70,6 +71,23 @@ app.command("/contentdesk", async ({ ack, command, client }) => {
     commandText: command.text,
   };
   const parsedCommand = parseContentDeskCommand(command.text);
+
+  if (parsedCommand.mode === "reddit-scout-now") {
+    try {
+      const handle = await tasks.trigger<typeof redditOpportunityScoutNow>(
+        "reddit-opportunity-scout-now",
+        { channelId: command.channel_id },
+      );
+      await postCommandEphemeral(client, command, {
+        text: `Reddit Radar run started: ${handle.id}`,
+      });
+    } catch (error) {
+      await postCommandEphemeral(client, command, {
+        text: `I could not start Reddit Radar: ${error instanceof Error ? error.message : String(error)}`,
+      });
+    }
+    return;
+  }
 
   if (parsedCommand.mode === "reddit-teardown") {
     if (!parsedCommand.websiteUrl) {

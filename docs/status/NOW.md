@@ -1,6 +1,6 @@
 ---
 title: NOW — Current Operating Truth
-updated: 2026-06-05
+updated: 2026-06-09
 type: living
 status: current
 read_before: [docs/MAP.md]
@@ -13,9 +13,10 @@ Keep it short and operational. Background goes in `STATUS.md`; the "why" goes in
 
 ## Stage
 Content-production pipeline works end to end (Slack → research → write → QA → visuals →
-PublishKit → Codex handoff). Now building the **bare bones of the visibility layer** —
-the AEO loop that runs buyer prompts, captures citations, scores brand visibility, and
-recommends the next asset.
+PublishKit → Codex handoff). Now building the **bare bones of the visibility layer** and
+Tiny Lemon Reddit Radar — the AEO/community loop that runs buyer prompts, captures
+citations, scores brand visibility, finds relevant Reddit opportunities, and keeps humans
+in the approval loop.
 
 ## Live goal
 Dogfood **Tiny Lemon** (our own Shopify app). Prove ContentDesk measurably lifts Tiny
@@ -26,10 +27,12 @@ multi-provider runs spend API credits and should be intentional. See
 
 ## Non-goals (do NOT chase)
 - GitHub / Codex **publish automation** — handoff stays manual for the MVP.
-- Dashboard / web UI — Slack is the interface.
+- Broad dashboard / web UI — Slack stays the primary interface; small operator views are
+  allowed when they make review/debugging easier.
 - Gemini / Google AI Overviews direct scan — current provider set is Perplexity, OpenAI,
   and Anthropic.
-- New Reddit lead generation / outreach — existing packets are reference, not active work.
+- Automated Reddit posting or cold outreach — Reddit Radar can surface opportunities and
+  draft replies, but humans decide and post.
 - Pricing / billing build — spec'd, not built.
 
 ## Last verified
@@ -167,6 +170,19 @@ multi-provider runs spend API credits and should be intentional. See
   credit is too low, but current output can still record a 0/10 provider run. Fix needed:
   prompt-level provider failures should mark the provider/run invalid or partial, not look
   like real zero visibility.
+- Tiny Lemon Reddit Radar: scheduled Trigger task `reddit-opportunity-scout` monitors
+  configured subreddits by RSS, prefilters by Tiny Lemon-relevant keywords/mutes,
+  classifies and drafts opportunities, stores them in Postgres, and surfaces strong/medium
+  Slack cards with `Mark replied` and `Skip` actions. Socket Mode Slack remains the runtime.
+- Manual Reddit Radar control: `/contentdesk reddit-scout now` triggers
+  `reddit-opportunity-scout-now` with the current Slack channel as override and replies
+  ephemeral with the Trigger run id. The scheduled task stays `reddit-opportunity-scout`
+  because Trigger scheduled-task payloads are schedule metadata.
+- Trigger production deploy on 2026-06-09: version `20260609.4` deployed with 3 detected
+  tasks, including `reddit-opportunity-scout-now`.
+- Verification on 2026-06-09: `npm test -- src/lib/slack.test.ts src/lib/reddit-opportunities/reddit-opportunities.test.ts`
+  passed all repo tests, and `npm run typecheck` passed after adding `/contentdesk
+  reddit-scout now`.
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
   "update repo memory" stop routine.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
@@ -207,14 +223,13 @@ multi-provider runs spend API credits and should be intentional. See
   `alternative_page`, `comparison_page`, and `guide`. Recommendations such as
   `shopify_app_store_listing`, `community_answer`, and `manual_inspection` show in Slack but
   fail closed until fix-kit/reply/inspection production paths exist.
+- Neon password should be rotated because a production DB URL was pasted in chat during the
+  Reddit Radar setup.
 
 ## Next 3 actions
-1. Add production paths for non-article visibility tasks, starting with
+1. Rotate the Neon password used during Reddit Radar setup, then update Railway/Trigger env.
+2. Add a read-only Reddit opportunities dashboard: recent opportunities, status/fit/subreddit
+   filters, why surfaced, suggested angle, and draft reply.
+3. Add production paths for non-article visibility tasks, starting with
    `shopify_app_store_listing` fix kits because the current Tiny Lemon recommendation can
    surface that task type.
-2. Add community-answer promotability scoring for Reddit/forum opportunities: strong,
-   medium, weak, no-fit; include whether Tiny Lemon should be mentioned, promo risk,
-   suggested angle, CTA strength, and draft reply.
-3. Add buyer-question discovery and scoring from demand evidence: Google SERP,
-   autocomplete/PAA, competitor titles, forums/reviews, AI answers, and Search Console when
-   available.
