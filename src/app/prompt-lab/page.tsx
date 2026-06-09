@@ -800,8 +800,11 @@ function AnswerPanel({ onRun, question }: { onRun: () => void; question: TestQue
                   ) : (
                     <EngineSummary result={result} />
                   )}
-                  <CitationChips result={result} label={`${engine} citations`} />
-                  <EngineSourceDetails result={result} />
+                  <CitationChips
+                    result={result}
+                    label={`${engine} citations`}
+                    onMore={() => setSelectedEngine(engine)}
+                  />
                   <div className="ai-answer-card-actions">
                     <button
                       className="ai-btn ai-btn-small ai-btn-secondary"
@@ -928,30 +931,48 @@ function EngineErrorSummary({ result }: { result: EngineResult }) {
   );
 }
 
+const citationChipLimit = 3;
+
 function CitationChips({
   label,
   result,
+  onMore,
 }: {
   label: string;
   result: EngineResult;
+  onMore?: () => void;
 }) {
   const citationChips = citationChipsForResult(result);
+  const visibleChips = citationChips.slice(0, citationChipLimit);
+  const hiddenCount = citationChips.length - visibleChips.length;
 
   return (
     <div className="ai-citations" aria-label={label}>
       {citationChips.length ? (
-        citationChips.map((citation) => (
-          <a
-            href={citation.href}
-            key={citation.key}
-            rel="noreferrer"
-            target="_blank"
-            title={citation.title}
-          >
-            {citation.label}
-            <ExternalLinkIcon />
-          </a>
-        ))
+        <>
+          {visibleChips.map((citation) => (
+            <a
+              href={citation.href}
+              key={citation.key}
+              rel="noreferrer"
+              target="_blank"
+              title={citation.title}
+            >
+              {citation.label}
+              <ExternalLinkIcon />
+            </a>
+          ))}
+          {hiddenCount > 0 ? (
+            <button
+              className="ai-citation-more"
+              onClick={onMore}
+              title="See all sources in the raw answer"
+              type="button"
+            >
+              +{hiddenCount} more
+            </button>
+          ) : null}
+        </>
       ) : (
         <span>{emptyCitationLabel(result.status)}</span>
       )}
@@ -1017,50 +1038,6 @@ function RawSourceList({ sourceRefs }: { sourceRefs: PromptLabSourceRef[] }) {
   );
 }
 
-function EngineSourceDetails({ result }: { result: EngineResult }) {
-  const sourceRefs = sourceRefsForDisplay(result.sourceCitations);
-  const domainFallbacks = uniqueCitationsForDisplay(result.citations);
-
-  if (!sourceRefs.length && !domainFallbacks.length) return null;
-
-  return (
-    <details className="ai-engine-sources">
-      <summary>{sourceRefs.length ? "View all sources" : "View source domains"}</summary>
-      {sourceRefs.length ? (
-        <ol>
-          {sourceRefs.map((source) => (
-            <li key={source.url}>
-              <a
-                href={source.url}
-                rel="noreferrer"
-                target="_blank"
-                title={`Full provider source\n${source.url}`}
-              >
-                [{source.index}] {source.label}
-                <ExternalLinkIcon />
-              </a>
-            </li>
-          ))}
-        </ol>
-      ) : (
-        <>
-          <p>Older run: source URLs were not stored.</p>
-          <ol>
-            {domainFallbacks.map((domain) => (
-              <li key={domain}>
-                <a href={citationUrl(domain)} rel="noreferrer" target="_blank" title={citationUrl(domain)}>
-                  {domainFromCitation(domain)}
-                  <ExternalLinkIcon />
-                </a>
-              </li>
-            ))}
-          </ol>
-        </>
-      )}
-    </details>
-  );
-}
-
 function uniqueCitationsForDisplay(citations: string[]) {
   return [...new Set(citations.map((citation) => citation.trim()).filter(Boolean))];
 }
@@ -1086,12 +1063,15 @@ function sourceCitationChips(sourceRefs: PromptLabSourceRef[]) {
     groups.set(source.label, [...(groups.get(source.label) ?? []), source]);
   }
 
-  return [...groups.entries()].map(([domain, sources]) => ({
-    key: domain,
-    label: sources.length > 1 ? `${domain} (${sources.length})` : domain,
-    href: sources[0].url,
-    title: sources.map((source) => source.url).join("\n"),
-  }));
+  // Rank by citation count (most-cited domain first); ties keep provider order.
+  return [...groups.entries()]
+    .sort((left, right) => right[1].length - left[1].length)
+    .map(([domain, sources]) => ({
+      key: domain,
+      label: sources.length > 1 ? `${domain} (${sources.length})` : domain,
+      href: sources[0].url,
+      title: sources.map((source) => source.url).join("\n"),
+    }));
 }
 
 function emptyCitationLabel(status: EngineStatus) {

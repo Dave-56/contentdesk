@@ -2098,54 +2098,6 @@
   line-height: 1.7;
 }
 
-.ai-engine-sources {
-  margin-top: 10px;
-  color: var(--ai-text-2);
-  font-size: 12.5px;
-}
-
-.ai-engine-sources summary {
-  width: fit-content;
-  color: var(--ai-accent);
-  cursor: pointer;
-  font-weight: 750;
-}
-
-.ai-engine-sources ol {
-  display: grid;
-  gap: 7px;
-  margin: 9px 0 0;
-  padding-left: 0;
-  list-style: none;
-}
-
-.ai-engine-sources li {
-  min-width: 0;
-}
-
-.ai-engine-sources a {
-  display: inline-flex;
-  max-width: 100%;
-  align-items: center;
-  gap: 5px;
-  color: var(--ai-accent);
-  font-weight: 650;
-  overflow-wrap: anywhere;
-  text-decoration: none;
-}
-
-.ai-engine-sources a:hover {
-  text-decoration: underline;
-}
-
-.ai-engine-sources p {
-  min-height: 0;
-  margin: 9px 0 0;
-  color: var(--ai-muted);
-  font-size: 12px;
-  line-height: 1.45;
-}
-
 .ai-answer-card-actions {
   margin-top: 18px;
 }
@@ -2217,6 +2169,30 @@
 
 .ai-citations svg {
   flex-shrink: 0;
+}
+
+.ai-citation-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px dashed var(--ai-border-soft);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ai-muted);
+  padding: 4px 9px;
+  font-size: 12px;
+  line-height: 1.35;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    color 0.15s;
+}
+
+.ai-citation-more:hover {
+  border-color: var(--ai-accent);
+  background: var(--ai-accent-tint);
+  color: var(--ai-accent);
 }
 
 .ai-engine-error {
