@@ -1,104 +1,84 @@
 # ContentDesk
 
 > **New here (human or agent)? Start at [`docs/MAP.md`](docs/MAP.md).** It routes to current
-> status, decisions, strategy, architecture, and the code. For current operating truth go
-> straight to [`docs/status/NOW.md`](docs/status/NOW.md).
+> status, decisions, strategy, architecture, and code. Current operating truth lives in
+> [`docs/status/NOW.md`](docs/status/NOW.md).
 
-ContentDesk is a Slack-first ContentOps Agent Manager for Shopify apps.
+ContentDesk is a Slack-first SEO/AEO operator for lean Shopify app founders.
 
-The MVP promise:
+It finds buyer prompts where competitors get cited by AI/search and the founder does not,
+then turns those gaps into founder-approved, publish-ready content or fix kits.
 
-> ContentDesk helps lean Shopify app teams publish the right search-visible content on their chosen cadence, with founder approval before publishing handoff.
+## Current Focus
 
-Product principle:
-
-> Sell a concrete outcome, not "AI content automation." ContentDesk helps founders get found when merchants search Google or ask AI tools what app to use, without paying for a full SEO suite or handing the blog to unchecked autopilot.
-
-Positioning spec:
-
-> See [`docs/strategy/POSITIONING.md`](docs/strategy/POSITIONING.md) for the AEO market thesis, prompt coverage model, MVP focus, and long-term operator vision.
-
-Architecture spec:
-
-> See [`docs/product/ARCHITECTURE.md`](docs/product/ARCHITECTURE.md) for the system flow, component responsibilities, Recommendation Card layer, Citation Source Analysis layer, and trust-signal truth layer.
-
-This is not a loose multi-agent chat room. It is a deterministic workflow with agent steps. The founder talks to one front-facing Manager Agent in Slack. Specialist agents run behind the scenes and produce structured artifacts.
-
-## Current Scope
-
-Build the workflow that creates a publish-ready content kit. Do not build GitHub or Codex automation yet.
-
-Manual handoff is intentional for the MVP:
+ContentDesk has two connected loops:
 
 ```text
-Founder approves publish kit in Slack
--> ContentDesk generates Codex handoff prompt
--> Founder manually sends kit/prompt to Codex
--> Codex publishes in the website repo
+Visibility loop
+-> infer/review buyer strategy
+-> select buyer prompts
+-> run AI/search visibility scans
+-> synthesize citation + recommendation gaps
+-> recommend next asset or fix
+
+Production loop
+-> founder approves recommendation in Slack
+-> ContentDesk creates content kit or fix kit
+-> QA gate runs
+-> founder approves publish kit
+-> Codex handoff stays manual
 ```
 
-## MVP Stack
+Current dogfood target: **Tiny Lemon**, our own Shopify app. Goal is to prove ContentDesk
+lifts Tiny Lemon's AI-search mentions/citations over a 30-60 day window before selling the
+loop to anyone else.
 
-```text
-Slack App
-+ Trigger.dev
-+ Postgres
-+ OpenAI/Claude
-+ browser/search tool
-+ structured specialist agents
-```
+Operational truth changes often. Read [`docs/status/NOW.md`](docs/status/NOW.md) before
+making product or build decisions.
 
-Optional later:
+## What Is Built
 
-```text
-+ image generation API
-+ screenshot/browser automation
-+ GitHub/Codex integration
-+ AI-search visibility inputs
-```
+- Slack app with `/contentdesk`, profile/setup flows, topic approval, publish-kit approval,
+  and visibility recommendation cards.
+- Durable content-production workflow: research, write, visual plan, editor QA, visual QA,
+  PublishKit, and Codex handoff page.
+- Website-first visibility workflow: infer strategy from a URL, review strategy, generate
+  buyer prompts, run prompt scans, synthesize provider results, and recommend next work.
+- Provider-based prompt execution for Perplexity, OpenAI, Anthropic, and Gemini. Current
+  experiments should still follow [`docs/status/NOW.md`](docs/status/NOW.md).
+- Owned-content inventory crawler for matching recommendations against existing site assets.
+- Postgres artifact/state storage for content cycles and approvals.
 
-## Core Agent Team
+## What Is Not Built
 
-```text
-Manager Agent
-- user-facing Slack interface
-- owns cadence, state, approvals, routing, summaries, final publish-kit QA
+- GitHub/Codex publish automation. Manual handoff is intentional for MVP.
+- Dashboard/web UI. Slack is the control surface.
+- Pricing/billing.
+- Google AI Overviews direct scans.
+- Production runners for every recommendation type. Page/guide-like tasks are supported;
+  app-store listing fixes, community answers, and manual-inspection paths are still work in
+  progress.
 
-Research Strategist
-- finds Shopify-specific content opportunities
-- produces ranked topic briefs with sources
+## Product Shape
 
-SEO Writer
-- creates outline, article draft, title options, meta description, FAQ, CTA, social snippets
+This is not a loose multi-agent chat room. It is a deterministic workflow with agent steps.
+The founder talks to one front-facing Manager Agent in Slack. Specialist agents run behind
+the scenes and produce structured artifacts.
 
-Editor / SEO QA
-- checks quality, search intent, Shopify specificity, supported claims, AI slop, usefulness
+Core principle:
 
-Visual Producer
-- creates a VisualPlan with recommended visuals, placement, purpose, format, alt text, and prompts/instructions
-```
+> Sell a concrete outcome, not "AI content automation." ContentDesk helps founders get found
+> when merchants search Google or ask AI tools what app to use, without paying for a full SEO
+> suite or handing the blog to unchecked autopilot.
 
-## Founder Checkpoints
+Key specs:
 
-Keep Slack interactions minimal:
+- Positioning: [`docs/strategy/POSITIONING.md`](docs/strategy/POSITIONING.md)
+- Architecture: [`docs/product/ARCHITECTURE.md`](docs/product/ARCHITECTURE.md)
+- Roadmap/task log: [`docs/status/TASKLIST.md`](docs/status/TASKLIST.md)
+- Tiny Lemon dogfood: [`docs/dogfood/README.md`](docs/dogfood/README.md)
 
-```text
-1. Pick topic
-2. Review draft / QA issues
-3. Approve publish kit
-```
-
-Everything else should be summarized by the Manager Agent.
-
-## Important Product Principle
-
-The hard part is not making agents talk. The hard part is defining what "good" means for a specific Shopify app.
-
-Start with a Brand Profile before topic generation. Specificity is the product.
-
-## Local Development
-
-ContentDesk uses Bolt for JavaScript with Socket Mode. Local Slack development does not need ngrok or public request URLs, but some Slack workspaces are not eligible for the Slack CLI's next-generation app flow. If `slack login` says the workspace is not eligible, create the Slack app from the dashboard and run the Bolt process directly.
+## Local Setup
 
 Install dependencies:
 
@@ -106,7 +86,7 @@ Install dependencies:
 npm install
 ```
 
-Create a local environment file:
+Create local env:
 
 ```bash
 cp .env.example .env.local
@@ -124,19 +104,30 @@ TRIGGER_PROJECT_REF
 ```
 
 `CONTENTDESK_APP_URL` is used for Slack links back into the local ContentDesk app,
-including Codex handoff pages. For local development, use `http://localhost:3000`.
+including Codex handoff pages. For local development, use:
 
-Optional values for live Research Strategist generation:
+```text
+http://localhost:3000
+```
+
+Optional values for live AI/search work:
+
+```text
+AI_GATEWAY_API_KEY
+CONTENTDESK_AI_MODEL
+PERPLEXITY_API_KEY
+OPENAI_API_KEY
+ANTHROPIC_API_KEY
+GEMINI_API_KEY
+```
+
+Older research flows may also use:
 
 ```text
 PARALLEL_API_KEY
-AI_GATEWAY_API_KEY
-CONTENTDESK_AI_MODEL
 ```
 
-If these are not set, Research Strategist topic generation will stop and post a clear Slack error instead of inventing fallback topics.
-
-Run the database migration in Postgres:
+Start Postgres and run migrations:
 
 ```bash
 npm run db:start
@@ -144,11 +135,16 @@ npm run db:create
 npm run db:migrate
 ```
 
-The local MVP database URL is:
+Local MVP database URL:
 
 ```text
 postgresql://contentdesk@localhost:55432/contentdesk
 ```
+
+## Slack Development
+
+ContentDesk uses Bolt for JavaScript with Socket Mode. Local Slack development does not need
+ngrok or public request URLs.
 
 Create the Slack app:
 
@@ -172,22 +168,77 @@ Start the Slack app locally in another terminal:
 npm run slack:start
 ```
 
-By default, local Slack commands execute the workflow kickoff directly with `CONTENTDESK_WORKFLOW_DRIVER=local`. Set `CONTENTDESK_WORKFLOW_DRIVER=trigger` when you want `/contentdesk` to dispatch through Trigger.dev instead.
-
-The app exposes:
+Default local workflow driver:
 
 ```text
-/contentdesk
-approve_topic button action
-approve_publish_kit button action
+CONTENTDESK_WORKFLOW_DRIVER=local
 ```
 
-The Next.js app is still available for future admin/dashboard surfaces:
+Use Trigger.dev dispatch when needed:
+
+```text
+CONTENTDESK_WORKFLOW_DRIVER=trigger
+```
+
+Slack routing flag:
+
+```text
+CONTENTDESK_SLACK_DEFAULT=topics      # old topic-picker flow
+CONTENTDESK_SLACK_DEFAULT=visibility  # latest visibility recommendation card
+```
+
+## Visibility Commands
+
+Infer a website strategy draft:
 
 ```bash
-npm run dev
+npm run prompt:infer -- --url https://example.com
 ```
 
-The current implementation is a Phase 1 skeleton: `/contentdesk` starts a content cycle, Trigger.dev posts fake topic ideas, Slack approvals store approval records, and the final approval posts a fake Codex handoff prompt.
+Review the generated `data/<slug>/visibility/strategy.json`, then select prompts:
 
-Optional: if your workspace is eligible for Slack CLI apps, `slack run` can use `manifest.json` and `.slack/hooks.json` to create/install/run the app. For non-eligible workspaces, use the dashboard setup above.
+```bash
+npm run prompt:select -- data/<slug>/visibility/strategy.json --out data/<slug>/visibility
+```
+
+Profile owned content:
+
+```bash
+npm run visibility:profile -- --url https://example.com --out data/<slug>/visibility
+```
+
+Run the multi-provider visibility job:
+
+```bash
+npm run visibility:run -- --recommend
+```
+
+Common Tiny Lemon shortcuts:
+
+```bash
+npm run prompt:scan:selected
+npm run visibility:synthesize
+npm run visibility:recommend
+```
+
+Data lands under:
+
+```text
+data/<slug>/visibility/
+data/tiny-lemon/visibility/
+```
+
+## Verification
+
+Run core checks:
+
+```bash
+npm run typecheck
+npm test
+```
+
+Use targeted tests while working in one area:
+
+```bash
+npm test -- src/lib/visibility/site-inventory.test.ts
+```

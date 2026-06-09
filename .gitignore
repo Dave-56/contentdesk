@@ -11,3 +11,8 @@ dist
 coverage
 *.tsbuildinfo
 .vercel
+
+# Customer/generated content artifacts
+data/
+docs/leads/packets/
+public/generated/
