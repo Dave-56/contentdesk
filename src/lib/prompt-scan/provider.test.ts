@@ -10,6 +10,7 @@ import {
   createGeminiProvider,
   extractGeminiAnswerText,
   extractGeminiCitedUrls,
+  resolveGeminiCitationUrls,
 } from "@/lib/prompt-scan/gemini";
 import {
   createOpenAiProvider,
@@ -410,5 +411,77 @@ test("gemini citation extraction falls back to empty url list", () => {
       ],
     }),
     [],
+  );
+});
+
+test("gemini citation resolver reads the Vertex redirect Location header", async () => {
+  const calls: Array<{ url: string; method?: string; redirect?: string }> = [];
+  const fetcher = (async (url: RequestInfo | URL, init?: RequestInit) => {
+    calls.push({ url: String(url), method: init?.method, redirect: init?.redirect });
+    return {
+      url: String(url),
+      body: null,
+      headers: {
+        get: (key: string) =>
+          key.toLowerCase() === "location"
+            ? "https://www.prodofoto.com/blog/best-ai-product-photography-tools-shopify"
+            : null,
+      },
+    } as unknown as Response;
+  }) as unknown as typeof fetch;
+
+  const urls = await resolveGeminiCitationUrls({
+    urls: [
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFake",
+      "https://tinylemon.xyz/",
+    ],
+    fetcher,
+  });
+
+  assert.deepEqual(urls, [
+    "https://www.prodofoto.com/blog/best-ai-product-photography-tools-shopify",
+    "https://tinylemon.xyz/",
+  ]);
+  // Only the redirect URL is fetched, via a single manual GET (no HEAD fallback).
+  assert.deepEqual(calls, [
+    {
+      url: "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFake",
+      method: "GET",
+      redirect: "manual",
+    },
+  ]);
+});
+
+test("gemini citation resolver falls back to following redirects when no Location header", async () => {
+  const target = "https://www.prodofoto.com/blog/best-ai-product-photography-tools-shopify";
+  const source = "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFake";
+  const calls: Array<{ method?: string; redirect?: string }> = [];
+  const fetcher = (async (_url: RequestInfo | URL, init?: RequestInit) => {
+    calls.push({ method: init?.method, redirect: init?.redirect });
+    if (init?.redirect === "manual") {
+      return { url: source, body: null, headers: { get: () => null } } as unknown as Response;
+    }
+    return { url: target, body: null, headers: { get: () => null } } as unknown as Response;
+  }) as unknown as typeof fetch;
+
+  assert.deepEqual(
+    await resolveGeminiCitationUrls({ urls: [source], fetcher }),
+    [target],
+  );
+  assert.deepEqual(calls, [
+    { method: "GET", redirect: "manual" },
+    { method: "HEAD", redirect: "follow" },
+  ]);
+});
+
+test("gemini citation resolver keeps the redirect URL when resolution fails", async () => {
+  const source = "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFake";
+  const fetcher = (async () => {
+    throw new Error("network unavailable");
+  }) as unknown as typeof fetch;
+
+  assert.deepEqual(
+    await resolveGeminiCitationUrls({ urls: [source], fetcher }),
+    [source],
   );
 });
