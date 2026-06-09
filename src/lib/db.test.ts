@@ -32,3 +32,14 @@ test("leaves local database urls without sslmode alone", () => {
 
   assert.equal(normalizeDatabaseUrl(input), input);
 });
+
+test("rewrites Neon pooled endpoint to the direct endpoint", () => {
+  const url = normalizeDatabaseUrl(
+    "postgres://user:pass@ep-holy-bird-123-pooler.c-8.us-east-1.aws.neon.tech/neondb?sslmode=require",
+  );
+
+  assert.equal(
+    new URL(url).hostname,
+    "ep-holy-bird-123.c-8.us-east-1.aws.neon.tech",
+  );
+});
