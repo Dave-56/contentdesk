@@ -1,4 +1,5 @@
 import { generateText, Output } from "ai";
+import { formatBrandVoiceForPrompt } from "@/lib/brand-voice";
 import { getEnv } from "@/lib/env";
 import {
   aiArticleDraftSchema,
@@ -143,6 +144,7 @@ function writerPrompt(input: {
       : "Generate one complete ArticleDraft object for the approved TopicBrief.",
     "Write useful, specific, publishable Markdown for a Shopify app audience.",
     "Use the Brand Profile naturally. Do not make the article sound like an advertisement.",
+    "Follow the brand voice contract for phrasing, examples, CTA language, FAQ wording, and socialDrafts.",
     "Respect forbidden claims exactly. Avoid unsupported claims, fake statistics, and generic SEO filler.",
     "Do not mention ContentDesk unless the approved topic is explicitly about ContentDesk.",
     "Do not put editor notes, QA notes, title-option scaffolding, social-draft labels, implementation notes, image-generation notes, or visual placeholders in the article Markdown.",
@@ -152,6 +154,10 @@ function writerPrompt(input: {
     "Every source URL must be copied exactly from the allowed source URLs. Never invent source URLs.",
     "Internal link suggestions may only use URLs from the Brand Profile existingBlogDocsUrls list.",
     "The Markdown should include a single H1, practical H2 sections, and source-backed advice.",
+    formatBrandInclusionContract(input.topic),
+    "",
+    "Brand voice contract:",
+    formatBrandVoiceForPrompt(input.brandProfile),
     isRevision
       ? [
           "Revision mode requirements:",
@@ -195,6 +201,35 @@ function writerPrompt(input: {
     "Research sources:",
     input.sources.map(formatSourceForPrompt).join("\n\n"),
   ].join("\n");
+}
+
+function formatBrandInclusionContract(topic: TopicBrief) {
+  const inclusion = topic.brandInclusion;
+  if (!inclusion?.required) {
+    return "Brand inclusion contract: No required customer-comparison placement is attached to this TopicBrief.";
+  }
+
+  return [
+    "Brand inclusion contract:",
+    `- Asset intent: ${topic.assetIntent ?? "customer_winning_comparison"}.`,
+    `- Required brand aliases: ${inclusion.aliases.join(", ")}.`,
+    `- Brand fit: ${inclusion.fit}.`,
+    inclusion.targetCompetitor
+      ? `- Target competitor: ${inclusion.targetCompetitor}.`
+      : "",
+    inclusion.comparisonSet.length
+      ? `- Comparison set: ${inclusion.comparisonSet.join(", ")}.`
+      : "",
+    inclusion.fitAngle
+      ? `- Fit angle to cover honestly: ${inclusion.fitAngle}.`
+      : "",
+    "- For comparison, alternatives, versus, and best-tools articles, include the brand as an evaluated option unless this contract says fit is weak or none.",
+    "- Add a clear section such as `Where <brand> fits` or an equivalent tradeoff section that names the brand and explains who should consider it.",
+    inclusion.ctaRequired
+      ? "- The CTA must name the brand and stay practical, low-pressure, and evidence-safe."
+      : "",
+    "- Do not force fake superiority. Compare honestly using fit, workflow, tradeoffs, and source-backed claims.",
+  ].filter(Boolean).join("\n");
 }
 
 function formatRevisionTasks(tasks: RevisionTask[]) {

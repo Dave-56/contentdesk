@@ -20,6 +20,10 @@ import {
 } from "@/lib/workflow";
 import { runRedditTeardown } from "@/lib/reddit-teardown";
 import {
+  markRedditOpportunityReplied,
+  skipRedditOpportunity,
+} from "@/lib/reddit-opportunities";
+import {
   renderRecommendationCard,
   renderManualPrompts,
   renderRedditReplyDraft,
@@ -464,6 +468,90 @@ app.action("approve_visibility_recommendation", async ({ ack, action, body, clie
   }
 });
 
+app.action("mark_reddit_replied", async ({ ack, action, body, client }) => {
+  await ack();
+
+  if (!isButtonAction(action)) {
+    throw new Error("Expected a button action for Reddit replied");
+  }
+
+  const parsedAction = slackActionSchema.parse(JSON.parse(action.value));
+  if (parsedAction.action !== "mark_reddit_replied") {
+    throw new Error("Unexpected action payload for Reddit replied");
+  }
+
+  const opportunity = await markRedditOpportunityReplied(parsedAction.opportunityId);
+  const channelId = getChannelId(body);
+  const slackUserId = body.user.id;
+  const messageTs = getMessageTs(body as { message?: { ts?: string } });
+
+  if (!opportunity) {
+    await client.chat.postEphemeral({
+      channel: channelId,
+      user: slackUserId,
+      text: "I could not find that Reddit opportunity. It may have been removed.",
+    });
+    return;
+  }
+
+  if (messageTs) {
+    await client.chat.update({
+      channel: channelId,
+      ts: messageTs,
+      text: `Reddit opportunity marked replied: ${opportunity.title}`,
+      blocks: redditOpportunityStatusBlocks(opportunity.title, "replied"),
+    });
+  }
+
+  await client.chat.postEphemeral({
+    channel: channelId,
+    user: slackUserId,
+    text: "Marked Reddit opportunity as replied.",
+  });
+});
+
+app.action("skip_reddit_opportunity", async ({ ack, action, body, client }) => {
+  await ack();
+
+  if (!isButtonAction(action)) {
+    throw new Error("Expected a button action for Reddit skip");
+  }
+
+  const parsedAction = slackActionSchema.parse(JSON.parse(action.value));
+  if (parsedAction.action !== "skip_reddit_opportunity") {
+    throw new Error("Unexpected action payload for Reddit skip");
+  }
+
+  const opportunity = await skipRedditOpportunity(parsedAction.opportunityId);
+  const channelId = getChannelId(body);
+  const slackUserId = body.user.id;
+  const messageTs = getMessageTs(body as { message?: { ts?: string } });
+
+  if (!opportunity) {
+    await client.chat.postEphemeral({
+      channel: channelId,
+      user: slackUserId,
+      text: "I could not find that Reddit opportunity. It may have been removed.",
+    });
+    return;
+  }
+
+  if (messageTs) {
+    await client.chat.update({
+      channel: channelId,
+      ts: messageTs,
+      text: `Reddit opportunity skipped: ${opportunity.title}`,
+      blocks: redditOpportunityStatusBlocks(opportunity.title, "skipped"),
+    });
+  }
+
+  await client.chat.postEphemeral({
+    channel: channelId,
+    user: slackUserId,
+    text: "Skipped Reddit opportunity.",
+  });
+});
+
 app.view("review_publish_kit", async ({ ack, body }) => {
   await ack();
 
@@ -591,6 +679,10 @@ app.action("open_codex_handoff", async ({ ack }) => {
   await ack();
 });
 
+app.action("open_reddit_post", async ({ ack }) => {
+  await ack();
+});
+
 function isButtonAction(action: unknown): action is { type: "button"; value: string } {
   return (
     typeof action === "object" &&
@@ -623,6 +715,23 @@ function getTeamId(body: { team?: { id?: string } | null }) {
 
 function getMessageTs(body: { message?: { ts?: string } }) {
   return body.message?.ts;
+}
+
+function redditOpportunityStatusBlocks(title: string, status: "replied" | "skipped") {
+  return [
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: [
+          status === "replied"
+            ? "*Reddit opportunity marked replied*"
+            : "*Reddit opportunity skipped*",
+          title,
+        ].join("\n"),
+      },
+    },
+  ];
 }
 
 const publishKitReviewMetadataSchema = z.object({
@@ -663,6 +772,15 @@ function readBrandProfileFromViewState(values: SlackViewStateValues) {
     featuresUseCases: parseList(readViewValue(values, "featuresUseCases")),
     competitors: parseList(readViewValue(values, "competitors")),
     preferredVoice: readViewValue(values, "preferredVoice"),
+    voiceProfile: {
+      name: readViewValue(values, "voiceProfileName"),
+      description: readViewValue(values, "voiceProfileDescription"),
+      toneTraits: parseList(readViewValue(values, "voiceProfileToneTraits")),
+      writingRules: parseList(readViewValue(values, "voiceProfileWritingRules")),
+      phrasesToUse: parseList(readViewValue(values, "voiceProfilePhrasesToUse")),
+      phrasesToAvoid: parseList(readViewValue(values, "voiceProfilePhrasesToAvoid")),
+      sampleLines: parseList(readViewValue(values, "voiceProfileSampleLines")),
+    },
     preferredVisuals: readSelectedOptions(values, "preferredVisuals"),
     visualsToAvoid: readSelectedOptions(values, "visualsToAvoid"),
     forbiddenClaims: parseList(readViewValue(values, "forbiddenClaims")),
@@ -671,11 +789,11 @@ function readBrandProfileFromViewState(values: SlackViewStateValues) {
   };
 }
 
-function readViewValue(values: SlackViewStateValues, field: BrandProfileField) {
+function readViewValue(values: SlackViewStateValues, field: string) {
   return values[field]?.value?.value?.trim() ?? "";
 }
 
-function readSelectedOptions(values: SlackViewStateValues, field: BrandProfileField) {
+function readSelectedOptions(values: SlackViewStateValues, field: string) {
   return values[field]?.value?.selected_options?.map((option) => option.value) ?? [];
 }
 

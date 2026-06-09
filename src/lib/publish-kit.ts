@@ -2,6 +2,7 @@ import type {
   ArticleDraft,
   PublishKit,
   QAReport,
+  LinkedInPost,
   VisualAsset,
   VisualPlan,
   VisualPlanItem,
@@ -14,6 +15,7 @@ export function buildPublishKitFromArticleDraft(input: {
   visualPlan: VisualPlan;
   qaReport: QAReport;
   visualAssets?: VisualAsset[];
+  linkedInPosts?: LinkedInPost[];
 }): PublishKit {
   const visualAssets = input.visualAssets ?? [];
   const markdownVisualAssets = visualAssets.map(sanitizeVisualAssetForMarkdown);
@@ -46,6 +48,7 @@ export function buildPublishKitFromArticleDraft(input: {
     blockers: input.qaReport.blockers,
     nonBlockingNotes: input.qaReport.niceToHaves,
     socialDrafts: input.draft.socialDrafts,
+    linkedInPosts: input.linkedInPosts ?? [],
     sources: input.draft.sources,
     codexHandoffPrompt: codexHandoffPrompt({
       draft: input.draft,

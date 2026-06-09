@@ -89,6 +89,39 @@ test("brand profile modal preserves a pending article request", () => {
   });
 });
 
+test("brand profile modal supports structured custom voice fields", () => {
+  const modal = brandProfileModal({
+    mode: "edit",
+    channelId: "C123",
+    teamId: "T123",
+    userId: "U123",
+    startAfterSave: false,
+    initialValues: {
+      appName: "Tiny Lemon",
+      targetMerchant: "Shopify apparel brands",
+      positioning: "Turn flat-lay photos into on-model product images.",
+      featuresUseCases: ["AI on-model photos"],
+      ctaStyle: "soft educational CTA",
+      voiceProfile: {
+        name: "Tiny Lemon Lab",
+        description: "Brand/editorial voice for a practical product image lab.",
+        toneTraits: ["visual", "operator-friendly"],
+        writingRules: ["No fake founder persona."],
+        phrasesToUse: ["product image lab"],
+        phrasesToAvoid: ["game-changing"],
+        sampleLines: ["Your product page can look editorial without a new shoot."],
+      },
+    },
+  });
+
+  const text = JSON.stringify(modal);
+
+  assert.match(text, /Custom voice name/);
+  assert.match(text, /Tiny Lemon Lab/);
+  assert.match(text, /Voice writing rules/);
+  assert.match(text, /No fake founder persona/);
+});
+
 test("topic picker shows compact strategy labels", () => {
   const blocks = topicPickerBlocks({
     cycleId: "cycle_1",

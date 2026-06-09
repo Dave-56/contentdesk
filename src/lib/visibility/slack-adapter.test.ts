@@ -151,11 +151,36 @@ test("TopicBrief builder preserves visibility evidence", async () => {
   });
 
   assert.equal(topic.strategyType, "comparison");
+  assert.equal(topic.assetIntent, "customer_winning_comparison");
+  assert.equal(topic.brandInclusion?.required, true);
+  assert.equal(topic.brandInclusion?.fit, "strong");
+  assert.equal(topic.brandInclusion?.targetCompetitor, "Botika");
+  assert.equal(topic.brandInclusion?.ctaRequired, true);
+  assert.ok(topic.brandInclusion?.aliases.includes("Tiny Lemon"));
+  assert.ok(topic.brandInclusion?.comparisonSet.includes("Tiny Lemon"));
   assert.match(topic.workingTitle, /Build Botika comparison page/);
   assert.match(topic.strategyEvidence.join(" "), /Dominant source format/);
+  assert.match(topic.strategyEvidence.join(" "), /Brand inclusion required/);
   assert.match(topic.strategyEvidence.join(" "), /Botika/);
   assert.match(topic.proofAngle, /tinylemon.xyz/);
   assert.deepEqual(topic.sourceLinks[0], "https://tinylemon.xyz/blog/modelia-alternatives");
+});
+
+test("comparison recommendation without product fit fails closed for production", async () => {
+  const dataDir = await mkdtemp(path.join(os.tmpdir(), "contentdesk-fit-gate-"));
+  await writeRecommendationFile({
+    dataDir,
+    slug: "tiny-lemon",
+    taskType: "comparison_page",
+    brandFit: "weak",
+  });
+
+  const recommendation = await getLatestVisibilityRecommendationForSlack({
+    brandProfile: brandProfileFixture(),
+    dataDir,
+  });
+
+  assert.equal(recommendation?.productionSupported, false);
 });
 
 async function writeRecommendationFile(input: {
@@ -164,6 +189,7 @@ async function writeRecommendationFile(input: {
   generatedAt?: string;
   title?: string;
   taskType?: string;
+  brandFit?: "strong" | "medium" | "weak" | "none";
 }) {
   const outputDir = path.join(input.dataDir, input.slug, "visibility");
   await mkdir(outputDir, { recursive: true });
@@ -193,6 +219,7 @@ function recommendationsFixture(input: {
   generatedAt?: string;
   title?: string;
   taskType?: string;
+  brandFit?: "strong" | "medium" | "weak" | "none";
 }) {
   return {
     brand: "Tiny Lemon",
@@ -231,6 +258,9 @@ function recommendationsFixture(input: {
           missingOrWeakAssetType: "comparison_page",
           targetCompetitor: "Botika",
           targetCompetitorAssetStatus: "missing",
+          brandFit: input.brandFit ?? "strong",
+          brandFitAngle:
+            "Tiny Lemon fits Shopify fashion brands evaluating AI model photos when they need flat-lay to model images.",
           relatedAssets: [
             {
               title: "Modelia alternatives",

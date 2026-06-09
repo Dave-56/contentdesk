@@ -63,6 +63,8 @@ export const visibilityRecommendationForSlackSchema = z.object({
     missingOrWeakAssetType: z.string().trim().min(1).nullable(),
     targetCompetitor: z.string().trim().min(1).nullable(),
     targetCompetitorAssetStatus: z.enum(["present", "missing", "unknown"]),
+    brandFit: z.enum(["strong", "medium", "weak", "none"]).default("none"),
+    brandFitAngle: z.string().trim().default(""),
     relatedAssets: z.array(
       z.object({
         title: z.string().trim().min(1),
@@ -163,6 +165,10 @@ export function buildTopicBriefFromVisibilityRecommendation(input: {
   const competitorText = rec.evidence.competitorsMentioned.length
     ? rec.evidence.competitorsMentioned.join(", ")
     : "named competitors";
+  const brandInclusion = brandInclusionForRecommendation({
+    recommendation: rec,
+    brandProfile: input.brandProfile,
+  });
 
   return topicBriefSchema.parse({
     topic: rec.targetPrompt,
@@ -172,6 +178,12 @@ export function buildTopicBriefFromVisibilityRecommendation(input: {
       rec.taskType,
       rec.targetPromptId,
     ].join("-"),
+    assetIntent: brandInclusion.required
+      ? "customer_winning_comparison"
+      : rec.taskType === "guide"
+        ? "workflow_guide"
+        : "neutral_education",
+    brandInclusion,
     strategyType: strategyTypeForTask(rec.taskType),
     funnelStage: funnelStageForPromptGroup(rec.evidence.promptGroup),
     merchantJob: `Answer this buyer prompt better than the current citation set: ${rec.targetPrompt}`,
@@ -186,6 +198,12 @@ export function buildTopicBriefFromVisibilityRecommendation(input: {
       `Visibility recommendation: ${rec.title}`,
       `Target prompt: ${rec.targetPrompt}`,
       `Task type: ${rec.taskType}`,
+      brandInclusion.required
+        ? `Brand inclusion required: include ${input.brandProfile.appName} as an honestly evaluated option.`
+        : "Brand inclusion required: no",
+      brandInclusion.fitAngle
+        ? `Brand fit angle: ${brandInclusion.fitAngle}`
+        : "Brand fit angle: none",
       `Dominant source format: ${rec.evidence.dominantSourceFormat}`,
       `Brand mentioned: ${rec.evidence.brandMentioned ? "yes" : "no"}`,
       `Brand cited: ${rec.evidence.brandCited ? "yes" : "no"}`,
@@ -292,9 +310,13 @@ function normalizeRecommendation(input: {
 }) {
   const id = recommendationId(input.recommendation);
   const runId = runIdForFile(input.file);
+  const hasProductionFit =
+    !isCustomerWinningComparisonTask(input.recommendation.taskType) ||
+    input.recommendation.evidence.brandFit === "strong" ||
+    input.recommendation.evidence.brandFit === "medium";
   const productionSupported = supportedProductionTaskTypes.includes(
     input.recommendation.taskType as (typeof supportedProductionTaskTypes)[number],
-  );
+  ) && hasProductionFit;
   const normalized = {
     id,
     runId,
@@ -408,6 +430,87 @@ function sourceLinksForRecommendation(rec: VisibilityRecommendationForSlack) {
       .map((domain) => `https://${domain}`),
   ];
   return [...new Set(links)].slice(0, 8);
+}
+
+function brandInclusionForRecommendation(input: {
+  recommendation: VisibilityRecommendationForSlack;
+  brandProfile: ParsedBrandProfile;
+}): NonNullable<TopicBrief["brandInclusion"]> {
+  const rec = input.recommendation;
+  const required = isCustomerWinningComparisonTask(rec.taskType);
+  const aliases = brandAliases(input.brandProfile);
+  const targetCompetitor =
+    rec.evidence.targetCompetitor ??
+    rec.evidence.competitorsRecommended[0] ??
+    rec.evidence.competitorsMentioned[0];
+  const comparisonSet = uniqueStrings([
+    ...rec.evidence.competitorsRecommended,
+    ...rec.evidence.competitorsMentioned,
+    ...(input.brandProfile.categoryCompetitors ?? []),
+    ...(!input.brandProfile.categoryCompetitors?.length
+      ? input.brandProfile.competitors
+      : []),
+    input.brandProfile.appName,
+  ]);
+
+  return {
+    required,
+    fit: required ? rec.evidence.brandFit : "none",
+    aliases,
+    targetCompetitor: targetCompetitor ?? undefined,
+    comparisonSet,
+    fitAngle: required && rec.evidence.brandFitAngle
+      ? rec.evidence.brandFitAngle
+      : required
+      ? [
+          `${input.brandProfile.appName} fits when ${input.brandProfile.targetMerchant} need ${input.brandProfile.positioning}`,
+          targetCompetitor ? `Compare that fit honestly against ${targetCompetitor}.` : "",
+        ].filter(Boolean).join(" ")
+      : "",
+    ctaRequired: required,
+  };
+}
+
+function isCustomerWinningComparisonTask(taskType: string) {
+  return taskType === "alternative_page" || taskType === "comparison_page";
+}
+
+function brandAliases(profile: ParsedBrandProfile) {
+  return uniqueStrings([
+    profile.appName,
+    ...spacedCamelCaseAliases(profile.appName),
+    ...(profile.brandAliases ?? []),
+    ...profile.existingBlogDocsUrls.flatMap((rawUrl) => {
+      try {
+        const hostname = new URL(rawUrl).hostname.replace(/^www\./, "");
+        return [hostname, hostname.split(".")[0] ?? ""];
+      } catch {
+        return [];
+      }
+    }),
+  ]);
+}
+
+function spacedCamelCaseAliases(value: string) {
+  const spaced = value.replace(/([a-z])([A-Z])/g, "$1 $2").trim();
+  const compact = value.replace(/\s+/g, "");
+
+  return [spaced, compact].filter((alias) => alias && alias !== value);
+}
+
+function uniqueStrings(values: string[]) {
+  const seen = new Set<string>();
+  const output: string[] = [];
+
+  for (const rawValue of values) {
+    const value = rawValue.trim();
+    const key = value.toLowerCase();
+    if (!value || seen.has(key)) continue;
+    seen.add(key);
+    output.push(value);
+  }
+
+  return output;
 }
 
 function strategyTypeForTask(taskType: string): TopicBrief["strategyType"] {

@@ -18,6 +18,7 @@ export type ArtifactType =
   | "VisualPlan"
   | "VisualAsset[]"
   | "VisualAssetReview[]"
+  | "LinkedInPost"
   | "PublishKit";
 
 export type ArtifactRecord<T = unknown> = {

@@ -13,7 +13,7 @@ export const promptGroupSchema = z.enum([
 
 export type PromptGroup = z.infer<typeof promptGroupSchema>;
 
-export const providerSchema = z.enum(["perplexity", "openai", "anthropic"]);
+export const providerSchema = z.enum(["perplexity", "openai", "anthropic", "gemini"]);
 
 export const sourceFormatSchema = z.enum([
   "marketplace_listing",

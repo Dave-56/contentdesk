@@ -132,6 +132,7 @@ function qaPrompt(input: {
     "Direct Answer Opening QA: after the H1, the first body paragraph should directly answer the topic in 2-4 useful sentences before background context or scene-setting.",
     "Thinking Gap QA: judge whether the article resolves the reader's decision, doubt, comparison, workflow, or next step. Do not pass shallow keyword coverage that fails to help the reader think or act.",
     "Check that the article resolves the approved TopicBrief merchantJob, carries the messageAngle, and supports the proofAngle using only approved sources and current inputs.",
+    "If TopicBrief brandInclusion.required is true, the article must name the brand in the body, include a clear customer fit/tradeoff section, and name the brand in the CTA when ctaRequired is true.",
     "A thinking-gap blocker is appropriate when the draft technically covers the topic but does not help the reader choose, compare, resolve objections, understand tradeoffs, or take a practical next step.",
     "For comparison topics, check whether the article gives honest decision criteria and tradeoffs. For workflow topics, check whether it shows what to do next. For education topics, check whether it answers the next logical question beyond a definition.",
     isRevisionVerification
@@ -379,6 +380,11 @@ function deterministicQaReport(input: {
     }));
   }
 
+  blockers.push(...deterministicBrandInclusionBlockers({
+    draft: input.draft,
+    brandProfile: input.brandProfile,
+  }));
+
   if (duplicatePlaceholders.length > 0) {
     blockers.push(blocker({
       area: "visual_plan",
@@ -525,6 +531,7 @@ export function normalizeAiQaReport(
   report: AiQaReport,
   input?: {
     draft?: ArticleDraft;
+    brandProfile?: BrandProfile;
     previousQaReport?: QAReport;
   },
 ) {
@@ -583,6 +590,15 @@ export function normalizeAiQaReport(
     }
   }
 
+  const contractBlockers =
+    input?.draft && input.brandProfile
+      ? deterministicBrandInclusionBlockers({
+          draft: input.draft,
+          brandProfile: input.brandProfile,
+        })
+      : [];
+  blockers = mergeBlockers(blockers, contractBlockers);
+
   return qaReportSchema.parse({
     ...report,
     summary,
@@ -613,6 +629,187 @@ function blocker(issue: QaIssueDraft): QaBlockerIssue {
 
 function niceToHave(issue: QaIssueDraft): QaNiceToHaveIssue {
   return { ...issue, severity: "nice_to_have" };
+}
+
+function mergeBlockers(left: QaBlockerIssue[], right: QaBlockerIssue[]) {
+  const seen = new Set(left.map((issue) => issue.finding));
+  const merged = [...left];
+
+  for (const issue of right) {
+    if (seen.has(issue.finding)) continue;
+    seen.add(issue.finding);
+    merged.push(issue);
+  }
+
+  return merged;
+}
+
+function deterministicBrandInclusionBlockers(input: {
+  draft: ArticleDraft;
+  brandProfile: BrandProfile;
+}) {
+  const inclusion = input.draft.topic.brandInclusion;
+  if (!inclusion?.required) return [];
+
+  const aliases = brandInclusionAliases({
+    brandProfile: input.brandProfile,
+    contractAliases: inclusion.aliases,
+  });
+  const blockers: QaBlockerIssue[] = [];
+  const bodyHasBrand = aliases.some((alias) => containsText(input.draft.markdown, alias));
+  const ctaHasBrand = aliases.some((alias) => containsText(input.draft.cta, alias));
+  const hasFitSection = hasBrandFitSection(input.draft.markdown, aliases);
+  const fitAngleCovered =
+    !inclusion.fitAngle || hasFitAngleCoverage(input.draft.markdown, inclusion.fitAngle);
+  const brandLabel = aliases[0] ?? input.brandProfile.appName;
+
+  if (!bodyHasBrand) {
+    blockers.push(blocker({
+      area: "brand_positioning",
+      finding: "Required comparison asset does not mention the customer brand in the article body.",
+      evidence: `Brand inclusion contract requires one of these aliases in Markdown: ${aliases.join(", ")}.`,
+      instruction: `Add ${brandLabel} as an honestly evaluated option in the comparison body. Explain who should consider it and keep claims tied to the Brand Profile and approved sources.`,
+    }));
+  }
+
+  if (inclusion.ctaRequired && !ctaHasBrand) {
+    blockers.push(blocker({
+      area: "brand_positioning",
+      finding: "Required comparison asset CTA does not mention the customer brand.",
+      evidence: `CTA text: "${input.draft.cta}"`,
+      instruction: `Revise the CTA to name ${brandLabel} directly while keeping it practical, low-pressure, and evidence-safe.`,
+    }));
+  }
+
+  if (!hasFitSection) {
+    blockers.push(blocker({
+      area: "brand_positioning",
+      finding: "Required comparison asset lacks a customer fit or tradeoff section.",
+      evidence: `No H2/H3 section clearly frames where ${brandLabel} fits, when to choose it, or what tradeoff it represents.`,
+      instruction: `Add a clear section such as "Where ${brandLabel} fits" or an equivalent tradeoff section that names the brand and explains the fit honestly.`,
+    }));
+  }
+
+  if (!fitAngleCovered) {
+    blockers.push(blocker({
+      area: "brand_positioning",
+      finding: "Required comparison asset does not cover the contracted customer fit angle.",
+      evidence: `Contracted fit angle: ${inclusion.fitAngle}`,
+      instruction: `Revise the ${brandLabel} fit section to cover this angle without overclaiming: ${inclusion.fitAngle}`,
+    }));
+  }
+
+  return blockers;
+}
+
+function brandInclusionAliases(input: {
+  brandProfile: BrandProfile;
+  contractAliases: string[];
+}) {
+  return uniqueStrings([
+    input.brandProfile.appName,
+    ...spacedCamelCaseAliases(input.brandProfile.appName),
+    ...(input.brandProfile.brandAliases ?? []),
+    ...input.contractAliases,
+  ]);
+}
+
+function hasBrandFitSection(markdown: string, aliases: string[]) {
+  const sections = markdownSections(markdown);
+
+  return sections.some((section) => {
+    const heading = section.heading.toLowerCase();
+    const text = `${section.heading}\n${section.body}`;
+    const mentionsBrand = aliases.some((alias) => containsText(text, alias));
+    if (!mentionsBrand) return false;
+
+    return [
+      "fit",
+      "fits",
+      "where",
+      "when to choose",
+      "best for",
+      "tradeoff",
+      "trade-off",
+      "compare",
+      "alternative",
+    ].some((signal) => heading.includes(signal));
+  });
+}
+
+function markdownSections(markdown: string) {
+  const sections: { heading: string; body: string }[] = [];
+  let current: { heading: string; body: string } | null = null;
+
+  for (const line of markdown.split("\n")) {
+    const heading = line.match(/^#{2,3}\s+(.+?)\s*$/)?.[1]?.trim();
+    if (heading) {
+      if (current) sections.push(current);
+      current = { heading, body: "" };
+      continue;
+    }
+
+    if (current) current.body += `${line}\n`;
+  }
+
+  if (current) sections.push(current);
+  return sections;
+}
+
+function hasFitAngleCoverage(markdown: string, fitAngle: string) {
+  const tokens = contentTokens(fitAngle);
+  if (tokens.length === 0) return true;
+
+  const normalizedMarkdown = markdown.toLowerCase();
+  const hits = tokens.filter((token) => normalizedMarkdown.includes(token));
+
+  return hits.length >= Math.min(3, Math.max(1, Math.ceil(tokens.length / 4)));
+}
+
+function contentTokens(value: string) {
+  const stopWords = new Set([
+    "and",
+    "are",
+    "but",
+    "for",
+    "from",
+    "need",
+    "that",
+    "the",
+    "this",
+    "when",
+    "with",
+    "without",
+  ]);
+
+  return uniqueStrings(
+    value
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((token) => token.length >= 4 && !stopWords.has(token)),
+  );
+}
+
+function spacedCamelCaseAliases(value: string) {
+  const spaced = value.replace(/([a-z])([A-Z])/g, "$1 $2").trim();
+  const compact = value.replace(/\s+/g, "");
+
+  return [spaced, compact].filter((alias) => alias && alias !== value);
+}
+
+function uniqueStrings(values: string[]) {
+  const seen = new Set<string>();
+  const output: string[] = [];
+
+  for (const rawValue of values) {
+    const value = rawValue.trim();
+    const key = value.toLowerCase();
+    if (!value || seen.has(key)) continue;
+    seen.add(key);
+    output.push(value);
+  }
+
+  return output;
 }
 
 function markdownH2s(markdown: string) {

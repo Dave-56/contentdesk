@@ -1,5 +1,6 @@
 import { generateText } from "ai";
 import { put } from "@vercel/blob";
+import { formatBrandVoiceForPrompt } from "@/lib/brand-voice";
 import { getEnv } from "@/lib/env";
 import {
   visualAssetsSchema,
@@ -148,10 +149,6 @@ function imagePrompt(input: {
   visual: VisualPlanItem;
   brandProfile: BrandProfile;
 }) {
-  const voice = input.brandProfile.preferredVoice
-    ? `Brand voice: ${input.brandProfile.preferredVoice}.`
-    : "Brand voice: clear, practical, founder-led.";
-
   return [
     "Create a polished editorial image for a Shopify app blog article.",
     "The image must clarify the article for this specific merchant audience rather than feel decorative.",
@@ -164,7 +161,8 @@ function imagePrompt(input: {
     `Article title: ${input.draft.metadata.title}`,
     `Target merchant: ${input.brandProfile.targetMerchant}`,
     `App positioning: ${input.brandProfile.positioning}`,
-    voice,
+    "Brand voice contract:",
+    formatBrandVoiceForPrompt(input.brandProfile),
     formatVisualStrategy(input.brandProfile),
     "",
     `Visual title: ${input.visual.title}`,

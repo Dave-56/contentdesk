@@ -1,6 +1,6 @@
 ---
 title: ContentDesk Visibility Roadmap
-updated: 2026-06-01
+updated: 2026-06-08
 type: living
 status: current
 ---
@@ -279,6 +279,59 @@ recheck date
 - Every recommendation is tied to evidence from prompt runs, citations, or competitor assets.
 - The content engine can use the recommendation as an implementation brief.
 - Each shipped asset has a recheck plan.
+
+## Phase 4A: LinkedIn Distribution Support
+
+LinkedIn support should start as manual distribution, not direct publishing automation.
+ContentDesk should turn each visibility-backed Tiny Lemon asset into a small LinkedIn kit
+that can be posted by hand from the Tiny Lemon company page.
+
+### What It Does
+
+- Takes a visibility recommendation and the main asset it produced: guide, comparison,
+  teardown, or app-store copy.
+- Uses the Brand Profile custom voice, especially a faceless brand/editorial voice like
+  Tiny Lemon Lab.
+- Generates 5 short text posts.
+- Generates 2 carousel outlines.
+- Generates 1 before/after teardown post.
+- Generates 1 founderless lab note.
+- Generates visual briefs for posts that need visuals.
+- Suggests publish order.
+- Tracks manual outcomes: clicks, comments, and later AI/search visibility movement.
+
+### Channel Rules
+
+```text
+Brand: Tiny Lemon
+Persona: expert studio / product image lab
+Tone: practical, visual, Shopify-specific
+Do not invent a fake person.
+Do not use "I built this" unless the post is explicitly for a real founder account.
+```
+
+### First Series
+
+- Flat lay vs on-model: what changes buyer trust.
+- Why apparel product pages look cheap even with good photos.
+- AI product photo tools for Shopify: what matters.
+- Before/after teardown: product image edition.
+- How to make PDP images feel editorial without a shoot.
+
+### Later Automation
+
+- Add a `linkedin_post` artifact type.
+- Add a weekly content queue.
+- Add manual approval states.
+- Add calendar export.
+- Add LinkedIn publishing and scheduling integration only after manual formats prove useful.
+
+### Done When
+
+- A PublishKit or visibility recommendation can produce a complete LinkedIn kit.
+- The kit uses the configured brand voice and avoids fake-human persona language.
+- The founder can manually publish from the Tiny Lemon company page without extra planning.
+- Manual performance notes can be connected back to the source asset and target prompts.
 
 ## Phase 5: Visibility Dashboard
 

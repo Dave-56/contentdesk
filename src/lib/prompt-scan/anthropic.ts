@@ -2,9 +2,8 @@ import type { ProviderPromptResult } from "@/lib/prompt-scan/analyzer";
 import type { PromptProvider } from "@/lib/prompt-scan/provider";
 
 const systemPrompt = [
-  "You are helping measure AI-search visibility for a Shopify app.",
-  "Answer the buyer prompt naturally.",
-  "Include citations from current web sources when available.",
+  "Answer the user's question naturally as a buyer research assistant.",
+  "Do not favor any brand unless the available evidence supports it.",
 ].join(" ");
 
 export async function runAnthropicPrompt(input: {

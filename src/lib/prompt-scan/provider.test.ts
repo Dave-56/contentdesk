@@ -7,6 +7,11 @@ import {
   extractAnthropicCitedUrls,
 } from "@/lib/prompt-scan/anthropic";
 import {
+  createGeminiProvider,
+  extractGeminiAnswerText,
+  extractGeminiCitedUrls,
+} from "@/lib/prompt-scan/gemini";
+import {
   createOpenAiProvider,
   extractOpenAiAnswerText,
   extractOpenAiCitedUrls,
@@ -96,6 +101,18 @@ test("resolves anthropic provider when key exists", () => {
   assert.equal(typeof provider.scanPrompt, "function");
 });
 
+test("resolves gemini provider when key exists", () => {
+  const provider = resolvePromptProvider({
+    provider: "gemini",
+    env: {
+      geminiApiKey: "test-key",
+    },
+  });
+
+  assert.equal(provider.id, "gemini");
+  assert.equal(typeof provider.scanPrompt, "function");
+});
+
 test("openai provider requires only openai key", () => {
   assert.throws(
     () =>
@@ -115,6 +132,17 @@ test("anthropic provider requires only anthropic key", () => {
         env: {},
       }),
     /ANTHROPIC_API_KEY is required for anthropic prompt scans/,
+  );
+});
+
+test("gemini provider requires only gemini key", () => {
+  assert.throws(
+    () =>
+      resolvePromptProvider({
+        provider: "gemini",
+        env: {},
+      }),
+    /GEMINI_API_KEY is required for gemini prompt scans/,
   );
 });
 
@@ -179,6 +207,41 @@ test("anthropic provider calls injected prompt runner", async () => {
   assert.deepEqual(calls, [
     {
       apiKey: "anthropic-key",
+      prompt: "Best AI model photo app?",
+    },
+  ]);
+  assert.deepEqual(result, {
+    answerText: "Tiny Lemon is mentioned.",
+    citedUrls: ["https://tinylemon.xyz/"],
+  });
+});
+
+test("gemini provider calls injected prompt runner", async () => {
+  const calls: Array<{ apiKey: string; prompt: string }> = [];
+  const provider = createGeminiProvider({
+    apiKey: "gemini-key",
+    async runPrompt(input) {
+      calls.push(input);
+      return {
+        answerText: "Tiny Lemon is mentioned.",
+        citedUrls: ["https://tinylemon.xyz/"],
+      };
+    },
+  });
+
+  const result = await provider.scanPrompt({
+    prompt: "Best AI model photo app?",
+    brand: {
+      name: "Tiny Lemon",
+      aliases: [],
+      domains: ["tinylemon.xyz"],
+    },
+    competitors: [],
+  });
+
+  assert.deepEqual(calls, [
+    {
+      apiKey: "gemini-key",
       prompt: "Best AI model photo app?",
     },
   ]);
@@ -287,6 +350,62 @@ test("anthropic citation extraction falls back to empty url list", () => {
         {
           type: "text",
           text: "No citations here.",
+        },
+      ],
+    }),
+    [],
+  );
+});
+
+test("extracts gemini answer text and grounding urls", () => {
+  const response = {
+    candidates: [
+      {
+        content: {
+          parts: [
+            {
+              text: "Tiny Lemon appears in grounded Gemini results.",
+            },
+          ],
+        },
+        groundingMetadata: {
+          groundingChunks: [
+            {
+              web: {
+                uri: "https://tinylemon.xyz/",
+                title: "Tiny Lemon",
+              },
+            },
+            {
+              web: {
+                uri: "https://apps.shopify.com/tiny-lemon",
+                title: "Shopify App Store",
+              },
+            },
+          ],
+        },
+      },
+    ],
+  };
+
+  assert.equal(
+    extractGeminiAnswerText(response),
+    "Tiny Lemon appears in grounded Gemini results.",
+  );
+  assert.deepEqual(extractGeminiCitedUrls(response), [
+    "https://tinylemon.xyz/",
+    "https://apps.shopify.com/tiny-lemon",
+  ]);
+});
+
+test("gemini citation extraction falls back to empty url list", () => {
+  assert.deepEqual(
+    extractGeminiCitedUrls({
+      candidates: [
+        {
+          content: {
+            parts: [{ text: "No citations here." }],
+          },
         },
       ],
     }),

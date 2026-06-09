@@ -7,11 +7,12 @@ import type { ProviderRunError } from "@/lib/visibility/synthesis";
 
 const defaultInputPath = "data/tiny-lemon/visibility/prompts.selected.json";
 const defaultOutputDir = "data/tiny-lemon/visibility/runs";
-const providers: PromptScanConfig["provider"][] = ["perplexity", "openai", "anthropic"];
+const providers: PromptScanConfig["provider"][] = ["perplexity", "openai", "anthropic", "gemini"];
 const defaultConcurrencyByProvider = {
   perplexity: 3,
   openai: 2,
   anthropic: 3,
+  gemini: 3,
 } satisfies Record<PromptScanConfig["provider"], number>;
 const defaultTimeoutMs = 120_000;
 

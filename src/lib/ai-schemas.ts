@@ -1,6 +1,8 @@
 import { z } from "zod";
 import {
   articleDraftSchema,
+  assetIntentSchema,
+  brandInclusionSchema,
   qaBlockerIssueSchema,
   qaNiceToHaveIssueSchema,
   qaRubricScoresSchema,
@@ -20,6 +22,8 @@ export const aiTopicBriefSchema = z.object({
   topic: aiText,
   workingTitle: aiText,
   strategicFingerprint: aiText,
+  assetIntent: assetIntentSchema.optional(),
+  brandInclusion: brandInclusionSchema.optional(),
   strategyType: aiStrategyTypeSchema,
   funnelStage: z.enum(["top", "middle", "bottom"]),
   merchantJob: aiText,
@@ -77,6 +81,15 @@ export const aiArticleDraftSchema = articleDraftSchema
   });
 
 export type AiArticleDraft = z.infer<typeof aiArticleDraftSchema>;
+
+export const aiLinkedInPostSchema = z.object({
+  hook: aiText,
+  body: aiText,
+  cta: z.string().trim(),
+  visualBrief: z.string().trim(),
+});
+
+export type AiLinkedInPost = z.infer<typeof aiLinkedInPostSchema>;
 
 export const aiRevisionTaskResultSchema = z.object({
   taskId: aiText,

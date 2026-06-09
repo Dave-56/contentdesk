@@ -59,6 +59,7 @@ export async function scanPrompts(input: {
       perplexityApiKey: input.apiKey ?? process.env.PERPLEXITY_API_KEY,
       openaiApiKey: input.apiKey ?? process.env.OPENAI_API_KEY,
       anthropicApiKey: input.apiKey ?? process.env.ANTHROPIC_API_KEY,
+      geminiApiKey: input.apiKey ?? process.env.GEMINI_API_KEY,
     },
   });
   const concurrency = positiveInt(input.concurrency ?? 1, "concurrency");

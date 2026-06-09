@@ -1,6 +1,6 @@
 ---
 title: ContentDesk MVP Tasklist
-updated: 2026-06-05
+updated: 2026-06-08
 type: living
 status: current
 ---
@@ -395,6 +395,29 @@ Implementation notes:
 - [x] Publishing-agent handoffs should be lean Tiny Lemon Markdown publishing packets: final title/excerpt/slug, final Markdown, Blob image URLs to copy, alt text, clean captions, CTA, FAQ, internal links, and sources.
 - [x] When generated assets are present, Codex handoff should tell the publisher to copy them into `public/blog/<slug>/` and rewrite Markdown image URLs to `/blog/<slug>/<file>`.
 - [x] Codex handoff is exposed at `/handoff/[artifactId]`; Slack should link there instead of rendering long prompts inside Slack modals.
+
+## Future Phase: LinkedIn Distribution Support
+
+- [x] Define `LinkedInPost` schema for one manual Tiny Lemon company-page post.
+- [x] Add `LinkedInPost` artifact type.
+- [x] Generate 1 LinkedIn company-page text post from a final QA-passed article.
+- [x] Include `linkedInPosts` in PublishKit.
+- [x] Show LinkedIn draft in the PublishKit review modal.
+- [x] Record LinkedIn Distributor agent runs for success, fallback, and failure.
+- [x] Keep LinkedIn generation fail-soft so article PublishKit creation still works.
+- [ ] Define `LinkedInKit` schema for manual Tiny Lemon company-page publishing.
+- [ ] Generate 5 short LinkedIn text posts from a PublishKit or visibility recommendation.
+- [ ] Generate 2 LinkedIn carousel outlines from a PublishKit or visibility recommendation.
+- [ ] Generate 1 before/after product-image teardown post.
+- [ ] Generate 1 founderless lab-note post.
+- [ ] Generate LinkedIn visual briefs tied to the VisualPlan or source asset.
+- [ ] Suggest manual publish order for a LinkedIn kit.
+- [ ] Use Brand Profile `voiceProfile` for faceless brand/editorial LinkedIn voice.
+- [ ] Add QA guard against fake-human persona language in brand-channel LinkedIn posts.
+- [ ] Track manual LinkedIn outcomes: clicks, comments, publish date, source asset, and target prompts.
+- [ ] Add weekly LinkedIn content queue after manual kit format proves useful.
+- [ ] Add calendar export for approved LinkedIn posts.
+- [ ] Add LinkedIn publishing/scheduling integration only after manual workflow proves useful.
 
 ## Phase 8: Polish and Reliability
 

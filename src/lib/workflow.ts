@@ -17,6 +17,7 @@ import {
   getBrandProfileCompleteness,
   publishKitSchema,
   userArticleRequestSchema,
+  type ArticleDraft,
   type BrandProfile,
   type PublishKit,
   type QAReport,
@@ -26,6 +27,7 @@ import {
   type UserArticleRequest,
   type VisualAsset,
   type VisualAssetReview,
+  type VisualPlan,
   type VisualPlanItem,
 } from "@/lib/schemas";
 import {
@@ -47,6 +49,7 @@ import {
   refreshArticleMemoryFromBlog,
 } from "@/lib/article-memory";
 import { getRecentTopicStrategyMemory } from "@/lib/topic-memory";
+import { generateLinkedInPost } from "@/lib/linkedin/post-generator";
 import { generateArticleDraft } from "@/lib/writer/seo-writer";
 import type { SeoWriterResult } from "@/lib/writer/seo-writer";
 import { generateVisualPlan } from "@/lib/visual/producer";
@@ -675,7 +678,7 @@ export async function handleTopicApproval(input: {
     result: writerResult,
   });
 
-  await createArtifact({
+  let finalArticleDraftArtifact = await createArtifact({
     organizationId: topicArtifact.organization_id,
     brandId: topicArtifact.brand_id,
     cycleId: input.cycleId,
@@ -803,7 +806,7 @@ export async function handleTopicApproval(input: {
         revisionTasks: writerRevisionTasks,
       });
 
-      await createArtifact({
+      finalArticleDraftArtifact = await createArtifact({
         organizationId: topicArtifact.organization_id,
         brandId: topicArtifact.brand_id,
         cycleId: input.cycleId,
@@ -984,12 +987,23 @@ export async function handleTopicApproval(input: {
     };
   }
 
+  const linkedInPost = await createLinkedInPostForPublishKit({
+    organizationId: topicArtifact.organization_id,
+    brandId: topicArtifact.brand_id,
+    cycleId: input.cycleId,
+    brandProfile: brandProfileArtifact.json_payload,
+    draft: writerResult.draft,
+    leadVisual: visualResult.leadVisual,
+    visualPlan: visualResult.visualPlan,
+    sourceArtifactId: finalArticleDraftArtifact.id,
+  });
   const publishKit = buildPublishKitFromArticleDraft({
     draft: writerResult.draft,
     leadVisual: visualResult.leadVisual,
     visualPlan: visualResult.visualPlan,
     qaReport: qaResult.qaReport,
     visualAssets: visualAssetQaResult.visualAssets,
+    linkedInPosts: linkedInPost ? [linkedInPost] : [],
   });
   const parsedPublishKit = publishKitSchema.parse(publishKit);
   const publishKitArtifact = await createArtifact({
@@ -1254,7 +1268,7 @@ async function runPublishKitPipelineFromApprovedTopic(input: {
     result: writerResult,
   });
 
-  await createArtifact({
+  let finalArticleDraftArtifact = await createArtifact({
     organizationId: input.organizationId,
     brandId: input.brandId,
     cycleId: input.cycleId,
@@ -1382,7 +1396,7 @@ async function runPublishKitPipelineFromApprovedTopic(input: {
         revisionTasks: writerRevisionTasks,
       });
 
-      await createArtifact({
+      finalArticleDraftArtifact = await createArtifact({
         organizationId: input.organizationId,
         brandId: input.brandId,
         cycleId: input.cycleId,
@@ -1563,12 +1577,23 @@ async function runPublishKitPipelineFromApprovedTopic(input: {
     };
   }
 
+  const linkedInPost = await createLinkedInPostForPublishKit({
+    organizationId: input.organizationId,
+    brandId: input.brandId,
+    cycleId: input.cycleId,
+    brandProfile: input.brandProfile,
+    draft: writerResult.draft,
+    leadVisual: visualResult.leadVisual,
+    visualPlan: visualResult.visualPlan,
+    sourceArtifactId: finalArticleDraftArtifact.id,
+  });
   const publishKit = buildPublishKitFromArticleDraft({
     draft: writerResult.draft,
     leadVisual: visualResult.leadVisual,
     visualPlan: visualResult.visualPlan,
     qaReport: qaResult.qaReport,
     visualAssets: visualAssetQaResult.visualAssets,
+    linkedInPosts: linkedInPost ? [linkedInPost] : [],
   });
   const parsedPublishKit = publishKitSchema.parse(publishKit);
   const publishKitArtifact = await createArtifact({
@@ -1661,6 +1686,11 @@ function uniqueStrings(values: string[]) {
   return [...new Set(values.map((value) => value.trim()).filter(Boolean))];
 }
 
+function errorMessage(error: unknown) {
+  if (error instanceof Error) return error.message;
+  return String(error);
+}
+
 async function recordSeoWriterRun(input: {
   cycleId: string;
   phase: "draft" | "revision";
@@ -1692,6 +1722,79 @@ async function recordSeoWriterRun(input: {
         ].join(": ")
       : undefined,
   });
+}
+
+async function createLinkedInPostForPublishKit(input: {
+  organizationId: string;
+  brandId: string;
+  cycleId: string;
+  brandProfile: BrandProfile;
+  draft: ArticleDraft;
+  leadVisual: VisualPlanItem;
+  visualPlan: VisualPlan;
+  sourceArtifactId: string;
+}) {
+  try {
+    const result = await generateLinkedInPost({
+      brandProfile: input.brandProfile,
+      articleDraft: input.draft,
+      leadVisual: input.leadVisual,
+      visualPlan: input.visualPlan,
+      sourceArtifactId: input.sourceArtifactId,
+    });
+    const artifact = await createArtifact({
+      organizationId: input.organizationId,
+      brandId: input.brandId,
+      cycleId: input.cycleId,
+      type: "LinkedInPost",
+      status: result.usedFallback ? "fallback" : "draft",
+      payload: result.post,
+      createdByAgent: "LinkedIn Distributor",
+    });
+
+    await createAgentRun({
+      cycleId: input.cycleId,
+      agentName: "LinkedIn Distributor",
+      status: result.usedFallback ? "fallback" : "completed",
+      input: {
+        sourceArtifactId: input.sourceArtifactId,
+        articleTitle: input.draft.metadata.title,
+        targetPromptCount: result.post.targetPrompts.length,
+      },
+      output: {
+        artifactId: artifact.id,
+        usedFallback: result.usedFallback,
+        hook: result.post.hook,
+        bodyLength: result.post.body.length,
+        fallbackError: result.fallbackError ?? null,
+      },
+      error: result.fallbackError
+        ? [
+            result.fallbackError.errorName,
+            result.fallbackError.errorMessage,
+          ].join(": ")
+        : undefined,
+    });
+
+    return result.post;
+  } catch (error) {
+    await createAgentRun({
+      cycleId: input.cycleId,
+      agentName: "LinkedIn Distributor",
+      status: "failed",
+      input: {
+        sourceArtifactId: input.sourceArtifactId,
+        articleTitle: input.draft.metadata.title,
+      },
+      output: null,
+      error: errorMessage(error),
+    }).catch((agentRunError: unknown) => {
+      console.warn("LinkedIn Distributor agent-run logging failed", agentRunError);
+    });
+
+    console.warn("LinkedIn post generation failed", error);
+    return null;
+  }
 }
 
 function writerRevisionFailureMessage(result: SeoWriterResult) {

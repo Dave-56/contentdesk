@@ -29,6 +29,7 @@ import {
 } from "@/lib/visibility/synthesis";
 
 const recommendationPrioritySchema = z.enum(["high", "medium", "low"]);
+const brandInclusionFitSchema = z.enum(["strong", "medium", "weak", "none"]);
 
 const promptGapBrandStatusSchema = z.enum([
   "absent",
@@ -107,6 +108,8 @@ export const visibilityRecommendationSchema = z.object({
     missingOrWeakAssetType: z.string().trim().min(1).nullable(),
     targetCompetitor: z.string().trim().min(1).nullable(),
     targetCompetitorAssetStatus: z.enum(["present", "missing", "unknown"]),
+    brandFit: brandInclusionFitSchema.default("none"),
+    brandFitAngle: z.string().trim().default(""),
     relatedAssets: z.array(
       z.object({
         title: z.string().trim().min(1),
@@ -570,6 +573,11 @@ function buildSynthesisRecommendation(input: {
     dominantSourceFormat,
     promptGroup: input.prompt.promptGroup,
   });
+  const brandFit = brandFitForRecommendation({
+    taskType,
+    promptGroup: input.prompt.promptGroup,
+    strategy: input.strategy,
+  });
   const competitorName =
     targetCompetitorNameFromText(`${input.prompt.promptId} ${input.prompt.prompt}`, input.strategy) ??
     input.prompt.dominantCompetitors[0];
@@ -630,6 +638,8 @@ function buildSynthesisRecommendation(input: {
       missingOrWeakAssetType: missingAsset?.type ?? null,
       targetCompetitor: competitorName ?? null,
       targetCompetitorAssetStatus: targetAssetStatus,
+      brandFit: brandFit.fit,
+      brandFitAngle: brandFit.angle,
       relatedAssets,
     },
     recheck: {
@@ -638,6 +648,32 @@ function buildSynthesisRecommendation(input: {
       cadenceDays: input.strategy.defaultRecheckDays,
     },
   });
+}
+
+function brandFitForRecommendation(input: {
+  taskType: VisibilityRecommendation["taskType"];
+  promptGroup: string;
+  strategy: BuyerPromptStrategyInput;
+}) {
+  if (input.taskType !== "alternative_page" && input.taskType !== "comparison_page") {
+    return { fit: "none" as const, angle: "" };
+  }
+
+  const matchingJobs = input.strategy.buyerJobs.filter(
+    (job) => job.group === input.promptGroup,
+  );
+  const bestFit = Math.max(0, ...matchingJobs.map((job) => job.productFit));
+  const fit =
+    bestFit >= 4 ? "strong" :
+      bestFit === 3 ? "medium" :
+        bestFit === 2 ? "weak" :
+          "none";
+  const useCases = input.strategy.primaryUseCases.slice(0, 3).join(", ");
+  const angle = fit === "none"
+    ? ""
+    : `${input.strategy.brand.name} fits ${input.strategy.audience} evaluating ${input.strategy.category} when they need ${useCases || input.strategy.positioning}.`;
+
+  return { fit, angle };
 }
 
 function scoreRecord(
@@ -702,6 +738,11 @@ function buildRecommendation(input: {
     exclude: competitorName,
     includeInventorySubjects: true,
   });
+  const brandFit = brandFitForRecommendation({
+    taskType,
+    promptGroup: record.promptGroup,
+    strategy: input.strategy,
+  });
 
   const title =
     taskType === "alternative_page" && competitorName
@@ -743,6 +784,8 @@ function buildRecommendation(input: {
       missingOrWeakAssetType: missingAsset?.type ?? null,
       targetCompetitor: competitorName ?? null,
       targetCompetitorAssetStatus: targetAssetStatus,
+      brandFit: brandFit.fit,
+      brandFitAngle: brandFit.angle,
       relatedAssets,
     },
     recheck: {

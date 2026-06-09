@@ -8,13 +8,30 @@ const textListFromLegacyText = z.preprocess(
   textList,
 );
 
+export const voiceProfileSchema = z.object({
+  name: optionalText,
+  description: optionalText,
+  toneTraits: textListFromLegacyText,
+  writingRules: textListFromLegacyText,
+  phrasesToUse: textListFromLegacyText,
+  phrasesToAvoid: textListFromLegacyText,
+  sampleLines: textListFromLegacyText,
+});
+
+export type VoiceProfile = z.infer<typeof voiceProfileSchema>;
+
 export const brandProfileSchema = z.object({
   appName: requiredText,
   targetMerchant: requiredText,
   positioning: requiredText,
   featuresUseCases: z.array(requiredText).min(1),
   competitors: textList,
+  brandAliases: textList.optional(),
+  categoryCompetitors: textList.optional(),
+  substitutes: textList.optional(),
+  antiCompetitors: textList.optional(),
   preferredVoice: optionalText,
+  voiceProfile: voiceProfileSchema.optional(),
   preferredVisuals: textListFromLegacyText,
   visualsToAvoid: textList,
   forbiddenClaims: textList,
@@ -75,10 +92,37 @@ function isMissingProfileValue(value: unknown) {
   return value === undefined || value === null;
 }
 
+export const assetIntentSchema = z.enum([
+  "neutral_education",
+  "workflow_guide",
+  "customer_winning_comparison",
+]);
+
+export const brandInclusionFitSchema = z.enum([
+  "strong",
+  "medium",
+  "weak",
+  "none",
+]);
+
+export const brandInclusionSchema = z.object({
+  required: z.boolean().default(false),
+  fit: brandInclusionFitSchema.default("none"),
+  aliases: textList,
+  targetCompetitor: requiredText.optional(),
+  comparisonSet: textList,
+  fitAngle: optionalText,
+  ctaRequired: z.boolean().default(false),
+});
+
+export type BrandInclusion = z.infer<typeof brandInclusionSchema>;
+
 export const topicBriefSchema = z.object({
   topic: requiredText,
   workingTitle: requiredText,
   strategicFingerprint: optionalText,
+  assetIntent: assetIntentSchema.optional(),
+  brandInclusion: brandInclusionSchema.optional(),
   strategyType: z.enum(["education", "workflow", "comparison"]).default("education"),
   funnelStage: z.enum(["top", "middle", "bottom"]).default("top"),
   merchantJob: requiredText.default(
@@ -468,6 +512,35 @@ export const recommendationCardSchema = z.object({
 
 export type RecommendationCard = z.infer<typeof recommendationCardSchema>;
 
+export const linkedInPostStatusSchema = z.enum([
+  "draft",
+  "approved",
+  "posted",
+  "skipped",
+]);
+
+export const linkedInPostFormatSchema = z.enum(["text"]);
+
+export const linkedInPostSchema = z.object({
+  createdAt: z.string().datetime(),
+  channel: z.literal("company_page").default("company_page"),
+  format: linkedInPostFormatSchema.default("text"),
+  status: linkedInPostStatusSchema.default("draft"),
+  hook: requiredText,
+  body: requiredText,
+  cta: optionalText,
+  visualBrief: optionalText,
+  sourceArticleTitle: requiredText,
+  sourceArtifactId: requiredText,
+  sourceUrl: z.string().url().optional(),
+  targetPrompts: z.array(recommendationTargetPromptSchema).default([]),
+  publishUrl: optionalText,
+  publishedAt: z.string().datetime().nullable().default(null),
+  outcomeNotes: optionalText,
+});
+
+export type LinkedInPost = z.infer<typeof linkedInPostSchema>;
+
 export const publishKitSchema = z.object({
   topic: topicBriefSchema,
   markdown: z.string(),
@@ -500,6 +573,7 @@ export const publishKitSchema = z.object({
   blockers: z.array(qaBlockerIssueSchema).default([]),
   nonBlockingNotes: z.array(qaNiceToHaveIssueSchema).default([]),
   socialDrafts: z.array(z.string()),
+  linkedInPosts: z.array(linkedInPostSchema).default([]),
   sources: z.array(z.string().url()),
   codexHandoffPrompt: z.string(),
 });
@@ -540,6 +614,14 @@ export const slackActionSchema = z.discriminatedUnion("action", [
     recommendationId: z.string(),
     hash: z.string(),
     taskType: z.string(),
+  }),
+  z.object({
+    action: z.literal("mark_reddit_replied"),
+    opportunityId: z.string(),
+  }),
+  z.object({
+    action: z.literal("skip_reddit_opportunity"),
+    opportunityId: z.string(),
   }),
 ]);
 

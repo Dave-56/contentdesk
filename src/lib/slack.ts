@@ -1,5 +1,6 @@
 import crypto from "node:crypto";
 import { WebClient } from "@slack/web-api";
+import { hasStructuredVoice, voiceProfileTitle } from "@/lib/brand-voice";
 import { getEnv } from "@/lib/env";
 import type { View } from "@slack/types";
 import type { ContentDeskCommand } from "@/lib/slack-command";
@@ -424,7 +425,12 @@ export const brandProfileFieldLabels: Record<BrandProfileField, string> = {
   positioning: "Positioning",
   featuresUseCases: "Features/use cases",
   competitors: "Competitors",
+  brandAliases: "Brand aliases",
+  categoryCompetitors: "Category competitors",
+  substitutes: "Substitutes",
+  antiCompetitors: "Anti-competitors",
   preferredVoice: "Preferred voice",
+  voiceProfile: "Custom voice",
   preferredVisuals: "Preferred visuals",
   visualsToAvoid: "Visuals to avoid",
   forbiddenClaims: "Forbidden claims",
@@ -547,6 +553,55 @@ export function brandProfileModal(input: {
         optional: true,
         placeholder: "clear, practical, founder-led",
       }),
+      textInputBlock("voiceProfileName", {
+        initialValue: profile?.voiceProfile?.name,
+        optional: true,
+        placeholder: "Tiny Lemon Lab",
+        label: "Custom voice name",
+      }),
+      textInputBlock("voiceProfileDescription", {
+        initialValue: profile?.voiceProfile?.description,
+        optional: true,
+        multiline: true,
+        placeholder:
+          "Brand/editorial voice for a practical product image lab. No fake founder persona.",
+        label: "Custom voice description",
+      }),
+      textInputBlock("voiceProfileToneTraits", {
+        initialValue: listToText(profile?.voiceProfile?.toneTraits),
+        optional: true,
+        multiline: true,
+        placeholder: "One per line",
+        label: "Voice tone traits",
+      }),
+      textInputBlock("voiceProfileWritingRules", {
+        initialValue: listToText(profile?.voiceProfile?.writingRules),
+        optional: true,
+        multiline: true,
+        placeholder: "One per line",
+        label: "Voice writing rules",
+      }),
+      textInputBlock("voiceProfilePhrasesToUse", {
+        initialValue: listToText(profile?.voiceProfile?.phrasesToUse),
+        optional: true,
+        multiline: true,
+        placeholder: "One per line",
+        label: "Voice phrases to use",
+      }),
+      textInputBlock("voiceProfilePhrasesToAvoid", {
+        initialValue: listToText(profile?.voiceProfile?.phrasesToAvoid),
+        optional: true,
+        multiline: true,
+        placeholder: "One per line",
+        label: "Voice phrases to avoid",
+      }),
+      textInputBlock("voiceProfileSampleLines", {
+        initialValue: listToText(profile?.voiceProfile?.sampleLines),
+        optional: true,
+        multiline: true,
+        placeholder: "One per line",
+        label: "Voice sample lines",
+      }),
       checkboxInputBlock("preferredVisuals", {
         options: preferredVisualOptions,
         initialValues: profile?.preferredVisuals,
@@ -603,7 +658,7 @@ export function brandProfileSummaryBlocks(profile: BrandProfile) {
         type: "mrkdwn",
         text: [
           `*Competitors:* ${formatList(profile.competitors)}`,
-          `*Preferred voice:* ${profile.preferredVoice || "Not set"}`,
+          `*Preferred voice:* ${voiceProfileSummary(profile)}`,
           `*Preferred visuals:* ${formatList(profile.preferredVisuals)}`,
           `*Visuals to avoid:* ${formatList(profile.visualsToAvoid)}`,
           `*Forbidden claims:* ${formatList(profile.forbiddenClaims)}`,
@@ -741,6 +796,13 @@ export function publishKitModal(input: {
         type: "section",
         text: {
           type: "mrkdwn",
+          text: `*LinkedIn draft*\n${truncate(formatLinkedInPostSummary(input.publishKit), 1800)}`,
+        },
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
           text: `*Sources*\n${input.publishKit.sources.map((source) => `- ${source}`).join("\n")}`,
         },
       },
@@ -823,6 +885,24 @@ function formatVisualAssetSummary(publishKit: PublishKit) {
     .join("\n\n");
 }
 
+function formatLinkedInPostSummary(publishKit: PublishKit) {
+  if (publishKit.linkedInPosts.length === 0) {
+    return "No LinkedIn draft was generated for this publish kit.";
+  }
+
+  return publishKit.linkedInPosts
+    .map((post, index) =>
+      [
+        `*Post ${index + 1}: ${post.status}*`,
+        `*Hook:* ${post.hook}`,
+        `*Body:*\n${post.body}`,
+        post.cta ? `*CTA:* ${post.cta}` : "",
+        post.visualBrief ? `*Visual brief:* ${post.visualBrief}` : "",
+      ].filter(Boolean).join("\n\n"),
+    )
+    .join("\n\n---\n\n");
+}
+
 function formatQaSummary(publishKit: PublishKit) {
   const blockers = publishKit.blockers.length
     ? publishKit.blockers
@@ -854,12 +934,13 @@ function truncate(value: string, maxLength: number) {
 }
 
 function textInputBlock(
-  field: BrandProfileField,
+  field: string,
   options: {
     initialValue?: string;
     multiline?: boolean;
     optional?: boolean;
     placeholder?: string;
+    label?: string;
   },
 ) {
   const element: {
@@ -885,7 +966,7 @@ function textInputBlock(
     optional: options.optional ?? false,
     label: {
       type: "plain_text",
-      text: brandProfileFieldLabels[field],
+      text: options.label ?? brandProfileFieldLabels[field as BrandProfileField],
     },
     element,
   };
@@ -944,6 +1025,17 @@ function listToText(values: string[] | string | undefined) {
   if (typeof values === "string") return values;
 
   return values?.join("\n") ?? "";
+}
+
+function voiceProfileSummary(profile: BrandProfile) {
+  if (!hasStructuredVoice(profile)) {
+    return profile.preferredVoice || "Not set";
+  }
+
+  return [
+    voiceProfileTitle(profile),
+    profile.voiceProfile?.description,
+  ].filter(Boolean).join(" - ");
 }
 
 function formatList(values: string[] | string | undefined) {

@@ -7,7 +7,7 @@ import {
 } from "@/lib/visibility/synthesis";
 
 const defaultRunsDir = "data/tiny-lemon/visibility/runs";
-const providers = ["perplexity", "openai", "anthropic"] as const;
+const providers = ["perplexity", "openai", "anthropic", "gemini"] as const;
 
 type LoadedProviderRun =
   | { run: ReturnType<typeof promptScanRunSchema.parse>; error?: never }

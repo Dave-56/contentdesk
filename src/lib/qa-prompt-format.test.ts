@@ -7,7 +7,7 @@ import {
   thinkingGapResolutionScore,
 } from "@/lib/editor/seo-qa";
 import { formatPreviousDraftForRevision } from "@/lib/writer/seo-writer";
-import type { ArticleDraft, QAReport } from "@/lib/schemas";
+import type { ArticleDraft, BrandProfile, QAReport } from "@/lib/schemas";
 
 test("QA prompt formatting separates public preview from internal validation data", () => {
   const draft = articleDraftFixture();
@@ -187,6 +187,71 @@ test("revision QA normalization ignores internal draft field scaffolding when ma
   assert.deepEqual(normalized.revisionInstructions.writer, []);
 });
 
+test("QA normalization deterministically blocks comparison assets missing required brand inclusion", () => {
+  const draft: ArticleDraft = {
+    ...articleDraftFixture(),
+    topic: {
+      ...articleDraftFixture().topic,
+      strategyType: "comparison",
+      assetIntent: "customer_winning_comparison",
+      brandInclusion: {
+        required: true,
+        fit: "strong",
+        aliases: ["TinyLemon", "Tiny Lemon"],
+        targetCompetitor: "Botika",
+        comparisonSet: ["Botika", "Picjam", "TinyLemon"],
+        fitAngle:
+          "TinyLemon fits Shopify fashion brands when they need flat-lay to model images.",
+        ctaRequired: true,
+      },
+    },
+    markdown: [
+      "# Best Botika Alternatives",
+      "",
+      "Picjam and Modelia are useful Shopify AI photo options for apparel stores.",
+      "",
+      "## What to compare",
+      "",
+      "Compare Shopify workflow, product image quality, and batch production.",
+    ].join("\n"),
+    cta: "Try the workflow that fits your catalog.",
+  };
+  const normalized = normalizeAiQaReport(
+    {
+      status: "pass",
+      summary: "AI QA passed.",
+      blockers: [],
+      niceToHaves: [],
+      rubricScores: rubricScores(),
+      revisionInstructions: {
+        writer: [],
+        visualProducer: [],
+      },
+    },
+    {
+      draft,
+      brandProfile: brandProfileFixture(),
+    },
+  );
+
+  assert.equal(normalized.status, "needs_revision");
+  assert.ok(
+    normalized.blockers.some((issue) =>
+      /does not mention the customer brand/.test(issue.finding),
+    ),
+  );
+  assert.ok(
+    normalized.blockers.some((issue) =>
+      /CTA does not mention the customer brand/.test(issue.finding),
+    ),
+  );
+  assert.ok(
+    normalized.blockers.some((issue) =>
+      /lacks a customer fit or tradeoff section/.test(issue.finding),
+    ),
+  );
+});
+
 test("thinking gap scoring rewards decision and next-step depth", () => {
   const shallow = [
     "# AI photos for Shopify",
@@ -319,6 +384,23 @@ function qaReport(input: { blockers: QAReport["blockers"] }): QAReport {
         .filter((issue) => issue.area === "visual_plan")
         .map((issue) => issue.instruction),
     },
+  };
+}
+
+function brandProfileFixture(): BrandProfile {
+  return {
+    appName: "TinyLemon",
+    brandAliases: ["Tiny Lemon"],
+    targetMerchant: "Shopify fashion brands",
+    positioning: "flat-lay to model images for Shopify fashion brands",
+    featuresUseCases: ["flat-lay to model images"],
+    competitors: ["Botika"],
+    preferredVoice: "",
+    preferredVisuals: [],
+    visualsToAvoid: [],
+    forbiddenClaims: [],
+    ctaStyle: "Try TinyLemon on a small batch.",
+    existingBlogDocsUrls: [],
   };
 }
 

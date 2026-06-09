@@ -151,6 +151,56 @@ test("Codex handoff includes only publishable visual assets while artifact keeps
   assert.equal(publishKit.visualAssets.some((asset) => asset.status === "failed"), true);
 });
 
+test("PublishKit defaults LinkedIn posts to an empty array", () => {
+  const publishKit = buildPublishKitFromArticleDraft({
+    draft: articleDraftFixture(),
+    leadVisual: leadVisualFixture(),
+    visualPlan: visualPlanFixture(),
+    visualAssets: [],
+    qaReport: qaReportFixture(),
+  });
+
+  assert.deepEqual(publishKit.linkedInPosts, []);
+  assert.doesNotThrow(() => publishKitSchema.parse(publishKit));
+});
+
+test("PublishKit includes generated LinkedIn posts", () => {
+  const publishKit = buildPublishKitFromArticleDraft({
+    draft: articleDraftFixture(),
+    leadVisual: leadVisualFixture(),
+    visualPlan: visualPlanFixture(),
+    visualAssets: [],
+    qaReport: qaReportFixture(),
+    linkedInPosts: [
+      {
+        createdAt: "2026-06-08T12:00:00.000Z",
+        channel: "company_page",
+        format: "text",
+        status: "draft",
+        hook: "Your product page can look cheaper than your product.",
+        body: "A practical Shopify apparel post body.",
+        cta: "Test Tiny Lemon on a small SKU set.",
+        visualBrief: "Show a flat-lay to on-model before/after.",
+        sourceArticleTitle: "How Shopify brands evaluate AI on-model photo apps",
+        sourceArtifactId: "artifact_article_1",
+        targetPrompts: [
+          {
+            prompt: "AI on-model photos Shopify",
+            intent: "comparison_decision",
+          },
+        ],
+        publishUrl: "",
+        publishedAt: null,
+        outcomeNotes: "",
+      },
+    ],
+  });
+
+  assert.equal(publishKit.linkedInPosts.length, 1);
+  assert.equal(publishKit.linkedInPosts[0].sourceArtifactId, "artifact_article_1");
+  assert.doesNotThrow(() => publishKitSchema.parse(publishKit));
+});
+
 function articleDraftFixture(
   overrides: Partial<{
     targetMerchantPain: string;

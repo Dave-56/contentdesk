@@ -1,5 +1,6 @@
 import type { ProviderPromptResult } from "@/lib/prompt-scan/analyzer";
 import { createAnthropicProvider } from "@/lib/prompt-scan/anthropic";
+import { createGeminiProvider } from "@/lib/prompt-scan/gemini";
 import { createOpenAiProvider } from "@/lib/prompt-scan/openai";
 import { createPerplexityProvider } from "@/lib/prompt-scan/perplexity";
 import type { PromptScanConfig } from "@/lib/prompt-scan/schemas";
@@ -18,6 +19,7 @@ export type PromptProviderEnv = {
   perplexityApiKey?: string;
   openaiApiKey?: string;
   anthropicApiKey?: string;
+  geminiApiKey?: string;
 };
 
 export function resolvePromptProvider(input: {
@@ -51,6 +53,16 @@ export function resolvePromptProvider(input: {
 
     return createAnthropicProvider({
       apiKey: input.env.anthropicApiKey,
+    });
+  }
+
+  if (input.provider === "gemini") {
+    if (!input.env.geminiApiKey) {
+      throw new Error("GEMINI_API_KEY is required for gemini prompt scans.");
+    }
+
+    return createGeminiProvider({
+      apiKey: input.env.geminiApiKey,
     });
   }
 
