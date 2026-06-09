@@ -1,13 +1,11 @@
 import "@/lib/load-env";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { loadPromptConfig } from "@/lib/prompt-lab-config";
 import {
   listPromptLabQuestions,
   upsertPromptLabQuestion,
 } from "@/lib/prompt-lab-store";
-import { promptScanConfigSchema } from "@/lib/prompt-scan/schemas";
 
 const questionSchema = z.object({
   id: z.string().trim().min(1),
@@ -59,8 +57,7 @@ export async function POST(request: Request) {
 }
 
 async function seedSelectedTinyLemonQuestions() {
-  const configPath = path.join(process.cwd(), "data/tinylemon-xyz/visibility/prompts.selected.json");
-  const config = promptScanConfigSchema.parse(JSON.parse(await readFile(configPath, "utf8")));
+  const config = loadPromptConfig();
 
   await Promise.all(
     config.prompts.map((prompt) =>

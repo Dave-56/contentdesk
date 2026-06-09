@@ -1,6 +1,5 @@
 import "@/lib/load-env";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
+import { loadPromptConfig } from "@/lib/prompt-lab-config";
 import { summarizePromptAnswer } from "@/lib/prompt-answer-summary";
 import { analyzePromptResult } from "@/lib/prompt-scan/analyzer";
 import {
@@ -23,14 +22,12 @@ import {
 import { resolvePromptProvider } from "@/lib/prompt-scan/provider";
 import {
   promptGroupSchema,
-  promptScanConfigSchema,
   type PromptGroup,
   type PromptInput,
   type PromptScanConfig,
   type PromptScanRecord,
 } from "@/lib/prompt-scan/schemas";
 
-const defaultConfigPath = "data/tinylemon-xyz/visibility/prompts.selected.json";
 const timeoutMs = 120_000;
 
 export const promptLabEngineProvider = {
@@ -392,11 +389,6 @@ async function scanWithTimeout(input: {
   } finally {
     clearTimeout(timeout);
   }
-}
-
-async function loadPromptConfig() {
-  const filePath = path.join(process.cwd(), defaultConfigPath);
-  return promptScanConfigSchema.parse(JSON.parse(await readFile(filePath, "utf8")));
 }
 
 function toPromptInput(input: {
