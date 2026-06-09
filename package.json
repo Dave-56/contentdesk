@@ -9,6 +9,7 @@
     "db:status": "pg_ctl -D .postgres-data status",
     "db:stop": "pg_ctl -D .postgres-data stop",
     "dev": "next dev -p 3000",
+    "start": "npm run slack:start",
     "build": "next build",
     "lint": "eslint .",
     "prompt:discover": "tsx scripts/prompt-discover.ts",
