@@ -47,6 +47,17 @@ export async function listRedditOpportunityMutes() {
   return result.rows.map((row) => redditOpportunityMuteSchema.parse(row));
 }
 
+export async function listKnownRedditPostIds(postIds: string[]) {
+  if (postIds.length === 0) return new Set<string>();
+
+  const result = await query<{ reddit_post_id: string }>(
+    "select reddit_post_id from reddit_opportunities where reddit_post_id = any($1)",
+    [postIds],
+  );
+
+  return new Set(result.rows.map((row) => row.reddit_post_id));
+}
+
 export async function upsertRedditOpportunity(input: {
   post: RedditPost;
   classification: RedditOpportunityClassification;

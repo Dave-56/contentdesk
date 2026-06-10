@@ -1,16 +1,23 @@
 import {
   redditScoutKeywords,
   redditScoutMuteTerms,
+  redditScoutSearchQueries,
   redditScoutSubreddits,
   tinyLemonRedditConfig,
 } from "@/lib/reddit-opportunities/config";
 import {
+  aiPrefilterRedditPosts,
   classifyRedditOpportunity,
   deterministicPrefilter,
 } from "@/lib/reddit-opportunities/classify";
-import { fetchSubredditRss } from "@/lib/reddit-opportunities/rss";
+import {
+  fetchRedditSearchRss,
+  fetchSubredditRss,
+  type RedditFeedSort,
+} from "@/lib/reddit-opportunities/rss";
 import { redditOpportunityBlocks } from "@/lib/reddit-opportunities/slack";
 import {
+  listKnownRedditPostIds,
   listRedditOpportunityMutes,
   markRedditOpportunitySurfaced,
   upsertRedditOpportunity,
@@ -25,64 +32,141 @@ import { postManagerMessage } from "@/lib/slack";
 export async function runRedditOpportunityScout(input: {
   channelId?: string;
   subreddits?: string[];
+  searchQueries?: string[];
   maxPostsPerSubreddit?: number;
 } = {}) {
   const channelId = input.channelId ?? process.env.CONTENTDESK_REDDIT_CHANNEL_ID;
   const subreddits = input.subreddits ?? redditScoutSubreddits();
+  const searchQueries = input.searchQueries ?? redditScoutSearchQueries();
   const keywords = redditScoutKeywords();
   const muteTerms = redditScoutMuteTerms();
+  const limit = input.maxPostsPerSubreddit ?? tinyLemonRedditConfig.maxPostsPerSubreddit;
   const dbMutes = await listRedditOpportunityMutes();
   const summary = {
     fetched: 0,
-    matched: 0,
+    candidates: 0,
+    alreadyKnown: 0,
+    prefilterMode: "deterministic" as "ai" | "deterministic",
+    classified: 0,
     stored: 0,
     surfaced: 0,
     skipped: 0,
     errors: [] as string[],
   };
 
+  // Gather: per-subreddit feeds (new + rising) plus Reddit-wide search feeds.
+  // Sequential on purpose — unauthenticated RSS rate limits are unforgiving.
+  const gathered: RedditPost[] = [];
   for (const subreddit of subreddits) {
-    const posts = await fetchSubredditRss({
-      subreddit,
-      limit: input.maxPostsPerSubreddit ?? tinyLemonRedditConfig.maxPostsPerSubreddit,
-    }).catch((error: unknown) => {
+    for (const sort of tinyLemonRedditConfig.feedSorts as readonly RedditFeedSort[]) {
+      const posts = await fetchSubredditRss({ subreddit, sort, limit }).catch((error: unknown) => {
+        summary.errors.push(error instanceof Error ? error.message : String(error));
+        return [];
+      });
+      gathered.push(...posts);
+    }
+  }
+  for (const query of searchQueries) {
+    const posts = await fetchRedditSearchRss({ query, limit }).catch((error: unknown) => {
       summary.errors.push(error instanceof Error ? error.message : String(error));
       return [];
     });
-    summary.fetched += posts.length;
+    gathered.push(...posts);
+  }
+  summary.fetched = gathered.length;
 
-    for (const post of posts) {
-      if (isMutedByDatabase(post, dbMutes)) {
-        summary.skipped += 1;
-        continue;
-      }
+  // Narrow to fresh, unseen, unmuted posts before spending AI calls.
+  const unique = dedupeRedditPosts(gathered).filter((post) =>
+    isFreshRedditPost(post, tinyLemonRedditConfig.maxPostAgeDays),
+  );
+  const knownIds = await listKnownRedditPostIds(unique.map((post) => post.redditPostId));
+  summary.alreadyKnown = unique.filter((post) => knownIds.has(post.redditPostId)).length;
 
-      const prefilter = deterministicPrefilter({ post, keywords, muteTerms });
-      if (prefilter.muted || prefilter.matchedTerms.length === 0) {
-        summary.skipped += 1;
-        continue;
-      }
-      summary.matched += 1;
+  const candidates: Array<{ post: RedditPost; matchedTerms: string[] }> = [];
+  for (const post of unique) {
+    if (knownIds.has(post.redditPostId)) continue;
+    if (isMutedByDatabase(post, dbMutes)) {
+      summary.skipped += 1;
+      continue;
+    }
 
-      const classification = await classifyRedditOpportunity({
-        post,
-        matchedTerms: prefilter.matchedTerms,
-      });
-      const opportunity = await upsertRedditOpportunity({
-        post,
-        classification,
-        status: classification.fit === "skip" ? "skipped" : "new",
-      });
-      summary.stored += 1;
+    const prefilter = deterministicPrefilter({ post, keywords, muteTerms });
+    if (prefilter.muted) {
+      summary.skipped += 1;
+      continue;
+    }
+    candidates.push({ post, matchedTerms: prefilter.matchedTerms });
+  }
+  const capped = candidates.slice(0, tinyLemonRedditConfig.maxPrefilterPostsPerRun);
+  if (capped.length < candidates.length) {
+    summary.errors.push(
+      `Prefilter cap dropped ${candidates.length - capped.length} posts this run`,
+    );
+  }
+  summary.candidates = capped.length;
 
-      if (!channelId || !shouldSurface(opportunity)) continue;
+  // AI gate judges intent; keyword match is only the fallback when the gate
+  // is unavailable (no credentials) or fails outright.
+  const verdicts = await aiPrefilterRedditPosts({
+    posts: capped.map((candidate) => candidate.post),
+  }).catch((error: unknown) => {
+    console.error(
+      "Reddit Radar AI prefilter failed; using deterministic keyword fallback:",
+      error instanceof Error ? error.message : error,
+    );
+    summary.errors.push("AI prefilter failed; deterministic fallback used");
+    return null;
+  });
+  summary.prefilterMode = verdicts ? "ai" : "deterministic";
 
+  const relevant = capped.filter(({ post, matchedTerms }) => {
+    const verdict = verdicts?.get(post.redditPostId);
+    if (verdict) return verdict.relevant;
+    return matchedTerms.length > 0;
+  });
+  summary.skipped += capped.length - relevant.length;
+
+  const storedOpportunities: RedditOpportunityRecord[] = [];
+  for (const { post, matchedTerms } of relevant) {
+    const classification = await classifyRedditOpportunity({ post, matchedTerms });
+    summary.classified += 1;
+    const opportunity = await upsertRedditOpportunity({
+      post,
+      classification,
+      status: classification.fit === "skip" ? "skipped" : "new",
+    });
+    summary.stored += 1;
+    storedOpportunities.push(opportunity);
+  }
+
+  if (channelId) {
+    const toSurface = storedOpportunities
+      .filter(shouldSurface)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, tinyLemonRedditConfig.maxSurfacedPerRun);
+
+    for (const opportunity of toSurface) {
       const surfaced = await surfaceOpportunity({ opportunity, channelId });
       if (surfaced) summary.surfaced += 1;
     }
   }
 
   return summary;
+}
+
+export function dedupeRedditPosts(posts: RedditPost[]) {
+  const seen = new Set<string>();
+
+  return posts.filter((post) => {
+    if (seen.has(post.redditPostId)) return false;
+    seen.add(post.redditPostId);
+    return true;
+  });
+}
+
+export function isFreshRedditPost(post: RedditPost, maxAgeDays: number, now = new Date()) {
+  const ageMs = now.getTime() - new Date(post.publishedAt).getTime();
+  return ageMs <= maxAgeDays * 24 * 60 * 60 * 1000;
 }
 
 function shouldSurface(opportunity: RedditOpportunityRecord) {
