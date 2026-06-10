@@ -226,6 +226,18 @@ multi-provider runs spend API credits and should be intentional. See
 - Neon password should be rotated because a production DB URL was pasted in chat during the
   Reddit Radar setup.
 
+## Deploy / ship
+Branch pushes do **not** auto-create Vercel previews. Use the `vercel` CLI:
+`vercel deploy --yes` (preview) or `vercel deploy --prod` (production at
+`contentdesk-lake.vercel.app`). In a git worktree, copy the link first:
+`cp -R <main-root>/.vercel .vercel`. Preview URLs return **401 to anonymous requests**
+(Vercel deployment protection) — normal; view in a browser logged into the team. Engine
+keys (`OPENAI`/`PERPLEXITY`/`GEMINI`) are **Production-only**, so previews can't run the
+prompt-lab engines — only `ANTHROPIC_API_KEY` and DB are on Preview. No `gh` CLI: push, then
+share the GitHub compare link. Project `contentdesk`, account `dave-56`. Commit/push only
+when asked; branch off `master` first. Full runbook: **`.claude/skills/ship/SKILL.md`**
+(`ship` skill).
+
 ## Next 3 actions
 1. Rotate the Neon password used during Reddit Radar setup, then update Railway/Trigger env.
 2. Add a read-only Reddit opportunities dashboard: recent opportunities, status/fit/subreddit

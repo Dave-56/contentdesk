@@ -1,6 +1,7 @@
 import "@/lib/load-env";
 import { loadPromptConfig } from "@/lib/prompt-lab-config";
 import { summarizePromptAnswer } from "@/lib/prompt-answer-summary";
+import { generateSmartSummary } from "@/lib/prompt-answer-summary-llm";
 import { analyzePromptResult } from "@/lib/prompt-scan/analyzer";
 import {
   claimPromptLabBatch,
@@ -338,12 +339,20 @@ async function runEngine(input: {
     });
     const brandRank = record.answerSignal?.brandRank;
     const status = record.visibilityScore.brandMentioned ? "mentioned" : "missing";
+    const smartSummary = await generateSmartSummary({
+      question: input.prompt.prompt,
+      brandName: config.brand.name,
+      rawAnswer: record.answerText,
+      group: record.promptGroup,
+      ...(record.answerSignal ? { answerSignal: record.answerSignal } : {}),
+    });
 
     return {
       result: {
         status,
         ...(brandRank ? { rank: `#${brandRank}` } : {}),
         answer: summarizePromptAnswer(record.answerText),
+        smartSummary,
         rawAnswer: record.answerText,
         citations: record.citedDomains.slice(0, 6),
         sourceCitations: record.citedSources,

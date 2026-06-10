@@ -27,6 +27,7 @@ type EngineResult = {
   status: EngineStatus;
   rank?: string;
   answer: string;
+  smartSummary?: string;
   rawAnswer?: string;
   citations: string[];
   sourceCitations: PromptLabSourceCitation[];
@@ -913,6 +914,9 @@ function getRawAnswer(question: TestQuestion, engine: EngineName, result: Engine
 
 function summaryAnswer(result: EngineResult) {
   if (result.status === "mentioned" || result.status === "missing") {
+    // Prefer the question-aware LLM takeaway computed at run time; fall back to
+    // the deterministic sentence extraction for older runs without one.
+    if (result.smartSummary?.trim()) return result.smartSummary.trim();
     return summarizePromptAnswer(result.rawAnswer || result.answer);
   }
 

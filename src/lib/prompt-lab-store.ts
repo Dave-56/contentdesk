@@ -20,6 +20,7 @@ export type PromptLabEngineResult = {
   status: PromptLabEngineStatus;
   rank?: string;
   answer: string;
+  smartSummary?: string;
   rawAnswer?: string;
   citations: string[];
   sourceCitations: CitedSource[];
@@ -68,6 +69,7 @@ type ResultRow = {
   status: PromptLabEngineStatus;
   rank: string | null;
   answer: string;
+  smart_summary: string | null;
   raw_answer: string;
   citations: string[];
   source_citations: CitedSource[] | null;
@@ -178,6 +180,7 @@ const defaultBrandSlug = "tinylemon-xyz";
 export const dailyPromptLabEngines = ["ChatGPT", "Perplexity", "Gemini"] as const satisfies PromptLabEngineName[];
 type DailyPromptLabEngine = (typeof dailyPromptLabEngines)[number];
 let sourceCitationsColumnReady: Promise<void> | undefined;
+let smartSummaryColumnReady: Promise<void> | undefined;
 export const excludedDailyPromptLabEngines = [
   { engine: "Claude", reason: "wired, excluded from daily v1 for cost/speed" },
 ] as const;
@@ -197,6 +200,7 @@ export async function listPromptLabQuestions(input: {
   if (!questions.rowCount) return [];
 
   await ensurePromptLabSourceCitationsColumn();
+  await ensurePromptLabSmartSummaryColumn();
 
   const questionIds = questions.rows.map((question) => question.id);
   const results = await query<ResultRow>(
@@ -206,6 +210,7 @@ export async function listPromptLabQuestions(input: {
        status,
        rank,
        answer,
+       smart_summary,
        raw_answer,
        citations,
        source_citations
@@ -222,6 +227,7 @@ export async function listPromptLabQuestions(input: {
       status: result.status,
       ...(result.rank ? { rank: result.rank } : {}),
       answer: result.answer,
+      ...(result.smart_summary ? { smartSummary: result.smart_summary } : {}),
       rawAnswer: result.raw_answer,
       citations: normalizeJsonArray<string>(result.citations),
       sourceCitations: normalizeJsonArray<CitedSource>(result.source_citations),
@@ -352,15 +358,17 @@ export async function savePromptLabEngineResult(input: {
   competitorSignals?: CompetitorAnswerSignal[];
 }) {
   await ensurePromptLabSourceCitationsColumn();
+  await ensurePromptLabSmartSummaryColumn();
 
   await query(
     `insert into prompt_lab_engine_results
-      (id, run_id, batch_id, question_id, brand_slug, engine, provider, status, rank, answer, raw_answer, citations, source_citations, visibility_score, answer_signal, competitor_signals)
-     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+      (id, run_id, batch_id, question_id, brand_slug, engine, provider, status, rank, answer, smart_summary, raw_answer, citations, source_citations, visibility_score, answer_signal, competitor_signals)
+     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
      on conflict (run_id, engine) do update
      set status = excluded.status,
        rank = excluded.rank,
        answer = excluded.answer,
+       smart_summary = excluded.smart_summary,
        raw_answer = excluded.raw_answer,
        citations = excluded.citations,
        source_citations = excluded.source_citations,
@@ -378,6 +386,7 @@ export async function savePromptLabEngineResult(input: {
       input.result.status,
       input.result.rank ?? null,
       input.result.answer,
+      input.result.smartSummary ?? "",
       input.result.rawAnswer ?? "",
       JSON.stringify(input.result.citations),
       JSON.stringify(input.result.sourceCitations),
@@ -404,6 +413,15 @@ async function ensurePromptLabSourceCitationsColumn() {
   ).then(() => undefined);
 
   await sourceCitationsColumnReady;
+}
+
+async function ensurePromptLabSmartSummaryColumn() {
+  smartSummaryColumnReady ??= query(
+    `alter table prompt_lab_engine_results
+       add column if not exists smart_summary text not null default ''`,
+  ).then(() => undefined);
+
+  await smartSummaryColumnReady;
 }
 
 export async function getPromptLabBatch(input: {
