@@ -7,6 +7,7 @@ import { runRedditOpportunityScout } from "@/lib/reddit-opportunities";
 const redditOpportunityScoutPayloadSchema = z.object({
   channelId: z.string().min(1).optional(),
   subreddits: z.array(z.string().min(1)).optional(),
+  searchQueries: z.array(z.string().min(1)).optional(),
   maxPostsPerSubreddit: z.number().int().positive().max(100).optional(),
 });
 

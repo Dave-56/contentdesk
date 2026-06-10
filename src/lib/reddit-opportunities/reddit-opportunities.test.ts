@@ -3,6 +3,8 @@ import test from "node:test";
 
 import { slackActionSchema } from "@/lib/schemas";
 import { deterministicPrefilter } from "@/lib/reddit-opportunities/classify";
+import { dedupeRedditPosts, isFreshRedditPost } from "@/lib/reddit-opportunities";
+import { subredditFromUrl } from "@/lib/reddit-opportunities/rss";
 import { redditOpportunityBlocks } from "@/lib/reddit-opportunities/slack";
 import type { RedditOpportunityRecord, RedditPost } from "@/lib/reddit-opportunities/schemas";
 
@@ -67,6 +69,49 @@ test("reddit opportunity Slack blocks carry mark replied and skip actions", () =
     }),
   );
 });
+
+test("dedupeRedditPosts keeps first occurrence per reddit post id", () => {
+  const base = postFixture();
+  const posts = [
+    base,
+    { ...base, subreddit: "ecommerce" },
+    { ...base, redditPostId: "other99" },
+  ];
+
+  const unique = dedupeRedditPosts(posts);
+
+  assert.equal(unique.length, 2);
+  assert.equal(unique[0].subreddit, "shopify");
+  assert.equal(unique[1].redditPostId, "other99");
+});
+
+test("isFreshRedditPost filters by max age", () => {
+  const now = new Date("2026-06-09T12:00:00.000Z");
+  const fresh = { ...postFixture(), publishedAt: "2026-06-05T12:00:00.000Z" };
+  const stale = { ...postFixture(), publishedAt: "2026-05-20T12:00:00.000Z" };
+
+  assert.equal(isFreshRedditPost(fresh, 7, now), true);
+  assert.equal(isFreshRedditPost(stale, 7, now), false);
+});
+
+test("subredditFromUrl extracts subreddit from post urls", () => {
+  assert.equal(
+    subredditFromUrl("https://www.reddit.com/r/printondemand/comments/xyz789/example/"),
+    "printondemand",
+  );
+  assert.equal(subredditFromUrl("https://www.reddit.com/user/someone/comments/abc/"), "");
+});
+
+function postFixture(): RedditPost {
+  return {
+    redditPostId: "abc123",
+    subreddit: "shopify",
+    title: "How do clothing stores get on-model product photos?",
+    url: "https://www.reddit.com/r/shopify/comments/abc123/example/",
+    publishedAt: "2026-06-09T12:00:00.000Z",
+    content: "I have flat-lay supplier photos and want better Shopify images.",
+  };
+}
 
 function opportunityFixture(): RedditOpportunityRecord {
   return {
