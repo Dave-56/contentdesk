@@ -119,12 +119,21 @@ export async function runRedditOpportunityScout(input: {
   });
   summary.prefilterMode = verdicts ? "ai" : "deterministic";
 
-  const relevant = capped.filter(({ post, matchedTerms }) => {
+  const allRelevant = capped.filter(({ post, matchedTerms }) => {
     const verdict = verdicts?.get(post.redditPostId);
     if (verdict) return verdict.relevant;
     return matchedTerms.length > 0;
   });
-  summary.skipped += capped.length - relevant.length;
+  summary.skipped += capped.length - allRelevant.length;
+
+  // Classification is sequential AI calls; cap them so one run stays inside
+  // the task maxDuration. Uncapped posts stay unstored and re-enter next run.
+  const relevant = allRelevant.slice(0, tinyLemonRedditConfig.maxClassifiedPerRun);
+  if (relevant.length < allRelevant.length) {
+    summary.errors.push(
+      `Classification cap deferred ${allRelevant.length - relevant.length} posts to a later run`,
+    );
+  }
 
   const storedOpportunities: RedditOpportunityRecord[] = [];
   for (const { post, matchedTerms } of relevant) {

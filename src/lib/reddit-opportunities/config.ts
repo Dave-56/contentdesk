@@ -63,6 +63,10 @@ export const tinyLemonRedditConfig = {
   maxSurfacedPerRun: 8,
   maxPrefilterPostsPerRun: 150,
   prefilterBatchSize: 20,
+  // Classification is one AI call per post, run sequentially — this cap keeps
+  // a single run well inside the task maxDuration. Overflow posts are not
+  // stored, so the next run picks them up while the freshness window holds.
+  maxClassifiedPerRun: 40,
 } as const;
 
 export function redditScoutSubreddits() {
