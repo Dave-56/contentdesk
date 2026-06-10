@@ -181,6 +181,9 @@ Acceptance:
 - [x] Add Slack actions to mark Reddit opportunities replied or skipped.
 - [x] Add production scheduled Trigger task `reddit-opportunity-scout`.
 - [x] Add manual Slack command `/contentdesk reddit-scout now`.
+- [x] Fix AI classification schema rejection (zod defaults) so brand-aware AI fit scoring actually runs.
+- [x] Word-boundary keyword prefilter; drop FashionReps and bare `models` from defaults.
+- [ ] Redeploy Trigger production with Reddit Radar relevance fix.
 - [ ] Add manual run completion summary back to Slack.
 - [ ] Add Reddit opportunities dashboard with status, fit, subreddit filters, and draft reply view.
 - [ ] Add mute management UI for keywords and subreddits.

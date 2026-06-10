@@ -4,7 +4,6 @@ export const tinyLemonRedditConfig = {
     "ecommerce",
     "Entrepreneur",
     "smallbusiness",
-    "FashionReps",
     "streetwearstartup",
   ],
   keywords: [
@@ -26,7 +25,6 @@ export const tinyLemonRedditConfig = {
     "catalog photos",
     "lookbook",
     "mockup",
-    "models",
     "photoshoot",
   ],
   muteTerms: [
