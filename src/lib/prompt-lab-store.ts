@@ -110,6 +110,7 @@ type DailyMetricResultRow = {
   brand_slug: string;
   run_date: string | Date;
   status: PromptLabBatchStatus;
+  question_id: string | null;
   engine: PromptLabEngineName | null;
   engine_status: PromptLabEngineStatus | null;
   visibility_score: VisibilityScore | null;
@@ -611,6 +612,7 @@ export async function synthesizePromptLabDailyMetrics(input: {
        b.brand_slug,
        b.run_date,
        b.status,
+       r.question_id,
        r.engine,
        r.status as engine_status,
        r.visibility_score,
@@ -619,7 +621,7 @@ export async function synthesizePromptLabDailyMetrics(input: {
        r.citations
      from prompt_lab_batches b
      left join (
-       select distinct on (question_id, engine)
+       select
          question_id,
          engine,
          status,
@@ -629,7 +631,6 @@ export async function synthesizePromptLabDailyMetrics(input: {
          citations
        from prompt_lab_engine_results
        where batch_id = $2
-       order by question_id, engine, created_at desc
      ) r on true
      where b.brand_slug = $1
        and b.id = $2`,
@@ -746,6 +747,62 @@ export async function getLatestPromptLabDailyMetrics(input: {
   });
 }
 
+export type PromptLabRollingVisibility = {
+  windowDays: number;
+  dayCount: number;
+  windowStart: string;
+  windowEnd: string;
+  brandMentionedCount: number;
+  completedAnswerCount: number;
+  visibilityPct: number;
+};
+
+export async function getPromptLabRollingVisibility(input: {
+  brandSlug?: string;
+  windowDays?: number;
+} = {}): Promise<PromptLabRollingVisibility | null> {
+  const brandSlug = input.brandSlug ?? defaultBrandSlug;
+  const windowDays = input.windowDays ?? 7;
+  const result = await query<{
+    day_count: number;
+    window_start: string | Date | null;
+    window_end: string | Date | null;
+    brand_mentioned_count: number;
+    completed_answer_count: number;
+  }>(
+    `with latest as (
+       select max(run_date) as max_date
+       from prompt_lab_daily_metrics
+       where brand_slug = $1
+     )
+     select
+       count(*)::int as day_count,
+       min(m.run_date) as window_start,
+       max(m.run_date) as window_end,
+       coalesce(sum(m.brand_mentioned_count), 0)::int as brand_mentioned_count,
+       coalesce(sum(m.completed_answer_count), 0)::int as completed_answer_count
+     from prompt_lab_daily_metrics m, latest
+     where m.brand_slug = $1
+       and m.run_date > latest.max_date - $2::int`,
+    [brandSlug, windowDays],
+  );
+  const row = result.rows[0];
+
+  if (!row || !row.day_count || !row.window_start || !row.window_end) {
+    return null;
+  }
+
+  return {
+    windowDays,
+    dayCount: row.day_count,
+    windowStart: isoDate(row.window_start),
+    windowEnd: isoDate(row.window_end),
+    brandMentionedCount: row.brand_mentioned_count,
+    completedAnswerCount: row.completed_answer_count,
+    visibilityPct: percent(row.brand_mentioned_count, row.completed_answer_count),
+  };
+}
+
 export async function listPromptLabDailyHistory(input: {
   brandSlug?: string;
   limit?: number;
@@ -858,12 +915,15 @@ function isDailyPromptLabEngine(engine: PromptLabEngineName): engine is DailyPro
   return (dailyPromptLabEngines as readonly PromptLabEngineName[]).includes(engine);
 }
 
-function calculateDailyMetrics(rows: DailyMetricResultRow[]) {
+export function calculateDailyMetrics(rows: DailyMetricResultRow[]) {
   const engineSet = new Set<string>();
   const competitorMentionCounts = new Map<string, number>();
   const sourceCounts = new Map<string, number>();
+  // Every completed result is a sample: reruns of the same (question, engine)
+  // pair add to the day's sample instead of replacing earlier answers.
+  const completedPairs = new Set<string>();
+  const erroredPairs = new Set<string>();
   let completedAnswerCount = 0;
-  let failedAnswerCount = 0;
   let brandMentionedCount = 0;
   let brandCitedCount = 0;
   let brandRecommendedCount = 0;
@@ -877,12 +937,14 @@ function calculateDailyMetrics(rows: DailyMetricResultRow[]) {
     }
 
     engineSet.add(row.engine);
-    if (row.engine_status === "error") failedAnswerCount += 1;
+    const pairKey = `${row.question_id}:${row.engine}`;
+    if (row.engine_status === "error") erroredPairs.add(pairKey);
 
     const completed =
       row.engine_status === "mentioned" || row.engine_status === "missing";
     if (!completed) continue;
 
+    completedPairs.add(pairKey);
     completedAnswerCount += 1;
     const visibilityScore = normalizeJson<VisibilityScore>(row.visibility_score);
     const answerSignal = normalizeJson<AnswerSignal>(row.answer_signal);
@@ -919,6 +981,10 @@ function calculateDailyMetrics(rows: DailyMetricResultRow[]) {
     }
   }
 
+  // A pair only counts as failed when no attempt for it completed that day.
+  const failedAnswerCount = [...erroredPairs].filter(
+    (pair) => !completedPairs.has(pair),
+  ).length;
   const visibilityPct = percent(brandMentionedCount, completedAnswerCount);
   const citationPct = percent(brandCitedCount, Math.max(brandMentionedCount, 1));
   const sentimentScore = sentimentAnswerCount
