@@ -58,6 +58,18 @@ export async function listKnownRedditPostIds(postIds: string[]) {
   return new Set(result.rows.map((row) => row.reddit_post_id));
 }
 
+export async function listPendingRedditOpportunities(limit: number) {
+  const result = await query<OpportunityRow>(
+    `select * from reddit_opportunities
+     where status = 'new' and fit in ('strong', 'medium')
+     order by score desc, created_at asc
+     limit $1`,
+    [limit],
+  );
+
+  return result.rows.map(mapOpportunityRow);
+}
+
 export async function upsertRedditOpportunity(input: {
   post: RedditPost;
   classification: RedditOpportunityClassification;

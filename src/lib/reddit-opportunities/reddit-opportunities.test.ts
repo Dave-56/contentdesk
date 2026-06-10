@@ -3,7 +3,11 @@ import test from "node:test";
 
 import { slackActionSchema } from "@/lib/schemas";
 import { deterministicPrefilter } from "@/lib/reddit-opportunities/classify";
-import { dedupeRedditPosts, isFreshRedditPost } from "@/lib/reddit-opportunities";
+import {
+  dedupeRedditPosts,
+  isFreshRedditPost,
+  selectOpportunitiesToSurface,
+} from "@/lib/reddit-opportunities";
 import { subredditFromUrl } from "@/lib/reddit-opportunities/rss";
 import { redditOpportunityBlocks } from "@/lib/reddit-opportunities/slack";
 import type { RedditOpportunityRecord, RedditPost } from "@/lib/reddit-opportunities/schemas";
@@ -92,6 +96,36 @@ test("isFreshRedditPost filters by max age", () => {
 
   assert.equal(isFreshRedditPost(fresh, 7, now), true);
   assert.equal(isFreshRedditPost(stale, 7, now), false);
+});
+
+test("selectOpportunitiesToSurface merges stored and pending, dedupes, sorts, caps", () => {
+  const stored = [
+    { ...opportunityFixture(), id: "reddit_1", score: 70 },
+    { ...opportunityFixture(), id: "reddit_2", score: 90, status: "skipped" as const },
+  ];
+  const pending = [
+    { ...opportunityFixture(), id: "reddit_1", score: 70 },
+    { ...opportunityFixture(), id: "reddit_3", score: 85, fit: "medium" as const },
+    { ...opportunityFixture(), id: "reddit_4", score: 60 },
+  ];
+
+  const selected = selectOpportunitiesToSurface({ stored, pending, max: 2 });
+
+  assert.deepEqual(
+    selected.map((opportunity) => opportunity.id),
+    ["reddit_3", "reddit_1"],
+  );
+});
+
+test("selectOpportunitiesToSurface picks up pending rows when nothing was stored", () => {
+  const pending = [{ ...opportunityFixture(), id: "reddit_5", score: 80 }];
+
+  const selected = selectOpportunitiesToSurface({ stored: [], pending, max: 8 });
+
+  assert.deepEqual(
+    selected.map((opportunity) => opportunity.id),
+    ["reddit_5"],
+  );
 });
 
 test("subredditFromUrl extracts subreddit from post urls", () => {
