@@ -183,6 +183,16 @@ multi-provider runs spend API credits and should be intentional. See
 - Verification on 2026-06-09: `npm test -- src/lib/slack.test.ts src/lib/reddit-opportunities/reddit-opportunities.test.ts`
   passed all repo tests, and `npm run typecheck` passed after adding `/contentdesk
   reddit-scout now`.
+- Reddit Radar relevance fix on 2026-06-09: AI classification had been failing on every
+  post (OpenAI structured outputs reject schemas with non-required properties; the zod
+  `.default()` fields in `redditOpportunityClassificationSchema` made them optional), and
+  `.catch(() => null)` hid the failure, so the crude regex fallback classified everything.
+  Fixed: `aiClassificationSchema` now all-required, AI failures are logged, keyword
+  prefilter uses word-boundary matching (no more `apparel` inside unrelated words,
+  `models` matching "business models"), default config drops `FashionReps` and bare
+  `models`, and the classifier prompt names tinylemon.xyz with explicit fit/not-fit brand
+  criteria. Live-verified: bakery-photoshoot post → skip (2), Shopify apparel on-model
+  post → strong (97). Needs Trigger prod redeploy to take effect.
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
   "update repo memory" stop routine.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:

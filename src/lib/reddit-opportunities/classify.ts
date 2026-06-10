@@ -5,16 +5,25 @@ import {
   redditScoutMuteTerms,
 } from "@/lib/reddit-opportunities/config";
 import {
+  redditMentionRecommendationSchema,
   redditOpportunityClassificationSchema,
+  redditOpportunityFitSchema,
   type RedditOpportunityClassification,
   type RedditPost,
 } from "@/lib/reddit-opportunities/schemas";
 import { buildDeterministicDraft, cleanDraftReply } from "@/lib/reddit-opportunities/draft";
 
-const aiClassificationSchema = redditOpportunityClassificationSchema.omit({
-  matchedTerms: true,
-}).extend({
+// OpenAI structured outputs reject schemas whose properties are not all
+// required, so every field here must stay free of .default()/.optional().
+const aiClassificationSchema = z.object({
+  fit: redditOpportunityFitSchema,
+  score: z.number().int().min(0).max(100),
   whySurfaced: z.array(z.string().trim().min(1)).min(1).max(4),
+  tinyLemonFit: z.string().trim(),
+  promoRisk: z.string().trim(),
+  suggestedAngle: z.string().trim(),
+  mentionRecommendation: redditMentionRecommendationSchema,
+  draftReply: z.string().trim(),
 });
 
 export function deterministicPrefilter(input: {
@@ -40,7 +49,13 @@ export async function classifyRedditOpportunity(input: {
   matchedTerms: string[];
 }) {
   const fallback = deterministicClassification(input);
-  const aiClassification = await generateAiClassification(input).catch(() => null);
+  const aiClassification = await generateAiClassification(input).catch((error: unknown) => {
+    console.error(
+      `Reddit Radar AI classification failed for ${input.post.redditPostId}; using deterministic fallback:`,
+      error instanceof Error ? error.message : error,
+    );
+    return null;
+  });
   const classification = aiClassification
     ? redditOpportunityClassificationSchema.parse({
         ...aiClassification,
@@ -149,7 +164,9 @@ async function generateAiClassification(input: {
     }),
     prompt: [
       "You classify Reddit posts for Tiny Lemon Reddit Radar.",
-      "Tiny Lemon is a Shopify app for apparel merchants that turns flat-lay or supplier product photos into on-model Shopify product images.",
+      "Tiny Lemon (tinylemon.xyz) is a Shopify app for apparel merchants that turns flat-lay or supplier product photos into on-model Shopify product images.",
+      "Ideal poster: someone selling clothing/apparel online who needs product photos, on-model imagery, or a way to upgrade flat-lay/supplier photos.",
+      "Not a fit: non-apparel products (food, electronics, home goods), replica/rep communities, people hiring human photographers for brand shoots, or general business advice with incidental photo language.",
       "",
       "Rules:",
       "- Output conservative fit: strong, medium, weak, or skip.",
@@ -172,7 +189,10 @@ async function generateAiClassification(input: {
 }
 
 function matchingTerms(text: string, terms: readonly string[]) {
-  return terms.filter((term) => text.includes(term.toLowerCase()));
+  return terms.filter((term) => {
+    const escaped = term.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`(?<![a-z0-9])${escaped}s?(?![a-z0-9])`).test(text);
+  });
 }
 
 function postText(post: RedditPost) {

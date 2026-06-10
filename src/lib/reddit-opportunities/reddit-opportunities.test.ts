@@ -29,6 +29,25 @@ test("reddit prefilter matches product-photo terms and mute terms", () => {
   });
 });
 
+test("reddit prefilter matches whole words, not substrings", () => {
+  const post: RedditPost = {
+    redditPostId: "def456",
+    subreddit: "Entrepreneur",
+    title: "What business models are old-fashioned in 2026?",
+    url: "https://www.reddit.com/r/Entrepreneur/comments/def456/example/",
+    publishedAt: "2026-06-09T12:00:00.000Z",
+    content: "Nobody talks about catalog photos of success anymore.",
+  };
+
+  const result = deterministicPrefilter({
+    post,
+    keywords: ["model", "fashion", "catalog photos"],
+    muteTerms: [],
+  });
+
+  assert.deepEqual(result.matchedTerms, ["model", "catalog photos"]);
+});
+
 test("reddit opportunity Slack blocks carry mark replied and skip actions", () => {
   const blocks = redditOpportunityBlocks(opportunityFixture());
   const values = JSON.stringify(blocks);
