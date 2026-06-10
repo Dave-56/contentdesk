@@ -33,8 +33,19 @@ type DashboardMetrics = {
   }>;
 };
 
+type DashboardRollingVisibility = {
+  windowDays: number;
+  dayCount: number;
+  windowStart: string;
+  windowEnd: string;
+  brandMentionedCount: number;
+  completedAnswerCount: number;
+  visibilityPct: number;
+};
+
 type DashboardMetricsResponse = {
   metrics: DashboardMetrics | null;
+  rolling: DashboardRollingVisibility | null;
 };
 
 const initialCompetitors: CompetitorRow[] = [
@@ -62,20 +73,15 @@ const logoColors: Record<string, string> = {
 export default function Home() {
   const [competitors, setCompetitors] = useState(initialCompetitors);
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
+  const [rolling, setRolling] = useState<DashboardRollingVisibility | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState("");
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const visibilityPct = metrics?.visibilityPct ?? 0.6;
-  const sentimentScore = metrics?.sentimentScore ?? 36.25;
-  const completedAnswerCount = metrics?.completedAnswerCount ?? 6140;
-  const brandMentionedCount = metrics?.brandMentionedCount ?? 37;
-  const sentimentAnswerCount = metrics?.sentimentAnswerCount ?? 37;
-  const sentimentBadge =
-    metrics?.sentimentAnswerCount === 0
-      ? "No mentions yet"
-      : metrics?.lowSampleSize ?? true
-        ? "Low sample size"
-        : undefined;
+  const visibilityPct = rolling?.visibilityPct ?? metrics?.visibilityPct ?? 0.6;
+  const completedAnswerCount =
+    rolling?.completedAnswerCount ?? metrics?.completedAnswerCount ?? 6140;
+  const brandMentionedCount =
+    rolling?.brandMentionedCount ?? metrics?.brandMentionedCount ?? 37;
 
   useEffect(() => {
     let cancelled = false;
@@ -86,7 +92,10 @@ export default function Home() {
         if (!response.ok) return;
 
         const payload = (await response.json()) as DashboardMetricsResponse;
-        if (cancelled || !payload.metrics) return;
+        if (cancelled) return;
+
+        setRolling(payload.rolling ?? null);
+        if (!payload.metrics) return;
 
         setMetrics(payload.metrics);
         if (payload.metrics.competitorShareOfVoice.length) {
@@ -169,41 +178,30 @@ export default function Home() {
           </div>
           <div className="ai-metrics">
             <GaugeCard
-              footer={`${brandMentionedCount.toLocaleString()} of ${completedAnswerCount.toLocaleString()} answers`}
-              help="How often Tiny Lemon is mentioned in tracked AI answers."
+              badge={rolling && rolling.dayCount < rolling.windowDays ? `${rolling.dayCount} day${rolling.dayCount === 1 ? "" : "s"} of data` : undefined}
+              footer={
+                rolling
+                  ? `${brandMentionedCount.toLocaleString()} of ${completedAnswerCount.toLocaleString()} answers · last ${rolling.dayCount} day${rolling.dayCount === 1 ? "" : "s"}`
+                  : `${brandMentionedCount.toLocaleString()} of ${completedAnswerCount.toLocaleString()} answers`
+              }
+              help="How often Tiny Lemon is mentioned in tracked AI answers, averaged over the last 7 days."
               label="Brand visibility"
               tooltip={{
                 title: "Visibility score",
-                formula: "Tiny Lemon mentions / completed AI answers.",
-                detail: `Based on ${completedAnswerCount.toLocaleString()} completed answers in the latest synthesized run.`,
+                formula: "Tiny Lemon mentions / completed AI answers, rolling 7-day window.",
+                detail: rolling
+                  ? `Based on ${completedAnswerCount.toLocaleString()} completed answers between ${rolling.windowStart} and ${rolling.windowEnd}. Rolling window smooths run-to-run AI answer variance.`
+                  : `Based on ${completedAnswerCount.toLocaleString()} completed answers in the latest synthesized run.`,
               }}
               value={visibilityPct / 100}
               valueLabel={formatMetric(visibilityPct)}
-            />
-            <GaugeCard
-              badge={sentimentBadge}
-              footer={
-                sentimentAnswerCount > 0
-                  ? `${sentimentAnswerCount.toLocaleString()} Tiny Lemon mentions scored`
-                  : "Sentiment starts once Tiny Lemon appears."
-              }
-              help="How positively or negatively AI describes Tiny Lemon when mentioned."
-              label="Sentiment score"
-              tooltip={{
-                title: "Sentiment score",
-                formula: "Average recommendation strength when Tiny Lemon is mentioned.",
-                detail:
-                  `Current sample: ${sentimentAnswerCount.toLocaleString()} Tiny Lemon mentions out of ${completedAnswerCount.toLocaleString()} completed answers. Neutral = 50, recommended = 85, top pick = 100.`,
-              }}
-              value={sentimentScore / 100}
-              valueLabel={formatMetric(sentimentScore)}
             />
           </div>
           <p className="ai-metrics-note">
             <InfoCircleIcon />
             <span>
-              Visibility tells you <strong>if</strong> AI mentions the brand. Sentiment tells you{" "}
-              <strong>how</strong> AI talks about the brand when it appears.
+              Visibility tells you <strong>if</strong> AI mentions the brand. AI answers vary run to
+              run, so the score is a rolling 7-day average rather than a single day&apos;s sample.
               {metrics ? ` Latest synthesized run: ${metrics.runDate}.` : ""}
             </span>
           </p>
