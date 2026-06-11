@@ -51,10 +51,21 @@ David Emakenemi — exactly this, no brand suffix in name field.
 
 ## Visuals (faceless setup)
 
-- **Avatar:** illustration or abstract mark in ContentDesk brand colors. No selfie
-  needed. Avoid raw logo-on-white (reads as company spam).
-- **Banner:** tagline + scoreboard framing, e.g. "Getting one Shopify app cited by AI
-  search. $19 budget. Weekly receipts." + site URL.
+Style reference: The Boring Marketer (X) — cartoon avatar + workflow-card banner.
+
+- **Avatar:** comic-style operator portrait (cartoonized David or generic character),
+  dark cap with small lemon mark, solid brand-color circle background. Gen prompt:
+  "Comic-book style avatar portrait, friendly founder wearing dark baseball cap with
+  small lemon logo, flat bold colors, thick clean linework, solid deep-navy circular
+  background, head-and-shoulders crop, modern webcomic style." Avoid raw logo-on-white
+  (reads as company spam). Never Pinterest rips.
+- **Banner (1584×396, keep content in middle band — mobile crops edges):** 4 light
+  cards on white with dotted connector lines, agent loop left→right:
+  1. ⚡ Scan AI search — "Does ChatGPT recommend you? Checked daily."
+  2. ✨ Find the gaps — "See who gets cited instead, and why."
+  3. 📄 Draft the fix — "Articles + community replies, in your voice."
+  4. 🚀 Track the lift — "Citations up. Receipts weekly."
+  Bottom-right corner: ContentDesk mark + site URL.
 
 ## Featured section
 
