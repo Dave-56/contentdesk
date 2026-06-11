@@ -39,7 +39,7 @@ Full detail: [`status/NOW.md`](status/NOW.md) · [`dogfood/README.md`](dogfood/R
 | Decisions not to re-litigate | [`decisions/`](decisions/) |
 | Why it sells / positioning | [`strategy/POSITIONING.md`](strategy/POSITIONING.md) |
 | Pricing · sales · copy | [`strategy/`](strategy/) |
-| LinkedIn GTM (faceless brand → leads) | [`strategy/LINKEDIN.md`](strategy/LINKEDIN.md) |
+| LinkedIn GTM · profile · post drafts | [`linkedin/`](linkedin/) |
 | How it's built | [`product/ARCHITECTURE.md`](product/ARCHITECTURE.md) |
 | MVP spec | [`product/MVP_SPEC.md`](product/MVP_SPEC.md) |
 | What we learned (Reddit, prompts) | [`research/`](research/) |

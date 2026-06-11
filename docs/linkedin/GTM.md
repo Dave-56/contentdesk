@@ -52,7 +52,8 @@ Why it works pre-product:
    authority is irrelevant to AI search; AI-search traffic converts 4–23x better.
 3. **Price villain.** "Enterprise AEO tools quoted $X/mo. Solo founders can't pay that.
    So we built the $19 version." Repeat often — pricing is the wedge
-   (see [`PRICING.md`](PRICING.md), [`POSITIONING.md`](POSITIONING.md)).
+   (see [`../strategy/PRICING.md`](../strategy/PRICING.md),
+   [`../strategy/POSITIONING.md`](../strategy/POSITIONING.md)).
 4. **Teardowns.** Ask Perplexity/ChatGPT "best Shopify app for fashion product photos"
    (or another niche's buyer prompt) — screenshot who gets cited, explain why. Founders
    in that niche self-identify in comments.
