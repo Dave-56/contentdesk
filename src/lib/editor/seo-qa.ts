@@ -76,6 +76,31 @@ export function visualRevisionInstructions(report: QAReport) {
   ];
 }
 
+export function withCitationBlockers(
+  report: QAReport,
+  citationBlockers: QaBlockerIssue[],
+): QAReport {
+  if (citationBlockers.length === 0) return report;
+
+  const blockers = mergeBlockers(report.blockers, citationBlockers);
+  const addedBlockers = blockers.slice(report.blockers.length);
+  if (addedBlockers.length === 0) return report;
+
+  return qaReportSchema.parse({
+    ...report,
+    status: "needs_revision",
+    summary: `${report.summary} Citation Checker added ${addedBlockers.length} unsupported-claim blocker${addedBlockers.length === 1 ? "" : "s"}.`,
+    blockers,
+    revisionInstructions: {
+      ...report.revisionInstructions,
+      writer: [
+        ...report.revisionInstructions.writer,
+        ...addedBlockers.map((issue) => issue.instruction),
+      ],
+    },
+  });
+}
+
 async function generateAiQaReport(input: {
   draft: ArticleDraft;
   leadVisual: VisualPlanItem;

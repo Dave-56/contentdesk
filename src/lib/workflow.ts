@@ -60,7 +60,10 @@ import {
   qaPassed,
   qaRevisionInstructions,
   visualRevisionInstructions,
+  withCitationBlockers,
 } from "@/lib/editor/seo-qa";
+import { deslopArticleDraft } from "@/lib/editor/deslop";
+import { checkCitations } from "@/lib/editor/citation-check";
 import {
   buildResearchSourcesFromVisibilityRecommendation,
   buildTopicBriefFromVisibilityRecommendation,
@@ -688,12 +691,32 @@ export async function handleTopicApproval(input: {
     createdByAgent: "SEO Writer",
   });
 
+  const deslopResult = await deslopArticleDraft({
+    draft: writerResult.draft,
+    brandProfile: brandProfileArtifact.json_payload,
+  });
+
+  if (deslopResult.changes.length > 0) {
+    writerResult = { ...writerResult, draft: deslopResult.draft };
+    finalArticleDraftArtifact = await createArtifact({
+      organizationId: topicArtifact.organization_id,
+      brandId: topicArtifact.brand_id,
+      cycleId: input.cycleId,
+      type: "ArticleDraft",
+      status: "polished",
+      payload: writerResult.draft,
+      createdByAgent: "Copy Editor",
+    });
+  }
+
   await postManagerMessage({
     channelId: input.channelId,
     threadTs: input.threadTs,
     text: writerResult.usedFallback
       ? "SEO Writer created a fallback article draft. Visual Producer is now planning useful visuals and Markdown placeholders."
-      : "SEO Writer drafted the article. Visual Producer is now planning useful visuals, placements, alt text, and Markdown placeholders.",
+      : deslopResult.changes.length > 0
+        ? `SEO Writer drafted the article and Copy Editor cleaned up ${deslopResult.changes.length} AI-ism${deslopResult.changes.length === 1 ? "" : "s"}. Visual Producer is now planning useful visuals, placements, alt text, and Markdown placeholders.`
+        : "SEO Writer drafted the article. Visual Producer is now planning useful visuals, placements, alt text, and Markdown placeholders.",
   });
 
   let visualResult = await generateVisualPlan({
@@ -731,6 +754,10 @@ export async function handleTopicApproval(input: {
   });
 
   await updateCycleStatus(input.cycleId, "qa_reviewing");
+  let citationResult = await checkCitations({
+    draft: writerResult.draft,
+    sources: researchSourceArtifact.json_payload,
+  });
   let qaResult = await generateQaReport({
     draft: writerResult.draft,
     leadVisual: visualResult.leadVisual,
@@ -738,6 +765,10 @@ export async function handleTopicApproval(input: {
     brandProfile: brandProfileArtifact.json_payload,
     sources: researchSourceArtifact.json_payload,
   });
+  qaResult = {
+    ...qaResult,
+    qaReport: withCitationBlockers(qaResult.qaReport, citationResult.issues),
+  };
 
   await createArtifact({
     organizationId: topicArtifact.organization_id,
@@ -845,6 +876,24 @@ export async function handleTopicApproval(input: {
           approvedTopicIndex: input.topicIndex,
         };
       }
+
+      const revisionDeslopResult = await deslopArticleDraft({
+        draft: writerResult.draft,
+        brandProfile: brandProfileArtifact.json_payload,
+      });
+
+      if (revisionDeslopResult.changes.length > 0) {
+        writerResult = { ...writerResult, draft: revisionDeslopResult.draft };
+        finalArticleDraftArtifact = await createArtifact({
+          organizationId: topicArtifact.organization_id,
+          brandId: topicArtifact.brand_id,
+          cycleId: input.cycleId,
+          type: "ArticleDraft",
+          status: `polished_${revisionPass}`,
+          payload: writerResult.draft,
+          createdByAgent: "Copy Editor",
+        });
+      }
     }
 
     if (visualInstructions.length > 0) {
@@ -884,6 +933,10 @@ export async function handleTopicApproval(input: {
     }
 
     await updateCycleStatus(input.cycleId, "qa_reviewing");
+    citationResult = await checkCitations({
+      draft: writerResult.draft,
+      sources: researchSourceArtifact.json_payload,
+    });
     qaResult = await generateQaReport({
       draft: writerResult.draft,
       leadVisual: visualResult.leadVisual,
@@ -893,6 +946,10 @@ export async function handleTopicApproval(input: {
       previousQaReport: qaReportBeforeRevision ?? undefined,
       revisionTaskResults: writerRevisionTaskResults,
     });
+    qaResult = {
+      ...qaResult,
+      qaReport: withCitationBlockers(qaResult.qaReport, citationResult.issues),
+    };
 
     await createArtifact({
       organizationId: topicArtifact.organization_id,

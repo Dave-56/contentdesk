@@ -139,6 +139,26 @@ export const aiQaReportSchema = z.object({
 
 export type AiQaReport = z.infer<typeof aiQaReportSchema>;
 
+export const aiDeslopResultSchema = z.object({
+  markdown: aiText,
+  metaDescription: aiText,
+  cta: aiText,
+  changes: z.array(aiText),
+});
+
+export type AiDeslopResult = z.infer<typeof aiDeslopResultSchema>;
+
+export const aiCitationCheckSchema = z.object({
+  unsupportedClaims: z.array(
+    z.object({
+      claim: aiText,
+      reason: aiText,
+    }),
+  ),
+});
+
+export type AiCitationCheck = z.infer<typeof aiCitationCheckSchema>;
+
 export const aiRecommendationCardSchema = recommendationCardSchema
   .omit({
     source: true,
