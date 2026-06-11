@@ -25,7 +25,7 @@ export async function fetchGa4Daily(input: {
   metricDate: string;
 }): Promise<Ga4DailyMetrics> {
   const token = await googleAccessToken({
-    serviceAccountJson: input.config.serviceAccountJson,
+    auth: input.config.auth,
     scopes: [ga4Scope],
   });
   const response = await fetch(
@@ -47,7 +47,7 @@ export async function fetchGa4Daily(input: {
 
   if (response.status === 401 || response.status === 403) {
     throw new AnalyticsAuthError(
-      `GA4 runReport rejected the service account (${response.status}). Check Viewer access on property ${input.config.propertyId}.`,
+      `GA4 runReport rejected the credential (${response.status}). Check Viewer access on property ${input.config.propertyId} and the analytics.readonly scope.`,
     );
   }
   if (!response.ok) {

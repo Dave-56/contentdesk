@@ -1,6 +1,6 @@
 ---
 title: ContentDesk MVP Tasklist
-updated: 2026-06-10
+updated: 2026-06-11
 type: living
 status: current
 ---
@@ -181,8 +181,10 @@ Acceptance:
 - [x] Add `/api/cron/analytics-daily` (9 PT gate) + vercel.json cron entry.
 - [x] Add `analytics:backfill` date-range CLI and `analytics:smoke` config/auth check.
 - [x] Add analytics unit tests (parsers, runner fail-soft, provisional, status lines).
-- [ ] Phase 0 human prereqs: GCP service account + GA4/GSC grants, Partner API client with "Manage apps", PostHog personal API key, set env vars in Vercel.
-- [ ] Run `analytics:smoke`, then 7-day `analytics:backfill` for first growth-brief window.
+- [x] Phase 0 human prereqs: Google OAuth refresh-token credential (GA4 + GSC scopes), Partner API client with "Manage apps", PostHog personal API key, env vars set in `.env.local` and Vercel.
+- [x] Support Google OAuth refresh-token auth alongside service-account JSON; adopt provisioned env names (`SHOPIFY_PARTNER_ACCESS_TOKEN`, `POSTHOG_PERSONAL_API_KEY`).
+- [x] Run `analytics:smoke` (4/4 ok), apply migration 007 to Neon, 7-day `analytics:backfill` 2026-06-04..06-10 (28/28 ok rows).
+- [ ] Deploy attribution cron to prod and set `ANALYTICS_SLACK_CHANNEL_ID` for daily Slack status.
 - [ ] Phase 2: weekly growth brief joining metrics + action log.
 - [ ] Phase 3: wire `recordAttributionAction` into article publish, Reddit replied, listing update, and prompt-citation-seen paths.
 

@@ -46,7 +46,7 @@ export async function posthogQuery(input: {
 
   if (response.status === 401 || response.status === 403) {
     throw new AnalyticsAuthError(
-      `PostHog query rejected the API key (${response.status}). Check POSTHOG_API_KEY and project access.`,
+      `PostHog query rejected the API key (${response.status}). Check POSTHOG_PERSONAL_API_KEY and project access.`,
     );
   }
   if (!response.ok) {

@@ -1,10 +1,19 @@
 import crypto from "node:crypto";
 import { AnalyticsAuthError } from "@/lib/analytics/errors";
 
-// Service-account JWT bearer flow (RFC 7523) against Google's token endpoint.
-// Dep-free on purpose: the repo avoids heavy SDK installs and the flow is two
-// requests. Auth failures throw AnalyticsAuthError so the runner can write a
+// Two supported Google credentials, both ending in a short-lived access token:
+// - OAuth refresh token (what's provisioned today): grant_type=refresh_token
+//   against the token endpoint. Scopes are baked into the refresh token at
+//   consent time, so the scopes argument is ignored on this path.
+// - Service-account JWT bearer flow (RFC 7523), dep-free via node:crypto.
+// Auth failures throw AnalyticsAuthError so the runner can write a
 // failed_auth row instead of a generic failure.
+
+const defaultTokenUri = "https://oauth2.googleapis.com/token";
+
+export type GoogleAuthConfig =
+  | { kind: "oauth_refresh"; clientId: string; clientSecret: string; refreshToken: string }
+  | { kind: "service_account"; serviceAccountJson: string };
 
 type ServiceAccountKey = {
   client_email: string;
@@ -13,11 +22,37 @@ type ServiceAccountKey = {
 };
 
 export async function googleAccessToken(input: {
+  auth: GoogleAuthConfig;
+  scopes: string[];
+}) {
+  if (input.auth.kind === "oauth_refresh") {
+    return refreshTokenAccessToken(input.auth);
+  }
+  return serviceAccountAccessToken({
+    serviceAccountJson: input.auth.serviceAccountJson,
+    scopes: input.scopes,
+  });
+}
+
+async function refreshTokenAccessToken(auth: {
+  clientId: string;
+  clientSecret: string;
+  refreshToken: string;
+}) {
+  return requestAccessToken(defaultTokenUri, {
+    grant_type: "refresh_token",
+    client_id: auth.clientId,
+    client_secret: auth.clientSecret,
+    refresh_token: auth.refreshToken,
+  });
+}
+
+async function serviceAccountAccessToken(input: {
   serviceAccountJson: string;
   scopes: string[];
 }) {
   const key = parseServiceAccountJson(input.serviceAccountJson);
-  const tokenUri = key.token_uri ?? "https://oauth2.googleapis.com/token";
+  const tokenUri = key.token_uri ?? defaultTokenUri;
   const now = Math.floor(Date.now() / 1000);
   const assertion = signJwt({
     header: { alg: "RS256", typ: "JWT" },
@@ -31,13 +66,17 @@ export async function googleAccessToken(input: {
     privateKey: key.private_key,
   });
 
+  return requestAccessToken(tokenUri, {
+    grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
+    assertion,
+  });
+}
+
+async function requestAccessToken(tokenUri: string, params: Record<string, string>) {
   const response = await fetch(tokenUri, {
     method: "POST",
     headers: { "content-type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-      assertion,
-    }),
+    body: new URLSearchParams(params),
   });
   const body = (await response.json().catch(() => ({}))) as {
     access_token?: string;

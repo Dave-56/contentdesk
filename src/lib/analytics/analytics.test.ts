@@ -223,11 +223,11 @@ test("sourceStatusLine formats status, provisional flag, and headline", () => {
     status: "missing_config",
     provisional: false,
     metrics: {},
-    error: "Missing env: POSTHOG_API_KEY",
+    error: "Missing env: POSTHOG_PERSONAL_API_KEY",
   };
   assert.equal(
     sourceStatusLine(missing),
-    "⚪ posthog: missing_config — Missing env: POSTHOG_API_KEY",
+    "⚪ posthog: missing_config — Missing env: POSTHOG_PERSONAL_API_KEY",
   );
 
   const failedAuth: SourceRunResult = {

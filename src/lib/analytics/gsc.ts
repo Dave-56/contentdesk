@@ -28,7 +28,7 @@ export async function fetchGscDaily(input: {
   brandTerms: string[];
 }): Promise<GscDailyMetrics> {
   const token = await googleAccessToken({
-    serviceAccountJson: input.config.serviceAccountJson,
+    auth: input.config.auth,
     scopes: [gscScope],
   });
   const response = await fetch(
@@ -52,7 +52,7 @@ export async function fetchGscDaily(input: {
 
   if (response.status === 401 || response.status === 403) {
     throw new AnalyticsAuthError(
-      `GSC query rejected the service account (${response.status}). Check the account is added as a user on ${input.config.siteUrl}.`,
+      `GSC query rejected the credential (${response.status}). Check the account has access to ${input.config.siteUrl} and the webmasters.readonly scope.`,
     );
   }
   if (!response.ok) {
@@ -66,11 +66,11 @@ export async function fetchGscDaily(input: {
 }
 
 // GSC smoke check used by scripts/analytics-smoke.ts: lists properties the
-// service account can see, so a wrong/missing property surfaces before any
-// deeper query code runs.
+// credential can see, so a wrong/missing property surfaces before any deeper
+// query code runs.
 export async function listGscSites(config: GscConfig) {
   const token = await googleAccessToken({
-    serviceAccountJson: config.serviceAccountJson,
+    auth: config.auth,
     scopes: [gscScope],
   });
   const response = await fetch("https://searchconsole.googleapis.com/webmasters/v3/sites", {

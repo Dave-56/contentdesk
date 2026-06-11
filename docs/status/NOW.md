@@ -1,6 +1,6 @@
 ---
 title: NOW — Current Operating Truth
-updated: 2026-06-10
+updated: 2026-06-11
 type: living
 status: current
 read_before: [docs/MAP.md]
@@ -205,8 +205,18 @@ multi-provider runs spend API credits and should be intentional. See
   helpers refactored into generic `src/lib/cron.ts`). `npm run analytics:smoke`
   verifies config+auth per source; `npm run analytics:backfill -- --from --to`
   fills date ranges. Recent GA4/GSC rows are marked provisional (~48h data lag).
-  `npm run typecheck` and `npm test` (156 tests) passed. Not yet deployed; needs
-  Phase 0 env keys before any source returns ok.
+  `npm run typecheck` and `npm test` (156 tests) passed.
+- Attribution skeleton went live on 2026-06-11. Env was provisioned with a Google
+  **OAuth refresh-token trio** (`GOOGLE_OAUTH_CLIENT_ID/SECRET/REFRESH_TOKEN`), not a
+  service account, plus `SHOPIFY_PARTNER_ACCESS_TOKEN` and `POSTHOG_PERSONAL_API_KEY`;
+  code adapted to those exact names (service-account JSON still supported as fallback
+  in `googleAuthConfig()`). Live smoke passed 4/4: GA4 runReport ok, GSC sites.list
+  shows `sc-domain:tinylemon.xyz` (siteOwner), Partner API resolves app `tiny-lemon`,
+  PostHog HogQL ok. Migration 007 applied to Neon. 7-day backfill 2026-06-04..06-10
+  wrote 28/28 ok rows: PostHog up to 253 events/day, Partner installs on 06-05 and
+  06-08, GA4 1–6 sessions/day, GSC 0 impressions (new domain). Caveat: if the Google
+  OAuth consent screen is in Testing mode, the refresh token expires after ~7 days —
+  publish the app or expect ga4/gsc `failed_auth` rows.
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
   "update repo memory" stop routine.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
@@ -249,10 +259,9 @@ multi-provider runs spend API credits and should be intentional. See
   fail closed until fix-kit/reply/inspection production paths exist.
 - Neon password should be rotated because a production DB URL was pasted in chat during the
   Reddit Radar setup.
-- Attribution skeleton needs Phase 0 human prereqs before it produces data: GCP service
-  account (GA4 Viewer + GSC user grants), Shopify Partner API client with "Manage apps",
-  PostHog personal API key, and env vars set in Vercel (do the Neon rotation in the same
-  env pass). Migration 007 must run against prod before first cron/backfill.
+- Attribution cron not yet deployed to Vercel (route + vercel.json entry are committed but
+  prod deploy pending). `ANALYTICS_SLACK_CHANNEL_ID` is unset everywhere, so daily runs
+  won't post Slack status until it's added.
 
 ## Deploy / ship
 Branch pushes do **not** auto-create Vercel previews. Use the `vercel` CLI:
@@ -267,9 +276,9 @@ when asked; branch off `master` first. Full runbook: **`.claude/skills/ship/SKIL
 (`ship` skill).
 
 ## Next 3 actions
-1. Attribution Phase 0: create GCP service account + GA4/GSC grants, Partner API client
-   ("Manage apps"), PostHog key; set env in Vercel and rotate the Neon password in the
-   same pass; run migration 007; then `analytics:smoke` and a 7-day `analytics:backfill`.
+1. Ship attribution to prod: merge worktree branch, `vercel deploy --prod`, set
+   `ANALYTICS_SLACK_CHANNEL_ID`, and rotate the Neon password in the same env pass.
+   Then verify the 9 PT cron writes tomorrow's rows.
 2. Add a read-only Reddit opportunities dashboard: recent opportunities, status/fit/subreddit
    filters, why surfaced, suggested angle, and draft reply.
 3. Add production paths for non-article visibility tasks, starting with
