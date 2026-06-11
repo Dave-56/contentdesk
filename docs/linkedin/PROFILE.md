@@ -68,9 +68,19 @@ David Emakenemi — exactly this, no brand suffix in name field.
 - first lead-magnet post goes out.
 15-minute job; nothing blocks on it.
 
-## Order of operations
+## Week 0 checklist (in order)
 
-1. Profile live (name, headline, about, visuals).
-2. Run baseline scan (`npm run visibility:scan`) → fill numbers into first post draft.
-3. Publish first post ([`drafts/01-first-post.md`](drafts/01-first-post.md)).
-4. Start daily 30-min commenting (see GTM cadence).
+1. ~~Sign up~~ — done 2026-06-10. Title: Founder · Company: ContentDesk (plain text,
+   no page) · Industry: Software Development.
+2. **Avatar before anything public.** Blank-photo profiles get throttled (fewer
+   connection accepts, lower comment visibility, reads as bot). Faceless ≠ empty:
+   illustration/abstract mark in brand colors. Generate it or use Canva/unDraw —
+   **never Pinterest rips** (copyright, reverse-image-searchable).
+3. Paste headline + About from this doc (signup fields alone don't set them).
+4. Banner per Visuals section.
+5. Run baseline scan (`npm run visibility:scan`) → fill numbers into
+   [`drafts/01-first-post.md`](drafts/01-first-post.md).
+6. Warm-up starts same day: follow ~30 build-in-public / indie hacker founders,
+   comment on 3–5 posts. Keep daily 30 min (see [`GTM.md`](GTM.md) cadence).
+7. Publish first post Monday morning with scan screenshot; pin to Featured.
+8. Optional: add Tiny Lemon as second position (Founder) for case-study depth.
