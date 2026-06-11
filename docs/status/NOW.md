@@ -1,6 +1,6 @@
 ---
 title: NOW — Current Operating Truth
-updated: 2026-06-09
+updated: 2026-06-10
 type: living
 status: current
 read_before: [docs/MAP.md]
@@ -193,6 +193,20 @@ multi-provider runs spend API credits and should be intentional. See
   `models`, and the classifier prompt names tinylemon.xyz with explicit fit/not-fit brand
   criteria. Live-verified: bakery-photoshoot post → skip (2), Shopify apparel on-model
   post → strong (97). Needs Trigger prod redeploy to take effect.
+- Attribution skeleton (Phase 1) built on 2026-06-10: migration 007 adds
+  `analytics_daily_metrics` (upsert key brand_slug+metric_date+source, JSONB metrics,
+  status ok/missing_config/failed_auth/failed, provisional flag, pulled_at/window
+  columns) and `analytics_action_log`. `src/lib/analytics/` has GA4 (AI-referrer
+  session split), GSC (branded query split + sites.list smoke), Shopify Partner API
+  App.events (versioned GraphQL, "Manage apps" permission, errors-in-200 = failure),
+  and PostHog HogQL fetchers behind a fail-soft runner that writes a row per source
+  per day and posts per-source Slack status to `ANALYTICS_SLACK_CHANNEL_ID` — no
+  silent zeros. Cron `/api/cron/analytics-daily` gates at 9 PT (prompt-lab cron
+  helpers refactored into generic `src/lib/cron.ts`). `npm run analytics:smoke`
+  verifies config+auth per source; `npm run analytics:backfill -- --from --to`
+  fills date ranges. Recent GA4/GSC rows are marked provisional (~48h data lag).
+  `npm run typecheck` and `npm test` (156 tests) passed. Not yet deployed; needs
+  Phase 0 env keys before any source returns ok.
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
   "update repo memory" stop routine.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
@@ -235,6 +249,10 @@ multi-provider runs spend API credits and should be intentional. See
   fail closed until fix-kit/reply/inspection production paths exist.
 - Neon password should be rotated because a production DB URL was pasted in chat during the
   Reddit Radar setup.
+- Attribution skeleton needs Phase 0 human prereqs before it produces data: GCP service
+  account (GA4 Viewer + GSC user grants), Shopify Partner API client with "Manage apps",
+  PostHog personal API key, and env vars set in Vercel (do the Neon rotation in the same
+  env pass). Migration 007 must run against prod before first cron/backfill.
 
 ## Deploy / ship
 Branch pushes do **not** auto-create Vercel previews. Use the `vercel` CLI:
@@ -249,7 +267,9 @@ when asked; branch off `master` first. Full runbook: **`.claude/skills/ship/SKIL
 (`ship` skill).
 
 ## Next 3 actions
-1. Rotate the Neon password used during Reddit Radar setup, then update Railway/Trigger env.
+1. Attribution Phase 0: create GCP service account + GA4/GSC grants, Partner API client
+   ("Manage apps"), PostHog key; set env in Vercel and rotate the Neon password in the
+   same pass; run migration 007; then `analytics:smoke` and a 7-day `analytics:backfill`.
 2. Add a read-only Reddit opportunities dashboard: recent opportunities, status/fit/subreddit
    filters, why surfaced, suggested angle, and draft reply.
 3. Add production paths for non-article visibility tasks, starting with

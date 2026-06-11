@@ -2,8 +2,11 @@ import "@/lib/load-env";
 import { NextResponse } from "next/server";
 import {
   isCronAuthorized,
-  isPromptLabCronForceAllowed,
-  shouldRunAtPacificEight,
+  isCronForceAllowed,
+  shouldRunAtPacificHour,
+} from "@/lib/cron";
+import {
+  promptLabCronPacificHour,
   type PromptLabCronState,
 } from "@/lib/prompt-lab-cron";
 import { runPromptLabDaily } from "@/lib/prompt-lab-runner";
@@ -21,14 +24,14 @@ export async function GET(request: Request) {
     return cronJson({ state: "unauthorized" }, 401);
   }
 
-  const force = isPromptLabCronForceAllowed({
+  const force = isCronForceAllowed({
     forceParam: url.searchParams.get("force"),
     testForceHeader: request.headers.get("x-cron-test-force"),
     nodeEnv: process.env.NODE_ENV,
   });
   const now = new Date();
 
-  if (!shouldRunAtPacificEight({ force, now })) {
+  if (!shouldRunAtPacificHour({ hour: promptLabCronPacificHour, force, now })) {
     return cronJson({
       state: "skipped_wrong_hour",
       force,

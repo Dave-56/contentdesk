@@ -1,5 +1,5 @@
 ---
-updated: 2026-06-09
+updated: 2026-06-10
 type: strategy
 status: draft
 ---
@@ -80,6 +80,32 @@ Vercel cron):
   artifacts, published-article tracking with target queries.
 - **Infra patterns ready for reuse** — daily-metric cron, brand-scoped config JSONB,
   Slack bot as the delivery surface.
+
+## AEO playbook scorecard (HubSpot CMO, 2026-06-10)
+
+Kipp Bodnar (HubSpot CMO) published a 6-step AEO playbook with numbers from inside
+HubSpot: AI search traffic 15x in one year, AI-search conversion 5–13x Google, 60% of AI
+citations not in Google's top-20 results.
+
+**Why we track it here:** (1) independent validation of the thesis from the biggest
+incumbent — his "source of customers, not source of traffic" is literally our Prove
+layer, and his 60%-citation stat corroborates the Ahrefs CMO finding already in NOW.md
+(quote both in the "why now" answer). (2) It's a gap tracker for roadmap sequencing —
+audited the codebase against each step on 2026-06-10; re-audit when steps ship. (3) His
+conversion stats (5–13x) are the demo-moment ammo for the attribution layer.
+
+| # | Kipp's step | ContentDesk today | Gap |
+|---|---|---|---|
+| 1 | Grade AEO presence across engines | `visibility:run` scans Perplexity/OpenAI/Anthropic; per-prompt 0–100 score; cross-provider synthesis; hourly metrics cron | CLI-only, not the planned free-tier grader; scans Anthropic instead of Gemini (runner exists, non-goal in NOW.md) |
+| 2 | Restructure: chunked, answer-first pages | `seo-qa.ts` enforces one H1, ≥2 H2s, direct-answer opening, FAQ, tradeoff sections | No question-form-header rule, section-length cap, ToC, or consolidate-pages task type |
+| 3 | Separate mentions from citations | Strongest area — mention/cite split **plus** recommendation state (recommended/top-pick/qualified/not), gap types, citation-quality classes, per-gap actions | Recommendation/sentiment classifier is regex, brittle; sentiment derived, not measured |
+| 4 | Open up: Reddit presence + entity understanding | Reddit radar + drafted replies is the wedge; site profiling + brand-homonym guard measures entity confusion | Entity confusion treated as pipeline error (exit 1), not a sellable finding; no ungated/pricing/off-site checks |
+| 5 | Tool up: track prompts + share of voice | We are the tool: `competitor_share_of_voice`, citation %, recheck dates | Week-over-week deltas not surfaced; prompt sets still lack demand evidence |
+| 6 | Attribution: source of customers, not traffic | **Zero code.** Doc-only (Steps 2–3 below) | The whole layer — and it's our stated differentiator. Build next. |
+
+Sequenced recommendations from the audit: attribution skeleton first (only step with
+nothing built, and the market's unanswered complaint), then free-tier grader, Gemini
+revisit, the four `seo-qa` rules, entity-clarity finding, SoV deltas in Slack.
 
 ## What do we need to change?
 

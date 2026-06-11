@@ -1,6 +1,6 @@
 ---
 title: ContentDesk MVP Tasklist
-updated: 2026-06-09
+updated: 2026-06-10
 type: living
 status: current
 ---
@@ -170,6 +170,21 @@ Acceptance:
 - [ ] V2: Add Shopify app entity profile before strategy generation.
 - [ ] V2: Add Shopify asset audit for homepage, App Store listing, docs, blog, alternatives pages, demos, reviews, and community mentions.
 - [ ] V2: Feed asset audit into `strategy.json` instead of using guessed `assetInventory`.
+
+## Phase: Attribution Skeleton (analytics layer)
+
+- [x] Add `analytics_daily_metrics` + `analytics_action_log` migration with unique (brand_slug, metric_date, source) upsert key.
+- [x] Refactor `shouldRunAtPacificEight` into generic `src/lib/cron.ts` helpers (`shouldRunAtPacificHour`).
+- [x] Add analytics env contract: Google service account JSON, GA4 property, GSC site, Shopify Partner token/org/app, PostHog key/project/host.
+- [x] Add per-source fetchers: GA4 runReport (AI-referrer split), GSC query (branded split) + sites.list smoke, Shopify Partner App.events (errors-in-200 = failure), PostHog HogQL.
+- [x] Add fail-soft daily runner with ok/missing_config/failed_auth/failed rows, provisional flag for GA4/GSC lag, and per-source Slack status (no silent zeros).
+- [x] Add `/api/cron/analytics-daily` (9 PT gate) + vercel.json cron entry.
+- [x] Add `analytics:backfill` date-range CLI and `analytics:smoke` config/auth check.
+- [x] Add analytics unit tests (parsers, runner fail-soft, provisional, status lines).
+- [ ] Phase 0 human prereqs: GCP service account + GA4/GSC grants, Partner API client with "Manage apps", PostHog personal API key, set env vars in Vercel.
+- [ ] Run `analytics:smoke`, then 7-day `analytics:backfill` for first growth-brief window.
+- [ ] Phase 2: weekly growth brief joining metrics + action log.
+- [ ] Phase 3: wire `recordAttributionAction` into article publish, Reddit replied, listing update, and prompt-citation-seen paths.
 
 ## Phase: Tiny Lemon Reddit Radar
 

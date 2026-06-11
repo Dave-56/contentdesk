@@ -11,6 +11,18 @@ const envSchema = z.object({
   CONTENTDESK_AI_MODEL: z.string().optional(),
   CONTENTDESK_IMAGE_MODEL: z.string().optional(),
   BLOB_READ_WRITE_TOKEN: z.string().optional(),
+  GOOGLE_SERVICE_ACCOUNT_JSON: z.string().optional(),
+  GA4_PROPERTY_ID: z.string().optional(),
+  GSC_SITE_URL: z.string().optional(),
+  SHOPIFY_PARTNER_TOKEN: z.string().optional(),
+  SHOPIFY_PARTNER_ORG_ID: z.string().optional(),
+  SHOPIFY_PARTNER_APP_ID: z.string().optional(),
+  SHOPIFY_PARTNER_API_VERSION: z.string().optional(),
+  POSTHOG_API_KEY: z.string().optional(),
+  POSTHOG_PROJECT_ID: z.string().optional(),
+  POSTHOG_HOST: z.string().optional(),
+  ANALYTICS_BRAND_SLUG: z.string().optional(),
+  ANALYTICS_SLACK_CHANNEL_ID: z.string().optional(),
 });
 
 export function getEnv() {
@@ -25,5 +37,17 @@ export function getEnv() {
     CONTENTDESK_AI_MODEL: process.env.CONTENTDESK_AI_MODEL,
     CONTENTDESK_IMAGE_MODEL: process.env.CONTENTDESK_IMAGE_MODEL,
     BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
+    GOOGLE_SERVICE_ACCOUNT_JSON: process.env.GOOGLE_SERVICE_ACCOUNT_JSON,
+    GA4_PROPERTY_ID: process.env.GA4_PROPERTY_ID,
+    GSC_SITE_URL: process.env.GSC_SITE_URL,
+    SHOPIFY_PARTNER_TOKEN: process.env.SHOPIFY_PARTNER_TOKEN,
+    SHOPIFY_PARTNER_ORG_ID: process.env.SHOPIFY_PARTNER_ORG_ID,
+    SHOPIFY_PARTNER_APP_ID: process.env.SHOPIFY_PARTNER_APP_ID,
+    SHOPIFY_PARTNER_API_VERSION: process.env.SHOPIFY_PARTNER_API_VERSION,
+    POSTHOG_API_KEY: process.env.POSTHOG_API_KEY,
+    POSTHOG_PROJECT_ID: process.env.POSTHOG_PROJECT_ID,
+    POSTHOG_HOST: process.env.POSTHOG_HOST,
+    ANALYTICS_BRAND_SLUG: process.env.ANALYTICS_BRAND_SLUG,
+    ANALYTICS_SLACK_CHANNEL_ID: process.env.ANALYTICS_SLACK_CHANNEL_ID,
   });
 }
