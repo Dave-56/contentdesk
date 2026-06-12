@@ -117,6 +117,21 @@ test("selectOpportunitiesToSurface merges stored and pending, dedupes, sorts, ca
   );
 });
 
+test("selectOpportunitiesToSurface drops unpromotable threads even with good fit", () => {
+  const stored = [
+    { ...opportunityFixture(), id: "reddit_6", score: 95, mentionRecommendation: "no_mention" as const },
+    { ...opportunityFixture(), id: "reddit_7", score: 90, promoRiskLevel: "high" as const },
+    { ...opportunityFixture(), id: "reddit_8", score: 40 },
+  ];
+
+  const selected = selectOpportunitiesToSurface({ stored, pending: [], max: 8 });
+
+  assert.deepEqual(
+    selected.map((opportunity) => opportunity.id),
+    ["reddit_8"],
+  );
+});
+
 test("selectOpportunitiesToSurface picks up pending rows when nothing was stored", () => {
   const pending = [{ ...opportunityFixture(), id: "reddit_5", score: 80 }];
 
@@ -161,6 +176,7 @@ function opportunityFixture(): RedditOpportunityRecord {
     whySurfaced: ["Shopify/apparel context"],
     tinyLemonFit: "tinylemon fits this image workflow.",
     promoRisk: "Medium.",
+    promoRiskLevel: "medium",
     suggestedAngle: "Answer source photo quality first.",
     mentionRecommendation: "mention",
     draftReply: "First check the source photo quality. I’m connected to tinylemon.",

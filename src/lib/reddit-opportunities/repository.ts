@@ -22,6 +22,7 @@ type OpportunityRow = {
   why_surfaced: string[];
   tiny_lemon_fit: string;
   promo_risk: string;
+  promo_risk_level: RedditOpportunityRecord["promoRiskLevel"];
   suggested_angle: string;
   mention_recommendation: RedditOpportunityRecord["mentionRecommendation"];
   draft_reply: string;
@@ -58,6 +59,44 @@ export async function listKnownRedditPostIds(postIds: string[]) {
   return new Set(result.rows.map((row) => row.reddit_post_id));
 }
 
+export async function listRejectedRedditPostIds(postIds: string[]) {
+  if (postIds.length === 0) return new Set<string>();
+
+  const result = await query<{ reddit_post_id: string }>(
+    `select reddit_post_id from reddit_prefilter_verdicts
+     where relevant = false and reddit_post_id = any($1)`,
+    [postIds],
+  );
+
+  return new Set(result.rows.map((row) => row.reddit_post_id));
+}
+
+export async function recordRedditPrefilterVerdicts(
+  entries: Array<{ post: RedditPost; relevant: boolean; reason: string }>,
+) {
+  if (entries.length === 0) return;
+
+  await query(
+    `insert into reddit_prefilter_verdicts
+      (id, reddit_post_id, subreddit, title, url, relevant, reason)
+     select * from unnest(
+       $1::text[], $2::text[], $3::text[], $4::text[], $5::text[], $6::boolean[], $7::text[]
+     )
+     on conflict (reddit_post_id) do update
+     set relevant = excluded.relevant,
+       reason = excluded.reason`,
+    [
+      entries.map(() => id("redditpf")),
+      entries.map((entry) => entry.post.redditPostId),
+      entries.map((entry) => entry.post.subreddit),
+      entries.map((entry) => entry.post.title),
+      entries.map((entry) => entry.post.url),
+      entries.map((entry) => entry.relevant),
+      entries.map((entry) => entry.reason),
+    ],
+  );
+}
+
 export async function listPendingRedditOpportunities(limit: number) {
   const result = await query<OpportunityRow>(
     `select * from reddit_opportunities
@@ -78,9 +117,9 @@ export async function upsertRedditOpportunity(input: {
   const result = await query<OpportunityRow>(
     `insert into reddit_opportunities
       (id, reddit_post_id, subreddit, title, url, published_at, matched_terms, fit, score,
-       why_surfaced, tiny_lemon_fit, promo_risk, suggested_angle, mention_recommendation,
-       draft_reply, status)
-     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+       why_surfaced, tiny_lemon_fit, promo_risk, promo_risk_level, suggested_angle,
+       mention_recommendation, draft_reply, status)
+     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
      on conflict (reddit_post_id) do update
      set subreddit = excluded.subreddit,
        title = excluded.title,
@@ -92,6 +131,7 @@ export async function upsertRedditOpportunity(input: {
        why_surfaced = excluded.why_surfaced,
        tiny_lemon_fit = excluded.tiny_lemon_fit,
        promo_risk = excluded.promo_risk,
+       promo_risk_level = excluded.promo_risk_level,
        suggested_angle = excluded.suggested_angle,
        mention_recommendation = excluded.mention_recommendation,
        draft_reply = excluded.draft_reply,
@@ -110,6 +150,7 @@ export async function upsertRedditOpportunity(input: {
       JSON.stringify(input.classification.whySurfaced),
       input.classification.tinyLemonFit,
       input.classification.promoRisk,
+      input.classification.promoRiskLevel,
       input.classification.suggestedAngle,
       input.classification.mentionRecommendation,
       input.classification.draftReply,
@@ -176,6 +217,7 @@ function mapOpportunityRow(row: OpportunityRow) {
     whySurfaced: row.why_surfaced,
     tinyLemonFit: row.tiny_lemon_fit,
     promoRisk: row.promo_risk,
+    promoRiskLevel: row.promo_risk_level,
     suggestedAngle: row.suggested_angle,
     mentionRecommendation: row.mention_recommendation,
     draftReply: row.draft_reply,
