@@ -463,6 +463,20 @@ Implementation notes:
 - [x] Run selected Tiny Lemon Perplexity scan after `PERPLEXITY_API_KEY` is visible.
 - [ ] Review inferred Tiny Lemon competitors and buyer jobs before treating prompt selection as baseline-ready.
 - [ ] Reduce `unknown` source-format and citation-quality classifications.
+- [ ] Investigate why scheduled daily prompt lab runs do not always execute.
+- [ ] Audit ChatGPT/OpenAI prompt lab errors and classify quota, timeout, auth, schema, and provider failures separately.
+- [ ] Add prompt lab retry/backoff behavior for transient ChatGPT/OpenAI failures.
+- [ ] Add daily prompt run observability: schedule trigger time, claimed batch, skipped reason, per-engine status, and final synthesis status.
+- [ ] Verify daily prompt batch status does not treat partial provider failures as clean zero-visibility runs.
+- [ ] Define dashboard visibility metric semantics: per-answer average, per-prompt daily brand mention rate, per-engine rate, and trend window.
+- [ ] Decide whether dashboard primary score should use completed engine answers or unique buyer prompts as denominator.
+- [ ] Add dashboard metric labels/tooltips that explain visibility, citation, recommendation, and competitor share calculations.
+- [ ] Add tests for prompt lab daily metric calculation, including partial runs, failed engines, and low sample size.
+- [ ] Normalize citation chips so long CDN/PDF hosts show readable source labels instead of raw provider hostnames.
+- [ ] Collapse duplicate citation URLs by canonical source, not only domain label.
+- [ ] Show citation title, source type, provider, count, and full URL in source details while keeping chips compact.
+- [ ] Add citation cleanup rules for PDF/CDN/report URLs, marketplace URLs, Reddit URLs, and tracking/query parameters.
+- [ ] Add tests for citation display cleanup using long RackCDN PDF URLs and repeated source domains.
 
 ## Later
 
