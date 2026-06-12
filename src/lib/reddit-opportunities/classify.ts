@@ -9,6 +9,7 @@ import {
   redditMentionRecommendationSchema,
   redditOpportunityClassificationSchema,
   redditOpportunityFitSchema,
+  redditPromoRiskLevelSchema,
   type RedditOpportunityClassification,
   type RedditPost,
 } from "@/lib/reddit-opportunities/schemas";
@@ -22,6 +23,7 @@ const aiClassificationSchema = z.object({
   whySurfaced: z.array(z.string().trim().min(1)).min(1).max(4),
   tinyLemonFit: z.string().trim(),
   promoRisk: z.string().trim(),
+  promoRiskLevel: redditPromoRiskLevelSchema,
   suggestedAngle: z.string().trim(),
   mentionRecommendation: redditMentionRecommendationSchema,
   draftReply: z.string().trim(),
@@ -157,6 +159,7 @@ function deterministicClassification(input: {
   const promoRisk = hasProductPhoto && asksForTool
     ? "Medium. Helpful workflow answer can mention affiliation softly."
     : "High. Mention may feel promotional unless reply stays mostly educational.";
+  const promoRiskLevel = hasProductPhoto && asksForTool ? "medium" : "high";
 
   if (hasShopify && hasApparel && hasProductPhoto) {
     return redditOpportunityClassificationSchema.parse({
@@ -171,6 +174,7 @@ function deterministicClassification(input: {
       tinyLemonFit:
         "tinylemon fits when merchant has flat-lay or supplier photos and needs on-model Shopify product images.",
       promoRisk,
+      promoRiskLevel: asksForTool ? "low" : "medium",
       suggestedAngle:
         "Answer source photo quality first, then explain a small-batch workflow before mentioning tinylemon.",
       mentionRecommendation: "mention",
@@ -194,6 +198,7 @@ function deterministicClassification(input: {
       tinyLemonFit:
         "Potential fit if poster needs repeatable product images from existing flat-lay or supplier photos.",
       promoRisk,
+      promoRiskLevel,
       suggestedAngle:
         "Keep reply educational. Mention tinylemon only if poster asks for tools or Shopify-specific workflow.",
       mentionRecommendation: asksForTool ? "mention" : "no_mention",
@@ -212,6 +217,7 @@ function deterministicClassification(input: {
     whySurfaced: ["Matched broad ecommerce or product-photo language"],
     tinyLemonFit: "Weak unless thread turns specifically toward apparel product images.",
     promoRisk: "High. Product mention would likely feel forced.",
+    promoRiskLevel: "high",
     suggestedAngle: "Do not mention tinylemon. Save for language learning or manual review.",
     mentionRecommendation: "no_mention",
     draftReply: buildDeterministicDraft({
@@ -245,6 +251,9 @@ async function generateAiClassification(input: {
       "- medium: ecommerce product page/catalog visual workflow.",
       "- weak: broad Shopify/ecommerce where product mention may feel forced.",
       "- skip: ads, SEO, fulfillment, pricing, generic ops, promo threads, or unrelated ecommerce.",
+      "- promoRiskLevel: low when the poster explicitly asks for tools/apps/workflows. medium when a soft, disclosed mention still answers the ask. high when any product mention would read as vendor pitching — hiring/portfolio requests, freelancer briefs, promo-sensitive subreddits, vendor-bashing threads.",
+      "- If promoRiskLevel is high, mentionRecommendation must be no_mention. Only promotable threads get surfaced as opportunities.",
+      "- promoRisk: one sentence explaining the level for a human reviewer.",
       "- Reply draft must be Reddit-native, 2-5 sentences, answer pain first.",
       "- Use lowercase tinylemon only if mentionRecommendation is mention.",
       "- No fake metrics, no guarantees, no overpromising.",

@@ -8,6 +8,7 @@ export const redditOpportunityStatusSchema = z.enum([
   "skipped",
 ]);
 export const redditMentionRecommendationSchema = z.enum(["mention", "no_mention"]);
+export const redditPromoRiskLevelSchema = z.enum(["low", "medium", "high"]);
 
 export const redditPostSchema = z.object({
   redditPostId: z.string().trim().min(1),
@@ -25,6 +26,7 @@ export const redditOpportunityClassificationSchema = z.object({
   whySurfaced: z.array(z.string().trim().min(1)).default([]),
   tinyLemonFit: z.string().trim().default(""),
   promoRisk: z.string().trim().default(""),
+  promoRiskLevel: redditPromoRiskLevelSchema.default("high"),
   suggestedAngle: z.string().trim().default(""),
   mentionRecommendation: redditMentionRecommendationSchema.default("no_mention"),
   draftReply: z.string().trim().default(""),
@@ -43,6 +45,7 @@ export const redditOpportunityRecordSchema = z.object({
   whySurfaced: z.array(z.string().trim().min(1)).default([]),
   tinyLemonFit: z.string().trim().default(""),
   promoRisk: z.string().trim().default(""),
+  promoRiskLevel: redditPromoRiskLevelSchema.default("high"),
   suggestedAngle: z.string().trim().default(""),
   mentionRecommendation: redditMentionRecommendationSchema,
   draftReply: z.string().trim().default(""),
@@ -61,6 +64,7 @@ export const redditOpportunityMuteSchema = z.object({
 });
 
 export type RedditOpportunityFit = z.infer<typeof redditOpportunityFitSchema>;
+export type RedditPromoRiskLevel = z.infer<typeof redditPromoRiskLevelSchema>;
 export type RedditOpportunityStatus = z.infer<typeof redditOpportunityStatusSchema>;
 export type RedditPost = z.infer<typeof redditPostSchema>;
 export type RedditOpportunityClassification = z.infer<

@@ -9,6 +9,8 @@ export const tinyLemonRedditConfig = {
     "EtsySellers",
     "ClothingStartups",
     "ProductPhotography",
+    "FashionStartup",
+    "Depop",
   ],
   // Reddit-wide search.rss queries — these catch buying-intent posts in
   // subreddits we don't watch. Phrased the way merchants ask, not the way
@@ -19,6 +21,9 @@ export const tinyLemonRedditConfig = {
     '"product photography" apparel shopify',
     'ai "product photos" brand',
     '"flat lay" clothing',
+    '"model photos" clothing brand',
+    'ai photoshoot clothing',
+    '"product photos" shopify store',
   ],
   feedSorts: ["new", "rising"],
   keywords: [
