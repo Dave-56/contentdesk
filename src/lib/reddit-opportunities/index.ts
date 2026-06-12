@@ -20,7 +20,9 @@ import {
   listKnownRedditPostIds,
   listPendingRedditOpportunities,
   listRedditOpportunityMutes,
+  listRejectedRedditPostIds,
   markRedditOpportunitySurfaced,
+  recordRedditPrefilterVerdicts,
   upsertRedditOpportunity,
 } from "@/lib/reddit-opportunities/repository";
 import type {
@@ -47,6 +49,7 @@ export async function runRedditOpportunityScout(input: {
     fetched: 0,
     candidates: 0,
     alreadyKnown: 0,
+    alreadyRejected: 0,
     prefilterMode: "deterministic" as "ai" | "deterministic",
     classified: 0,
     stored: 0,
@@ -83,10 +86,21 @@ export async function runRedditOpportunityScout(input: {
   );
   const knownIds = await listKnownRedditPostIds(unique.map((post) => post.redditPostId));
   summary.alreadyKnown = unique.filter((post) => knownIds.has(post.redditPostId)).length;
+  // Posts the AI gate already rejected stay rejected — judged once, not every run.
+  const rejectedIds = await listRejectedRedditPostIds(
+    unique.map((post) => post.redditPostId),
+  ).catch((error: unknown) => {
+    summary.errors.push(error instanceof Error ? error.message : String(error));
+    return new Set<string>();
+  });
 
   const candidates: Array<{ post: RedditPost; matchedTerms: string[] }> = [];
   for (const post of unique) {
     if (knownIds.has(post.redditPostId)) continue;
+    if (rejectedIds.has(post.redditPostId)) {
+      summary.alreadyRejected += 1;
+      continue;
+    }
     if (isMutedByDatabase(post, dbMutes)) {
       summary.skipped += 1;
       continue;
@@ -120,6 +134,17 @@ export async function runRedditOpportunityScout(input: {
     return null;
   });
   summary.prefilterMode = verdicts ? "ai" : "deterministic";
+
+  if (verdicts) {
+    await recordRedditPrefilterVerdicts(
+      capped.flatMap(({ post }) => {
+        const verdict = verdicts.get(post.redditPostId);
+        return verdict ? [{ post, relevant: verdict.relevant, reason: verdict.reason }] : [];
+      }),
+    ).catch((error: unknown) => {
+      summary.errors.push(error instanceof Error ? error.message : String(error));
+    });
+  }
 
   const allRelevant = capped.filter(({ post, matchedTerms }) => {
     const verdict = verdicts?.get(post.redditPostId);
@@ -217,10 +242,15 @@ export function isFreshRedditPost(post: RedditPost, maxAgeDays: number, now = ne
   return ageMs <= maxAgeDays * 24 * 60 * 60 * 1000;
 }
 
+// Topical fit alone is not enough: a relevant thread where any product mention
+// would read as vendor pitching (hiring posts, portfolio requests) stays stored
+// for review but never becomes a Slack opportunity card.
 function shouldSurface(opportunity: RedditOpportunityRecord) {
   return (
     opportunity.status === "new" &&
-    (opportunity.fit === "strong" || opportunity.fit === "medium")
+    (opportunity.fit === "strong" || opportunity.fit === "medium") &&
+    opportunity.mentionRecommendation === "mention" &&
+    opportunity.promoRiskLevel !== "high"
   );
 }
 

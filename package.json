@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "db:create": "createdb -h localhost -p 55432 -U contentdesk contentdesk",
-    "db:migrate": "psql -h localhost -p 55432 -U contentdesk -d contentdesk -f migrations/001_init.sql -f migrations/002_prompt_lab.sql -f migrations/003_prompt_lab_metrics.sql -f migrations/004_prompt_lab_source_citations.sql -f migrations/005_reddit_opportunities.sql -f migrations/006_prompt_lab_smart_summary.sql",
+    "db:migrate": "psql -h localhost -p 55432 -U contentdesk -d contentdesk -f migrations/001_init.sql -f migrations/002_prompt_lab.sql -f migrations/003_prompt_lab_metrics.sql -f migrations/004_prompt_lab_source_citations.sql -f migrations/005_reddit_opportunities.sql -f migrations/006_prompt_lab_smart_summary.sql -f migrations/007_reddit_radar_quality.sql",
     "db:start": "pg_ctl -D .postgres-data -o \"-p 55432\" -l .postgres-data/postgres.log start",
     "db:status": "pg_ctl -D .postgres-data status",
     "db:stop": "pg_ctl -D .postgres-data stop",
