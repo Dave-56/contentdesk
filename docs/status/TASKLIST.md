@@ -186,7 +186,8 @@ Acceptance:
 - [x] Run `analytics:smoke` (4/4 ok), apply migration 007 to Neon, 7-day `analytics:backfill` 2026-06-04..06-10 (28/28 ok rows).
 - [x] Deploy attribution cron to prod, set `ANALYTICS_SLACK_CHANNEL_ID` (Vercel prod + `.env.local`), apply migration 007 to prod Neon via temp admin route, HTTP-backfill prod 7 days (28/28 ok).
 - [x] Add `?date=` backfill param to cron route; make Slack status post fail-soft.
-- [ ] Invite @ContentDesk to #analytics and verify the Slack status post.
+- [x] Invite @ContentDesk to #analytics and verify the Slack status post (forced prod run 2026-06-11: 4/4 ok, `postedToSlack: true`).
+- [x] Merge attribution branch to master, push to GitHub (`bd7cde3`), redeploy prod from merged tree.
 - [ ] Verify unattended 9 PT cron writes rows the next day.
 - [ ] Phase 2: weekly growth brief joining metrics + action log.
 - [ ] Phase 3: wire `recordAttributionAction` into article publish, Reddit replied, listing update, and prompt-citation-seen paths.

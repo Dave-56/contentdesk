@@ -226,9 +226,16 @@ multi-provider runs spend API credits and should be intentional. See
   500-ing the cron after rows persisted. Prod backfill 2026-06-04..06-10: 28/28 ok
   rows in Neon (Partner installs 06-05/06-08, PostHog up to 253 events/day, GA4 1–6
   sessions/day, GSC 0 impressions — new domain). `ANALYTICS_SLACK_CHANNEL_ID` =
-  #analytics (C0BAT6Z0VDW) set in Vercel prod + `.env.local`; Slack posts stay
-  `postedToSlack: false` until the bot is invited (`/invite @ContentDesk`, token
-  lacks `channels:join` so it can't self-join).
+  #analytics (C0BAT6Z0VDW) set in Vercel prod + `.env.local`; bot has been invited
+  to the channel and posts succeed (`postedToSlack: true`).
+- Attribution ship completed 2026-06-11 evening: `worktree-compiled-skipping-boot`
+  merged to master (along with origin PRs #6–#8), 165/165 tests + typecheck green,
+  pushed to GitHub (`bd7cde3`), and prod redeployed from the merged tree so the
+  post-deploy `ANALYTICS_SLACK_CHANNEL_ID` env var is picked up. Forced cron run
+  against prod (`?force=true` + `CRON_SECRET`) returned `completed` 4/4 sources ok
+  for metric date 2026-06-11 with `postedToSlack: true`. Note: local `.env.local`
+  `DATABASE_URL` is a dev DB — prod rows are only verifiable via the cron/admin
+  routes, not laptop psql.
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
   "update repo memory" stop routine.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
@@ -287,9 +294,9 @@ when asked; branch off `master` first. Full runbook: **`.claude/skills/ship/SKIL
 (`ship` skill).
 
 ## Next 3 actions
-1. Invite @ContentDesk to #analytics, verify a forced cron run posts there, and check
-   the 9 PT cron writes tomorrow's rows on its own. Merge the worktree branch to master.
-   Rotate the Neon password (still pending).
+1. Check the 9 PT cron writes 2026-06-12 rows on its own (invite, forced-run Slack
+   post, master merge, and prod redeploy are done). Rotate the Neon password (still
+   pending — needs Neon/Vercel dashboard; no neonctl or API key on this machine).
 2. Add a read-only Reddit opportunities dashboard: recent opportunities, status/fit/subreddit
    filters, why surfaced, suggested angle, and draft reply.
 3. Add production paths for non-article visibility tasks, starting with
