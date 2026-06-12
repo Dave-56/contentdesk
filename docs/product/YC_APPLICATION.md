@@ -182,7 +182,8 @@ fed by the same cron pattern; integration config lives in `brands.profile` JSONB
 
 ### Step 3 — Attribution (later): layered evidence, confidence-labeled
 
-1. *Confirmed*: AI-referral sessions (`utm_source=chatgpt.com`, perplexity referrer);
+1. *Confirmed*: AI-referral sessions (`utm_source=chatgpt.com` from ChatGPT UI clicks,
+   `utm_source=openai` from API-sourced citations, perplexity referrer / `utm_source=perplexity`);
    tagged install-button clicks to the App Store listing.
 2. *Likely*: timeline correlation — actions (Reddit post, article, new citation) vs.
    branded-query impressions, listing views, installs.
