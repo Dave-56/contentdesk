@@ -129,6 +129,38 @@ Fix, biggest lever first (all in `src/lib/reddit-opportunities/`):
 3. **Wider sources** — AI-proposed subreddit list from brand profile (r/printondemand,
    r/FashionStartup, r/EcommerceGrowth, ...); add `rising.rss` alongside `new.rss`.
 
+### Step 1 follow-up — Radar v2.1: lead-grade classification
+
+Evidence from the first live v2 batch (2026-06-10, 3 surfaced, 0 actual leads):
+
+- **Same post surfaced twice** — one author cross-posted the same thread to
+  r/fashiondesigner and r/ecommerce101; dedupe is by Reddit post ID, and crossposts get
+  fresh IDs. Need content-level dedupe (author + normalized title/body fingerprint).
+- **Topical match ≠ lead** — a dev validating his own virtual try-on pipeline ("is this a
+  viable SaaS?") scored medium. Right vocabulary, wrong person: he's a would-be competitor,
+  not a Tiny Lemon customer.
+- **Pain already solved ≠ lead** — a founder who *just finished* rebuilding his product
+  photos scored medium. The pain is past tense; nothing to sell into.
+
+Principle: **classify the poster, not the topic.** The question is "would this person
+install a Shopify app that generates AI models wearing their clothes, instead of hiring
+human models?" — i.e. an apparel merchant with *unsolved, present-tense* product-imagery
+pain. Explicitly exclude: tool builders/competitors, agencies, people hiring human models
+for brand shoots, founders who already solved their photos, and the same human seen twice.
+
+Tasks:
+
+1. [ ] Cross-post dedupe: fingerprint = author + normalized title/body; collapse across
+       subreddits before classification, keep highest-signal subreddit for context.
+2. [ ] Rewrite classifier prompt around the buyer question (poster identity + pain tense +
+       Shopify/apparel merchant evidence), with the three 2026-06-10 misses as few-shot
+       negative examples. Keep ICP description in config, not hardcoded prose.
+3. [ ] Smarter thread pickup: score sources by hit rate (surfaced→replied vs skipped per
+       subreddit/search query); prune dead sources, let AI propose replacements from the
+       brand profile. Use existing replied/skipped statuses as the label stream.
+4. [ ] Measure: precision of surfaced batch weekly ("would I reply to this?"), not volume.
+       Bar stays 10+ *genuinely good* opportunities/week — good now means lead-grade.
+
 ### Step 2 — Metrics interpretation (next): the growth brief
 
 Weekly plain-English brief posted by the existing Slack bot. Replaces the five-tab ritual
@@ -170,10 +202,12 @@ Honesty is the differentiator: confidence labels instead of a hand-wavy score.
 
 ## Next steps (sequenced)
 
-1. [ ] Radar v2: search RSS + cheap-model prefilter + wider sources. Ship, then measure:
-       ≥10 good opportunities/week for Tiny Lemon.
-2. [ ] GA4 + GSC service account; PostHog key; Shopify Partner API token (env-level, dogfood).
-3. [ ] `analytics_daily_metrics` table + daily pull cron (clone prompt-lab pattern).
-4. [ ] Weekly growth brief → Slack.
-5. [ ] Onboarding survey question in Tiny Lemon ("how did you hear about us?").
-6. [ ] Attribution layer on top of 2–5.
+1. [x] Radar v2: search RSS + cheap-model prefilter + wider sources. Shipped 2026-06-10.
+2. [ ] Radar v2.1: lead-grade classification — cross-post dedupe, poster-not-topic
+       classifier, source hit-rate scoring (see Step 1 follow-up). Then measure:
+       ≥10 lead-grade opportunities/week for Tiny Lemon.
+3. [ ] GA4 + GSC service account; PostHog key; Shopify Partner API token (env-level, dogfood).
+4. [ ] `analytics_daily_metrics` table + daily pull cron (clone prompt-lab pattern).
+5. [ ] Weekly growth brief → Slack.
+6. [ ] Onboarding survey question in Tiny Lemon ("how did you hear about us?").
+7. [ ] Attribution layer on top of 3–6.

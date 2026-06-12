@@ -18,6 +18,7 @@ import {
 import { redditOpportunityBlocks } from "@/lib/reddit-opportunities/slack";
 import {
   listKnownRedditPostIds,
+  listPendingRedditOpportunities,
   listRedditOpportunityMutes,
   markRedditOpportunitySurfaced,
   upsertRedditOpportunity,
@@ -50,6 +51,7 @@ export async function runRedditOpportunityScout(input: {
     classified: 0,
     stored: 0,
     surfaced: 0,
+    resurfaced: 0,
     skipped: 0,
     errors: [] as string[],
   };
@@ -149,18 +151,55 @@ export async function runRedditOpportunityScout(input: {
   }
 
   if (channelId) {
-    const toSurface = storedOpportunities
-      .filter(shouldSurface)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, tinyLemonRedditConfig.maxSurfacedPerRun);
+    // Rows can be left `new` by earlier runs (surfacing failed, or caps cut
+    // the run short); pick those up alongside this run's stores so they are
+    // never stranded.
+    const pending = await listPendingRedditOpportunities(
+      tinyLemonRedditConfig.maxSurfacedPerRun,
+    ).catch((error: unknown) => {
+      summary.errors.push(error instanceof Error ? error.message : String(error));
+      return [];
+    });
+    const storedIds = new Set(storedOpportunities.map((opportunity) => opportunity.id));
+    const toSurface = selectOpportunitiesToSurface({
+      stored: storedOpportunities,
+      pending,
+      max: tinyLemonRedditConfig.maxSurfacedPerRun,
+    });
 
     for (const opportunity of toSurface) {
       const surfaced = await surfaceOpportunity({ opportunity, channelId });
-      if (surfaced) summary.surfaced += 1;
+      if (!surfaced) continue;
+      summary.surfaced += 1;
+      if (!storedIds.has(opportunity.id)) summary.resurfaced += 1;
+    }
+
+    if (summary.surfaced === 0) {
+      await postManagerMessage({
+        channelId,
+        text: `Reddit radar: nothing relevant this run — ${summary.fetched} posts fetched, ${summary.candidates} candidates, ${summary.classified} classified, none worth surfacing.`,
+      });
     }
   }
 
   return summary;
+}
+
+export function selectOpportunitiesToSurface(input: {
+  stored: RedditOpportunityRecord[];
+  pending: RedditOpportunityRecord[];
+  max: number;
+}) {
+  const seen = new Set<string>();
+
+  return [...input.stored, ...input.pending]
+    .filter((opportunity) => {
+      if (!shouldSurface(opportunity) || seen.has(opportunity.id)) return false;
+      seen.add(opportunity.id);
+      return true;
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, input.max);
 }
 
 export function dedupeRedditPosts(posts: RedditPost[]) {
