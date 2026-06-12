@@ -1,6 +1,6 @@
 ---
 title: ContentDesk MVP Tasklist
-updated: 2026-06-09
+updated: 2026-06-11
 type: living
 status: current
 ---
@@ -170,6 +170,26 @@ Acceptance:
 - [ ] V2: Add Shopify app entity profile before strategy generation.
 - [ ] V2: Add Shopify asset audit for homepage, App Store listing, docs, blog, alternatives pages, demos, reviews, and community mentions.
 - [ ] V2: Feed asset audit into `strategy.json` instead of using guessed `assetInventory`.
+
+## Phase: Attribution Skeleton (analytics layer)
+
+- [x] Add `analytics_daily_metrics` + `analytics_action_log` migration with unique (brand_slug, metric_date, source) upsert key.
+- [x] Refactor `shouldRunAtPacificEight` into generic `src/lib/cron.ts` helpers (`shouldRunAtPacificHour`).
+- [x] Add analytics env contract: Google service account JSON, GA4 property, GSC site, Shopify Partner token/org/app, PostHog key/project/host.
+- [x] Add per-source fetchers: GA4 runReport (AI-referrer split), GSC query (branded split) + sites.list smoke, Shopify Partner App.events (errors-in-200 = failure), PostHog HogQL.
+- [x] Add fail-soft daily runner with ok/missing_config/failed_auth/failed rows, provisional flag for GA4/GSC lag, and per-source Slack status (no silent zeros).
+- [x] Add `/api/cron/analytics-daily` (9 PT gate) + vercel.json cron entry.
+- [x] Add `analytics:backfill` date-range CLI and `analytics:smoke` config/auth check.
+- [x] Add analytics unit tests (parsers, runner fail-soft, provisional, status lines).
+- [x] Phase 0 human prereqs: Google OAuth refresh-token credential (GA4 + GSC scopes), Partner API client with "Manage apps", PostHog personal API key, env vars set in `.env.local` and Vercel.
+- [x] Support Google OAuth refresh-token auth alongside service-account JSON; adopt provisioned env names (`SHOPIFY_PARTNER_ACCESS_TOKEN`, `POSTHOG_PERSONAL_API_KEY`).
+- [x] Run `analytics:smoke` (4/4 ok), apply migration 007 to Neon, 7-day `analytics:backfill` 2026-06-04..06-10 (28/28 ok rows).
+- [x] Deploy attribution cron to prod, set `ANALYTICS_SLACK_CHANNEL_ID` (Vercel prod + `.env.local`), apply migration 007 to prod Neon via temp admin route, HTTP-backfill prod 7 days (28/28 ok).
+- [x] Add `?date=` backfill param to cron route; make Slack status post fail-soft.
+- [ ] Invite @ContentDesk to #analytics and verify the Slack status post.
+- [ ] Verify unattended 9 PT cron writes rows the next day.
+- [ ] Phase 2: weekly growth brief joining metrics + action log.
+- [ ] Phase 3: wire `recordAttributionAction` into article publish, Reddit replied, listing update, and prompt-citation-seen paths.
 
 ## Phase: Tiny Lemon Reddit Radar
 

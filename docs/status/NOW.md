@@ -1,6 +1,6 @@
 ---
 title: NOW — Current Operating Truth
-updated: 2026-06-09
+updated: 2026-06-11
 type: living
 status: current
 read_before: [docs/MAP.md]
@@ -193,6 +193,42 @@ multi-provider runs spend API credits and should be intentional. See
   `models`, and the classifier prompt names tinylemon.xyz with explicit fit/not-fit brand
   criteria. Live-verified: bakery-photoshoot post → skip (2), Shopify apparel on-model
   post → strong (97). Needs Trigger prod redeploy to take effect.
+- Attribution skeleton (Phase 1) built on 2026-06-10: migration 007 adds
+  `analytics_daily_metrics` (upsert key brand_slug+metric_date+source, JSONB metrics,
+  status ok/missing_config/failed_auth/failed, provisional flag, pulled_at/window
+  columns) and `analytics_action_log`. `src/lib/analytics/` has GA4 (AI-referrer
+  session split), GSC (branded query split + sites.list smoke), Shopify Partner API
+  App.events (versioned GraphQL, "Manage apps" permission, errors-in-200 = failure),
+  and PostHog HogQL fetchers behind a fail-soft runner that writes a row per source
+  per day and posts per-source Slack status to `ANALYTICS_SLACK_CHANNEL_ID` — no
+  silent zeros. Cron `/api/cron/analytics-daily` gates at 9 PT (prompt-lab cron
+  helpers refactored into generic `src/lib/cron.ts`). `npm run analytics:smoke`
+  verifies config+auth per source; `npm run analytics:backfill -- --from --to`
+  fills date ranges. Recent GA4/GSC rows are marked provisional (~48h data lag).
+  `npm run typecheck` and `npm test` (156 tests) passed.
+- Attribution skeleton went live on 2026-06-11. Env was provisioned with a Google
+  **OAuth refresh-token trio** (`GOOGLE_OAUTH_CLIENT_ID/SECRET/REFRESH_TOKEN`), not a
+  service account, plus `SHOPIFY_PARTNER_ACCESS_TOKEN` and `POSTHOG_PERSONAL_API_KEY`;
+  code adapted to those exact names (service-account JSON still supported as fallback
+  in `googleAuthConfig()`). Live smoke passed 4/4: GA4 runReport ok, GSC sites.list
+  shows `sc-domain:tinylemon.xyz` (siteOwner), Partner API resolves app `tiny-lemon`,
+  PostHog HogQL ok. Caveat: if the Google OAuth consent screen is in Testing mode,
+  the refresh token expires after ~7 days — publish the app or expect ga4/gsc
+  `failed_auth` rows.
+- Attribution prod deploy on 2026-06-11: `/api/cron/analytics-daily` live at
+  `contentdesk-lake.vercel.app`. Gotcha chain hit and fixed: (1) local `.env.local`
+  `DATABASE_URL` is localhost:55432, so the first psql migration/backfill only hit the
+  dev DB; (2) prod `DATABASE_URL` is sensitive-scoped in Vercel (`vercel env pull`
+  returns empty), so prod DDL can't run from a laptop — migration 007 was applied
+  through a temporary CRON_SECRET-guarded `/api/admin/migrate` route (removed after
+  use); (3) cron route gained `?date=YYYY-MM-DD` (with `force=true`) so prod can be
+  backfilled over HTTP; (4) Slack status post made fail-soft — `not_in_channel` was
+  500-ing the cron after rows persisted. Prod backfill 2026-06-04..06-10: 28/28 ok
+  rows in Neon (Partner installs 06-05/06-08, PostHog up to 253 events/day, GA4 1–6
+  sessions/day, GSC 0 impressions — new domain). `ANALYTICS_SLACK_CHANNEL_ID` =
+  #analytics (C0BAT6Z0VDW) set in Vercel prod + `.env.local`; Slack posts stay
+  `postedToSlack: false` until the bot is invited (`/invite @ContentDesk`, token
+  lacks `channels:join` so it can't self-join).
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
   "update repo memory" stop routine.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
@@ -235,6 +271,8 @@ multi-provider runs spend API credits and should be intentional. See
   fail closed until fix-kit/reply/inspection production paths exist.
 - Neon password should be rotated because a production DB URL was pasted in chat during the
   Reddit Radar setup.
+- Analytics Slack status silent until the bot is invited to #analytics
+  (`/invite @ContentDesk` in the channel; bot token lacks `channels:join`).
 
 ## Deploy / ship
 Branch pushes do **not** auto-create Vercel previews. Use the `vercel` CLI:
@@ -249,7 +287,9 @@ when asked; branch off `master` first. Full runbook: **`.claude/skills/ship/SKIL
 (`ship` skill).
 
 ## Next 3 actions
-1. Rotate the Neon password used during Reddit Radar setup, then update Railway/Trigger env.
+1. Invite @ContentDesk to #analytics, verify a forced cron run posts there, and check
+   the 9 PT cron writes tomorrow's rows on its own. Merge the worktree branch to master.
+   Rotate the Neon password (still pending).
 2. Add a read-only Reddit opportunities dashboard: recent opportunities, status/fit/subreddit
    filters, why surfaced, suggested angle, and draft reply.
 3. Add production paths for non-article visibility tasks, starting with
