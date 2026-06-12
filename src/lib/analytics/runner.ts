@@ -29,8 +29,8 @@ export const analyticsSources: AnalyticsSource[] = [
 
 // GA4 and GSC daily data can lag up to ~48h; rows pulled inside that window
 // are marked provisional so the growth brief can label them.
-const googleLagDays = 2;
-const laggingSources: AnalyticsSource[] = ["ga4", "gsc"];
+export const googleLagDays = 2;
+export const laggingSources: AnalyticsSource[] = ["ga4", "gsc"];
 
 export type SourceRunResult = {
   source: AnalyticsSource;
@@ -58,6 +58,7 @@ export async function runAnalyticsDaily(input: {
   brandSlug?: string;
   sources?: AnalyticsSource[];
   postToSlack?: boolean;
+  slackHeading?: string;
   now?: Date;
   fetchers?: Partial<Record<AnalyticsSource, SourceFetcher>>;
   persist?: typeof upsertAnalyticsDailyMetric;
@@ -100,7 +101,12 @@ export async function runAnalyticsDaily(input: {
   }
 
   const postedToSlack = input.postToSlack
-    ? await postRunStatusToSlack({ brandSlug, metricDate: input.metricDate, results })
+    ? await postRunStatusToSlack({
+        brandSlug,
+        metricDate: input.metricDate,
+        results,
+        heading: input.slackHeading,
+      })
     : false;
 
   return { brandSlug, metricDate: input.metricDate, results, postedToSlack };
@@ -207,6 +213,7 @@ export async function postRunStatusToSlack(input: {
   brandSlug: string;
   metricDate: string;
   results: SourceRunResult[];
+  heading?: string;
 }) {
   const channelId = getEnv().ANALYTICS_SLACK_CHANNEL_ID;
   if (!channelId) return false;
@@ -214,7 +221,7 @@ export async function postRunStatusToSlack(input: {
   try {
     await postManagerMessage({
       channelId,
-      text: `Analytics daily pull · ${input.brandSlug} · ${input.metricDate}\n${input.results
+      text: `${input.heading ?? "Analytics daily pull"} · ${input.brandSlug} · ${input.metricDate}\n${input.results
         .map((result) => sourceStatusLine(result))
         .join("\n")}`,
     });
