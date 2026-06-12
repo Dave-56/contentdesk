@@ -200,7 +200,9 @@ export function utcDayWindow(metricDate: string) {
 }
 
 // No silent zeros: every source posts its status, and failures carry the
-// error line so the fix is visible from Slack.
+// error line so the fix is visible from Slack. Fail-soft: rows are already
+// persisted by the time this runs, so a Slack error (bot not invited,
+// channel archived) must not fail the run.
 export async function postRunStatusToSlack(input: {
   brandSlug: string;
   metricDate: string;
@@ -209,12 +211,19 @@ export async function postRunStatusToSlack(input: {
   const channelId = getEnv().ANALYTICS_SLACK_CHANNEL_ID;
   if (!channelId) return false;
 
-  await postManagerMessage({
-    channelId,
-    text: `Analytics daily pull · ${input.brandSlug} · ${input.metricDate}\n${input.results
-      .map((result) => sourceStatusLine(result))
-      .join("\n")}`,
-  });
+  try {
+    await postManagerMessage({
+      channelId,
+      text: `Analytics daily pull · ${input.brandSlug} · ${input.metricDate}\n${input.results
+        .map((result) => sourceStatusLine(result))
+        .join("\n")}`,
+    });
+  } catch (error) {
+    console.error(
+      `[analytics] Slack status post failed: ${error instanceof Error ? error.message : error}`,
+    );
+    return false;
+  }
 
   return true;
 }

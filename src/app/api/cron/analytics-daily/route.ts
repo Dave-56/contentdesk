@@ -38,8 +38,16 @@ export async function GET(request: Request) {
     });
   }
 
+  // Optional ?date=YYYY-MM-DD overrides the metric date (with force) so prod
+  // can be backfilled over HTTP — the Neon URL is sensitive-scoped in Vercel,
+  // so scripts/analytics-backfill.ts can't reach prod from a laptop.
+  const dateParam = url.searchParams.get("date");
+  if (dateParam && !/^\d{4}-\d{2}-\d{2}$/.test(dateParam)) {
+    return cronJson({ state: "invalid_date", date: dateParam }, 400);
+  }
+
   const payload = await runAnalyticsDaily({
-    metricDate: yesterdayUtc(now),
+    metricDate: dateParam && force ? dateParam : yesterdayUtc(now),
     postToSlack: true,
     now,
   });

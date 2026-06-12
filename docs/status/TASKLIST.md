@@ -184,7 +184,10 @@ Acceptance:
 - [x] Phase 0 human prereqs: Google OAuth refresh-token credential (GA4 + GSC scopes), Partner API client with "Manage apps", PostHog personal API key, env vars set in `.env.local` and Vercel.
 - [x] Support Google OAuth refresh-token auth alongside service-account JSON; adopt provisioned env names (`SHOPIFY_PARTNER_ACCESS_TOKEN`, `POSTHOG_PERSONAL_API_KEY`).
 - [x] Run `analytics:smoke` (4/4 ok), apply migration 007 to Neon, 7-day `analytics:backfill` 2026-06-04..06-10 (28/28 ok rows).
-- [ ] Deploy attribution cron to prod and set `ANALYTICS_SLACK_CHANNEL_ID` for daily Slack status.
+- [x] Deploy attribution cron to prod, set `ANALYTICS_SLACK_CHANNEL_ID` (Vercel prod + `.env.local`), apply migration 007 to prod Neon via temp admin route, HTTP-backfill prod 7 days (28/28 ok).
+- [x] Add `?date=` backfill param to cron route; make Slack status post fail-soft.
+- [ ] Invite @ContentDesk to #analytics and verify the Slack status post.
+- [ ] Verify unattended 9 PT cron writes rows the next day.
 - [ ] Phase 2: weekly growth brief joining metrics + action log.
 - [ ] Phase 3: wire `recordAttributionAction` into article publish, Reddit replied, listing update, and prompt-citation-seen paths.
 

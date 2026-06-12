@@ -212,11 +212,23 @@ multi-provider runs spend API credits and should be intentional. See
   code adapted to those exact names (service-account JSON still supported as fallback
   in `googleAuthConfig()`). Live smoke passed 4/4: GA4 runReport ok, GSC sites.list
   shows `sc-domain:tinylemon.xyz` (siteOwner), Partner API resolves app `tiny-lemon`,
-  PostHog HogQL ok. Migration 007 applied to Neon. 7-day backfill 2026-06-04..06-10
-  wrote 28/28 ok rows: PostHog up to 253 events/day, Partner installs on 06-05 and
-  06-08, GA4 1–6 sessions/day, GSC 0 impressions (new domain). Caveat: if the Google
-  OAuth consent screen is in Testing mode, the refresh token expires after ~7 days —
-  publish the app or expect ga4/gsc `failed_auth` rows.
+  PostHog HogQL ok. Caveat: if the Google OAuth consent screen is in Testing mode,
+  the refresh token expires after ~7 days — publish the app or expect ga4/gsc
+  `failed_auth` rows.
+- Attribution prod deploy on 2026-06-11: `/api/cron/analytics-daily` live at
+  `contentdesk-lake.vercel.app`. Gotcha chain hit and fixed: (1) local `.env.local`
+  `DATABASE_URL` is localhost:55432, so the first psql migration/backfill only hit the
+  dev DB; (2) prod `DATABASE_URL` is sensitive-scoped in Vercel (`vercel env pull`
+  returns empty), so prod DDL can't run from a laptop — migration 007 was applied
+  through a temporary CRON_SECRET-guarded `/api/admin/migrate` route (removed after
+  use); (3) cron route gained `?date=YYYY-MM-DD` (with `force=true`) so prod can be
+  backfilled over HTTP; (4) Slack status post made fail-soft — `not_in_channel` was
+  500-ing the cron after rows persisted. Prod backfill 2026-06-04..06-10: 28/28 ok
+  rows in Neon (Partner installs 06-05/06-08, PostHog up to 253 events/day, GA4 1–6
+  sessions/day, GSC 0 impressions — new domain). `ANALYTICS_SLACK_CHANNEL_ID` =
+  #analytics (C0BAT6Z0VDW) set in Vercel prod + `.env.local`; Slack posts stay
+  `postedToSlack: false` until the bot is invited (`/invite @ContentDesk`, token
+  lacks `channels:join` so it can't self-join).
 - Repo memory ritual: `AGENTS.md` and `docs/SESSION_CHECKLIST.md` define the shared
   "update repo memory" stop routine.
 - Last successful Tiny Lemon Perplexity scan: 2026-06-01. Output:
@@ -259,9 +271,8 @@ multi-provider runs spend API credits and should be intentional. See
   fail closed until fix-kit/reply/inspection production paths exist.
 - Neon password should be rotated because a production DB URL was pasted in chat during the
   Reddit Radar setup.
-- Attribution cron not yet deployed to Vercel (route + vercel.json entry are committed but
-  prod deploy pending). `ANALYTICS_SLACK_CHANNEL_ID` is unset everywhere, so daily runs
-  won't post Slack status until it's added.
+- Analytics Slack status silent until the bot is invited to #analytics
+  (`/invite @ContentDesk` in the channel; bot token lacks `channels:join`).
 
 ## Deploy / ship
 Branch pushes do **not** auto-create Vercel previews. Use the `vercel` CLI:
@@ -276,9 +287,9 @@ when asked; branch off `master` first. Full runbook: **`.claude/skills/ship/SKIL
 (`ship` skill).
 
 ## Next 3 actions
-1. Ship attribution to prod: merge worktree branch, `vercel deploy --prod`, set
-   `ANALYTICS_SLACK_CHANNEL_ID`, and rotate the Neon password in the same env pass.
-   Then verify the 9 PT cron writes tomorrow's rows.
+1. Invite @ContentDesk to #analytics, verify a forced cron run posts there, and check
+   the 9 PT cron writes tomorrow's rows on its own. Merge the worktree branch to master.
+   Rotate the Neon password (still pending).
 2. Add a read-only Reddit opportunities dashboard: recent opportunities, status/fit/subreddit
    filters, why surfaced, suggested angle, and draft reply.
 3. Add production paths for non-article visibility tasks, starting with
