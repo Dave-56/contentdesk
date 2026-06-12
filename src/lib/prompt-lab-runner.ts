@@ -1,4 +1,5 @@
 import "@/lib/load-env";
+import { postPromptLabEngineFailureAlert } from "@/lib/prompt-lab-alerts";
 import { loadPromptConfig } from "@/lib/prompt-lab-config";
 import { summarizePromptAnswer } from "@/lib/prompt-answer-summary";
 import { generateSmartSummary } from "@/lib/prompt-answer-summary-llm";
@@ -194,6 +195,7 @@ export async function runPromptLabDaily(input: {
     }),
   });
   await synthesizePromptLabDailyMetrics({ batchId: claim.batch.id });
+  await postPromptLabEngineFailureAlert({ batchId: claim.batch.id, runDate: date });
 
   return {
     questions: runQuestions,
