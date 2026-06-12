@@ -2,10 +2,10 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   isCronAuthorized,
-  isPromptLabCronForceAllowed,
+  isCronForceAllowed,
   pacificHour,
-  shouldRunAtPacificEight,
-} from "@/lib/prompt-lab-cron";
+  shouldRunAtPacificHour,
+} from "@/lib/cron";
 
 test("cron auth requires bearer token matching CRON_SECRET", () => {
   assert.equal(
@@ -36,23 +36,34 @@ test("Pacific hour handles daylight saving time", () => {
   assert.equal(pacificHour(new Date("2026-01-08T16:00:00.000Z")), 8);
 });
 
-test("cron runs only at 8am Pacific unless forced", () => {
+test("cron runs only at the configured Pacific hour unless forced", () => {
   assert.equal(
-    shouldRunAtPacificEight({
+    shouldRunAtPacificHour({
+      hour: 8,
       force: false,
       now: new Date("2026-06-08T15:00:00.000Z"),
     }),
     true,
   );
   assert.equal(
-    shouldRunAtPacificEight({
+    shouldRunAtPacificHour({
+      hour: 8,
       force: false,
       now: new Date("2026-06-08T14:00:00.000Z"),
     }),
     false,
   );
   assert.equal(
-    shouldRunAtPacificEight({
+    shouldRunAtPacificHour({
+      hour: 9,
+      force: false,
+      now: new Date("2026-06-08T16:00:00.000Z"),
+    }),
+    true,
+  );
+  assert.equal(
+    shouldRunAtPacificHour({
+      hour: 8,
       force: true,
       now: new Date("2026-06-08T14:00:00.000Z"),
     }),
@@ -62,7 +73,7 @@ test("cron runs only at 8am Pacific unless forced", () => {
 
 test("test force header is local-only while force query works behind auth", () => {
   assert.equal(
-    isPromptLabCronForceAllowed({
+    isCronForceAllowed({
       forceParam: "true",
       testForceHeader: null,
       nodeEnv: "production",
@@ -70,7 +81,7 @@ test("test force header is local-only while force query works behind auth", () =
     true,
   );
   assert.equal(
-    isPromptLabCronForceAllowed({
+    isCronForceAllowed({
       forceParam: null,
       testForceHeader: "true",
       nodeEnv: "production",
@@ -78,7 +89,7 @@ test("test force header is local-only while force query works behind auth", () =
     false,
   );
   assert.equal(
-    isPromptLabCronForceAllowed({
+    isCronForceAllowed({
       forceParam: null,
       testForceHeader: "true",
       nodeEnv: "development",

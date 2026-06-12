@@ -317,7 +317,8 @@
 
 .ai-metrics {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 560px);
+  justify-content: center;
   gap: 20px;
 }
 
