@@ -8,7 +8,7 @@ import {
   isFreshRedditPost,
   selectOpportunitiesToSurface,
 } from "@/lib/reddit-opportunities";
-import { subredditFromUrl } from "@/lib/reddit-opportunities/rss";
+import { fetchSubredditRss, subredditFromUrl } from "@/lib/reddit-opportunities/rss";
 import { redditOpportunityBlocks } from "@/lib/reddit-opportunities/slack";
 import type { RedditOpportunityRecord, RedditPost } from "@/lib/reddit-opportunities/schemas";
 
@@ -151,6 +151,80 @@ test("subredditFromUrl extracts subreddit from post urls", () => {
   assert.equal(subredditFromUrl("https://www.reddit.com/user/someone/comments/abc/"), "");
 });
 
+test("reddit fetcher uses OAuth JSON listing when credentials exist", async () => {
+  const originalFetch = globalThis.fetch;
+  const originalClientId = process.env.REDDIT_CLIENT_ID;
+  const originalClientSecret = process.env.REDDIT_CLIENT_SECRET;
+  const originalUserAgent = process.env.REDDIT_USER_AGENT;
+  const requests: Array<{ url: string; headers: Headers }> = [];
+
+  process.env.REDDIT_CLIENT_ID = "client_id";
+  process.env.REDDIT_CLIENT_SECRET = "client_secret";
+  process.env.REDDIT_USER_AGENT = "web:contentdesk-reddit-radar:test by u/example";
+
+  globalThis.fetch = async (input, init) => {
+    const url = String(input);
+    requests.push({ url, headers: new Headers(init?.headers) });
+
+    if (url === "https://www.reddit.com/api/v1/access_token") {
+      return new Response(JSON.stringify({ access_token: "token_123", expires_in: 3600 }), {
+        status: 200,
+        headers: { "content-type": "application/json" },
+      });
+    }
+
+    if (url.startsWith("https://oauth.reddit.com/r/shopify/new.json")) {
+      return new Response(
+        JSON.stringify({
+          data: {
+            children: [
+              {
+                data: {
+                  id: "abc123",
+                  subreddit: "shopify",
+                  title: "How do I improve apparel product photos?",
+                  permalink: "/r/shopify/comments/abc123/example/",
+                  created_utc: 1781006400,
+                  selftext: "I have supplier photos and need better Shopify images.",
+                },
+              },
+            ],
+          },
+        }),
+        { status: 200, headers: { "content-type": "application/json" } },
+      );
+    }
+
+    return new Response("unexpected request", { status: 500 });
+  };
+
+  try {
+    const posts = await fetchSubredditRss({ subreddit: "shopify", sort: "new", limit: 1 });
+
+    assert.equal(posts.length, 1);
+    assert.equal(posts[0].redditPostId, "abc123");
+    assert.equal(posts[0].url, "https://www.reddit.com/r/shopify/comments/abc123/example/");
+    assert.equal(posts[0].content, "I have supplier photos and need better Shopify images.");
+    assert.equal(requests[0].headers.get("authorization")?.startsWith("Basic "), true);
+    assert.equal(requests[1].headers.get("authorization"), "Bearer token_123");
+    assert.equal(requests[1].headers.get("user-agent"), process.env.REDDIT_USER_AGENT);
+  } finally {
+    globalThis.fetch = originalFetch;
+    restoreEnv("REDDIT_CLIENT_ID", originalClientId);
+    restoreEnv("REDDIT_CLIENT_SECRET", originalClientSecret);
+    restoreEnv("REDDIT_USER_AGENT", originalUserAgent);
+  }
+});
+
+function restoreEnv(name: string, value: string | undefined) {
+  if (value === undefined) {
+    delete process.env[name];
+    return;
+  }
+
+  process.env[name] = value;
+}
+
 function postFixture(): RedditPost {
   return {
     redditPostId: "abc123",
@@ -169,6 +243,7 @@ function opportunityFixture(): RedditOpportunityRecord {
     subreddit: "shopify",
     title: "How do clothing stores get on-model product photos?",
     url: "https://www.reddit.com/r/shopify/comments/abc123/example/",
+    content: "I have flat-lay supplier photos and want better Shopify images.",
     publishedAt: "2026-06-09T12:00:00.000Z",
     matchedTerms: ["on-model", "product photos"],
     fit: "strong",

@@ -15,6 +15,7 @@ type OpportunityRow = {
   subreddit: string;
   title: string;
   url: string;
+  content: string;
   published_at: Date;
   matched_terms: string[];
   fit: RedditOpportunityRecord["fit"];
@@ -78,12 +79,13 @@ export async function recordRedditPrefilterVerdicts(
 
   await query(
     `insert into reddit_prefilter_verdicts
-      (id, reddit_post_id, subreddit, title, url, relevant, reason)
+      (id, reddit_post_id, subreddit, title, url, content, relevant, reason)
      select * from unnest(
-       $1::text[], $2::text[], $3::text[], $4::text[], $5::text[], $6::boolean[], $7::text[]
+       $1::text[], $2::text[], $3::text[], $4::text[], $5::text[], $6::text[], $7::boolean[], $8::text[]
      )
      on conflict (reddit_post_id) do update
-     set relevant = excluded.relevant,
+     set content = excluded.content,
+       relevant = excluded.relevant,
        reason = excluded.reason`,
     [
       entries.map(() => id("redditpf")),
@@ -91,6 +93,7 @@ export async function recordRedditPrefilterVerdicts(
       entries.map((entry) => entry.post.subreddit),
       entries.map((entry) => entry.post.title),
       entries.map((entry) => entry.post.url),
+      entries.map((entry) => entry.post.content),
       entries.map((entry) => entry.relevant),
       entries.map((entry) => entry.reason),
     ],
@@ -116,14 +119,15 @@ export async function upsertRedditOpportunity(input: {
 }) {
   const result = await query<OpportunityRow>(
     `insert into reddit_opportunities
-      (id, reddit_post_id, subreddit, title, url, published_at, matched_terms, fit, score,
+      (id, reddit_post_id, subreddit, title, url, content, published_at, matched_terms, fit, score,
        why_surfaced, tiny_lemon_fit, promo_risk, promo_risk_level, suggested_angle,
        mention_recommendation, draft_reply, status)
-     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
+     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
      on conflict (reddit_post_id) do update
      set subreddit = excluded.subreddit,
        title = excluded.title,
        url = excluded.url,
+       content = excluded.content,
        published_at = excluded.published_at,
        matched_terms = excluded.matched_terms,
        fit = excluded.fit,
@@ -143,6 +147,7 @@ export async function upsertRedditOpportunity(input: {
       input.post.subreddit,
       input.post.title,
       input.post.url,
+      input.post.content,
       input.post.publishedAt,
       JSON.stringify(input.classification.matchedTerms),
       input.classification.fit,
@@ -210,6 +215,7 @@ function mapOpportunityRow(row: OpportunityRow) {
     subreddit: row.subreddit,
     title: row.title,
     url: row.url,
+    content: row.content,
     publishedAt: row.published_at.toISOString(),
     matchedTerms: row.matched_terms,
     fit: row.fit,

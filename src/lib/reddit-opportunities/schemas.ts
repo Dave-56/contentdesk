@@ -38,6 +38,7 @@ export const redditOpportunityRecordSchema = z.object({
   subreddit: z.string().trim().min(1),
   title: z.string().trim().min(1),
   url: z.string().url(),
+  content: z.string().trim().default(""),
   publishedAt: z.string().datetime(),
   matchedTerms: z.array(z.string().trim().min(1)).default([]),
   fit: redditOpportunityFitSchema,
