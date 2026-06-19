@@ -117,18 +117,21 @@ test("selectOpportunitiesToSurface merges stored and pending, dedupes, sorts, ca
   );
 });
 
-test("selectOpportunitiesToSurface drops unpromotable threads even with good fit", () => {
+test("selectOpportunitiesToSurface surfaces good-fit threads regardless of mention/promo advice", () => {
   const stored = [
     { ...opportunityFixture(), id: "reddit_6", score: 95, mentionRecommendation: "no_mention" as const },
     { ...opportunityFixture(), id: "reddit_7", score: 90, promoRiskLevel: "high" as const },
-    { ...opportunityFixture(), id: "reddit_8", score: 40 },
+    { ...opportunityFixture(), id: "reddit_9", score: 99, fit: "weak" as const },
+    { ...opportunityFixture(), id: "reddit_10", score: 99, status: "skipped" as const },
   ];
 
   const selected = selectOpportunitiesToSurface({ stored, pending: [], max: 8 });
 
+  // no_mention and high-promo threads still surface — that guidance rides on the
+  // card, it is not a gate. Only weak/skip fit and non-new status are excluded.
   assert.deepEqual(
     selected.map((opportunity) => opportunity.id),
-    ["reddit_8"],
+    ["reddit_6", "reddit_7"],
   );
 });
 

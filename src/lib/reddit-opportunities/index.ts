@@ -200,9 +200,12 @@ export async function runRedditOpportunityScout(input: {
     }
 
     if (summary.surfaced === 0) {
+      const issues = summary.errors.length
+        ? `\n⚠️ ${summary.errors.length} issue(s) — prefilter: ${summary.prefilterMode}; ${summary.errors.slice(0, 3).join("; ")}`
+        : ` (prefilter: ${summary.prefilterMode})`;
       await postManagerMessage({
         channelId,
-        text: `Reddit radar: nothing relevant this run — ${summary.fetched} posts fetched, ${summary.candidates} candidates, ${summary.classified} classified, none worth surfacing.`,
+        text: `Reddit radar: nothing relevant this run — ${summary.fetched} posts fetched, ${summary.candidates} candidates, ${summary.classified} classified, none worth surfacing.${issues}`,
       });
     }
   }
@@ -242,15 +245,16 @@ export function isFreshRedditPost(post: RedditPost, maxAgeDays: number, now = ne
   return ageMs <= maxAgeDays * 24 * 60 * 60 * 1000;
 }
 
-// Topical fit alone is not enough: a relevant thread where any product mention
-// would read as vendor pitching (hiring posts, portfolio requests) stays stored
-// for review but never becomes a Slack opportunity card.
+// Surface on relevance (fit) alone. Whether to mention tinylemon is separate
+// advice — mentionRecommendation + promoRisk ride along on the card so the
+// human decides per thread. Gating surfacing on "mention + non-high promo"
+// starved the channel to zero: a conservative classifier marks almost every
+// thread no_mention/high, so genuinely relevant conversations never showed.
+// A no_mention thread is still worth a helpful (non-promotional) reply.
 function shouldSurface(opportunity: RedditOpportunityRecord) {
   return (
     opportunity.status === "new" &&
-    (opportunity.fit === "strong" || opportunity.fit === "medium") &&
-    opportunity.mentionRecommendation === "mention" &&
-    opportunity.promoRiskLevel !== "high"
+    (opportunity.fit === "strong" || opportunity.fit === "medium")
   );
 }
 
