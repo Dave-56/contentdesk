@@ -575,6 +575,51 @@ export async function listPromptLabBatchEngineResults(input: {
   return result.rows;
 }
 
+export type PromptLabEngineFailureSummary = {
+  engine: PromptLabEngineName;
+  brandSlug: string;
+  total: number;
+  failed: number;
+  sampleError: string | null;
+};
+
+export async function listPromptLabBatchEngineFailureSummaries(input: {
+  batchId: string;
+}): Promise<PromptLabEngineFailureSummary[]> {
+  const result = await query<{
+    engine: PromptLabEngineName;
+    brand_slug: string;
+    total: number;
+    failed: number;
+    sample_error: string | null;
+  }>(
+    `select
+       engine,
+       max(brand_slug) as brand_slug,
+       count(*)::int as total,
+       count(*) filter (where status = 'error')::int as failed,
+       (array_agg(answer order by created_at desc) filter (where status = 'error'))[1] as sample_error
+     from (
+       select distinct on (question_id, engine)
+         engine, brand_slug, status, answer, created_at
+       from prompt_lab_engine_results
+       where batch_id = $1
+       order by question_id, engine, created_at desc
+     ) latest
+     group by engine
+     order by engine`,
+    [input.batchId],
+  );
+
+  return result.rows.map((row) => ({
+    engine: row.engine,
+    brandSlug: row.brand_slug,
+    total: row.total,
+    failed: row.failed,
+    sampleError: row.sample_error,
+  }));
+}
+
 export async function getPromptLabDailyStatus(input: {
   brandSlug?: string;
   runDate?: string;
