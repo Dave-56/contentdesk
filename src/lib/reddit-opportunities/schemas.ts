@@ -13,6 +13,7 @@ export const redditPromoRiskLevelSchema = z.enum(["low", "medium", "high"]);
 export const redditPostSchema = z.object({
   redditPostId: z.string().trim().min(1),
   subreddit: z.string().trim().min(1),
+  author: z.string().trim().default(""),
   title: z.string().trim().min(1),
   url: z.string().url(),
   publishedAt: z.string().datetime(),

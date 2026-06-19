@@ -79,7 +79,7 @@ test("dedupeRedditPosts keeps first occurrence per reddit post id", () => {
   const posts = [
     base,
     { ...base, subreddit: "ecommerce" },
-    { ...base, redditPostId: "other99" },
+    { ...base, redditPostId: "other99", title: "Different product photo question" },
   ];
 
   const unique = dedupeRedditPosts(posts);
@@ -87,6 +87,27 @@ test("dedupeRedditPosts keeps first occurrence per reddit post id", () => {
   assert.equal(unique.length, 2);
   assert.equal(unique[0].subreddit, "shopify");
   assert.equal(unique[1].redditPostId, "other99");
+});
+
+test("dedupeRedditPosts collapses same-author crossposts with different ids", () => {
+  const base = {
+    ...postFixture(),
+    author: "same_user",
+    title: "Would you use this virtual try-on workflow?",
+    content: "I built a virtual try-on workflow for clothing stores and want feedback.",
+  };
+  const posts = [
+    { ...base, redditPostId: "abc123", subreddit: "fashiondesigner" },
+    { ...base, redditPostId: "xyz789", subreddit: "ecommerce101" },
+    { ...base, redditPostId: "keep99", author: "other_user" },
+  ];
+
+  const unique = dedupeRedditPosts(posts);
+
+  assert.deepEqual(
+    unique.map((post) => post.redditPostId),
+    ["abc123", "keep99"],
+  );
 });
 
 test("isFreshRedditPost filters by max age", () => {
@@ -181,6 +202,7 @@ test("reddit fetcher uses OAuth JSON listing when credentials exist", async () =
               {
                 data: {
                   id: "abc123",
+                  author: "shopifymerchant",
                   subreddit: "shopify",
                   title: "How do I improve apparel product photos?",
                   permalink: "/r/shopify/comments/abc123/example/",
@@ -203,6 +225,7 @@ test("reddit fetcher uses OAuth JSON listing when credentials exist", async () =
 
     assert.equal(posts.length, 1);
     assert.equal(posts[0].redditPostId, "abc123");
+    assert.equal(posts[0].author, "shopifymerchant");
     assert.equal(posts[0].url, "https://www.reddit.com/r/shopify/comments/abc123/example/");
     assert.equal(posts[0].content, "I have supplier photos and need better Shopify images.");
     assert.equal(requests[0].headers.get("authorization")?.startsWith("Basic "), true);
@@ -229,6 +252,7 @@ function postFixture(): RedditPost {
   return {
     redditPostId: "abc123",
     subreddit: "shopify",
+    author: "shopifymerchant",
     title: "How do clothing stores get on-model product photos?",
     url: "https://www.reddit.com/r/shopify/comments/abc123/example/",
     publishedAt: "2026-06-09T12:00:00.000Z",

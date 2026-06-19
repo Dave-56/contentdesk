@@ -50,6 +50,7 @@ export async function runRedditOpportunityScout(input: {
     candidates: 0,
     alreadyKnown: 0,
     alreadyRejected: 0,
+    crosspostDuplicates: 0,
     prefilterMode: "deterministic" as "ai" | "deterministic",
     classified: 0,
     stored: 0,
@@ -81,7 +82,9 @@ export async function runRedditOpportunityScout(input: {
   summary.fetched = gathered.length;
 
   // Narrow to fresh, unseen, unmuted posts before spending AI calls.
-  const unique = dedupeRedditPosts(gathered).filter((post) =>
+  const deduped = dedupeRedditPosts(gathered);
+  summary.crosspostDuplicates = gathered.length - deduped.length;
+  const unique = deduped.filter((post) =>
     isFreshRedditPost(post, tinyLemonRedditConfig.maxPostAgeDays),
   );
   const knownIds = await listKnownRedditPostIds(unique.map((post) => post.redditPostId));
@@ -228,13 +231,37 @@ export function selectOpportunitiesToSurface(input: {
 }
 
 export function dedupeRedditPosts(posts: RedditPost[]) {
-  const seen = new Set<string>();
+  const seenPostIds = new Set<string>();
+  const seenFingerprints = new Set<string>();
 
   return posts.filter((post) => {
-    if (seen.has(post.redditPostId)) return false;
-    seen.add(post.redditPostId);
+    if (seenPostIds.has(post.redditPostId)) return false;
+    seenPostIds.add(post.redditPostId);
+
+    const fingerprint = crosspostFingerprint(post);
+    if (fingerprint && seenFingerprints.has(fingerprint)) return false;
+    if (fingerprint) seenFingerprints.add(fingerprint);
+
     return true;
   });
+}
+
+function crosspostFingerprint(post: RedditPost) {
+  const author = normalizeFingerprintText(post.author);
+  const title = normalizeFingerprintText(post.title);
+  const content = normalizeFingerprintText(post.content).slice(0, 500);
+  if (!author || (!title && !content)) return "";
+
+  return [author, title, content].join("|");
+}
+
+function normalizeFingerprintText(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/https?:\/\/\S+/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 export function isFreshRedditPost(post: RedditPost, maxAgeDays: number, now = new Date()) {

@@ -73,6 +73,7 @@ async function postRedditScoutCompletion(
       `Stored: ${summary.stored}`,
       `Surfaced: ${summary.surfaced}`,
       `Skipped: ${summary.skipped}`,
+      `Cross-post duplicates: ${summary.crosspostDuplicates}`,
       `Known: ${summary.alreadyKnown}`,
       `Rejected: ${summary.alreadyRejected}`,
       `Errors: ${summary.errors.length}`,

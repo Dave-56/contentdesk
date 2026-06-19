@@ -228,6 +228,7 @@ function parseJsonChild(child: unknown, fallbackSubreddit?: string) {
   return redditPostSchema.parse({
     redditPostId,
     subreddit,
+    author: stripHtml(stringValue(value.author)),
     title: stripHtml(title),
     url,
     publishedAt,
@@ -258,6 +259,7 @@ function parseEntry(entry: unknown, fallbackSubreddit?: string) {
   return redditPostSchema.parse({
     redditPostId,
     subreddit,
+    author: "",
     title: stripHtml(title),
     url,
     publishedAt,
