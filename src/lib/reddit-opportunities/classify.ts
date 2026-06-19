@@ -13,7 +13,11 @@ import {
   type RedditOpportunityClassification,
   type RedditPost,
 } from "@/lib/reddit-opportunities/schemas";
-import { buildDeterministicDraft, cleanDraftReply } from "@/lib/reddit-opportunities/draft";
+import {
+  buildDeterministicDraft,
+  cleanDraftReply,
+  tinyLemonRedditGrowthReplyRules,
+} from "@/lib/reddit-opportunities/draft";
 
 // OpenAI structured outputs reject schemas whose properties are not all
 // required, so every field here must stay free of .default()/.optional().
@@ -245,6 +249,8 @@ async function generateAiClassification(input: {
       "Ideal poster: someone selling clothing/apparel online who needs product photos, on-model imagery, or a way to upgrade flat-lay/supplier photos.",
       "Not a fit: non-apparel products (food, electronics, home goods), replica/rep communities, people hiring human photographers for brand shoots, or general business advice with incidental photo language.",
       "",
+      tinyLemonRedditGrowthReplyRules,
+      "",
       "Rules:",
       "- Output conservative fit: strong, medium, weak, or skip.",
       "- strong: Shopify/apparel plus product photos/model photos/flat-lays/supplier photos.",
@@ -254,10 +260,10 @@ async function generateAiClassification(input: {
       "- promoRiskLevel: low when the poster explicitly asks for tools/apps/workflows. medium when a soft, disclosed mention still answers the ask. high when any product mention would read as vendor pitching — hiring/portfolio requests, freelancer briefs, promo-sensitive subreddits, vendor-bashing threads.",
       "- If promoRiskLevel is high, mentionRecommendation must be no_mention. Only promotable threads get surfaced as opportunities.",
       "- promoRisk: one sentence explaining the level for a human reviewer.",
-      "- Reply draft must be Reddit-native, 2-5 sentences, answer pain first.",
+      "- Reply draft must follow Tiny Lemon Reddit Growth reply rules above.",
       "- Use lowercase tinylemon only if mentionRecommendation is mention.",
       "- No fake metrics, no guarantees, no overpromising.",
-      "- Disclose/soften promotional angle when mentioning tinylemon.",
+      "- Disclose/soften promotional angle by making the reply useful first; do not use weak I am building / MVP language.",
       "- Human posts manually.",
       "",
       `Matched terms: ${input.matchedTerms.join(", ")}`,

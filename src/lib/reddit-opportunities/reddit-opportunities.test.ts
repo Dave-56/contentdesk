@@ -10,12 +10,17 @@ import {
 } from "@/lib/reddit-opportunities";
 import { fetchSubredditRss, subredditFromUrl } from "@/lib/reddit-opportunities/rss";
 import { redditOpportunityBlocks } from "@/lib/reddit-opportunities/slack";
+import {
+  buildDeterministicDraft,
+  tinyLemonRedditGrowthReplyRules,
+} from "@/lib/reddit-opportunities/draft";
 import type { RedditOpportunityRecord, RedditPost } from "@/lib/reddit-opportunities/schemas";
 
 test("reddit prefilter matches product-photo terms and mute terms", () => {
   const post: RedditPost = {
     redditPostId: "abc123",
     subreddit: "shopify",
+    author: "shopifymerchant",
     title: "How do clothing stores get on-model product photos?",
     url: "https://www.reddit.com/r/shopify/comments/abc123/example/",
     publishedAt: "2026-06-09T12:00:00.000Z",
@@ -39,6 +44,7 @@ test("reddit prefilter matches whole words, not substrings", () => {
   const post: RedditPost = {
     redditPostId: "def456",
     subreddit: "Entrepreneur",
+    author: "founder101",
     title: "What business models are old-fashioned in 2026?",
     url: "https://www.reddit.com/r/Entrepreneur/comments/def456/example/",
     publishedAt: "2026-06-09T12:00:00.000Z",
@@ -72,6 +78,35 @@ test("reddit opportunity Slack blocks carry mark replied and skip actions", () =
       opportunityId: "reddit_1",
     }),
   );
+});
+
+test("deterministic Reddit reply follows Tiny Lemon growth posture", () => {
+  const draft = buildDeterministicDraft({
+    post: postFixture(),
+    matchedTerms: ["on-model", "flat-lay"],
+    mention: true,
+  });
+
+  assert.match(draft, /customers use tinylemon/);
+  assert.match(draft, /one SKU/);
+  assert.doesNotMatch(draft, /\bTiny Lemon\b/);
+  assert.doesNotMatch(draft, /I.?m connected|I.?m building|MVP|experimental/i);
+});
+
+test("deterministic Reddit reply omits tinylemon when mention is unsafe", () => {
+  const draft = buildDeterministicDraft({
+    post: postFixture(),
+    matchedTerms: ["product photos"],
+    mention: false,
+  });
+
+  assert.doesNotMatch(draft, /tinylemon/i);
+});
+
+test("Tiny Lemon Reddit growth rules block weak launch language", () => {
+  assert.match(tinyLemonRedditGrowthReplyRules, /lowercase tinylemon/);
+  assert.match(tinyLemonRedditGrowthReplyRules, /customers\/users\/merchants use it/);
+  assert.match(tinyLemonRedditGrowthReplyRules, /Do not say I am building/);
 });
 
 test("dedupeRedditPosts keeps first occurrence per reddit post id", () => {
